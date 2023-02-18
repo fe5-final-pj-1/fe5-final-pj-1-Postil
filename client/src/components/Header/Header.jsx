@@ -1,5 +1,5 @@
 import React from 'react';
-
+import HeaderMain from './Header.module.scss';
 function Header() {
     return (
         <div className="container">
@@ -8,7 +8,7 @@ function Header() {
                     <img src="../public/Logo.png" alt="no logo" />
                 </div>
                 <nav className="header_nav">
-                    <ul className="header_list">
+                    <ul className={HeaderMain.header_list}>
                         <li className="header_list_item">
                             <a href="!#" className="header_list_item_link">
                                 Catalog
