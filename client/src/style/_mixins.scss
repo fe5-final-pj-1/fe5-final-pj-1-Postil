@@ -1,0 +1,51 @@
+@mixin content-container {
+  max-width: 1230px;
+  padding-left: 25px;
+  padding-right: 25px;
+  margin: 0 auto;
+}
+
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-center-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@mixin abel-font-normal {
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+}
+@mixin muli-font-normal {
+    font-family: 'Muli';
+    font-style: normal;
+    font-weight: 400;
+}
+
+@mixin muli-font-bold {
+    font-family: 'Muli';
+    font-style: normal;
+    font-weight: 700;
+}
+
+@mixin roboto-font-bold {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+}
