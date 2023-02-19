@@ -1,0 +1,153 @@
+@import '../../style/index.scss';
+
+.bg {
+    background: rgba($color: #000000, $alpha: 0.5);
+    width: 100vw;
+    height: 100vh;
+    z-index: 999;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+.container {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    margin-top: 73px;
+    margin-right: 20.6%;
+    background: #ffffff;
+    padding: 50px 55px;
+    width: 560px;
+    & form {
+        display: flex;
+        flex-direction: column;
+        & label {
+            position: relative;
+        }
+    }
+    & > button {
+        align-self: flex-start;
+        @include muli-font-normal;
+        font-size: $description-fs;
+        line-height: 24px;
+        color: $dark-color;
+        text-decoration-line: underline;
+        border: none;
+        background-color: transparent;
+    }
+}
+.btnsLogin {
+    @include flex-center;
+    margin-bottom: 26px;
+    & button {
+        @include muli-font-normal;
+        font-size: $text-fs;
+        letter-spacing: 0.04em;
+        color: $dark-color;
+        padding: 15px 77px 12px 77px;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid $dark-color;
+    }
+}
+.active {
+    border-top: 1px solid $dark-color !important;
+    border-left: 1px solid $dark-color !important;
+    border-right: 1px solid $dark-color !important;
+    border-bottom: none !important;
+}
+.valuesInputs {
+  & .error {
+    position: absolute;
+    top: -35px;
+    left: 0;
+    color: #FF0000;
+  }
+    & label {
+        & input {
+            width: 100%;
+            color: $dark-color;
+            border: none;
+            border-bottom: 1px solid $description-color;
+            font-size: $text-fs;
+            padding: 5px 1px;
+            &::placeholder {
+                color: $description-color;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+    & label:not(label:last-child) input {
+        margin-bottom: 27px;
+    }
+    & label:last-child input {
+        margin-bottom: 16px;
+    }
+}
+.checkbox {
+    display: flex;
+    margin-bottom: 20px;
+    & p {
+        @include muli-font-normal;
+        font-weight: 300;
+        font-size: 14px;
+        line-height: 20px;
+        color: $dark-color;
+        width: 90%;
+        display: inline-block;
+        margin: 0;
+    }
+    & input {
+        width: 18px;
+        height: 18px;
+        margin: 5px 15px 0 0;
+        border: 1px solid #6fb7ac;
+    }
+    & .error {
+      position: absolute;
+      top: 55px;
+      left: 0;
+      color: #FF0000;
+    }
+}
+.termsPolicy {
+    @include muli-font-normal;
+    font-weight: 300;
+    font-size: 14px;
+    line-height: 36px;
+    color: $description-color;
+    margin: 0 0 30px 0;
+    & a {
+        color: $dark-color;
+    }
+}
+input[type='submit'] {
+    @include abel-font-normal;
+    font-size: 18px;
+    line-height: 32px;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    padding: 15px 93px;
+    background: #373f41;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    align-self: center;
+    margin-bottom: 30px;
+}
+.social {
+    @include flex-center;
+    margin-bottom: 20px;
+    gap: 27px;
+}
+input[type='submit']:hover,
+button:hover {
+    cursor: pointer;
+}
+
+

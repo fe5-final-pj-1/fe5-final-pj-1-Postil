@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
-function Button({ handleClick, text, background, color, border, borderRadius, padding }) {
+function Button({ handleClick, text, className }) {
+    const classes = classNames(className);
     return (
-        <button style={{ background, color, border, borderRadius, padding }} onClick={handleClick}>
+        <button className={classes} onClick={handleClick}>
             {text}
         </button>
     );
@@ -14,19 +16,11 @@ export default Button;
 Button.propTypes = {
     handleClick: PropTypes.func,
     text: PropTypes.string,
-    background: PropTypes.string,
-    color: PropTypes.string,
-    border: PropTypes.string,
-    borderRadius: PropTypes.oneOf(PropTypes.string, PropTypes.number),
-    padding: PropTypes.oneOf(PropTypes.string, PropTypes.number),
+    className: PropTypes.string,
 };
 
 Button.defaultProps = {
     handleClick: () => {},
     text: '',
-    background: 'transparent',
-    color: '#000000',
-    border: 'none',
-    borderRadius: 'none',
-    padding: 0,
+    className: '',
 };
