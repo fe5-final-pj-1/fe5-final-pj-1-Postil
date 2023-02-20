@@ -17,8 +17,8 @@ Button.propTypes = {
     background: PropTypes.string,
     color: PropTypes.string,
     border: PropTypes.string,
-    borderRadius: PropTypes.oneOf(PropTypes.string, PropTypes.number),
-    padding: PropTypes.oneOf(PropTypes.string, PropTypes.number),
+    borderRadius: PropTypes.oneOfType(PropTypes.string, PropTypes.number),
+    padding: PropTypes.oneOfType(PropTypes.string, PropTypes.number),
 };
 
 Button.defaultProps = {

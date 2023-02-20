@@ -1,0 +1,78 @@
+@import "../../style/variables";
+@import "../../style/mixins";
+
+.carousel {
+}
+
+:global .carousel.carousel-slider {
+    overflow: visible !important;
+}
+
+:global .carousel.carousel-slider .control-arrow {
+    width: 50px;
+    height: 85px;
+    padding: 0 !important;
+    background-color: $light-color !important;
+    top: 50% !important;
+    opacity: 1 !important;
+    border-radius: 3px;
+
+    &:hover {
+        background-color: rgba($light-color, .5) !important;
+    }
+}
+
+:global .carousel .control-next.control-arrow {
+    transform: translate(55%, -50%) !important;
+}
+
+:global .carousel .control-prev.control-arrow {
+    transform: translate(-55%, -50%) !important;
+}
+
+:global .carousel.carousel-slider .control-arrow {
+    &::before {
+        margin: 0 !important;
+        border: 0 !important;
+        background-size: 18px 35px;
+        height: 35px;
+        width: 18px;
+    }
+}
+
+:global .control-prev {
+    &::before {
+        background-image: url('./carousel-images/arrow-prev.svg');
+    }
+}
+
+:global .control-next {
+    &::before {
+        background-image: url('./carousel-images/arrow-next.svg');
+    }
+}
+
+:global .carousel .control-dots {
+    bottom: -25px !important;
+    margin: 0 !important;
+    width: 582px !important;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 1px solid $dark-color;
+    display: flex;
+}
+
+:global .carousel .control-dots .dot {
+    opacity: 0 !important;
+    width: 194px !important;
+    height: 5px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: $dark-color !important;
+}
+
+:global .carousel .control-dots .dot.selected, 
+:global .carousel .control-dots .dot:hover {
+    opacity: 1 !important;
+}

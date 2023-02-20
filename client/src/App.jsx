@@ -6,7 +6,7 @@ import CartRoute from './routes/CartRoute';
 import FiltersRoute from './routes/FiltersRoute';
 import DetailsRoute from './routes/DetailsRoute';
 import ErrorPage from './routes/ErrorPage';
-import './App.scss';
+import './App.module.scss';
 
 const router = createBrowserRouter([
     {
