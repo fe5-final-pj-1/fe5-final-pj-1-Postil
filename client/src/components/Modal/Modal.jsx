@@ -4,8 +4,7 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import styles from './Modal.module.scss';
 import Button from '../Button';
-import Google from './Google.jsx';
-import Facebook from './Facebook.jsx';
+import Icon from '../Icon';
 
 function Modal() {
     const [sign, setSign] = React.useState(true);
@@ -156,8 +155,8 @@ function Modal() {
                     </form>
                     {sign && (
                         <div className={styles.social}>
-                            <Google />
-                            <Facebook />
+                            <Icon type="google" />
+                            <Icon type="facebook" />
                         </div>
                     )}
                     {sign ? (
