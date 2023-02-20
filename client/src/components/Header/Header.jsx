@@ -1,21 +1,34 @@
 import React from 'react';
 import HeaderMain from './Header.module.scss';
-
+const toggleMenu = () => {
+    const catalogMenu = document.querySelector('#catalog');
+    const catalog = document.querySelector('#catalogItem');
+    if (catalogMenu.style.display === 'none') {
+        catalogMenu.style.display = 'block';
+        catalog.style.borderBottom = '1px black solid';
+    } else {
+        catalog.style.borderBottom = 'none';
+        catalogMenu.style.display = 'none';
+    }
+    // console.log(catalogMenu, openBtn);
+};
 function Header() {
     return (
         <div className={HeaderMain.container}>
             <header className={HeaderMain.header}>
                 <div className={HeaderMain.logo}>
-                    <img src="./logo.png" alt="no logo" />
+                    <img src="./logo.png" alt="something wrong :(" />
                 </div>
                 <nav className={HeaderMain.header_nav}>
                     <ul className={HeaderMain.header_list}>
-                        <li className={HeaderMain.header_list_item}>
-                            <a href="!#" className="header_list_item_link">
+                        <li id="catalogItem" className={HeaderMain.header_list_item}>
+                            <a href="/catalog" className="header_list_item_link">
                                 Catalog
                             </a>
                             <svg
+                                id="openBtn"
                                 className={HeaderMain.openBtn}
+                                onClick={toggleMenu}
                                 width="13"
                                 height="8"
                                 viewBox="0 0 13 8"
@@ -31,17 +44,17 @@ function Header() {
                             </svg>
                         </li>
                         <li className={HeaderMain.header_list_item}>
-                            <a href="!#" className="header_list_item_link">
+                            <a href="/about" className="header_list_item_link">
                                 About
                             </a>
                         </li>
                         <li className={HeaderMain.header_list_item}>
-                            <a href="!#" className="header_list_item_link">
+                            <a href="/contact" className="header_list_item_link">
                                 Contact
                             </a>
                         </li>
                         <li className={HeaderMain.header_list_item}>
-                            <a href="!#" className="header_list_item_link">
+                            <a href="blog" className="header_list_item_link">
                                 Blog
                             </a>
                         </li>
@@ -117,6 +130,17 @@ function Header() {
                     </div>
                 </nav>
             </header>
+            <div id="catalog" className={HeaderMain.catalog_menu}>
+                <ul className={HeaderMain.catalog_menu_list}>
+                    <li className={HeaderMain.catalog_menu_list_item}>Bedroom</li>
+                    <li className={HeaderMain.catalog_menu_list_item}>Bed linen</li>
+                    <li className={HeaderMain.catalog_menu_list_item}>Kitchen</li>
+                    <li className={HeaderMain.catalog_menu_list_item}>Bathroom</li>
+                    <li className={HeaderMain.catalog_menu_list_item}>Loungewear</li>
+                    <li className={HeaderMain.catalog_menu_list_item}>Sale</li>
+                    <li className={HeaderMain.catalog_menu_list_item}>Shop All</li>
+                </ul>
+            </div>
         </div>
     );
 }
