@@ -7,33 +7,44 @@ import imgFour from './NewInSection-img/img4-min.png';
 
 function NewInSection() {
     const { newInTitle, newInWrp, newInItem, newInImg, newInText, newInPrice } = newInStyles;
+    const items = [
+        {
+            text: 'Cotton Dark Blue Bed Linen',
+            price: '$280',
+            image: imgOne,
+        },
+        {
+            text: 'Phistachio French Linen',
+            price: '$220',
+            image: imgTwo,
+        },
+        {
+            text: 'Light Pink Bed Linen',
+            price: '$250',
+            image: imgThree,
+        },
+        {
+            text: 'French Dark Green Linen',
+            price: '$270',
+            image: imgFour,
+        },
+    ];
 
     return (
         <section>
             <div className="container">
                 <p className={newInTitle}>NEW IN</p>
-                <div className={newInWrp}>
-                    <div className={newInItem}>
-                        <img className={newInImg} src={imgOne} alt="img-1" />
-                        <p className={newInText}>Cotton Dark Blue Bed Linen</p>
-                        <p className={newInPrice}>$280</p>
-                    </div>
-                    <div className={newInItem}>
-                        <img className={newInImg} src={imgTwo} alt="img-1" />
-                        <p className={newInText}>Phistachio French Linen</p>
-                        <p className={newInPrice}>$220</p>
-                    </div>
-                    <div className={newInItem}>
-                        <img className={newInImg} src={imgThree} alt="img-1" />
-                        <p className={newInText}>Cotton Dark Blue Bed Linen</p>
-                        <p className={newInPrice}>$250</p>
-                    </div>
-                    <div className={newInItem}>
-                        <img className={newInImg} src={imgFour} alt="img-1" />
-                        <p className={newInText}>Cotton Dark Blue Bed Linen</p>
-                        <p className={newInPrice}>$270</p>
-                    </div>
-                </div>
+                <ul className={newInWrp}>
+                    {items.map((item) => {
+                        return (
+                            <div className={newInItem} key={Math.random()}>
+                                <img className={newInImg} src={item.image} alt="new-img" />
+                                <p className={newInText}>{item.text}</p>
+                                <p className={newInPrice}>{item.price}</p>
+                            </div>
+                        );
+                    })}
+                </ul>
             </div>
         </section>
     );
