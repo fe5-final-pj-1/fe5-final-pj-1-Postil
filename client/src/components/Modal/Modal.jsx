@@ -51,6 +51,7 @@ function Modal() {
         <>
             <div className={styles.bg}>
                 <div className={styles.container}>
+                    <Button className={styles.close} text={<Icon type="close" />} />
                     <div className={styles.btnsLogin}>
                         <Button
                             handleClick={() => setSign(true)}
