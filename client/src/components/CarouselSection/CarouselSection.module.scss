@@ -1,0 +1,117 @@
+@import "../../style/variables";
+@import "../../style/mixins";
+
+.carousel {
+
+    &Info {
+        text-align: left;
+        position: absolute;
+        left: 5rem;
+        bottom: 5rem;
+    }
+
+    &Heading {
+        padding: 1.2rem;
+    }
+
+    &Text {
+        border-radius: 3px;
+        width: fit-content;
+    }
+
+    &TextTop {
+        border-bottom-left-radius: 0;
+        margin-top: .8rem;
+    }
+
+    &TextBottom {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-bottom: 3rem;
+        padding-top: 0;
+    }
+
+    &Btn {
+        @include abel-font-normal;
+        background-color: $light-color;
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        padding: 1.8rem 2.4rem;
+        border-radius: 3px;
+        letter-spacing: 1px;
+    }
+
+}
+
+:global .carousel.carousel-slider {
+    overflow: visible !important;
+}
+
+:global .carousel.carousel-slider .control-arrow {
+    width: 5rem;
+    height: 8.5rem;
+    padding: 0 !important;
+    background-color: $light-color !important;
+    top: 50% !important;
+    opacity: 1 !important;
+    border-radius: 3px;
+
+    &:hover {
+        background-color: rgba($light-color, .5) !important;
+    }
+}
+
+:global .carousel .control-next.control-arrow {
+    transform: translate(55%, -50%) !important;
+}
+
+:global .carousel .control-prev.control-arrow {
+    transform: translate(-55%, -50%) !important;
+}
+
+:global .carousel.carousel-slider .control-arrow {
+    &::before {
+        margin: 0 !important;
+        border: 0 !important;
+        background-size: 1.8rem 3.5rem;
+        height: 3.5rem;
+        width: 1.8rem;
+    }
+}
+
+:global .control-prev {
+    &::before {
+        background-image: url('./carousel-images/arrow-prev.svg');
+    }
+}
+
+:global .control-next {
+    &::before {
+        background-image: url('./carousel-images/arrow-next.svg');
+    }
+}
+
+:global .carousel .control-dots {
+    bottom: -2.5rem !important;
+    margin: 0 !important;
+    width: 58.2rem !important;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 1px solid $dark-color;
+    display: flex;
+}
+
+:global .carousel .control-dots .dot {
+    opacity: 0 !important;
+    width: 19.4rem !important;
+    height: 5px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: $dark-color !important;
+}
+
+:global .carousel .control-dots .dot.selected, 
+:global .carousel .control-dots .dot:hover {
+    opacity: 1 !important;
+}
