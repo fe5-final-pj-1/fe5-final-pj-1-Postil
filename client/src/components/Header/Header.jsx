@@ -1,63 +1,62 @@
 import React from 'react';
 import HeaderMain from './Header.module.scss';
+
 function Header() {
     return (
-        <div className="container">
-            <header>
-                <div className="logo">
-                    <img src="../public/Logo.png" alt="no logo" />
+        <div className={HeaderMain.container}>
+            <header className={HeaderMain.header}>
+                <div className={HeaderMain.logo}>
+                    <img src="./logo.png" alt="no logo" />
                 </div>
-                <nav className="header_nav">
+                <nav className={HeaderMain.header_nav}>
                     <ul className={HeaderMain.header_list}>
-                        <li className="header_list_item">
+                        <li className={HeaderMain.header_list_item}>
                             <a href="!#" className="header_list_item_link">
                                 Catalog
                             </a>
+                            <svg
+                                className={HeaderMain.openBtn}
+                                width="13"
+                                height="8"
+                                viewBox="0 0 13 8"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M1 1L6.5 7.5L12 1"
+                                    stroke="#373F41"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
                         </li>
-                        <li className="header_list_item">
+                        <li className={HeaderMain.header_list_item}>
                             <a href="!#" className="header_list_item_link">
                                 About
                             </a>
                         </li>
-                        <li className="header_list_item">
+                        <li className={HeaderMain.header_list_item}>
                             <a href="!#" className="header_list_item_link">
                                 Contact
                             </a>
                         </li>
-                        <li className="header_list_item">
+                        <li className={HeaderMain.header_list_item}>
                             <a href="!#" className="header_list_item_link">
                                 Blog
                             </a>
                         </li>
                     </ul>
-                    <div className="header_search">
-                        <input type="text" className="search_input" />
-                        <button>
-                            <svg
-                                width="22"
-                                height="19"
-                                viewBox="0 0 22 19"
-                                fill="none"
-                                xmlns="http://www.w3.org/2000/svg"
-                            >
-                                <line
-                                    y1="-0.75"
-                                    x2="8.70935"
-                                    y2="-0.75"
-                                    transform="matrix(0.803744 0.594976 -0.605019 0.796211 14 13.8179)"
-                                    stroke="#373F41"
-                                    strokeWidth="1.5"
-                                />
-                                <path
-                                    d="M16.7502 8.2046C16.7502 12.2769 13.2147 15.6592 8.75011 15.6592C4.28556 15.6592 0.75 12.2769 0.75 8.2046C0.75 4.13228 4.28556 0.75 8.75011 0.75C13.2147 0.75 16.7502 4.13228 16.7502 8.2046Z"
-                                    stroke="#373F41"
-                                    strokeWidth="1.5"
-                                />
-                            </svg>
-                        </button>
+                    <div className={HeaderMain.group}>
+                        <input type="text" placeholder="Search" className={HeaderMain.input} />
+
+                        <svg className={HeaderMain.icon} aria-hidden="true" viewBox="0 0 24 24">
+                            <g>
+                                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
+                            </g>
+                        </svg>
                     </div>
-                    <div className="header_buttons">
-                        <a href="!#" className="header_buttons_profile">
+                    <div className={HeaderMain.header_buttons}>
+                        <a href="!#" className={HeaderMain.header_buttons_profile}>
                             <svg
                                 width="21"
                                 height="21"
@@ -81,7 +80,7 @@ function Header() {
                                 />
                             </svg>
                         </a>
-                        <a href="!#" className="header_buttons_favorite">
+                        <a href="!#" className={HeaderMain.header_buttons_favorite}>
                             <svg
                                 width="21"
                                 height="19"
@@ -98,7 +97,7 @@ function Header() {
                                 />
                             </svg>
                         </a>
-                        <a href="!#" className="header_buttons_cart">
+                        <a href="!#" className={HeaderMain.header_buttons_cart}>
                             <svg
                                 width="18"
                                 height="21"
