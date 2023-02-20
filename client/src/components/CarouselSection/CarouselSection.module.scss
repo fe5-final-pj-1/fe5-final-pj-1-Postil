@@ -2,6 +2,45 @@
 @import "../../style/mixins";
 
 .carousel {
+
+    &Info {
+        text-align: left;
+        position: absolute;
+        left: 5rem;
+        bottom: 5rem;
+    }
+
+    &Heading {
+        padding: 1.2rem;
+    }
+
+    &Text {
+        border-radius: 3px;
+        width: fit-content;
+    }
+
+    &TextTop {
+        border-bottom-left-radius: 0;
+        margin-top: .8rem;
+    }
+
+    &TextBottom {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-bottom: 3rem;
+        padding-top: 0;
+    }
+
+    &Btn {
+        @include abel-font-normal;
+        background-color: $light-color;
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        padding: 1.8rem 2.4rem;
+        border-radius: 3px;
+        letter-spacing: 1px;
+    }
+
 }
 
 :global .carousel.carousel-slider {
@@ -9,8 +48,8 @@
 }
 
 :global .carousel.carousel-slider .control-arrow {
-    width: 50px;
-    height: 85px;
+    width: 5rem;
+    height: 8.5rem;
     padding: 0 !important;
     background-color: $light-color !important;
     top: 50% !important;
@@ -34,9 +73,9 @@
     &::before {
         margin: 0 !important;
         border: 0 !important;
-        background-size: 18px 35px;
-        height: 35px;
-        width: 18px;
+        background-size: 1.8rem 3.5rem;
+        height: 3.5rem;
+        width: 1.8rem;
     }
 }
 
@@ -53,9 +92,9 @@
 }
 
 :global .carousel .control-dots {
-    bottom: -25px !important;
+    bottom: -2.5rem !important;
     margin: 0 !important;
-    width: 582px !important;
+    width: 58.2rem !important;
     left: 50%;
     transform: translateX(-50%);
     border-top: 1px solid $dark-color;
@@ -64,7 +103,7 @@
 
 :global .carousel .control-dots .dot {
     opacity: 0 !important;
-    width: 194px !important;
+    width: 19.4rem !important;
     height: 5px !important;
     margin: 0 !important;
     border-radius: 0 !important;

@@ -1,0 +1,15 @@
+@import './style/variables';
+@import './style/mixins';
+
+@import './style/normalize';
+@import './style/typography';
+
+body {
+    @include muli-font-normal;
+    font-size: 1.4rem;
+}
+
+// TECH CLASSES
+.container {
+    @include content-container;
+}
