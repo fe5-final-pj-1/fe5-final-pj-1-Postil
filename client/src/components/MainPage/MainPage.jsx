@@ -1,7 +1,6 @@
 import React from 'react';
 import CarouselSection from '../CarouselSection/CarouselSection';
 import PopularSection from '../PopularSection';
-
 function MainPage() {
     return (
         <main>
@@ -10,5 +9,4 @@ function MainPage() {
         </main>
     );
 }
-
 export default MainPage;
