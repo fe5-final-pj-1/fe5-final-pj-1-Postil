@@ -1,9 +1,9 @@
-.container {
-  max-width: 90rem;
-  padding: 0 8.13rem;
-  border-bottom: #373F41 0.07rem solid;
+@import '../../style/variables';
+@import '../../style/mixins';
+.wrapper{
+  border-bottom: 0.07rem solid $dark-color ;
+  margin-bottom: 1.25rem;
 }
-
 .header {
   display: flex;
   justify-content: space-between;
@@ -16,7 +16,7 @@
 .header_nav {
   display: flex;
   align-items: center;
-  color: #373F41;
+  color: $dark-color;
 }
 
 .header_list {
@@ -27,12 +27,15 @@
 .header_list_item {
   margin-right: 2rem;
   font-size: 1rem;
-  padding: 0.25rem 0;
-  border-bottom: 0.07rem solid #fff;
+  padding: 0.40rem 0;
+  border-bottom: 0.10rem solid $light-color;
+  font-size: $text-fs;
 }
-
+.header_list_item:first-child {
+  position: relative;
+}
 .header_list_item a {
-  color: #373f41;
+  color: $dark-color;
   text-decoration: none;
 }
 
@@ -46,14 +49,9 @@
 }
 
 .header_buttons_profile svg {
-  width: 1.25rem;
-  height: 1.25rem;
   margin-right: 1.75rem;
 }
-
 .header_buttons_favorite svg {
-  width: 1.25rem;
-  height: 1.13rem;
   margin-right: 1.75rem;
 }
 
@@ -71,29 +69,31 @@
   line-height: 1.75rem;
   outline: none;
   color: #0d0c22;
-  border-bottom: #373F41 0.07rem solid;
+  border-bottom: $dark-color 0.07rem solid;
   margin-right: 3.38rem;
-  font-size: 1rem;
+  font-size: $text-fs;
 }
 
 .input::placeholder {
-  color: #373F41;
+  color: $dark-color;
 }
 
 .icon {
   position: absolute;
   right: 3.6rem;
-  fill: #373F41;
-  width: 1.094rem;
+  fill: $dark-color;
+  width: 1.8rem;
 }
 
 .catalog_menu {
   position: absolute;
-  border-top: #373F41 0.31rem solid;
-  left: 25rem;
+  border-top: $dark-color 0.31rem solid;
+  right: -4.5rem;
+  top: 4.5rem;
   padding: 2.5rem 3.13rem;
-  background-color: #fff;
+  background-color: $light-color;
   display: none;
+  z-index: 100;
 }
 
 .catalog_menu_list {
@@ -103,5 +103,5 @@
 
 .catalog_menu_list_item {
   margin-bottom: 0.88rem;
-  color: #373F41;
+  color: $dark-color;
 }
