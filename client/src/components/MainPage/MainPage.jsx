@@ -1,5 +1,6 @@
 import React from 'react';
 import CarouselSection from '../CarouselSection/CarouselSection';
+import PopularSection from '../PopularSection';
 import NewInSection from '../NewInSection';
 
 function MainPage() {
@@ -7,6 +8,7 @@ function MainPage() {
         <main>
             <CarouselSection />
             <NewInSection />
+            <PopularSection />
         </main>
     );
 }
