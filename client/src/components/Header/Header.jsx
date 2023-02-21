@@ -10,7 +10,6 @@ const toggleMenu = () => {
         catalog.style.borderBottom = 'none';
         catalogMenu.style.display = 'none';
     }
-    // console.log(catalogMenu, openBtn);
 };
 function Header() {
     return (
