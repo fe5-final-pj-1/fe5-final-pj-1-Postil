@@ -1,9 +1,13 @@
 import React from 'react';
-import { render } from '@testing-library/react';
-
+import userEvent from '@testing-library/user-event'
+import { screen, render} from '@testing-library/react';
 import Header from './Header';
 
-test('Icon snapshot', () => {
-    const view = render(<Header/>);
-    expect(view).toMatchSnapshot();
+test('opens the catalog menu on icon click', () => {
+  render(<Header />);
+  const catalogIcon = screen.getByTestId('btn', {name: /svg/i });
+  const catalogMenu = screen.getByRole('link', { name: /Catalog/i });
+  // expect(catalogMenu).not.toBeVisible();
+  userEvent.click(catalogIcon);
+  expect(catalogMenu).toBeVisible();
 });

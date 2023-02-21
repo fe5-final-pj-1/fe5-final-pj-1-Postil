@@ -47,6 +47,7 @@ function Header() {
                                 </a>
                                 <svg
                                     id="openBtn"
+                                    data-testid="btn"
                                     className={HeaderMain.openBtn}
                                     onClick={toggleMenu}
                                     width="13"
