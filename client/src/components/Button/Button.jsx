@@ -15,7 +15,7 @@ export default Button;
 
 Button.propTypes = {
     handleClick: PropTypes.func,
-    text: PropTypes.string,
+    text: PropTypes.oneOfType([PropTypes.element, PropTypes.string]),
     className: PropTypes.string,
 };
 

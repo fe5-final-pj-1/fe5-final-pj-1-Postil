@@ -1,0 +1,158 @@
+@import '../../style/mixins';
+.popular {
+  margin-top: 8rem;
+  margin-bottom: 8.2rem;
+}
+.container {
+ @include content-container;
+}
+.title {
+  @include abel-font-normal;
+  font-size: 32px;
+  line-height: 58px;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 5px;
+  color: #373F41;
+}
+.box {
+  display: grid;
+  grid-template-areas: 'one one two'
+                        'three four four';
+  justify-content: space-between;
+  column-gap: 1.6rem;
+  row-gap: 1.55rem;
+}
+.boxOne {
+  grid-area: one;
+  @include grid-container;
+  background-image: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/Background_bed_t4b3iu.png');
+  width: 73.6rem;
+  height: 34.2rem;
+}
+.boxOne_footer {
+  position: relative;
+  margin-top: 24.15rem;
+  width: 73.6rem;
+  height: 10.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  &::after {
+    content: 'BEDROOM';
+    position: absolute;
+    @include abel-font-normal;
+    font-size: 2.4rem;
+    line-height: 2.5rem;
+    letter-spacing: 1rem;
+    right: 6rem;
+    top: 1.5rem;
+  }
+}
+
+.boxTwo {
+  grid-area: two;
+  @include grid-container;
+  background-image: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_bath_wkihwl.png');
+  width: 42.8rem;
+  height: 34.2rem;
+}
+.boxTwo_footer {
+  position: relative;
+  margin-top: 24.15rem;
+  width: 42.8rem;
+  height: 10.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  &::after {
+    content: 'BATHROOM';
+    position: absolute;
+    @include abel-font-normal;
+    font-size: 2.4rem;
+    line-height: 2.5rem;
+    letter-spacing: 0.9rem;
+    right: 6rem;
+    top: 1.5rem;
+  }
+}
+.boxThree {
+  grid-area: three;
+  @include grid-container;
+  background-image: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_lin_mgqrhh.png');
+  width: 42.8rem;
+  height: 34.2rem;
+}
+.boxThree_footer {
+  position: relative;
+  margin-top: 24.15rem;
+  width: 42.8rem;
+  height: 10.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  &::after {
+    content: 'BED LINEN';
+    position: absolute;
+    @include abel-font-normal;
+    font-size: 2.4rem;
+    line-height: 2.5rem;
+    letter-spacing: 0.8rem;
+    right: 6rem;
+    top: 1rem;
+  }
+}
+.boxFour {
+  grid-area: four;
+  @include grid-container;
+  background-image: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_louhg_ftn6by.png');
+  width: 73.6rem;
+  height: 34.2rem;
+}
+.boxFour_footer {
+  position: relative;
+  margin-top: 24.15rem;
+  width: 73.6rem;
+  height: 10.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  &::after {
+    content: 'LOUNGEWEAR';
+    position: absolute;
+    @include abel-font-normal;
+    font-size: 2.4rem;
+    line-height: 2.5rem;
+    letter-spacing: 1rem;
+    right: 6rem;
+    top: 1rem;
+  }
+}
+
+.btn_long {
+  @include abel-font-normal;
+  @include btn-size;
+  margin-left: 55rem;
+}
+.btn_small {
+  @include abel-font-normal;
+  @include btn-size;
+  margin-left: 24.7rem;
+}
+.btn {
+  @include abel-font-normal;
+  position: relative;
+  margin: 3rem auto;
+  display: block;
+  padding: 1.7rem 6rem 1.7rem 4.7rem;
+  background: #FFFFFF;
+  border: 0.1rem solid #373F41;
+  box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  &:hover::before {
+    content: url('./img/Vector right-w.svg');
+    @include before;
+  }
+}
+.btn:hover {
+  background: #373F41;
+  color: #FFFFFF;
+}
+.btn::before {
+  content: url('./img/Vector right.svg');
+  @include before;
+}
+
