@@ -35,6 +35,11 @@ function Filters() {
         { color: '#A9AAAC' },
         { color: '#C92B56' },
     ];
+    const handleChange = (e) => {
+        e.target.checked
+            ? console.log(e.target.name)
+            : console.log(`remove filter: ${e.target.name}`);
+    };
     return (
         <ul className={styles.filtersContainer}>
             <li className={active.price ? classNames(styles.filter, styles.active) : styles.filter}>
@@ -69,7 +74,7 @@ function Filters() {
                     <div className={styles.size}>
                         {sizes.map((size, key) => (
                             <label key={key}>
-                                <input type="checkbox" name={size.size} />
+                                <input onChange={handleChange} type="checkbox" name={size.size} />
                                 <span>{size.size}</span>
                             </label>
                         ))}
@@ -91,7 +96,12 @@ function Filters() {
                     <div className={styles.color}>
                         {colors.map((color, key) => (
                             <label key={key} style={{ backgroundColor: color.color }}>
-                                <input type="checkbox" value={color.color} />
+                                <input
+                                    onChange={handleChange}
+                                    type="checkbox"
+                                    value={color.color}
+                                    name={color.color}
+                                />
                             </label>
                         ))}
                     </div>
@@ -116,7 +126,11 @@ function Filters() {
                     <div className={styles.fabric}>
                         {fabrics.map((fabric, key) => (
                             <label key={key}>
-                                <input type="checkbox" name={fabric.fabric} />
+                                <input
+                                    onChange={handleChange}
+                                    type="checkbox"
+                                    name={fabric.fabric}
+                                />
                                 <span>{fabric.fabric}</span>
                             </label>
                         ))}

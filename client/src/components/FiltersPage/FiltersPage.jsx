@@ -3,6 +3,8 @@ import classnames from 'classnames';
 import styles from './FiltersPage.module.scss';
 import Tabs from './Tabs';
 import Filters from './Filters';
+import ProductList from './ProductsList/ProductList';
+import Pagination from './ProductsList/Pagination/Pagination';
 
 function FiltersPage() {
     return (
@@ -13,6 +15,8 @@ function FiltersPage() {
             </article>
             <section className={styles.right}>
                 <Tabs />
+                <ProductList />
+                <Pagination />
             </section>
         </main>
     );

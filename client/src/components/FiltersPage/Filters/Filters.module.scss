@@ -1,7 +1,7 @@
 @import '../../../style/mixins';
 @import '../../../style/variables';
 .filtersContainer {
-    margin-top: 9px;
+    margin-top: 1rem;
 }
 .filter {
     position: relative;
@@ -24,7 +24,7 @@
 .active {
     &.filter {
         border-bottom: none;
-        padding: 1.5rem 0;
+        padding: 2rem 0 1rem 0;
         left: -2.9rem;
     }
     & .filterName {
@@ -34,7 +34,6 @@
 }
 .price {
     padding-left: 2.8rem;
-    // width: calc(100% + 2.9rem);
 }
 
 .size,
