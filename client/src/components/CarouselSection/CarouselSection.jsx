@@ -1,110 +1,157 @@
 import React from 'react';
 import carouselStyles from './CarouselSection.module.scss';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import carouselImgOneWebp from './carousel-images/carousel-img-1.webp';
-import carouselImgOneJpg from './carousel-images/carousel-img-1.jpg';
-import carouselImgTwoWebp from './carousel-images/carousel-img-2.webp';
-import carouselImgTwoJpg from './carousel-images/carousel-img-2.jpg';
-import carouselImgThreeWebp from './carousel-images/carousel-img-3.webp';
-import carouselImgThreeJpg from './carousel-images/carousel-img-3.jpg';
 import { Carousel } from 'react-responsive-carousel';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import Button from '../Button';
 
-function CarouselSection() {
+const rundomProductsArr = [
+    {
+        name: 'Mint Candy Bed Lilen',
+        currentPrice: '150',
+        imageUrls: [
+            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991023/Linens/SliderMiddle/Slide-1_h8tttq.jpg',
+        ],
+    },
+    {
+        name: 'Orange Candy Bed Lilen',
+        currentPrice: '150',
+        imageUrls: [
+            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991024/Linens/SliderMiddle/Slide-3_uvcdze.jpg',
+        ],
+    },
+    {
+        name: 'Geometric Bed Lilen',
+        currentPrice: '180',
+        imageUrls: [
+            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991023/Linens/SliderMiddle/Slide-2_ekcgkh.jpg',
+        ],
+    },
+    {
+        name: 'Mint Candy Bed Lilen',
+        currentPrice: '150',
+        imageUrls: [
+            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991023/Linens/SliderMiddle/Slide-1_h8tttq.jpg',
+        ],
+    },
+    {
+        name: 'Orange Candy Bed Lilen',
+        currentPrice: '150',
+        imageUrls: [
+            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991024/Linens/SliderMiddle/Slide-3_uvcdze.jpg',
+        ],
+    },
+    {
+        name: 'Geometric Bed Lilen',
+        currentPrice: '180',
+        imageUrls: [
+            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991023/Linens/SliderMiddle/Slide-2_ekcgkh.jpg',
+        ],
+    },
+    {
+        name: 'Mint Candy Bed Lilen',
+        currentPrice: '150',
+        imageUrls: [
+            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991023/Linens/SliderMiddle/Slide-1_h8tttq.jpg',
+        ],
+    },
+    {
+        name: 'Orange Candy Bed Lilen',
+        currentPrice: '150',
+        imageUrls: [
+            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991024/Linens/SliderMiddle/Slide-3_uvcdze.jpg',
+        ],
+    },
+    {
+        name: 'Geometric Bed Lilen',
+        currentPrice: '180',
+        imageUrls: [
+            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991023/Linens/SliderMiddle/Slide-2_ekcgkh.jpg',
+        ],
+    },
+];
+
+function CarouselSection({ sectionTitle }) {
     const {
+        carousel,
+        carouselSlide,
         carouselInfo,
-        carouselText,
-        carouselTextTop,
-        carouselTextBottom,
-        carouselBtn,
         carouselHeading,
+        carouselSlideLink,
+        carouselText,
+        carouselTextBottom,
     } = carouselStyles;
+    const slidesReady = addSlides(rundomProductsArr);
     return (
-        <section>
+        <section className={carousel}>
             <div className="container">
-                <Carousel showThumbs={false} showStatus={false} autoPlay={true} infiniteLoop={true}>
-                    <div>
-                        <picture>
-                            <source srcSet={carouselImgOneWebp} type="image/webp" />
-                            <source srcSet={carouselImgOneJpg} type="image/jpeg" />
-                            <img src={carouselImgOneJpg} alt="Carousel img 1" />
-                        </picture>
-                        <div className={carouselInfo}>
-                            <p className={classNames(carouselText, carouselHeading, 'h2 h2--dark')}>
-                                Ocean collection
-                            </p>
-                            <p className={classNames(carouselText, carouselTextTop, 'p p--dark')}>
-                                This is the luxury bedding set with absolutely everything in it,
-                            </p>
-                            <p
-                                className={classNames(
-                                    carouselText,
-                                    carouselTextBottom,
-                                    'p p--dark',
-                                )}
-                            >
-                                at a price that won&apos;t keep you up at night.
-                            </p>
-                            <Button className={carouselBtn} text="Shop new arrivals" />
-                        </div>
-                    </div>
-                    <div>
-                        <picture>
-                            <source srcSet={carouselImgTwoWebp} type="image/webp" />
-                            <source srcSet={carouselImgTwoJpg} type="image/jpeg" />
-                            <img src={carouselImgTwoJpg} alt="Carousel img 2" />
-                        </picture>
-                        <div className={carouselInfo}>
-                            <p
-                                className={classNames(
-                                    carouselText,
-                                    carouselHeading,
-                                    carouselTextTop,
-                                    'h2 h2--dark',
-                                )}
-                            >
-                                Subscribe now and get 15% off
-                            </p>
-                            <p
-                                className={classNames(
-                                    carouselText,
-                                    carouselHeading,
-                                    carouselTextBottom,
-                                    'h2 h2--dark',
-                                )}
-                            >
-                                on your first order
-                            </p>
-                            <Button className={carouselBtn} text="Shop new arrivals" />
-                        </div>
-                    </div>
-                    <div>
-                        <picture>
-                            <source srcSet={carouselImgThreeWebp} type="image/webp" />
-                            <source srcSet={carouselImgThreeJpg} type="image/jpeg" />
-                            <img src={carouselImgThreeJpg} alt="Carousel img 3" />
-                        </picture>
-                        <div className={carouselInfo}>
-                            <p className={classNames(carouselText, carouselTextTop, 'h2 h2--dark')}>
-                                Up to 30% off
-                            </p>
-                            <p
-                                className={classNames(
-                                    carouselText,
-                                    carouselTextBottom,
-                                    'h2 h2--dark',
-                                )}
-                            >
-                                on your favourite french linen
-                            </p>
-                            <Button className={carouselBtn} text="Shop new arrivals" />
-                        </div>
-                    </div>
+                <p className={classNames(carouselHeading, 'h2')}>{sectionTitle}</p>
+                <Carousel
+                    showThumbs={false}
+                    showIndicators={false}
+                    showStatus={false}
+                    infiniteLoop={true}
+                >
+                    {slidesReady.map((element, index) => {
+                        return <div key={index}>{element}</div>;
+                    })}
                 </Carousel>
             </div>
         </section>
     );
+    // Arr length must be divisible by 3 without a remainder
+    function addSlides(arr) {
+        const slidesArr = [];
+        if (arr.length % 3 !== 0) {
+            return [];
+        }
+        for (let i = 0; i < arr.length; i += 3) {
+            slidesArr.push(
+                <div className={carouselSlide}>
+                    <a href="/" className={carouselSlideLink}>
+                        <img src={arr[i].imageUrls[0]} alt={`Carousel img ${i + 1}`} />
+                        <div className={carouselInfo}>
+                            <p className={classNames(carouselText, 'h4--dark')}>{arr[i].name}</p>
+                            <p className={classNames(carouselText, carouselTextBottom, 'p--dark')}>
+                                {`$${arr[i].currentPrice}`}
+                            </p>
+                        </div>
+                    </a>
+                    <a href="/" className={carouselSlideLink}>
+                        <img src={arr[i + 1].imageUrls[0]} alt={`Carousel img ${i + 2}`} />
+                        <div className={carouselInfo}>
+                            <p className={classNames(carouselText, 'h4--dark')}>
+                                {arr[i + 1].name}
+                            </p>
+                            <p
+                                className={classNames(carouselText, carouselTextBottom, 'p--dark')}
+                            >{`$${arr[i + 1].currentPrice}`}</p>
+                        </div>
+                    </a>
+                    <a href="/" className={carouselSlideLink}>
+                        <img src={arr[i + 2].imageUrls[0]} alt={`Carousel img ${i + 3}`} />
+                        <div className={carouselInfo}>
+                            <p className={classNames(carouselText, 'h4--dark')}>
+                                {arr[i + 2].name}
+                            </p>
+                            <p
+                                className={classNames(carouselText, carouselTextBottom, 'p--dark')}
+                            >{`$${arr[i + 2].currentPrice}`}</p>
+                        </div>
+                    </a>
+                </div>,
+            );
+        }
+        return slidesArr;
+    }
 }
 
 export default CarouselSection;
+
+CarouselSection.propTypes = {
+    sectionTitle: PropTypes.string,
+};
+
+CarouselSection.defaultProps = {
+    sectionTitle: 'Related items',
+};
