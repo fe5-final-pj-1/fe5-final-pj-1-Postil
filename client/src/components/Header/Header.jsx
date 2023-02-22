@@ -15,7 +15,7 @@ function Header() {
     return (
         <header className={HeaderMain.wrapper}>
             <div className="container">
-                <div className={HeaderMain.header}>
+                <section className={HeaderMain.header}>
                     <nav className={HeaderMain.header_nav}>
                         <div className={HeaderMain.logo}>
                             <svg
@@ -116,41 +116,34 @@ function Header() {
                                 </a>
                             </li>
                         </ul>
-                    </nav>
-                    <section className={HeaderMain.group}>
-                        <input type="text" placeholder="Search" className={HeaderMain.input} />
-
-                        <svg className={HeaderMain.icon} aria-hidden="true" viewBox="0 0 24 24">
-                            <g>
-                                <path d="M21.53 20.47l-3.66-3.66C19.195 15.24 20 13.214 20 11c0-4.97-4.03-9-9-9s-9 4.03-9 9 4.03 9 9 9c2.215 0 4.24-.804 5.808-2.13l3.66 3.66c.147.146.34.22.53.22s.385-.073.53-.22c.295-.293.295-.767.002-1.06zM3.5 11c0-4.135 3.365-7.5 7.5-7.5s7.5 3.365 7.5 7.5-3.365 7.5-7.5 7.5-7.5-3.365-7.5-7.5z"></path>
-                            </g>
-                        </svg>
-                    </section>
-                    <section className={HeaderMain.header_buttons}>
-                        <a href="!#" className={HeaderMain.header_buttons_profile}>
+                        <div className={HeaderMain.group}>
+                            <input type="text" placeholder="Search" className={HeaderMain.input} />
                             <svg
-                                width="21"
-                                height="21"
-                                viewBox="0 0 21 21"
+                                className={HeaderMain.icon}
+                                width="22"
+                                height="19"
+                                viewBox="0 0 22 19"
                                 fill="none"
                                 xmlns="http://www.w3.org/2000/svg"
                             >
-                                <path
-                                    d="M20 20.0002V17.7202C20 16.5108 19.4996 15.3509 18.6088 14.4958C17.718 13.6406 16.5098 13.1602 15.25 13.1602H5.75C4.49022 13.1602 3.28204 13.6406 2.39124 14.4958C1.50044 15.3509 1 16.5108 1 17.7202V20.0002"
+                                <line
+                                    y1="-0.75"
+                                    x2="8.70935"
+                                    y2="-0.75"
+                                    transform="matrix(0.803744 0.594976 -0.605019 0.796211 14 13.8179)"
                                     stroke="#373F41"
                                     strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
                                 />
                                 <path
-                                    d="M10.5005 10.88C13.2288 10.88 15.4405 8.66829 15.4405 5.94C15.4405 3.21171 13.2288 1 10.5005 1C7.77226 1 5.56055 3.21171 5.56055 5.94C5.56055 8.66829 7.77226 10.88 10.5005 10.88Z"
+                                    d="M16.7502 8.2046C16.7502 12.2769 13.2147 15.6592 8.75011 15.6592C4.28556 15.6592 0.75 12.2769 0.75 8.2046C0.75 4.13228 4.28556 0.75 8.75011 0.75C13.2147 0.75 16.7502 4.13228 16.7502 8.2046Z"
                                     stroke="#373F41"
                                     strokeWidth="1.5"
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
                                 />
                             </svg>
-                        </a>
+                        </div>
+                    </nav>
+
+                    <div className={HeaderMain.header_buttons}>
                         <a href="!#" className={HeaderMain.header_buttons_favorite}>
                             <svg
                                 width="21"
@@ -185,8 +178,32 @@ function Header() {
                                 />
                             </svg>
                         </a>
-                    </section>
-                </div>
+                        <a href="!#" className={HeaderMain.header_buttons_profile}>
+                            <svg
+                                width="21"
+                                height="21"
+                                viewBox="0 0 21 21"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                            >
+                                <path
+                                    d="M20 20.0002V17.7202C20 16.5108 19.4996 15.3509 18.6088 14.4958C17.718 13.6406 16.5098 13.1602 15.25 13.1602H5.75C4.49022 13.1602 3.28204 13.6406 2.39124 14.4958C1.50044 15.3509 1 16.5108 1 17.7202V20.0002"
+                                    stroke="#373F41"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                                <path
+                                    d="M10.5005 10.88C13.2288 10.88 15.4405 8.66829 15.4405 5.94C15.4405 3.21171 13.2288 1 10.5005 1C7.77226 1 5.56055 3.21171 5.56055 5.94C5.56055 8.66829 7.77226 10.88 10.5005 10.88Z"
+                                    stroke="#373F41"
+                                    strokeWidth="1.5"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                />
+                            </svg>
+                        </a>
+                    </div>
+                </section>
             </div>
         </header>
     );

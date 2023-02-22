@@ -2,7 +2,7 @@
 @import '../../style/mixins';
 .wrapper{
   border-bottom: 0.07rem solid $dark-color ;
-  margin-bottom: 1.25rem;
+  margin-bottom: 3rem;
   padding-top: 2.2rem;
   padding-bottom: 1rem;
 }
@@ -13,7 +13,6 @@
 }
 
 .logo {
-  margin-top: 0.63rem;
 }
 
 .header_nav {
@@ -25,17 +24,20 @@
 .header_list {
   display: flex;
   justify-content: flex-end;
-  margin-left: 3rem;
+  margin-left: 7.7rem;
+  margin-right: 5.6rem;
 }
 
 .header_list_item {
-  margin-left: 3.5rem;
-  margin-right: 3.5rem;
+  margin-right: 3.8rem;
   font-size: $text-fs;
-  padding-bottom: 0.5rem;
-  border-bottom: 0.10rem solid $light-color;
+  padding-bottom: 0.3rem;
+  border-bottom: 0.1rem solid $light-color;
   font-size: $text-fs;
   align-items: center;
+}
+.header_list_item:last-child{
+  margin-right: 0;
 }
 .header_list_item:first-child {
   position: relative;
@@ -46,39 +48,35 @@
 }
 
 .openBtn {
-  margin-left: 0.31rem;
+  margin-left: 0.4rem;
 }
 
 .header_buttons {
   display: flex;
   align-items: center;
 }
-
-.header_buttons_profile svg {
+.header_buttons_cart svg {
   margin-right: 3rem;
-  margin-left: 3rem;
-
 }
 .header_buttons_favorite svg {
   margin-right: 3rem;
 }
 
 .group {
-  line-height: 1.75rem;
+  line-height: 1.8rem;
   align-items: center;
   position: relative;
-  width: 35rem;
+  width: 39rem;
   height: 2.5rem;
-  margin-top: 0.3rem;
   border-bottom: $dark-color 0.07rem solid;
 
 }
 
 .input {
-  line-height: 1.75rem;
   outline: none;
   color: #0d0c22;
   font-size: $text-fs;
+  width: 100%;
 }
 
 .input::placeholder {
@@ -88,16 +86,15 @@
 .icon {
   position: absolute;
   right: 0.2rem;
-  fill: $dark-color;
   width: 2.3rem;
 }
 
 .catalog_menu {
   position: absolute;
-  border-top: $dark-color 0.31rem solid;
-  right: -4.5rem;
-  top: 4.4rem;
-  padding: 2.5rem 3.13rem;
+  border-top: $dark-color 0.5rem solid;
+  right: -5.6rem;
+  top: 4.2rem;
+  padding: 3rem 4rem;
   background-color: $light-color;
   display: none;
   z-index: 100;
@@ -109,6 +106,10 @@
 }
 
 .catalog_menu_list_item {
-  margin-bottom: 0.88rem;
+  margin-bottom: 2rem;
   color: $dark-color;
 }
+.catalog_menu_list_item:last-child {
+  margin-bottom: 0;
+}
+
