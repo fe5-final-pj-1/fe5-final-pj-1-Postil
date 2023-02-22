@@ -7,7 +7,6 @@ test('opens the catalog menu on icon click', () => {
   render(<Header />);
   const catalogIcon = screen.getByTestId('btn', {name: /svg/i });
   const catalogMenu = screen.getByRole('link', { name: /Catalog/i });
-  // expect(catalogMenu).not.toBeVisible();
   userEvent.click(catalogIcon);
   expect(catalogMenu).toBeVisible();
 });
