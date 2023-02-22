@@ -66,6 +66,59 @@ function Icon(props) {
                     />
                 </svg>
             );
+        case 'plus':
+            return (
+                <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M8 0H6V6H0V8H6V14H8V8H14V6H8V0Z"
+                        fill="#373F41"
+                    />
+                </svg>
+            );
+        case 'minus':
+            return (
+                <svg
+                    width="14"
+                    height="2"
+                    viewBox="0 0 14 2"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path d="M0 0H14V2H0V0Z" fill="#373F41" />
+                </svg>
+            );
+        case 'arrowLeft':
+            return (
+                <svg
+                    width="10"
+                    height="15"
+                    viewBox="0 0 10 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path d="M9 1L1 8L9 14.5" stroke="#373F41" />
+                </svg>
+            );
+        case 'arrowRight':
+            return (
+                <svg
+                    width="10"
+                    height="15"
+                    viewBox="0 0 10 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path d="M1 1L9 8L1 14.5" stroke="#373F41" />
+                </svg>
+            );
         default:
             return null;
     }
