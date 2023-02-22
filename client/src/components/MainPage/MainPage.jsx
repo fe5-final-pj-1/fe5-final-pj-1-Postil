@@ -1,12 +1,18 @@
 import React from 'react';
-import CarouselSection from '../CarouselSection/CarouselSection';
+import CarouselMainSection from '../CarouselMainSection/CarouselMainSection';
 import NewInSection from '../NewInSection';
+import ProductCarousel from '../ProductCarousel';
+import CarouselSection from '../CarouselSection';
 
 function MainPage() {
     return (
         <main>
-            <CarouselSection />
+            <CarouselMainSection />
             <NewInSection />
+            <div className="container">
+                <ProductCarousel />
+            </div>
+            <CarouselSection />
         </main>
     );
 }
