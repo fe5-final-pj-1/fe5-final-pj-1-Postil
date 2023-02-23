@@ -3,6 +3,7 @@
 
 .newIn {
     &Title {
+        @include abel-font-normal;
         text-align: center;
         margin: 80px 0 30px 0;
         color: #373F41;
@@ -13,12 +14,11 @@
         margin: 0;
         display: flex;
         flex-wrap: wrap;
-        justify-content: center;
-        gap: 3%;
+        justify-content: space-between;
     }
 
     &Item {
-        width: 48%;
+        width: 49%;
         position: relative;
         margin-bottom: 3rem;
     }
