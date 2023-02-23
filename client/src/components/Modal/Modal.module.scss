@@ -4,7 +4,7 @@
 .bg {
     background: rgba($color: #000000, $alpha: 0.5);
     width: 100vw;
-    height: 100%;
+    height: 100vh;
     z-index: 999;
     overflow: hidden;
     display: flex;
@@ -19,7 +19,7 @@
 }
 
 .container {
-    scale: .7;
+    scale: 0.7;
     transform: translateY(-30%);
     position: relative;
     display: flex;
