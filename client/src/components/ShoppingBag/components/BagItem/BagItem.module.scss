@@ -1,0 +1,7 @@
+@import 'style/_mixins.scss';
+
+.header {
+    @include muli-font-normal;
+    @include flex-center;
+    // color: $rem;
+}

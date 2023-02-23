@@ -1,6 +1,6 @@
 @mixin content-container {
-  max-width: 1180px;
-  margin: 0 auto;
+    max-width: 1180px;
+    margin: 0 auto;
 }
 
 @mixin reset-list {
@@ -9,21 +9,21 @@
     list-style: none;
 }
 @mixin flex-center {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 @mixin flex-center-wrap {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
 }
 @mixin flex-column-center {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 @mixin abel-font-normal {
     font-family: 'Abel';
