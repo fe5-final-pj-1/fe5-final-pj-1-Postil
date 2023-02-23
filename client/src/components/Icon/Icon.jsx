@@ -51,6 +51,74 @@ function Icon(props) {
                     />
                 </svg>
             );
+        case 'close':
+            return (
+                <svg
+                    width="15"
+                    height="15"
+                    viewBox="0 0 15 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M6.78267 7.50259L0.143033 14.1889C-0.0414274 14.3746 -0.0414274 14.6756 0.143033 14.8613C0.235146 14.9543 0.356088 15.0006 0.476796 15.0006C0.597738 15.0006 0.718446 14.9543 0.810559 14.8613L7.50012 8.12477L14.1897 14.8613C14.282 14.9543 14.4027 15.0006 14.5234 15.0006C14.6441 15.0006 14.7651 14.9543 14.8572 14.8613C15.0417 14.6756 15.0417 14.3746 14.8572 14.1889L8.2178 7.50259L14.8617 0.811592C15.0461 0.625836 15.0461 0.324896 14.8617 0.13914C14.6772 -0.0463801 14.3784 -0.0463801 14.1941 0.13914L7.50035 6.88042L0.805871 0.139376C0.621411 -0.046144 0.322806 -0.046144 0.138345 0.139376C-0.0461151 0.325132 -0.0461151 0.626072 0.138345 0.811828L6.78267 7.50259Z"
+                        fill="#373F41"
+                    />
+                </svg>
+            );
+        case 'plus':
+            return (
+                <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        fillRule="evenodd"
+                        clipRule="evenodd"
+                        d="M8 0H6V6H0V8H6V14H8V8H14V6H8V0Z"
+                        fill="#373F41"
+                    />
+                </svg>
+            );
+        case 'minus':
+            return (
+                <svg
+                    width="14"
+                    height="2"
+                    viewBox="0 0 14 2"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path d="M0 0H14V2H0V0Z" fill="#373F41" />
+                </svg>
+            );
+        case 'arrowLeft':
+            return (
+                <svg
+                    width="10"
+                    height="15"
+                    viewBox="0 0 10 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path d="M9 1L1 8L9 14.5" stroke="#373F41" />
+                </svg>
+            );
+        case 'arrowRight':
+            return (
+                <svg
+                    width="10"
+                    height="15"
+                    viewBox="0 0 10 15"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path d="M1 1L9 8L1 14.5" stroke="#373F41" />
+                </svg>
+            );
         default:
             return null;
     }

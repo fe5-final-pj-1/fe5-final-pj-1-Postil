@@ -1,10 +1,14 @@
 import React from 'react';
-import CarouselSection from '../CarouselSection/CarouselSection';
+import CarouselMainSection from '../CarouselMainSection/CarouselMainSection';
+import PopularSection from '../PopularSection';
+import NewInSection from '../NewInSection';
 
 function MainPage() {
     return (
         <main>
-            <CarouselSection />
+            <CarouselMainSection />
+            <NewInSection />
+            <PopularSection />
         </main>
     );
 }
