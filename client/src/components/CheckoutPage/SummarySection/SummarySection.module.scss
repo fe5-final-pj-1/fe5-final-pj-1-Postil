@@ -5,10 +5,6 @@
   display: flex;
   justify-content: space-between;
 }
-.shoppingBag {
-  width: 72.6rem;
-  height: 5.02rem;
-}
 .summary {
   width: 37rem;
   margin-top: 8rem;
@@ -41,7 +37,7 @@
   letter-spacing: 0.04em;
   color: #373F41;
   &::after {
-    content: url("./img/Polygon.svg");
+    content: url("img/Polygon.svg");
     position: absolute;
     top: 0.2rem;
     right: 0.1rem;

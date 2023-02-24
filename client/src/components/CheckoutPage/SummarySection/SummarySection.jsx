@@ -1,10 +1,9 @@
 import React from 'react';
-import styles from './CheckoutBlock.module.scss';
+import styles from './SummarySection.module.scss';
 import Button from '../../Button';
-const CheckoutBlock = () => {
+const SummarySection = () => {
     return (
         <section className={styles.container}>
-            <div className={styles.shoppingBag}></div>
             <div className={styles.summary}>
                 <h2 className={styles.summaryTitle}>SUMMARY</h2>
                 <h3 className={styles.summaryText}>ENTER COUPONE CODE</h3>
@@ -27,4 +26,4 @@ const CheckoutBlock = () => {
         </section>
     );
 };
-export default CheckoutBlock;
+export default SummarySection;
