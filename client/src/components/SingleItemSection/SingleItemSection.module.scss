@@ -9,8 +9,8 @@
 }
 .singleItemWrp {
     display: flex;
-    justify-content: space-between;
-    height: 697px;
+    justify-content: center;
+    gap: 10rem;
 }
 .boxLeft {
     width: 48%;
@@ -25,7 +25,6 @@
 }
 .boxRight {
     width: 48%;
-    // border: 1px solid rgba(0, 0, 0, 1);
 }
 .boxRightHeader {
     display: flex;
@@ -34,7 +33,7 @@
 .singleItemTitle {
     @include abel-font-normal;
     margin: 0 50px 0 0;
-    color: #373F41;
+    color: #373f41;
     font-size: 3rem;
 }
 .boxRightLinkWrp {
@@ -46,7 +45,7 @@
     @include muli-font-normal;
     color: rgba(92, 94, 96, 0.5);
     font-size: 2rem;
-    margin: 1rem 0 2.6rem 0
+    margin: 1rem 0 2.6rem 0;
 }
 .boxForBuy {
     display: flex;
@@ -54,8 +53,8 @@
     align-items: center;
     margin-top: 2.2rem;
     padding-bottom: 2.7rem;
-    border-bottom: 0.1rem solid #373F41;
-    }
+    border-bottom: 0.1rem solid #373f41;
+}
 .buyTextOne {
     font-size: 2.4rem;
     margin-bottom: 0.5rem;
@@ -63,50 +62,51 @@
 .buyTextTwo {
     font-size: 1.4rem;
     font-weight: 300;
-   color: rgba(92, 94, 96, 0.5);
+    color: rgba(92, 94, 96, 0.5);
 }
 .boxForBuyR {
     display: flex;
 }
 .btn {
-  @include abel-font-normal;
-  margin-right: 1.5rem;
-  display: block;
-  padding: 2rem 5.5rem;
-  font-size: 1.6rem;
-  background: rgba(55, 63, 65, 1);
-  border: 0.1rem solid rgba(55, 63, 65, 1);
-  box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
-  color: rgb(255, 255, 255);
-  border-radius: 0.4rem;
-}
-.btn:hover {
-  background: rgb(255, 255, 255);
-  border: 0.1rem solid rgba(55, 63, 65, 1);
-  color: rgba(55, 63, 65, 1);
-  transition: 250ms ease-in;
-}
-.btnHeart {
     @include abel-font-normal;
+    margin-right: 1.5rem;
     display: block;
-    padding: 2rem;
+    padding: 2rem 5.5rem;
     font-size: 1.6rem;
     background: rgba(55, 63, 65, 1);
     border: 0.1rem solid rgba(55, 63, 65, 1);
     box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
     color: rgb(255, 255, 255);
     border-radius: 0.4rem;
-  }
-  .btnHeart::before {
-    content: url('./SingleItemPictures/HeartBtn.svg');
-    @include before;
-  }
-  .btnHeart:hover {
-    background: rgb(255, 255, 255);
+}
+.btn:hover {
+    background: rgb(167, 167, 167);
     border: 0.1rem solid rgba(55, 63, 65, 1);
-    color: rgba(55, 63, 65, 1);
     transition: 250ms ease-in;
-  }
+}
+.btnHeart {
+    @include abel-font-normal;
+    display: block;
+    width: 6rem;
+    background: rgba(55, 63, 65, 1);
+    background-size: containin;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('./SingleItemPictures/HeartBtn.svg');
+    border: 0.1rem solid rgba(55, 63, 65, 1);
+    box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
+    color: rgb(255, 255, 255);
+    border-radius: 0.4rem;
+}
+.btnHeart:hover {
+    background: rgb(133, 133, 133);
+    background-size: containin;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('./SingleItemPictures/HeartBtn.svg');
+    border: 0.1rem solid rgba(55, 63, 65, 1);
+    transition: 250ms ease-in;
+}
 
 // From Sergey
 .filtersContainer {
@@ -121,7 +121,7 @@
         font-size: 1.4rem;
         font-weight: 600;
         margin-bottom: 1rem;
-        color: #373F41;
+        color: #373f41;
     }
     &Name {
         display: flex;
@@ -141,7 +141,6 @@
     &.filter {
         border-bottom: none;
         padding: 2rem 0 1rem 0;
-        // left: -2.9rem;
     }
     &.filterName {
         gap: 1.4rem;
@@ -176,9 +175,9 @@
         padding-bottom: 0.7rem;
     }
     &Link:hover {
-        border-bottom: 0.1rem solid #373F41;;
+        border-bottom: 0.1rem solid #373f41;
     }
-    
+
     & label {
         position: relative;
         display: flex;
@@ -227,7 +226,6 @@
     }
 }
 .color {
-    // padding-left: 2.8rem;
     margin-bottom: 2.4rem;
     display: flex;
     flex-wrap: wrap;

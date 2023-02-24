@@ -1,12 +1,8 @@
-/* eslint-disable no-irregular-whitespace */
 import React, { useState } from 'react';
 import styles from './SingleItemSection.module.scss';
 import Button from '../Button';
 import Icon from '../Icon/Icon';
 import classNames from 'classnames';
-import { ReactComponent as Facebook } from './SingleItemPictures/Facebook.svg';
-import { ReactComponent as Twitter } from './SingleItemPictures/Twitter.svg';
-import { ReactComponent as Instagram } from './SingleItemPictures/Instagram.svg';
 
 const SingleItemSection = () => {
     // From Sergey
@@ -16,14 +12,8 @@ const SingleItemSection = () => {
         color: false,
         fabric: false,
     });
-    const sizes = [{ size: 'single' }, { size: 'double' }, { size: 'queen' }, { size: 'king' }];
-    const colors = [
-        { color: '#6E7181' },
-        { color: '#6FB7AC' },
-        { color: '#CDB6B4' },
-        { color: '#F1D9CF' },
-        { color: '#D6D6D6' },
-    ];
+    const sizes = [{ size: 'king' }];
+    const colors = [{ color: '#6FB7AC' }];
     const handleChange = (e) => {
         e.target.checked
             ? console.log(e.target.name)
@@ -47,7 +37,7 @@ const SingleItemSection = () => {
                                     target="_blank"
                                     rel="noreferrer"
                                 >
-                                    <Facebook className={styles.linksImg} />
+                                    <Icon type={'FacebookMin'} className={styles.linksImg} />
                                 </a>
                                 <a
                                     href="https://www.twitter.com/"
@@ -55,7 +45,7 @@ const SingleItemSection = () => {
                                     target="_blank"
                                     rel="noreferrer"
                                 >
-                                    <Twitter className={styles.linksImg} />
+                                    <Icon type={'TwitterMin'} className={styles.linksImg} />
                                 </a>
                                 <a
                                     href="https://www.instagram.com/"
@@ -63,7 +53,7 @@ const SingleItemSection = () => {
                                     target="_blank"
                                     rel="noreferrer"
                                 >
-                                    <Instagram className={styles.linksImg} />
+                                    <Icon type={'InstagramMin'} className={styles.linksImg} />
                                 </a>
                             </div>
                         </div>
@@ -111,7 +101,7 @@ const SingleItemSection = () => {
                                 </div>
                                 <div className={styles.boxForBuyR}>
                                     <Button text={'ADD TO BAG'} className={styles.btn} />
-                                    <Button text={'FAVORITE'} className={styles.btnHeart} />
+                                    <Button className={styles.btnHeart} />
                                 </div>
                             </div>
 
@@ -143,11 +133,13 @@ const SingleItemSection = () => {
                                 {active.price && (
                                     <div className={styles.price}>
                                         <p className={styles.descrText}>
-                                            Far far away, behind the word mountains, far from the
-                                            countries Vokalia and Consonantia, there live the blind
-                                            texts. Far far away, behind the word mountains, far from
-                                            the countries Vokalia and Consonantia, there live the
-                                            blind texts.
+                                            Silk has a number of positive qualities. It has a
+                                            beautiful appearance, pleasant to the body, easy to care
+                                            for. The material is very soft, delicate and pleasant to
+                                            the touch. Given all its positive qualities, it is ideal
+                                            for sewing bed linen. It perfectly keeps its shape, does
+                                            not wrinkle, does not shed and practically does not
+                                            shrink when washed.
                                         </p>
                                     </div>
                                 )}
@@ -183,11 +175,13 @@ const SingleItemSection = () => {
                                 {active.fabric && (
                                     <div className={styles.fabric}>
                                         <p className={styles.reviewsText}>
-                                            Lorem ipsum dolor sit amet, consectetur adipisicing
-                                            elit. Nobis minus officiis voluptates saepe iure,
-                                            officia reiciendis ipsum nesciunt quo ea numquam,
-                                            consequatur ipsam natus aliquam laboriosam. Perspiciatis
-                                            sunt soluta cupiditate!
+                                            The main advantages of silk underwear. Rich appearance
+                                            and beautiful shine. Soft and pleasant to the touch.
+                                            Ideal for summer as it creates a cool feeling. Good
+                                            breathability. Perfectly absorbs moisture. Virtually no
+                                            wrinkling. Does not shed or shrink. Moths and other
+                                            insects do not start in it. Does not cause allergic
+                                            reactions. Not afraid of direct sunlight.
                                         </p>
                                     </div>
                                 )}
