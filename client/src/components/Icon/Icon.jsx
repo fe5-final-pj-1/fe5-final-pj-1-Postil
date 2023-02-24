@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 
 function Icon(props) {
     const { type } = props;
-
     switch (type) {
         case 'facebook':
             return (
