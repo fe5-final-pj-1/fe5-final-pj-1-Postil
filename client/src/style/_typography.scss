@@ -10,7 +10,7 @@
 
 .h2 {
     @include abel-font-normal;
-    font-size: 3.2rem;
+    font-size: $titles-fs;
     text-transform: uppercase;
 }
 
@@ -23,6 +23,6 @@
     &--dark {
         background-color: $dark-color;
         color: $light-color;
-        font-size: 1.6rem;
+        font-size: $text-fs;
     }
 }

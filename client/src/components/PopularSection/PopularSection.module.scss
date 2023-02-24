@@ -125,18 +125,28 @@
   @include abel-font-normal;
   @include btn-size;
   margin-left: 55rem;
+  &:hover {
+    background: gainsboro;
+    transition: all 0.25s ease-in;
+  }
 }
 .btn_small {
   @include abel-font-normal;
   @include btn-size;
   margin-left: 24.7rem;
+  &:hover {
+    background: gainsboro;
+    transition: all 0.25s ease-in;
+  }
 }
 .btn {
   @include abel-font-normal;
   position: relative;
   margin: 3rem auto;
   display: block;
-  padding: 1.7rem 6rem 1.7rem 4.7rem;
+  padding: 1rem 7.5rem 1rem 5.5rem;
+  font-size: 16px;
+  line-height: 32px;
   background: #FFFFFF;
   border: 0.1rem solid #373F41;
   box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
@@ -145,11 +155,13 @@
   &:hover::before {
     content: url('./img/Vector right-w.svg');
     @include before;
+    transition: all 0.25s ease-in;
   }
 }
 .btn:hover {
   background: #373F41;
   color: #FFFFFF;
+  transition: all 0.25s ease-in;
 }
 .btn::before {
   content: url('./img/Vector right.svg');
