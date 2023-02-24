@@ -1,4 +1,4 @@
-@import '../../../../style/mixins';
+@import '../../../style/mixins';
 
 .container {
   @include content-container;
@@ -28,30 +28,9 @@
   }
 }
 .payCardBlock {
+  @include payBlock;
   margin-top: 5.1rem;
-  width: 100%;
-  height: 24.1rem;
-  background: #373F41;
-  border: 1px solid #8C8C8C;
-  border-radius: 2px;
-  position: relative;
-  &::before {
-    content: '';
-    position: absolute;
-    background: #373F41;
-    transform: matrix(1, 0, 0, -1, 0, 0);
-    width: 72.6rem;
-    height: 0.1rem;
-    top: 27rem;
-  }
-}
-.payCashBloc {
-  margin-top: 6.1rem;
-  width: 100%;
-  height: 11.3rem;
-  border: 1px solid #8C8C8C;
-  border-radius: 2px;
-  position: relative;
+  color: #373F41;
   &::before {
     content: '';
     position: absolute;
@@ -61,6 +40,41 @@
     height: 0.1rem;
     top: 14rem;
   }
+}
+.payCardBlockActive {
+  background: #373F41;
+  color: white;
+}
+.payCardTitle {
+  font-size: 18px;
+  line-height: 32px;
+  margin-left: 4.52rem
+}
+.payCardIcon {
+  margin-left: 26rem;
+}
+.payCashBloc {
+  @include payBlock;
+  margin-top: 6.1rem;
+  color: #373F41;
+  &::before {
+    content: '';
+    position: absolute;
+    background: #373F41;
+    transform: matrix(1, 0, 0, -1, 0, 0);
+    width: 72.6rem;
+    height: 0.1rem;
+    top: 14rem;
+  }
+  &::after {
+    content: url("img/Hands with money.svg");
+    position: absolute;
+    right: 2.5rem;
+  }
+}
+.payCashBlocActive {
+  background: #373F41;
+  color: white;
 }
 .payBtn {
   @include muli-font-normal;
@@ -74,8 +88,26 @@
   color: #373F41;
 }
 .payBtn::before {
-  content: url('./img/VectorBig.svg');
+  content: url('img/VectorBig.svg');
   position: absolute;
   top: 0.1rem;
   left: 0.2rem;
+}
+.payIcon {
+  margin-left: 2.5rem;
+  cursor: pointer;
+}
+.payText {
+  margin-left: 4.52rem;
+}
+.payTextTitle {
+  @include muli-font-normal;
+  font-size: 18px;
+  line-height: 24px;
+}
+.payTextInfo {
+  @include muli-font-normal;
+  font-size: 14px;
+  line-height: 24px;
+  color: #A1ADB0;
 }
