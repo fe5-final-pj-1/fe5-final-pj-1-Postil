@@ -35,13 +35,15 @@ function NewInSection() {
             <div className="container">
                 <p className={newInTitle}>NEW IN</p>
                 <ul className={newInWrp}>
-                    {items.map((item) => {
+                    {items.map((item, key) => {
                         return (
-                            <div className={newInItem} key={Math.random()}>
-                                <img className={newInImg} src={item.image} alt="new-img" />
-                                <p className={newInText}>{item.text}</p>
-                                <p className={newInPrice}>{item.price}</p>
-                            </div>
+                            <li className={newInItem} key={key}>
+                                <a href="!#" target="_blank">
+                                    <img className={newInImg} src={item.image} alt="new-img" />
+                                    <p className={newInText}>{item.text}</p>
+                                    <p className={newInPrice}>{item.price}</p>
+                                </a>
+                            </li>
                         );
                     })}
                 </ul>
