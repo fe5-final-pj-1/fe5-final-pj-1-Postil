@@ -100,13 +100,19 @@ function Footer() {
                             <p className={FooterStyle.followUs}>Follow Us</p>
                             <ul className={FooterStyle.social_list}>
                                 <li className={FooterStyle.social_list_item}>
-                                    <Icon type="FacebookMin" />
+                                    <NavLink target="_blank" to="shop">
+                                        <Icon type="FacebookMin" />
+                                    </NavLink>
                                 </li>
                                 <li className={FooterStyle.social_list_item}>
-                                    <Icon type="TwitterMin" />
+                                    <NavLink target="_blank" to="shop">
+                                        <Icon type="TwitterMin" />
+                                    </NavLink>
                                 </li>
                                 <li className={FooterStyle.social_list_item}>
-                                    <Icon type="InstagramMin" />
+                                    <NavLink target="_blank" to="shop">
+                                        <Icon type="InstagramMin" />
+                                    </NavLink>
                                 </li>
                             </ul>
                         </div>
