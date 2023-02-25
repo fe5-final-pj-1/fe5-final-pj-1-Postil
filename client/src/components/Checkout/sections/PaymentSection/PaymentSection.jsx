@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import TabsSection from '../TabsSection/TabsSection';
 import styles from './PaymentSection.module.scss';
-import Icon from '../../Icon';
-import Button from '../../Button';
+import Icon from '../../../Icon';
+import Button from '../../../Button';
+
 const PaymentSection = () => {
     const [active, setActive] = useState(1);
     return (
         <>
-            <TabsSection />
             <section className={styles.container}>
                 <div className={styles.payMain}>
                     <h2 className={styles.payTitle}>PAYMENT METHOD</h2>

@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './SummarySection.module.scss';
-import Button from '../../Button';
+import Button from '../../../Button';
 const SummarySection = () => {
     return (
         <section className={styles.container}>
