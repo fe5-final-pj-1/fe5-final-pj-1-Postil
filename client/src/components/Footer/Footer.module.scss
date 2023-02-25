@@ -1,0 +1,73 @@
+@import '../../style/variables';
+@import '../../style/mixins';
+.wrapper{
+
+}
+.nav{
+    border-bottom: solid $dark-color 0.1rem;
+    border-top: solid $dark-color 0.1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 8rem 12rem 4rem 7rem;
+
+}
+.menu_list, .about_list, .contact_list, .promotion{
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: flex-start;
+}
+.menu_list_item, .about_list_item, .contact_list_item, .title, .promotion_text{
+    margin-bottom: 2rem;
+}
+.about_list{
+   
+}
+.about_list_item{
+
+}
+.contact_list{
+  
+}
+.contact_list_item{
+
+}
+.promotion{
+
+}
+.title{
+
+}
+.promotion_text{
+
+}
+.input{
+
+}
+.promotion_btn{
+    display: flex;
+}
+.followUs{
+
+}
+.social_list{
+display: flex;
+}
+.social_list_item{
+
+}
+.info{
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
+.logo{
+
+}
+.text{
+
+}
+.chat{
+
+}
