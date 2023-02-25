@@ -1,5 +1,5 @@
 import React from 'react';
-// import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 // import Button from '../Button';
 import Icon from '../Icon/Icon';
 import FooterStyle from './Footer.module.scss';
@@ -11,34 +11,90 @@ function Footer() {
             <div className="container">
                 <nav className={FooterStyle.nav}>
                     <ul className={FooterStyle.menu_list}>
-                        <li className={FooterStyle.menu_list_item}>Shop</li>
-                        <li className={FooterStyle.menu_list_item}>Catalog</li>
-                        <li className={FooterStyle.menu_list_item}>Payment & Delivery</li>
-                        <li className={FooterStyle.menu_list_item}>Returns</li>
-                        <li className={FooterStyle.menu_list_item}>Privaci Policy</li>
-                        <li className={FooterStyle.menu_list_item}>Terms of service</li>
+                        <li className={FooterStyle.menu_list_item}>
+                            <NavLink className={FooterStyle.links} to="shop">
+                                Shop
+                            </NavLink>
+                        </li>
+                        <li className={FooterStyle.menu_list_item}>
+                            <NavLink className={FooterStyle.links} to="products">
+                                Catalog
+                            </NavLink>
+                        </li>
+                        <li className={FooterStyle.menu_list_item}>
+                            <NavLink className={FooterStyle.links} to="shop">
+                                Payment & Delivery
+                            </NavLink>
+                        </li>
+                        <li className={FooterStyle.menu_list_item}>
+                            <NavLink className={FooterStyle.links} to="shop">
+                                Returns
+                            </NavLink>
+                        </li>
+                        <li className={FooterStyle.menu_list_item}>
+                            <NavLink className={FooterStyle.links} to="shop">
+                                Privacy Policy
+                            </NavLink>
+                        </li>
+                        <li className={FooterStyle.menu_list_item}>
+                            <NavLink className={FooterStyle.links} to="shop">
+                                Terms of service
+                            </NavLink>
+                        </li>
                     </ul>
                     <ul className={FooterStyle.about_list}>
-                        <li className={FooterStyle.about_list_item}>About</li>
-                        <li className={FooterStyle.about_list_item}>About Us</li>
-                        <li className={FooterStyle.about_list_item}>Reviews</li>
-                        <li className={FooterStyle.about_list_item}>Blog</li>
-                    </ul>
-                    <ul className={FooterStyle.contact_list}>
-                        <li className={FooterStyle.contact_list_item}>Contact Us</li>
-                        <li className={FooterStyle.contact_list_item}>hello@gmail.com</li>
-                        <li className={FooterStyle.contact_list_item}>
-                            Studio M, 4th Floor8 Lower Manchester street, M1 5QF
+                        <li className={FooterStyle.about_list_item}>
+                            <NavLink className={FooterStyle.links} to="products/:productId">
+                                About
+                            </NavLink>
                         </li>
-                        <li className={FooterStyle.contact_list_item}>+38 093 875 9922</li>
+                        <li className={FooterStyle.about_list_item}>
+                            <NavLink className={FooterStyle.links} to="shop">
+                                About Us
+                            </NavLink>
+                        </li>
+                        <li className={FooterStyle.about_list_item}>
+                            <NavLink className={FooterStyle.links} to="shop">
+                                Reviews
+                            </NavLink>
+                        </li>
+                        <li className={FooterStyle.about_list_item}>
+                            <NavLink className={FooterStyle.links} to="shop">
+                                Blog
+                            </NavLink>
+                        </li>
                     </ul>
+                    <div className={FooterStyle.contact}>
+                        <h2 className={FooterStyle.contact_title}>Contact Us</h2>
+                        <a href="mailto:hello@gmail.com" className={FooterStyle.contact_email}>
+                            hello@gmail.com
+                        </a>
+                        <p className={FooterStyle.contact_address}>
+                            Studio M, 4th Floor8 Lower <br /> Manchester street, M1 5QF
+                        </p>
+                        <a href="tel:+380938759922" className={FooterStyle.contact_tel}>
+                            +38 093 875 9922
+                        </a>
+                    </div>
                     <div className={FooterStyle.promotion}>
-                        <h2 className={FooterStyle.title}>Subscribe</h2>
+                        <p className={FooterStyle.title}>Subscribe</p>
                         <p className={FooterStyle.promotion_text}>
-                            Subscribe now and get 15% off on your first order
+                            Subscribe now and get 15% off on your first <br /> order
                         </p>
                         <div className={FooterStyle.subscription_input}>
-                            <input className={FooterStyle.input} type="text" />
+                            <input
+                                type="email"
+                                className={FooterStyle.input}
+                                id="Email"
+                                name="Email"
+                                placeholder="e-mail"
+                                autoComplete="off"
+                            />
+                            <input
+                                className={FooterStyle.button_submit}
+                                value="Send"
+                                type="submit"
+                            />
                         </div>
                         <div className={FooterStyle.promotion_btn}>
                             <p className={FooterStyle.followUs}>Follow Us</p>

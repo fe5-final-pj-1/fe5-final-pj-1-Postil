@@ -10,3 +10,4 @@ test('opens the catalog menu on icon click', () => {
   userEvent.click(catalogIcon);
   expect(catalogMenu).toBeVisible();
 });
+ 

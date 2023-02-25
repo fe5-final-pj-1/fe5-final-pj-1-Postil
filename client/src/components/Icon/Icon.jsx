@@ -313,8 +313,8 @@ function Icon(props) {
         case 'footerLogo':
             return (
                 <svg
-                    width="113"
-                    height="43"
+                    width="100"
+                    height="33"
                     viewBox="0 0 113 43"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
@@ -340,8 +340,8 @@ function Icon(props) {
         case 'chat':
             return (
                 <svg
-                    width="68"
-                    height="68"
+                    width="60"
+                    height="60"
                     viewBox="0 0 68 68"
                     fill="none"
                     xmlns="http://www.w3.org/2000/svg"
