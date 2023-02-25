@@ -1,0 +1,10 @@
+@import 'style/_mixins.scss';
+@import '../../style';
+
+.bagHeader {
+    @include muli-font-normal;
+    color: $mainTxtColor;
+    font-size: 2.4rem;
+    line-height: 2rem;
+}
+

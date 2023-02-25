@@ -1,7 +1,105 @@
 @import 'style/_mixins.scss';
+@import '../../style';
 
-.header {
+.itemWrapper {
+    display: flex;
+    gap: 80px;
+    align-items: flex-start;
+    padding: 20px 0;
+}
+
+.itemImg {
+    width: 200px;
+    height: 200px;
+}
+.textWrapper {
+    margin-right: auto;
+    max-width: 420px;
+}
+
+.itemName {
+    @include abel-font-normal;
+    font-size: 2.4rem;
+    line-height: 4.8rem;
+    color: $mainTxtColor;
+    margin-top: -1.5rem;
+}
+
+.description {
     @include muli-font-normal;
-    @include flex-center;
-    // color: $rem;
+    color: $mainTxtColor;
+    font-size: 1.4rem;
+    line-height: 1.9rem;
+    margin-bottom: 30px;
+}
+
+.currentPrice {
+    @include muli-font-semibold;
+    color: $mainTxtColor;
+    font-size: 1.8rem;
+    line-height: 2rem;
+    margin-bottom: 18px;
+}
+
+.flexBlock {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.configWrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+.confName,
+.confValue {
+    @include muli-font-normal;
+
+    font-size: 1.8rem;
+    line-height: 2rem;
+    display: inline-block;
+}
+
+.confName {
+    margin-right: 12px;
+    color: $mainTxtColor;
+}
+.confValue {
+    @include muli-font-light;
+
+    color: $lightTxtColor;
+}
+
+$inputBorder: 1px solid $mainTxtColor;
+.numInputBlock {
+    display: flex;
+    width: 70px;
+    height: 50px;
+    border:$inputBorder;
+    border-radius: 2px;
+
+    .numInput {
+        @include flex-center;
+        width: 40px;
+        border-right: $inputBorder;
+        text-align: center;
+    }
+
+    .numInputBtns {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        // justify-content: stretch;
+    }
+
+    .counterBtn {
+        height: 100%;
+        @include flex-center;
+        cursor: default;
+
+        &:first-of-type {
+            border-bottom: $inputBorder;
+        }
+    }
 }

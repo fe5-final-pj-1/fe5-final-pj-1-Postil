@@ -1,4 +1,21 @@
+@import 'src/style/_mixins.scss';
+
 .numInput {
-  color: red;
-  // appearance: none;
+    color: red;
+    pointer-events: none;
+}
+
+button {
+    // background-color: transparent;
+    @include flex-center;
+    // display: inline-flex;
+}
+
+.colorSelector,
+.sizeSelector {
+    appearance: none;
+    background-image: url('./icon/dropdown-icon.svg');
+    background-repeat: no-repeat;
+    background-position: center right;
+    padding-right: 22px;
 }
