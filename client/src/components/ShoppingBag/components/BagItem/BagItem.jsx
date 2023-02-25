@@ -2,29 +2,22 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Icon from 'components/Icon';
 // import BagItemForm from '../BagItemForm';
-import ActionBtns from '../ActionBtns';
 import styles from './BagItem.module.scss';
+
+import ActionBtns from '../ActionBtns';
 
 const BagItem = (props) => {
     const imgUrlPrefix = './img/catalog/';
     const { name, imgUrl, description, currentPrice, color, size } = props.item;
 
     const [quantity, setQuantity] = useState(1);
-    const changeQuantity = (action, e) => {
-        e.stopPropagation();
-        console.log('first', e.currentTarget);
-
+    const setQuantityHandler = (action) => {
         const actions = {
             add(state) {
                 return ++state;
             },
             subtract(state) {
                 return --state;
-            },
-            change(state) {
-                console.log('second', e.currentTarget.value);
-                const newValue = +e.currentTarget.value;
-                return Number.isNaN(newValue) ? state : newValue;
             },
         };
         setQuantity((prevState) => {
@@ -33,15 +26,23 @@ const BagItem = (props) => {
         });
     };
 
-    const inputHandler = (e) => {
+    const onChangeInputHandler = (e) => {
         e.stopPropagation();
+        const newValue = +e.currentTarget.value;
         setQuantity((prevState) => {
-            console.log(e.currentTarget);
-
-            const newValue = +e.currentTarget.value;
-            return Number.isNaN(newValue) ? prevState : newValue;
+            if (newValue === 0) return '';
+            if (/^[1-9]\d*$/.test(newValue)) return newValue;
+            return prevState;
         });
-        // setQuantity(+e.currentTarget.value);
+    };
+
+    const onBlurInputHandler = (e) => {
+        e.stopPropagation();
+        const currentValue = +e.currentTarget.value;
+        setQuantity((prevState) => {
+            if (!currentValue) return 1;
+            return prevState;
+        });
     };
 
     return (
@@ -69,20 +70,21 @@ const BagItem = (props) => {
                             type="text"
                             name="amount"
                             value={quantity}
-                            onChange={inputHandler}
+                            onChange={onChangeInputHandler}
+                            onBlur={onBlurInputHandler}
                             className={styles.numInput}
                         />
                         <div className={styles.numInputBtns}>
                             <button
                                 className={styles.counterBtn}
                                 id="increase"
-                                onClick={changeQuantity.bind(null, 'add')}
+                                onClick={setQuantityHandler.bind(null, 'add')}
                             >
                                 <Icon type="bagCounterIncrease" />
                             </button>
                             <button
                                 className={styles.counterBtn}
-                                onClick={changeQuantity.bind(null, 'subtract')}
+                                onClick={setQuantityHandler.bind(null, 'subtract')}
                             >
                                 <Icon type="bagCounterDecrease" />
                             </button>
@@ -90,6 +92,7 @@ const BagItem = (props) => {
                     </div>
                 </div>
             </div>
+
             <ActionBtns />
         </div>
     );

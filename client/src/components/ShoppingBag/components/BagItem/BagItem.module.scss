@@ -4,7 +4,7 @@
 .itemWrapper {
     display: flex;
     gap: 80px;
-    align-items: flex-start;
+    align-items: stretch;
     padding: 20px 0;
 }
 
@@ -50,6 +50,7 @@
     display: flex;
     flex-direction: column;
     gap: 11px;
+    margin-right: 25px;
 }
 
 .confName,
@@ -76,12 +77,17 @@ $inputBorder: 1px solid $mainTxtColor;
     display: flex;
     width: 70px;
     height: 50px;
-    border:$inputBorder;
+    border: $inputBorder;
     border-radius: 2px;
 
     .numInput {
         @include flex-center;
+        @include muli-font-semibold;
+        font-size: 1.8rem;
+        line-height: 3.2rem;
+        color: $mainTxtColor;
         width: 40px;
+
         border-right: $inputBorder;
         text-align: center;
     }
@@ -94,8 +100,9 @@ $inputBorder: 1px solid $mainTxtColor;
     }
 
     .counterBtn {
-        height: 100%;
         @include flex-center;
+        height: 100%;
+        background: none;
         cursor: default;
 
         &:first-of-type {
