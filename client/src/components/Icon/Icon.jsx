@@ -226,7 +226,7 @@ function Icon(props) {
                 >
                     <circle cx="13.5" cy="13.5" r="12" stroke="#DADADA" strokeWidth="3" />
                     <circle cx="13.5" cy="13.5" r="7.5" fill="white" />
-                 </svg>
+                </svg>
             );
         case 'FacebookMin':
             return (
