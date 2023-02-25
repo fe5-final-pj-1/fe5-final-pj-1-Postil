@@ -37,6 +37,18 @@
         font-size: 2.4rem;
     }
 
+    & :global .control-prev {
+        &::before {
+            background-image: url('./arrow-prev.svg');
+        }
+    }
+    
+    & :global .control-next {
+        &::before {
+            background-image: url('./arrow-next.svg');
+        }
+    }
+
     & :global .carousel.carousel-slider .control-arrow {
         width: 3.5rem;
         height: 6.4rem;
