@@ -48,15 +48,3 @@ body {
         width: 1.8rem;
     }
 }
-
-.control-prev {
-    &::before {
-        background-image: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1676906361/Linens/Slider/arrow-prev_wkvoaa.svg');
-    }
-}
-
-.control-next {
-    &::before {
-        background-image: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1676906361/Linens/Slider/arrow-next_mj7ejg.svg');
-    }
-}

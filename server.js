@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const passport = require('passport');
 const path = require('path');
 require('dotenv').config();
@@ -26,6 +27,9 @@ const partners = require('./routes/partners');
 // const mainRoute = require('./routes/index');
 
 const app = express();
+
+// Cors
+app.use(cors());
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
