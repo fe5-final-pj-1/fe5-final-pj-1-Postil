@@ -1,52 +1,66 @@
-@import '../../style/variables';
-@import '../../style/mixins';
+@import "../../style/variables";
+@import "../../style/mixins";
 
 .singleItem {
     margin: 8rem auto 8rem auto;
 }
-.container {
-    @include content-container;
-}
+
 .singleItemWrp {
     display: flex;
-    justify-content: center;
+    padding-left: 1.8rem;
+    // make smaller in media-queries
     gap: 10rem;
 }
-.boxLeft {
-    width: 48%;
-    background-color: rgba(118, 118, 118, 0.5);
-}
-.sliderTitle {
-    margin-top: 45%;
-    font-size: 5rem;
-    font-weight: 700;
-    color: rgba(255, 255, 255, 1);
-    text-align: center;
-}
+
 .boxRight {
-    width: 48%;
+    flex: 0 0 calc(50.5% - 10rem / 2);
 }
+
 .boxRightHeader {
     display: flex;
     justify-content: space-between;
 }
+
 .singleItemTitle {
     @include abel-font-normal;
-    margin: 0 50px 0 0;
     color: #373f41;
     font-size: 3rem;
 }
+
 .boxRightLinkWrp {
     display: flex;
     align-items: center;
     gap: 3rem;
 }
+
 .boxRightId {
     @include muli-font-normal;
     color: rgba(92, 94, 96, 0.5);
-    font-size: 2rem;
+    font-size: 1.4rem;
     margin: 1rem 0 2.6rem 0;
 }
+
+.boxOption {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &:not(:last-child) {
+        margin-bottom: 2.4rem;
+    }
+
+    & p {
+        text-transform: uppercase;
+    }
+
+    & span {
+        display: block;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+    }
+}
+
 .boxForBuy {
     display: flex;
     justify-content: space-between;
@@ -55,18 +69,22 @@
     padding-bottom: 2.7rem;
     border-bottom: 0.1rem solid #373f41;
 }
+
 .buyTextOne {
     font-size: 2.4rem;
     margin-bottom: 0.5rem;
 }
+
 .buyTextTwo {
     font-size: 1.4rem;
     font-weight: 300;
     color: rgba(92, 94, 96, 0.5);
 }
+
 .boxForBuyR {
     display: flex;
 }
+
 .btn {
     @include abel-font-normal;
     margin-right: 1.5rem;
@@ -79,55 +97,52 @@
     color: rgb(255, 255, 255);
     border-radius: 0.4rem;
 }
+
 .btn:hover {
     background: rgb(167, 167, 167);
     border: 0.1rem solid rgba(55, 63, 65, 1);
     transition: 250ms ease-in;
 }
+
 .btnHeart {
     @include abel-font-normal;
     display: block;
     width: 6rem;
     background: rgba(55, 63, 65, 1);
-    background-size: containin;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url('./SingleItemPictures/HeartBtn.svg');
+    background-image: url("./SingleItemPictures/HeartBtn.svg");
     border: 0.1rem solid rgba(55, 63, 65, 1);
     box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
     color: rgb(255, 255, 255);
     border-radius: 0.4rem;
 }
+
 .btnHeart:hover {
     background: rgb(133, 133, 133);
-    background-size: containin;
     background-repeat: no-repeat;
     background-position: center;
-    background-image: url('./SingleItemPictures/HeartBtn.svg');
+    background-image: url("./SingleItemPictures/HeartBtn.svg");
     border: 0.1rem solid rgba(55, 63, 65, 1);
     transition: 250ms ease-in;
 }
 
-// From Sergey
-.filtersContainer {
-    margin-top: 1rem;
-}
+.boxInfo {
+    padding-top: 3rem;
 
-.filter {
-    position: relative;
-    padding: 2rem 0;
-    border-bottom: 1px solid $description-color;
     &Title {
         font-size: 1.4rem;
         font-weight: 600;
         margin-bottom: 1rem;
         color: #373f41;
     }
+
     &Name {
         display: flex;
         align-items: center;
         gap: 4rem;
         background: transparent;
+
         & p {
             @include muli-font-bold;
             font-size: $text-fs;
@@ -136,125 +151,16 @@
             text-transform: uppercase;
         }
     }
-}
-.active {
-    &.filter {
-        border-bottom: none;
-        padding: 2rem 0 1rem 0;
+
+    &TitleFix {
+        margin-left: -3rem;
     }
-    &.filterName {
-        gap: 1.4rem;
-        margin-bottom: 1.5rem;
-    }
-}
-.price {
-    padding-left: 2.8rem;
-}
-.filterTitleFix {
-    margin-left: -3rem;
 }
 
 .reviewsText {
     color: rgba(92, 94, 96, 0.5);
     font-size: 1.6rem;
     line-height: 3rem;
-    margin-left: 2.5rem;
-}
-
-.size,
-.fabric {
-    display: flex;
-    gap: 4rem;
-    & label:not(label:last-child) {
-        margin-bottom: 1rem;
-    }
-    &Name {
-        text-transform: uppercase;
-    }
-    &Link {
-        padding-bottom: 0.7rem;
-    }
-    &Link:hover {
-        border-bottom: 0.1rem solid #373f41;
-    }
-
-    & label {
-        position: relative;
-        display: flex;
-        align-items: center;
-        & > input {
-            position: absolute;
-            z-index: -1;
-            opacity: 0;
-            &:checked + span::after {
-                display: inline-block;
-                opacity: 1;
-            }
-            &:hover + span::after {
-                display: inline-block;
-            }
-        }
-        & > span {
-            @include muli-font-normal;
-            font-size: $description-fs;
-            color: $dark-color;
-            display: inline-flex;
-            align-items: center;
-            user-select: none;
-            text-transform: uppercase;
-            &::before {
-                content: '';
-                display: inline-block;
-                width: 2rem;
-                height: 2rem;
-                border-radius: 50%;
-                border: 1px solid $dark-color;
-                margin-right: 2.7rem;
-            }
-            &::after {
-                display: none;
-                position: absolute;
-                left: 0.4rem;
-                content: '';
-                width: 1.2rem;
-                height: 1.2rem;
-                border-radius: 50%;
-                background: $description-color;
-                opacity: 0.4;
-            }
-        }
-    }
-}
-.color {
-    margin-bottom: 2.4rem;
-    display: flex;
-    flex-wrap: wrap;
-    flex-wrap: wrap;
-    width: 20rem;
-    & label:not(label:nth-child(6n)) {
-        margin-right: 1rem;
-    }
-    & label:nth-child(-n + 6) {
-        margin-bottom: 1rem;
-    }
-    & label {
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-    }
-    & input {
-        position: absolute;
-        z-index: -1;
-        top: -9999rem;
-        left: -9999rem;
-    }
-}
-label:hover {
-    cursor: pointer;
-}
-
-.descrText {
-    color: rgba(92, 94, 96, 0.5);
-    font-size: 1.6rem;
-    line-height: 3rem;
+    margin-left: 3.3rem;
+    padding-top: 2rem;
 }
