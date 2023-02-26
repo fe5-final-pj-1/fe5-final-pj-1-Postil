@@ -1,10 +1,7 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-// import Button from '../Button';
 import Icon from '../Icon/Icon';
 import FooterStyle from './Footer.module.scss';
-// import classNames from 'classnames';
-// import Icon from '../Icon/Icon';
 function Footer() {
     return (
         <footer className={FooterStyle.wrapper}>
