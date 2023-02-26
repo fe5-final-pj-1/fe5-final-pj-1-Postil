@@ -5,11 +5,17 @@ import Icon from '../../Icon/Icon';
 import useDebounce from '../../../hooks/UseDebounce';
 import searchForProducts from '../../../api/searchForProducts';
 import styles from './Search.module.scss';
+import { useDispatch, useSelector } from 'react-redux';
+import { loadProducts } from '../../../store/productsSlice';
+import { Link } from 'react-router-dom';
 
 function Search({ className }) {
+    const products = useSelector((store) => store.products);
+    const dispatch = useDispatch();
+
     const classes = classNames(className);
+    const [productsShow, setProductsShow] = useState(false);
     const [searchPhrases, setSearchPhrases] = useState('');
-    const [results, setResults] = useState([]);
     const [isSearching, setIsSearching] = useState(false);
     const debouncedSearchTerm = useDebounce(searchPhrases, 800);
 
@@ -18,13 +24,14 @@ function Search({ className }) {
             setIsSearching(true);
             searchForProducts({ query: debouncedSearchTerm }).then((response) => {
                 setIsSearching(false);
-                setResults(response.data);
+                dispatch(loadProducts(response.data));
+                setProductsShow(true);
             });
         } else {
-            setResults([]);
+            dispatch(loadProducts([]));
+            setProductsShow(false);
         }
-    }, [debouncedSearchTerm]);
-
+    }, [debouncedSearchTerm, dispatch]);
     return (
         <div className={classes}>
             <input
@@ -32,13 +39,19 @@ function Search({ className }) {
                 placeholder="Search"
                 value={searchPhrases}
                 onChange={(e) => setSearchPhrases(e.target.value)}
+                onFocus={() => setProductsShow(true)}
+                onBlur={() => setTimeout(() => setProductsShow(false), 250)}
             />
             <div>
                 <Icon type="searchBtn" />
             </div>
-            <ul className={styles.listItem}>
+            <ul
+                className={
+                    productsShow ? classNames(styles.listItem, styles.active) : styles.listItem
+                }
+            >
                 {isSearching && <div>Search...</div>}
-                {results.slice(0, 5).map((item) => {
+                {products.slice(0, 5).map((item) => {
                     return (
                         <li key={item._id}>
                             <div>
@@ -60,7 +73,13 @@ function Search({ className }) {
                         </li>
                     );
                 })}
-                {results.length > 5 && <li className={styles.showAll}>Show all goods</li>}
+                {products.length > 5 && (
+                    <li className={styles.showAll}>
+                        <Link onClick={() => setProductsShow(false)} to="/products">
+                            Show all goods
+                        </Link>
+                    </li>
+                )}
             </ul>
         </div>
     );

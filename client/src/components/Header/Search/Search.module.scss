@@ -1,7 +1,10 @@
 @import '../../../style/mixins';
 @import '../../../style/variables';
 
-input:focus + div + .listItem {
+// input:focus + div + .listItem {
+//     display: block;
+// }
+.active.listItem {
     display: block;
 }
 
@@ -19,10 +22,11 @@ input:focus + div + .listItem {
         justify-content: space-between;
         padding: 0.3rem 0.6rem;
         border-bottom: $description-color 1px solid;
-        &.showAll {
+        &.showAll a {
             text-align: center;
             width: 100%;
             justify-content: center;
+            color: $dark-color;
         }
         & > div {
             & p {
@@ -74,7 +78,7 @@ input:focus + div + .listItem {
             & .name,
             & .fabric,
             & .fabric span,
-            &.showAll {
+            &.showAll a {
                 color: $light-color;
             }
         }
