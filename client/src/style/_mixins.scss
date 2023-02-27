@@ -2,7 +2,6 @@
   max-width: 1180px;
   margin: 0 auto;
 }
-
 @mixin reset-list {
     margin: 0;
     padding: 0;
@@ -35,19 +34,16 @@
     font-style: normal;
     font-weight: 400;
 }
-
 @mixin muli-font-bold {
     font-family: 'Mulish';
     font-style: normal;
     font-weight: 700;
 }
-
 @mixin roboto-font-bold {
     font-family: 'Roboto';
     font-style: normal;
     font-weight: 700;
 }
-
 @mixin grid-container {
   position: relative;
   overflow: hidden;
@@ -56,7 +52,6 @@
   background-position: center;
   border-radius: 2px;
 }
-
 @mixin before {
   position: absolute;
   display: block;
@@ -65,13 +60,11 @@
   left: 12rem;
   top: 1.1rem;
 }
-
 @mixin btn-size {
   padding: 1.2rem 4.2rem;
   background: rgba(255, 255, 255, 0.7);
   border: 1px solid #373F41;
   border-radius: 4px;
-  right: 4.56rem;
   margin-top: 4.55rem;
 }
 @mixin total-size {
