@@ -7,12 +7,10 @@ import styles from './BagPage.module.scss';
 const BagPage = () => {
     return (
         <>
-            <div>
-                <Header />
-                <TabsSection />
-                <div className={styles.mainContainer}>
-                    <SummaryTextSection />
-                </div>
+            <Header />
+            <TabsSection />
+            <div className={styles.mainContainer}>
+                <SummaryTextSection />
             </div>
         </>
     );

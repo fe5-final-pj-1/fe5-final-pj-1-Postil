@@ -1,13 +1,13 @@
 @import '../../../../style/mixins';
 
 .payMain {
-  margin-top: 8rem;
   width: 72.6rem;
-  flex: 0 0 73rem;
+  //flex: 0 0 73rem;
   height: 51.7rem;
 }
 .payTitle {
   @include muli-font-normal;
+  margin-top: 8rem;
   position: relative;
   font-size: 2.4rem;
   line-height: 4.8rem;
