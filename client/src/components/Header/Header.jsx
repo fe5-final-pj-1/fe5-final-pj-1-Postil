@@ -4,6 +4,7 @@ import { NavLink, Link } from 'react-router-dom';
 import classNames from 'classnames';
 import Icon from '../Icon/Icon';
 import Button from '../Button';
+import Search from './Search/Search';
 
 function Header() {
     const [catalog, setCatalog] = useState(false);
@@ -73,14 +74,8 @@ function Header() {
                                 </NavLink>
                             </li>
                         </ul>
-                        <div className={HeaderMain.group}>
-                            <input type="text" placeholder="Search" className={HeaderMain.input} />
-                            <div className={HeaderMain.icon}>
-                                <Icon type="search" />
-                            </div>
-                        </div>
+                        <Search className={HeaderMain.group} />
                     </nav>
-
                     <div className={HeaderMain.header_buttons}>
                         <Link to="favorite" className={HeaderMain.header_buttons_favorite}>
                             <Icon type="favorites" />
