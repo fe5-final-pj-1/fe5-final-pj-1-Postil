@@ -128,9 +128,7 @@ function PriceSlider() {
                         onChange={onUpperBoundChange}
                     />
                 </div>
-                <button className={styles.submitBtn} type="submit">
-                    Ok
-                </button>
+                <input className={styles.submitBtn} type="submit" value="OK" />
             </form>
         </div>
     );

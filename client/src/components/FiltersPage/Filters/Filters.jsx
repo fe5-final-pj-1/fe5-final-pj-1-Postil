@@ -82,7 +82,6 @@ function Filters() {
                 {active.size && (
                     <div className={styles.size}>
                         {sizes.map((size, key) => {
-                            console.log(filtersChecked.size[size.size]);
                             return (
                                 <label key={key}>
                                     <input
