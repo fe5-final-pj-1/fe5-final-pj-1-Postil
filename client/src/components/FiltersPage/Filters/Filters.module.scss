@@ -95,7 +95,6 @@
     padding-left: 2.8rem;
     display: flex;
     flex-wrap: wrap;
-    flex-wrap: wrap;
     width: 20rem;
     & label:not(label:nth-child(6n)) {
         margin-right: 1rem;
@@ -103,16 +102,26 @@
     & label:nth-child(-n + 6) {
         margin-bottom: 1rem;
     }
-    & label {
+    & span {
+        display: inline-block;
         width: 2rem;
         height: 2rem;
         border-radius: 50%;
+        opacity: .5;
+        transition: all 0.25s ease-in;
+        &:hover {
+            opacity: 1;
+            scale: 1.1;
+        }
     }
     & input {
         position: absolute;
         z-index: -1;
-        top: -9999rem;
-        left: -9999rem;
+        opacity: 0;
+    }
+    & input:checked + span {
+        opacity: 1;
+        scale: 1.1;
     }
 }
 label:hover {

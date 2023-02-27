@@ -2,19 +2,7 @@
 @import "../../style/mixins";
 
 .carousel {
-    max-width: 52.5rem;
-
-    & :global .control-prev {
-        &::before {
-            background-image: url('./arrow-prev.svg');
-        }
-    }
-    
-    & :global .control-next {
-        &::before {
-            background-image: url('./arrow-next.svg');
-        }
-    }
+    flex: 0 0 calc(49.5% - 10rem / 2);
 
     & :global .carousel.carousel-slider .control-arrow {
         width: 3.5rem;
@@ -38,7 +26,8 @@
 }
 
 :global .carousel .thumb {
-    width: 15rem !important;
+    width: 26% !important;
+    max-width: 15rem;
     cursor: pointer;
 }
 

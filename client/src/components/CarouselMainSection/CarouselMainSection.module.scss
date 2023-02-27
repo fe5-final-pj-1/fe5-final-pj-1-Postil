@@ -2,6 +2,7 @@
 @import "../../style/mixins";
 
 .carousel {
+    padding: 2rem 0 2.5rem;
 
     &Info {
         text-align: left;
@@ -44,18 +45,6 @@
 
         &:hover {
             opacity: .7;
-        }
-    }
-
-    & :global .control-prev {
-        &::before {
-            background-image: url('./arrow-prev.svg');
-        }
-    }
-    
-    & :global .control-next {
-        &::before {
-            background-image: url('./arrow-next.svg');
         }
     }
 

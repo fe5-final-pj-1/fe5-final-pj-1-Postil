@@ -1,52 +1,21 @@
 import styles from './ProductList.module.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-function ProductList() {
-    const items = [
-        {
-            img: 'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_lin_mgqrhh.png',
-            name: 'Boho Pink Cotton Bed Lilen',
-            price: 150,
-        },
-        {
-            img: 'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_lin_mgqrhh.png',
-            name: 'Boho Pink Cotton Bed Lilen',
-            price: 150,
-        },
-        {
-            img: 'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_lin_mgqrhh.png',
-            name: 'Boho Pink Cotton Bed Lilen',
-            price: 150,
-        },
-        {
-            img: 'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_lin_mgqrhh.png',
-            name: 'Boho Pink Cotton Bed Lilen',
-            price: 150,
-        },
-        {
-            img: 'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_lin_mgqrhh.png',
-            name: 'Boho Pink Cotton Bed Lilen',
-            price: 150,
-        },
-        {
-            img: 'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_lin_mgqrhh.png',
-            name: 'Boho Pink Cotton Bed Lilen',
-            price: 150,
-        },
-    ];
+function ProductList({ products }) {
     return (
         <ul className={styles.productsContainer}>
-            {items.map((item, key) => (
+            {products.map((product) => (
                 <li
-                    key={key}
-                    style={{ backgroundImage: `url(${item.img})` }}
+                    key={product.itemNo}
+                    style={{ backgroundImage: `url(${product.imageUrls[0]})` }}
                     className={styles.product}
                 >
                     <div className={styles.productName}>
-                        <p className={styles.title}>{item.name}</p>
-                        <p className={styles.price}>{item.price}$</p>
-                        <Link to="">buy now</Link>
+                        <p className={styles.title}>{product.name}</p>
+                        <p className={styles.price}>{product.currentPrice}$</p>
+                        <Link to={`/products/${product.itemNo}`}>buy now</Link>
                     </div>
                 </li>
             ))}
@@ -54,3 +23,7 @@ function ProductList() {
     );
 }
 export default ProductList;
+
+ProductList.propTypes = {
+    products: PropTypes.array.isRequired,
+};

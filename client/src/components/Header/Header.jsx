@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import HeaderMain from './Header.module.scss';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import classNames from 'classnames';
 import Icon from '../Icon/Icon';
 import Button from '../Button';
@@ -76,17 +76,16 @@ function Header() {
                         </ul>
                         <Search className={HeaderMain.group} />
                     </nav>
-
                     <div className={HeaderMain.header_buttons}>
-                        <NavLink to="favorite" className={HeaderMain.header_buttons_favorite}>
+                        <Link to="favorite" className={HeaderMain.header_buttons_favorite}>
                             <Icon type="favorites" />
-                        </NavLink>
-                        <NavLink to="cart" className={HeaderMain.header_buttons_cart}>
+                        </Link>
+                        <Link to="cart" className={HeaderMain.header_buttons_cart}>
                             <Icon type="cart" />
-                        </NavLink>
-                        <NavLink to="profile" className={HeaderMain.header_buttons_profile}>
+                        </Link>
+                        <Link to="profile" className={HeaderMain.header_buttons_profile}>
                             <Icon type="profile" />
-                        </NavLink>
+                        </Link>
                     </div>
                 </div>
             </div>
