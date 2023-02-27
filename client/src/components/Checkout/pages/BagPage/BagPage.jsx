@@ -1,7 +1,8 @@
 import React from 'react';
 import Header from '../../../Header';
 import TabsSection from '../../sections/TabsSection';
-import SummarySection from '../../sections/SummarySection';
+import SummaryTextSection from '../../sections/SummaryTextSection';
+import styles from './BagPage.module.scss';
 
 const BagPage = () => {
     return (
@@ -9,8 +10,9 @@ const BagPage = () => {
             <div>
                 <Header />
                 <TabsSection />
-                <SummarySection />
-                {/*В этот компонет, в секцию container, перед готовым кодом, вставить второй компонент*/}
+                <div className={styles.mainContainer}>
+                    <SummaryTextSection />
+                </div>
             </div>
         </>
     );

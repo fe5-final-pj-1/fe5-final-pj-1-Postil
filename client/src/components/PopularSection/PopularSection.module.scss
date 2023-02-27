@@ -154,7 +154,7 @@
   border-radius: 0.4rem;
   cursor: pointer;
   &:hover::before {
-    content: url('./img/Vector right-w.svg');
+    content: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1677499637/Linens/SVG/Vector_right-w_pvehzs.svg');
     @include before;
     transition: all 0.25s ease-in;
   }
@@ -165,23 +165,9 @@
   transition: all 0.25s ease-in;
 }
 .btn::before {
-  content: url('./img/Vector right.svg');
+  content: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1677499637/Linens/SVG/Vector_right_swofjg.svg');
   @include before;
 }
-//.btn {
-//  @include abel-font-normal;
-//  position: relative;
-//  margin: 3% auto;
-//  display: block;
-//  padding: 2% 13.3% 2% 7.7%;
-//  font-size: 1.6em;
-//  line-height: 2em;
-//  background: #FFFFFF;
-//  border: 0.1em solid #373F41;
-//  box-shadow: 0em 0.1em 0.1em rgba(0, 0, 0, 0.25);
-//  border-radius: 0.4em;
-//  cursor: pointer;
-//}
 
 
 

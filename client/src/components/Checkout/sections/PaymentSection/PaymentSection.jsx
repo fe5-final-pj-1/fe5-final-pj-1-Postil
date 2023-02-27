@@ -7,7 +7,7 @@ const PaymentSection = () => {
     const [active, setActive] = useState(1);
     return (
         <>
-            <section className={styles.container}>
+            <section>
                 <div className={styles.payMain}>
                     <h2 className={styles.payTitle}>PAYMENT METHOD</h2>
                     <div

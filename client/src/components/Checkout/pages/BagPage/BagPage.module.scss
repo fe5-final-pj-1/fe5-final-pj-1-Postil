@@ -1,0 +1,7 @@
+@import '../../../../style/mixins';
+
+.mainContainer {
+  @include content-container;
+  display: flex;
+  justify-content: space-between;
+}
