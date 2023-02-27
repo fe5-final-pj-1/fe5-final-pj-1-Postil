@@ -1,0 +1,33 @@
+@import '../../../../style/mixins';
+.tabsMain {
+  width: 100%;
+  height: 10rem;
+  background: #373F41;
+  margin-top: -3rem;
+}
+.tabsNav {
+  @include content-container;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  &::after {
+    content: '';
+    position: absolute;
+    width: 117.9rem;
+    border-bottom: 0.11rem solid white;
+    top: 6.9rem;
+  }
+}
+.tabsLink {
+  @include muli-font-normal;
+  padding: 2rem  ;
+  width: 39.3rem;
+  color: #949697;
+  font-size: 14px;
+  line-height: 24px;
+  background-color: #373F41;
+}
+.tabsActive {
+  color: white;
+  border-bottom: 0.52rem solid white;
+}
