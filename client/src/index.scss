@@ -48,3 +48,15 @@ body {
         width: 1.8rem;
     }
 }
+
+.carousel .control-prev {
+    &::before {
+        background-image: url('./img/arrow-prev.svg');
+    }
+}
+
+.carousel .control-next {
+    &::before {
+        background-image: url('./img/arrow-next.svg');
+    }
+}

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './SingleItemSection.module.scss';
 import Button from '../Button';
 import Icon from '../Icon/Icon';
+import ProductCarousel from '../ProductCarousel';
 
 const SingleItemSection = () => {
     const [active, setActive] = useState({
@@ -12,6 +13,7 @@ const SingleItemSection = () => {
         <section className={styles.singleItem}>
             <div className="container">
                 <div className={styles.singleItemWrp}>
+                    <ProductCarousel />
                     <div className={styles.boxRight}>
                         <div className={styles.boxRightHeader}>
                             <h2 className={styles.singleItemTitle}>SWEETNESS BED LINEN</h2>

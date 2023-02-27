@@ -1,9 +1,12 @@
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { filtersAdded } from '../../../../store/filtersSlice';
 import styles from './PriceSlider.module.scss';
 
 function PriceSlider() {
+    const dispatch = useDispatch();
     const [values, setValues] = useState({
         lowerBound: 100,
         upperBound: 350,
@@ -85,6 +88,10 @@ function PriceSlider() {
             setValues({ ...values, lowerBound, upperBound, value });
         }
     };
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(filtersAdded({ minPrice: values.value[0], maxPrice: values.value[1] }));
+    };
     return (
         <div>
             <Slider
@@ -108,18 +115,21 @@ function PriceSlider() {
                     boxShadow: 'none',
                 }}
             />
-            <div className={styles.inputs}>
-                <span>FROM</span>
-                <input type="number" value={values.lowerBound} onChange={onLowerBoundChange} />
-                <br />
-                <span>TO</span>
-                <input
-                    type="number"
-                    value={values.upperBound}
-                    onBlur={onUpperBoundBlur}
-                    onChange={onUpperBoundChange}
-                />
-            </div>
+            <form onSubmit={handleSubmit}>
+                <div className={styles.inputs}>
+                    <span>FROM</span>
+                    <input type="number" value={values.lowerBound} onChange={onLowerBoundChange} />
+                    <br />
+                    <span>TO</span>
+                    <input
+                        type="number"
+                        value={values.upperBound}
+                        onBlur={onUpperBoundBlur}
+                        onChange={onUpperBoundChange}
+                    />
+                </div>
+                <input className={styles.submitBtn} type="submit" value="OK" />
+            </form>
         </div>
     );
 }

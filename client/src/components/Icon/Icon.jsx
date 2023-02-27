@@ -243,7 +243,7 @@ function Icon(props) {
                     </g>
                 </svg>
             );
-        case 'searchBtn':
+        case 'search':
             return (
                 <svg
                     width="22"
