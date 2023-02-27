@@ -1,11 +1,16 @@
 import React, { useState } from 'react';
+import { useSelector, shallowEqual } from 'react-redux';
 import styles from './Filters.module.scss';
 import Icon from '../../Icon/Icon';
 import classNames from 'classnames';
 import PriceSlider from './PriceSlider/PriceSlider';
 import Button from '../../Button/Button';
+import useFilters from '../../../hooks/useFilters';
 
 function Filters() {
+    // eslint-disable-next-line no-unused-vars
+    const filtersCheckedAny = useSelector((state) => state.filters.filtersChecked, shallowEqual);
+    const { filtersChecked, handleChange } = useFilters();
     const [active, setActive] = useState({
         price: false,
         size: false,
@@ -35,10 +40,14 @@ function Filters() {
         { color: '#A9AAAC' },
         { color: '#C92B56' },
     ];
-    const handleChange = (e) => {
-        e.target.checked
-            ? console.log(e.target.name)
-            : console.log(`remove filter: ${e.target.name}`);
+    const handleSizeChange = (e) => {
+        handleChange(e, 'size');
+    };
+    const handleColorChange = (e) => {
+        handleChange(e, 'color');
+    };
+    const handleFabricChange = (e) => {
+        handleChange(e, 'fabric');
     };
     return (
         <ul className={styles.filtersContainer}>
@@ -72,12 +81,20 @@ function Filters() {
                 />
                 {active.size && (
                     <div className={styles.size}>
-                        {sizes.map((size, key) => (
-                            <label key={key}>
-                                <input onChange={handleChange} type="checkbox" name={size.size} />
-                                <span>{size.size}</span>
-                            </label>
-                        ))}
+                        {sizes.map((size, key) => {
+                            console.log(filtersChecked.size[size.size]);
+                            return (
+                                <label key={key}>
+                                    <input
+                                        onChange={handleSizeChange}
+                                        type="checkbox"
+                                        checked={filtersChecked.size[size.size]}
+                                        name={size.size}
+                                    />
+                                    <span>{size.size}</span>
+                                </label>
+                            );
+                        })}
                     </div>
                 )}
             </li>
@@ -95,13 +112,15 @@ function Filters() {
                 {active.color && (
                     <div className={styles.color}>
                         {colors.map((color, key) => (
-                            <label key={key} style={{ backgroundColor: color.color }}>
+                            <label key={key}>
                                 <input
-                                    onChange={handleChange}
+                                    onChange={handleColorChange}
                                     type="checkbox"
+                                    checked={filtersChecked.color[`${color.color}`]}
                                     value={color.color}
                                     name={color.color}
                                 />
+                                <span style={{ backgroundColor: color.color }}>&nbsp;</span>
                             </label>
                         ))}
                     </div>
@@ -127,8 +146,9 @@ function Filters() {
                         {fabrics.map((fabric, key) => (
                             <label key={key}>
                                 <input
-                                    onChange={handleChange}
+                                    onChange={handleFabricChange}
                                     type="checkbox"
+                                    checked={filtersChecked.fabric[`${fabric.fabric}`]}
                                     name={fabric.fabric}
                                 />
                                 <span>{fabric.fabric}</span>

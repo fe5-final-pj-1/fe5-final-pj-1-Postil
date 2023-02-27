@@ -13,7 +13,8 @@
     }
     & input {
         color: $dark-color;
-        padding: 0.1rem 2.7rem;
+        padding: 0.1rem 0rem;
+        text-align: center;
         width: 8rem;
         border: 1px solid $dark-color;
         display: inline;
@@ -24,5 +25,21 @@
         &::-webkit-inner-spin-button {
             -webkit-appearance: none;
         }
+    }
+}
+
+.submitBtn {
+    @include abel-font-normal;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    background-color: transparent;
+    border: 1px solid $dark-color;
+    margin-top: 1rem;
+    padding: .5rem 1rem;
+    transition: all 0.25s ease-in;
+
+    &:hover {
+        background-color: $dark-color;
+        color: $light-color;
     }
 }

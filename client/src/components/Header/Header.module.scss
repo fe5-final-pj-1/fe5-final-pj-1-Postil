@@ -1,18 +1,16 @@
 @import '../../style/variables';
 @import '../../style/mixins';
+
 .wrapper{
-  border-bottom: 0.07rem solid $dark-color ;
-  margin-bottom: 3rem;
+  border-bottom: 0.07rem solid $dark-color;
   padding-top: 2.2rem;
   padding-bottom: 1rem;
 }
+
 .header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.logo {
 }
 
 .header_nav {
@@ -36,15 +34,19 @@
   font-size: $text-fs;
   align-items: center;
 }
+
 .header_list_item:hover {
   border-bottom: 0.1rem solid $dark-color;
 }
+
 .header_list_item:last-child{
   margin-right: 0;
 }
+
 .header_list_item:first-child {
   position: relative;
 }
+
 .header_list_item a {
   color: $dark-color;
   text-decoration: none;
@@ -59,12 +61,11 @@
   display: flex;
   align-items: center;
 }
-.header_buttons_cart svg {
+
+.header_buttons a:not(:last-child) {
   margin-right: 3rem;
 }
-.header_buttons_favorite svg {
-  margin-right: 3rem;
-}
+
 .group {
   line-height: 1.8rem;
   align-items: center;
@@ -106,6 +107,7 @@
 .active + .dropCatalog{
 display: block;
 }
+
 .catalog_menu_list {
   display: flex;
   flex-direction: column;
@@ -115,6 +117,7 @@ display: block;
   margin-bottom: 2rem;
   color: $dark-color;
 }
+
 .catalog_menu_list_item:last-child {
   margin-bottom: 0;
 }

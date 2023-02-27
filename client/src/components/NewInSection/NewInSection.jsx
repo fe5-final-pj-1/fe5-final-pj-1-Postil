@@ -6,7 +6,7 @@ import imgThree from './NewInSection-img/img3-min.png';
 import imgFour from './NewInSection-img/img4-min.png';
 
 function NewInSection() {
-    const { newInTitle, newInWrp, newInItem, newInImg, newInText, newInPrice } = newInStyles;
+    const { newIn, newInTitle, newInWrp, newInItem, newInImg, newInText, newInPrice } = newInStyles;
     const items = [
         {
             text: 'Cotton Dark Blue Bed Linen',
@@ -31,7 +31,7 @@ function NewInSection() {
     ];
 
     return (
-        <section>
+        <section className={newIn}>
             <div className="container">
                 <p className={newInTitle}>NEW IN</p>
                 <ul className={newInWrp}>
