@@ -18,7 +18,7 @@
     flex-direction: column;
     justify-content: space-between;
     align-items: flex-start;
-    margin-right: 10px;
+    margin-right: 1rem;
 }
 .menu_list_item,
 .about_list_item,
@@ -62,7 +62,7 @@
 }
 .promotion_text {
     color: $lightGrey;
-    font-size: 14px;
+    font-size: 1.4rem;
 }
 .subscription_input {
     display: flex;
@@ -71,7 +71,7 @@
 }
 
 .input {
-    max-width: 320px;
+    max-width: 32rem;
     padding: 1.4rem 2rem;
     border: 1px solid $dark-color;
     color: $dark-color;
@@ -80,8 +80,7 @@
 }
 
 .button_submit {
-    padding: 1.4rem 4.5rem;
-    border: none;
+    padding: 1.45rem 4.5rem;
     border-radius: 0 4px 4px 0;
     background-color: $dark-color;
     color: #fff;

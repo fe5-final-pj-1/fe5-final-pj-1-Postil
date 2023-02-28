@@ -78,7 +78,7 @@ function Footer() {
                         <p className={FooterStyle.promotion_text}>
                             Subscribe now and get 15% off on your first <br /> order
                         </p>
-                        <div className={FooterStyle.subscription_input}>
+                        <form className={FooterStyle.subscription_input}>
                             <input
                                 type="email"
                                 className={FooterStyle.input}
@@ -92,7 +92,7 @@ function Footer() {
                                 value="Send"
                                 type="submit"
                             />
-                        </div>
+                        </form>
                         <div className={FooterStyle.promotion_btn}>
                             <p className={FooterStyle.followUs}>Follow Us</p>
                             <ul className={FooterStyle.social_list}>
