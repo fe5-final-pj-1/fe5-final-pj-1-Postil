@@ -6,11 +6,11 @@ import useDebounce from '../../../hooks/UseDebounce';
 import searchForProducts from '../../../api/searchForProducts';
 import styles from './Search.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadProducts } from '../../../store/productsSlice';
+import { loadProducts } from '../../../store/searchProductsSlice';
 import { Link } from 'react-router-dom';
 
 function Search({ className }) {
-    const products = useSelector((store) => store.products);
+    const products = useSelector((store) => store.searchProducts);
     const dispatch = useDispatch();
 
     const classes = classNames(className);
@@ -54,22 +54,25 @@ function Search({ className }) {
                 {products.slice(0, 5).map((item) => {
                     return (
                         <li key={item._id}>
-                            <div>
-                                <p className={styles.name}>{item.name}</p>
+                            <Link to={`products/${item.itemNo}`}>
                                 <div>
-                                    <p className={styles.size}>
-                                        Size: <span>{item.size}</span>
-                                    </p>
-                                    <p className={styles.fabric}>
-                                        Fabric: <span>{item.fabric}</span>
-                                    </p>
+                                    <p className={styles.name}>{item.name}</p>
+                                    <div>
+                                        <p className={styles.size}>
+                                            Size: <span>{item.size}</span>
+                                        </p>
+                                        <p className={styles.fabric}>
+                                            Fabric: <span>{item.fabric}</span>
+                                        </p>
 
-                                    <p className={styles.color}>
-                                        Color: <span style={{ backgroundColor: item.color }}></span>
-                                    </p>
+                                        <p className={styles.color}>
+                                            Color:{' '}
+                                            <span style={{ backgroundColor: item.color }}></span>
+                                        </p>
+                                    </div>
                                 </div>
-                            </div>
-                            <p className={styles.price}>${item.currentPrice}</p>
+                                <p className={styles.price}>${item.currentPrice}</p>
+                            </Link>
                         </li>
                     );
                 })}
