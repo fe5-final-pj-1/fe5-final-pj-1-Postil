@@ -27,6 +27,8 @@ module.exports = {
     plugins: ['react', 'jsx-a11y', '@typescript-eslint'],
     rules: {
         'react-hooks/exhaustive-deps': 'error',
+        'jsx-a11y/no-static-element-interactions': 0,
+        'jsx-a11y/click-events-have-key-events': 0,
         'no-var': 'error',
         'brace-style': 'error',
         'prefer-template': 'error',
