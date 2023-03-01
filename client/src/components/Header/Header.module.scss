@@ -30,10 +30,20 @@
     font-size: $text-fs;
     padding-bottom: 0.3rem;
     border-bottom: 0.1rem solid transparent;
-    font-size: $text-fs;
     align-items: center;
 }
+.header_list_item a {
+    font-size: $text-fs;
+    color: $dark-color;
 
+}
+.header_list_item_btn {
+    background: transparent;
+    font-size: $text-fs;
+    color: $dark-color;
+
+
+}
 .header_list_item:hover {
     border-bottom: 0.1rem solid $dark-color;
 }
@@ -44,11 +54,6 @@
 
 .header_list_item:first-child {
     position: relative;
-}
-
-.header_list_item a {
-    color: $dark-color;
-    text-decoration: none;
 }
 
 .openBtn {
@@ -63,6 +68,10 @@
 
 .header_buttons a:not(:last-child) {
     margin-right: 3rem;
+    background: transparent;
+}
+.header_buttons_profile{
+    background: transparent;
 }
 
 .group {
