@@ -1,7 +1,5 @@
 import React from 'react';
 import BagItem from './components/BagItem';
-import Header from './components/Header';
-import TotalPrice from './components/TotalPrice';
 
 import styles from './ShoppingBag.module.scss';
 
@@ -40,8 +38,8 @@ const ShoppingBag = () => {
     return (
         <div className={styles.bagWrapper}>
             <div className={styles.headerWrapper}>
-                <Header />
-                <TotalPrice totalPrice={'490.00'} />
+                <h2 className={styles.bagHeader}>SHOPPING BAG</h2>
+                <p className={styles.totalPrice}>TOTAL USD ${'490.00'}</p>
             </div>
 
             <ul className={styles.itemsList}>

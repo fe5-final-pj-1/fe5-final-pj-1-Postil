@@ -5,7 +5,7 @@
     display: flex;
     gap: 80px;
     align-items: stretch;
-    padding: 20px 0;
+    padding: 20px 34px 20px 0;
 }
 
 .itemImg {
@@ -72,41 +72,3 @@
     color: $lightTxtColor;
 }
 
-$inputBorder: 1px solid $mainTxtColor;
-.numInputBlock {
-    display: flex;
-    width: 70px;
-    height: 50px;
-    border: $inputBorder;
-    border-radius: 2px;
-
-    .numInput {
-        @include flex-center;
-        @include muli-font-semibold;
-        font-size: 1.8rem;
-        line-height: 3.2rem;
-        color: $mainTxtColor;
-        width: 40px;
-
-        border-right: $inputBorder;
-        text-align: center;
-    }
-
-    .numInputBtns {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        // justify-content: stretch;
-    }
-
-    .counterBtn {
-        @include flex-center;
-        height: 100%;
-        background: none;
-        cursor: default;
-
-        &:first-of-type {
-            border-bottom: $inputBorder;
-        }
-    }
-}

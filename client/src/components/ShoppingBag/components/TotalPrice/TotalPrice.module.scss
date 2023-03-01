@@ -1,9 +1,0 @@
-@import 'style/_mixins.scss';
-@import '../../style';
-
-.totalPrice {
-    @include muli-font-semibold;
-    color: $mainTxtColor;
-    font-size: 2.4rem;
-    line-height: 2rem;
-}
