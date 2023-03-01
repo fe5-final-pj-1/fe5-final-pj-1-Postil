@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from '../../Icon/Icon';
 import Image from '../../Image';
-import useDebounce from '../../../hooks/useDebounce';
+import useDebounce from '../../../hooks/UseDebounce';
 import searchForProducts from '../../../api/searchForProducts';
 import styles from './Search.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
