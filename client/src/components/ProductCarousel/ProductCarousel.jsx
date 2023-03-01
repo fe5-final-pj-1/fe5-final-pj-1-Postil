@@ -2,8 +2,9 @@ import React from 'react';
 import carouselStyles from './ProductCarousel.module.scss';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
+import PropTypes from 'prop-types';
 
-function ProductCarousel() {
+function ProductCarousel({ images }) {
     const { carousel } = carouselStyles;
     return (
         <div className={carousel}>
@@ -15,22 +16,13 @@ function ProductCarousel() {
                 infiniteLoop={true}
             >
                 <div>
-                    <img
-                        src="https://res.cloudinary.com/dm2s5stjy/image/upload/v1676975743/Linens/SliderMin/Slide-1_ibxfsb.jpg"
-                        alt="Carousel img 3"
-                    />
+                    <img src={images[0]} alt="Carousel img 3" />
                 </div>
                 <div>
-                    <img
-                        src="https://res.cloudinary.com/dm2s5stjy/image/upload/v1676975723/Linens/SliderMin/Slide-2_xxi6f3.jpg"
-                        alt="Carousel img 3"
-                    />
+                    <img src={images[1]} alt="Carousel img 3" />
                 </div>
                 <div>
-                    <img
-                        src="https://res.cloudinary.com/dm2s5stjy/image/upload/v1676975723/Linens/SliderMin/Slide-3_yeoisk.jpg"
-                        alt="Carousel img 3"
-                    />
+                    <img src={images[2]} alt="Carousel img 3" />
                 </div>
             </Carousel>
         </div>
@@ -38,3 +30,10 @@ function ProductCarousel() {
 }
 
 export default ProductCarousel;
+
+ProductCarousel.propTypes = {
+    images: PropTypes.array,
+};
+ProductCarousel.defaultProps = {
+    images: [],
+};

@@ -1,0 +1,28 @@
+@import '../../../../style/mixins';
+.emptyMain {
+
+}
+.emptyTitle {
+  @include abel-font-normal;
+  margin-top: 15rem;
+  font-size: 3.2rem;
+  line-height: 5rem;
+  text-align: center;
+  letter-spacing: 0.05em;
+  color: #000000;
+}
+.emptyButton {
+  @include abel-font-normal;
+  background: #373F41;
+  border-radius: 4px;
+  padding: 1.5rem 4.5rem 1.5rem 4.8rem;
+  margin: 6.5rem auto 15rem;
+  display: block;
+  font-size: 18px;
+  line-height: 23px;
+  color: #FFFFFF;
+  &:hover {
+    transition: all 0.25s ease-in;
+    box-shadow: 7px 5px 5px dimgray;
+  }
+}

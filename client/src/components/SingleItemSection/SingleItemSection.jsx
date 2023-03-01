@@ -2,34 +2,23 @@ import React, { useState } from 'react';
 import styles from './SingleItemSection.module.scss';
 import Button from '../Button';
 import Icon from '../Icon/Icon';
-import classNames from 'classnames';
+import ProductCarousel from '../ProductCarousel';
+import PropTypes from 'prop-types';
 
-const SingleItemSection = () => {
-    // From Sergey
+const SingleItemSection = ({ product }) => {
+    const { color, currentPrice, imageUrls, fabric, itemNo, name, size } = product;
     const [active, setActive] = useState({
-        price: false,
-        size: false,
-        color: false,
-        fabric: false,
+        reviews: false,
+        description: false,
     });
-    const sizes = [{ size: 'king' }];
-    const colors = [{ color: '#6FB7AC' }];
-    const handleChange = (e) => {
-        e.target.checked
-            ? console.log(e.target.name)
-            : console.log(`remove filter: ${e.target.name}`);
-    };
-
     return (
         <section className={styles.singleItem}>
-            <div className={styles.container}>
+            <div className="container">
                 <div className={styles.singleItemWrp}>
-                    <div className={styles.boxLeft}>
-                        <h5 className={styles.sliderTitle}>Slider</h5>
-                    </div>
+                    <ProductCarousel images={imageUrls} />
                     <div className={styles.boxRight}>
                         <div className={styles.boxRightHeader}>
-                            <h2 className={styles.singleItemTitle}>SWEETNESS BED LINEN</h2>
+                            <h2 className={styles.singleItemTitle}>{name}</h2>
                             <div className={styles.boxRightLinkWrp}>
                                 <a
                                     href="https://www.facebook.com/"
@@ -57,136 +46,95 @@ const SingleItemSection = () => {
                                 </a>
                             </div>
                         </div>
-                        <p className={styles.boxRightId}>PRODUCT ID: 10101</p>
-
-                        {/* From Sergey */}
-                        <ul className={styles.filtersContainer}>
-                            <li className={(styles.filter, styles.active)}>
-                                <p className={styles.filterTitle}>COLOR</p>
-                                <div className={styles.color}>
-                                    {colors.map((color, key) => {
-                                        return (
-                                            <label
-                                                key={key}
-                                                style={{ backgroundColor: color.color }}
-                                            >
-                                                <input
-                                                    onChange={handleChange}
-                                                    type="checkbox"
-                                                    value={color.color}
-                                                    name={color.color}
-                                                />
-                                            </label>
-                                        );
-                                    })}
-                                </div>
-                            </li>
-                            <li className={(styles.filter, styles.active)}>
-                                <p className={styles.filterTitle}>SIZE</p>
-                                <div className={styles.size}>
-                                    {sizes.map((size, key) => (
-                                        <div className={styles.sizeName} key={key}>
-                                            <a className={styles.sizeLink} href="!#">
-                                                {size.size}
-                                            </a>
-                                        </div>
-                                    ))}
-                                </div>
-                            </li>
-
-                            <div className={styles.boxForBuy}>
-                                <div className={styles.boxForBuyL}>
-                                    <p className={styles.buyTextOne}>USD $150.00</p>
-                                    <p className={styles.buyTextTwo}>PRE-ORDER</p>
-                                </div>
-                                <div className={styles.boxForBuyR}>
-                                    <Button text={'ADD TO BAG'} className={styles.btn} />
-                                    <Button className={styles.btnHeart} />
-                                </div>
+                        <p className={styles.boxRightId}>PRODUCT ID: {itemNo}</p>
+                        <div className={styles.boxOption}>
+                            <p>
+                                Color:
+                                <span
+                                    className={styles.color}
+                                    style={{ backgroundColor: color }}
+                                ></span>
+                            </p>
+                            <p>
+                                Size: <span>{size}</span>
+                            </p>
+                            <p>
+                                Fabric: <span>{fabric}</span>
+                            </p>
+                        </div>
+                        <div className={styles.boxOption}></div>
+                        <div className={styles.boxForBuy}>
+                            <div className={styles.boxForBuyL}>
+                                <p className={styles.buyTextOne}>USD ${currentPrice}</p>
+                                <p className={styles.buyTextTwo}>PRE-ORDER</p>
                             </div>
-
-                            <li
-                                className={
-                                    active.price
-                                        ? classNames(styles.filter, styles.active)
-                                        : styles.filter
+                            <div className={styles.boxForBuyR}>
+                                <Button text={'ADD TO BAG'} className={styles.btn} />
+                                <Button className={styles.btnHeart} />
+                            </div>
+                        </div>
+                        <div className={styles.boxInfo}>
+                            <Button
+                                handleClick={() =>
+                                    setActive({
+                                        ...active,
+                                        description: !active.description,
+                                    })
                                 }
-                            >
-                                <Button
-                                    handleClick={() =>
-                                        setActive({ ...active, price: active.price ? false : true })
-                                    }
-                                    className={styles.filterName}
-                                    text={
-                                        <>
-                                            <Icon type={active.price ? 'minus' : 'plus'} />
-                                            <p
-                                                className={
-                                                    (styles.filterTitle, styles.filterTitleFix)
-                                                }
-                                            >
-                                                PRODUCT DESCRIPTION
-                                            </p>
-                                        </>
-                                    }
-                                />
-                                {active.price && (
-                                    <div className={styles.price}>
-                                        <p className={styles.descrText}>
-                                            Silk has a number of positive qualities. It has a
-                                            beautiful appearance, pleasant to the body, easy to care
-                                            for. The material is very soft, delicate and pleasant to
-                                            the touch. Given all its positive qualities, it is ideal
-                                            for sewing bed linen. It perfectly keeps its shape, does
-                                            not wrinkle, does not shed and practically does not
-                                            shrink when washed.
+                                className={styles.boxInfoName}
+                                text={
+                                    <>
+                                        <Icon type={active.description ? 'minus' : 'plus'} />
+                                        <p
+                                            className={
+                                                (styles.boxInfoTitle, styles.boxInfoTitleFix)
+                                            }
+                                        >
+                                            Product Description
                                         </p>
-                                    </div>
-                                )}
-                            </li>
-                            <li
-                                className={
-                                    active.fabric
-                                        ? classNames(styles.filter, styles.active)
-                                        : styles.filter
+                                    </>
                                 }
-                            >
-                                <Button
-                                    handleClick={() =>
-                                        setActive({
-                                            ...active,
-                                            fabric: active.fabric ? false : true,
-                                        })
-                                    }
-                                    className={styles.filterName}
-                                    text={
-                                        <>
-                                            <Icon type={active.fabric ? 'minus' : 'plus'} />
-                                            <p
-                                                className={
-                                                    (styles.filterTitle, styles.filterTitleFix)
-                                                }
-                                            >
-                                                REVIEWS
-                                            </p>
-                                        </>
-                                    }
-                                />
-                                {active.fabric && (
-                                    <div className={styles.fabric}>
-                                        <p className={styles.reviewsText}>
-                                            The main advantages of silk underwear. Rich appearance
-                                            and beautiful shine. Soft and pleasant to the touch.
-                                            Ideal for summer as it creates a cool feeling. Good
-                                            breathability. Perfectly absorbs moisture. Virtually no
-                                            wrinkling. Does not shed or shrink. Moths and other
-                                            insects do not start in it. Does not cause allergic
-                                            reactions. Not afraid of direct sunlight.
+                            />
+                            {active.description && (
+                                <p className={styles.reviewsText}>
+                                    Far far away, behind the word mountains, far from the countries
+                                    Vokalia and Consonantia, there live the blind texts.Far far
+                                    away, behind the word mountains, far from the countries Vokalia
+                                    and Consonantia, there live the blind texts
+                                </p>
+                            )}
+                        </div>
+                        <div className={styles.boxInfo}>
+                            <Button
+                                handleClick={() =>
+                                    setActive({
+                                        ...active,
+                                        reviews: !active.reviews,
+                                    })
+                                }
+                                className={styles.boxInfoName}
+                                text={
+                                    <>
+                                        <Icon type={active.reviews ? 'minus' : 'plus'} />
+                                        <p
+                                            className={
+                                                (styles.boxInfoTitle, styles.boxInfoTitleFix)
+                                            }
+                                        >
+                                            Reviews
                                         </p>
-                                    </div>
-                                )}
-                            </li>
-                        </ul>
+                                    </>
+                                }
+                            />
+                            {active.reviews && (
+                                <p className={styles.reviewsText}>
+                                    Far far away, behind the word mountains, far from the countries
+                                    Vokalia and Consonantia, there live the blind texts.Far far
+                                    away, behind the word mountains, far from the countries Vokalia
+                                    and Consonantia, there live the blind texts
+                                </p>
+                            )}
+                        </div>
                     </div>
                 </div>
             </div>
@@ -195,3 +143,11 @@ const SingleItemSection = () => {
 };
 
 export default SingleItemSection;
+
+SingleItemSection.propTypes = {
+    product: PropTypes.object,
+};
+
+SingleItemSection.defaultProps = {
+    product: {},
+};
