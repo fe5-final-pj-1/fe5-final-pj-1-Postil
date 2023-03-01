@@ -1,9 +1,9 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import ShoppingBag from './ShoppingBag';
 
-test('button renders with props', () => {
+test('Shopping Bag should be rendered', () => {
     render(<ShoppingBag />);
-    // const linkElement = screen.
-    // expect(linkElement).toBeInTheDocument();
+    const headerElement = screen.getByRole('heading', { name: /shopping bag/i });
+    expect(headerElement).toBeInTheDocument();
 });
