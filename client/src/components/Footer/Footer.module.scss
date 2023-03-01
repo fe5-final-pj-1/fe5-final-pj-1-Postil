@@ -46,9 +46,15 @@
 .text {
     color: $dark-color;
 }
+.contact_title{
+    font-weight: 900;
+
+}
 .contact_email,
 .contact_address {
     border-bottom: transparent 1px solid;
+    color: $dark-color;
+
 }
 .links:hover,
 .contact_email:hover,

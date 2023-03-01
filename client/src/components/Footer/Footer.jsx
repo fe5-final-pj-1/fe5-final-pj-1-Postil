@@ -66,9 +66,12 @@ function Footer() {
                         <a href="mailto:hello@gmail.com" className={FooterStyle.contact_email}>
                             hello@gmail.com
                         </a>
-                        <p className={FooterStyle.contact_address}>
+                        <a
+                            href="https://goo.gl/maps/922TfmCaQUyD39R77"
+                            className={FooterStyle.contact_address}
+                        >
                             Studio M, 4th Floor8 Lower <br /> Manchester street, M1 5QF
-                        </p>
+                        </a>
                         <a href="tel:+380938759922" className={FooterStyle.contact_tel}>
                             +38 093 875 9922
                         </a>
@@ -119,7 +122,7 @@ function Footer() {
                     <div className={FooterStyle.logo}>
                         <Icon type="footerLogo" />
                     </div>
-                    <p className={FooterStyle.text}>© 2010 — 2020 Simple Studio </p>
+                    <p className={FooterStyle.text}>© 2010 — 2023 Simple Studio </p>
                     <Icon type="chat" className={FooterStyle.chat} />
                 </div>
             </div>
