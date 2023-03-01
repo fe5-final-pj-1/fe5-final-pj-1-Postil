@@ -23,6 +23,10 @@ const router = createBrowserRouter([
             },
             {
                 path: 'products',
+                element: <Navigate to="filter" replace />,
+            },
+            {
+                path: 'products/filter',
                 element: <FiltersRoute />,
             },
             {

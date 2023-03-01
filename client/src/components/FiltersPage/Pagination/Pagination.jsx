@@ -1,7 +1,7 @@
 import styles from './Pagination.module.scss';
 import React from 'react';
-import Button from '../../../Button/Button';
-import Icon from '../../../Icon/Icon';
+import Button from '../../Button/Button';
+import Icon from '../../Icon/Icon';
 
 function Pagination() {
     const pages = [
@@ -26,7 +26,7 @@ function Pagination() {
             <Button text={<Icon type="arrowLeft" />} />
             <div className={styles.numbers}>
                 {pages.map((page, key) => (
-                    <Button handleClick={changeActiveClass} key={key} text={page.number} />
+                    <Button handleClick={changeActiveClass} key={key} text={`${page.number}`} />
                 ))}
             </div>
             <Button text={<Icon type="arrowRight" />} />

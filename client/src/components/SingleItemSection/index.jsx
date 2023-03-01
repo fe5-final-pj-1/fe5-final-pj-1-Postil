@@ -1,1 +1,1 @@
-export { default } from '../SingleItemSection';
+export { default } from './SingleItemSection';
