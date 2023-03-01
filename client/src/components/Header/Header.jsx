@@ -21,11 +21,13 @@ function Header() {
                         <ul
                             className={HeaderMain.header_list}
                             onClick={(event) => event.stopPropagation()}
+                            role="presentation"
                         >
                             <li
                                 id="catalogItem"
                                 className={HeaderMain.header_list_item}
                                 onClick={() => setCatalog((catalog) => !catalog)}
+                                role="presentation"
                             >
                                 <Button
                                     text={'Catalog'}
