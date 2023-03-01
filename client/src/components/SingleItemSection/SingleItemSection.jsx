@@ -48,19 +48,25 @@ const SingleItemSection = ({ product }) => {
                         </div>
                         <p className={styles.boxRightId}>PRODUCT ID: {itemNo}</p>
                         <div className={styles.boxOption}>
-                            <p>
-                                Color:
-                                <span
-                                    className={styles.color}
-                                    style={{ backgroundColor: color }}
-                                ></span>
-                            </p>
-                            <p>
-                                Size: <span>{size}</span>
-                            </p>
-                            <p>
-                                Fabric: <span>{fabric}</span>
-                            </p>
+                            {color && (
+                                <p>
+                                    Color:
+                                    <span
+                                        className={styles.color}
+                                        style={{ backgroundColor: color }}
+                                    ></span>
+                                </p>
+                            )}
+                            {size && (
+                                <p>
+                                    Size: <span>{size}</span>
+                                </p>
+                            )}
+                            {fabric && (
+                                <p>
+                                    Fabric: <span>{fabric}</span>
+                                </p>
+                            )}
                         </div>
                         <div className={styles.boxOption}></div>
                         <div className={styles.boxForBuy}>
