@@ -43,7 +43,7 @@ function Search({ className }) {
                 onBlur={() => setTimeout(() => setProductsShow(false), 250)}
             />
             <div>
-                <Icon type="searchBtn" />
+                <Icon type="search" />
             </div>
             <ul
                 className={

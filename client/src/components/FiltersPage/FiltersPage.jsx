@@ -14,20 +14,33 @@ function FiltersPage() {
     let [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch();
     const [products, setProducts] = useState([]);
+    const [didRun, setDidRun] = useState(false);
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
     useEffect(() => {
         for (const [key, value] of searchParams.entries()) {
+            if (key === 'perPage') {
+                continue;
+            }
+            if (key === 'startPage') {
+                if (isNaN(Number(value)) || Number(value) < 1) {
+                    continue;
+                }
+            }
             dispatch(filtersAdded({ [key]: [value] }));
         }
+        setDidRun(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
-        const filtersParams = new URLSearchParams(filters);
-        getFilteredProducts(filtersParams.toString()).then((result) =>
-            setProducts(result.data.products),
-        );
-        setSearchParams(filtersParams.toString());
-    }, [filters, setSearchParams]);
+        if (didRun) {
+            const filtersParams = new URLSearchParams(filters);
+            getFilteredProducts(filtersParams.toString()).then((result) =>
+                setProducts(result.data.products),
+            );
+            filtersParams.delete('perPage');
+            setSearchParams(filtersParams.toString());
+        }
+    }, [filters, didRun, setSearchParams]);
     return (
         <main className={classnames(styles.wrapper, 'container')}>
             <article className={styles.left}>

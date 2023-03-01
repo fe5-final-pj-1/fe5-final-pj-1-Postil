@@ -111,7 +111,7 @@
         transition: all 0.25s ease-in;
         &:hover {
             opacity: 1;
-            scale: 1.1;
+            scale: 1.3;
         }
     }
     & input {
@@ -121,7 +121,7 @@
     }
     & input:checked + span {
         opacity: 1;
-        scale: 1.1;
+        scale: 1.3;
     }
 }
 label:hover {

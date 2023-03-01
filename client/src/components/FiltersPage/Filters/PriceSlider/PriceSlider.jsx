@@ -13,7 +13,6 @@ function PriceSlider() {
         value: [100, 350],
         min: 0,
         max: 600,
-        step: 10,
     });
 
     const onLowerBoundChange = (e) => {
@@ -100,7 +99,6 @@ function PriceSlider() {
                 value={values.value}
                 min={values.min}
                 max={values.max}
-                // step={values.step}
                 onChange={onSliderChange}
                 railStyle={{ backgroundColor: '#000000', borderRadius: '0', height: '2px' }}
                 trackStyle={{ backgroundColor: '#000000', borderRadius: '0', height: '2px' }}
