@@ -3,8 +3,10 @@ import styles from './SingleItemSection.module.scss';
 import Button from '../Button';
 import Icon from '../Icon/Icon';
 import ProductCarousel from '../ProductCarousel';
+import PropTypes from 'prop-types';
 
-const SingleItemSection = () => {
+const SingleItemSection = ({ product }) => {
+    const { color, currentPrice, imageUrls, fabric, itemNo, name, size } = product;
     const [active, setActive] = useState({
         reviews: false,
         description: false,
@@ -13,10 +15,10 @@ const SingleItemSection = () => {
         <section className={styles.singleItem}>
             <div className="container">
                 <div className={styles.singleItemWrp}>
-                    <ProductCarousel />
+                    <ProductCarousel images={imageUrls} />
                     <div className={styles.boxRight}>
                         <div className={styles.boxRightHeader}>
-                            <h2 className={styles.singleItemTitle}>SWEETNESS BED LINEN</h2>
+                            <h2 className={styles.singleItemTitle}>{name}</h2>
                             <div className={styles.boxRightLinkWrp}>
                                 <a
                                     href="https://www.facebook.com/"
@@ -44,20 +46,32 @@ const SingleItemSection = () => {
                                 </a>
                             </div>
                         </div>
-                        <p className={styles.boxRightId}>PRODUCT ID: 10101</p>
+                        <p className={styles.boxRightId}>PRODUCT ID: {itemNo}</p>
                         <div className={styles.boxOption}>
-                            <p>Color</p>
-                            <div>
-                                <span style={{ backgroundColor: '#6E7181' }}>&nbsp;</span>
-                            </div>
+                            {color && (
+                                <p>
+                                    Color:
+                                    <span
+                                        className={styles.color}
+                                        style={{ backgroundColor: color }}
+                                    ></span>
+                                </p>
+                            )}
+                            {size && (
+                                <p>
+                                    Size: <span>{size}</span>
+                                </p>
+                            )}
+                            {fabric && (
+                                <p>
+                                    Fabric: <span>{fabric}</span>
+                                </p>
+                            )}
                         </div>
-                        <div className={styles.boxOption}>
-                            <p>Size</p>
-                            <p>Single</p>
-                        </div>
+                        <div className={styles.boxOption}></div>
                         <div className={styles.boxForBuy}>
                             <div className={styles.boxForBuyL}>
-                                <p className={styles.buyTextOne}>USD $150.00</p>
+                                <p className={styles.buyTextOne}>USD ${currentPrice}</p>
                                 <p className={styles.buyTextTwo}>PRE-ORDER</p>
                             </div>
                             <div className={styles.boxForBuyR}>
@@ -135,3 +149,11 @@ const SingleItemSection = () => {
 };
 
 export default SingleItemSection;
+
+SingleItemSection.propTypes = {
+    product: PropTypes.object,
+};
+
+SingleItemSection.defaultProps = {
+    product: {},
+};
