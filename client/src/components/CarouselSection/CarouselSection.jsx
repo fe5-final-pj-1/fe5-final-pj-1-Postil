@@ -4,74 +4,9 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import { Carousel } from 'react-responsive-carousel';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Link } from 'react-router-dom';
 
-const rundomProductsArr = [
-    {
-        name: 'Mint Candy Bed Lilen',
-        currentPrice: '150',
-        imageUrls: [
-            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991023/Linens/SliderMiddle/Slide-1_h8tttq.jpg',
-        ],
-    },
-    {
-        name: 'Orange Candy Bed Lilen',
-        currentPrice: '150',
-        imageUrls: [
-            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991024/Linens/SliderMiddle/Slide-3_uvcdze.jpg',
-        ],
-    },
-    {
-        name: 'Geometric Bed Lilen',
-        currentPrice: '180',
-        imageUrls: [
-            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991023/Linens/SliderMiddle/Slide-2_ekcgkh.jpg',
-        ],
-    },
-    {
-        name: 'Mint Candy Bed Lilen',
-        currentPrice: '150',
-        imageUrls: [
-            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991023/Linens/SliderMiddle/Slide-1_h8tttq.jpg',
-        ],
-    },
-    {
-        name: 'Orange Candy Bed Lilen',
-        currentPrice: '150',
-        imageUrls: [
-            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991024/Linens/SliderMiddle/Slide-3_uvcdze.jpg',
-        ],
-    },
-    {
-        name: 'Geometric Bed Lilen',
-        currentPrice: '180',
-        imageUrls: [
-            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991023/Linens/SliderMiddle/Slide-2_ekcgkh.jpg',
-        ],
-    },
-    {
-        name: 'Mint Candy Bed Lilen',
-        currentPrice: '150',
-        imageUrls: [
-            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991023/Linens/SliderMiddle/Slide-1_h8tttq.jpg',
-        ],
-    },
-    {
-        name: 'Orange Candy Bed Lilen',
-        currentPrice: '150',
-        imageUrls: [
-            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991024/Linens/SliderMiddle/Slide-3_uvcdze.jpg',
-        ],
-    },
-    {
-        name: 'Geometric Bed Lilen',
-        currentPrice: '180',
-        imageUrls: [
-            'https://res.cloudinary.com/dm2s5stjy/image/upload/v1676991023/Linens/SliderMiddle/Slide-2_ekcgkh.jpg',
-        ],
-    },
-];
-
-function CarouselSection({ sectionTitle }) {
+function CarouselSection({ sectionTitle, products }) {
     const {
         carousel,
         carouselSlide,
@@ -81,7 +16,7 @@ function CarouselSection({ sectionTitle }) {
         carouselText,
         carouselTextBottom,
     } = carouselStyles;
-    const slidesReady = addSlides(rundomProductsArr);
+    const slidesReady = addSlides(products);
     return (
         <section className={carousel}>
             <div className="container">
@@ -108,7 +43,7 @@ function CarouselSection({ sectionTitle }) {
         for (let i = 0; i < arr.length; i += 3) {
             slidesArr.push(
                 <div className={carouselSlide}>
-                    <a href="/" className={carouselSlideLink}>
+                    <Link to={`/products/${arr[i].itemNo}`} className={carouselSlideLink}>
                         <img src={arr[i].imageUrls[0]} alt={`Carousel img ${i + 1}`} />
                         <div className={carouselInfo}>
                             <p className={classNames(carouselText, 'h4--dark')}>{arr[i].name}</p>
@@ -116,8 +51,8 @@ function CarouselSection({ sectionTitle }) {
                                 {`$${arr[i].currentPrice}`}
                             </p>
                         </div>
-                    </a>
-                    <a href="/" className={carouselSlideLink}>
+                    </Link>
+                    <Link to={`/products/${arr[i + 1].itemNo}`} className={carouselSlideLink}>
                         <img src={arr[i + 1].imageUrls[0]} alt={`Carousel img ${i + 2}`} />
                         <div className={carouselInfo}>
                             <p className={classNames(carouselText, 'h4--dark')}>
@@ -127,8 +62,8 @@ function CarouselSection({ sectionTitle }) {
                                 className={classNames(carouselText, carouselTextBottom, 'p--dark')}
                             >{`$${arr[i + 1].currentPrice}`}</p>
                         </div>
-                    </a>
-                    <a href="/" className={carouselSlideLink}>
+                    </Link>
+                    <Link to={`/products/${arr[i + 2].itemNo}`} className={carouselSlideLink}>
                         <img src={arr[i + 2].imageUrls[0]} alt={`Carousel img ${i + 3}`} />
                         <div className={carouselInfo}>
                             <p className={classNames(carouselText, 'h4--dark')}>
@@ -138,7 +73,7 @@ function CarouselSection({ sectionTitle }) {
                                 className={classNames(carouselText, carouselTextBottom, 'p--dark')}
                             >{`$${arr[i + 2].currentPrice}`}</p>
                         </div>
-                    </a>
+                    </Link>
                 </div>,
             );
         }
@@ -150,8 +85,10 @@ export default CarouselSection;
 
 CarouselSection.propTypes = {
     sectionTitle: PropTypes.string,
+    products: PropTypes.array,
 };
 
 CarouselSection.defaultProps = {
     sectionTitle: 'Related items',
+    products: [],
 };
