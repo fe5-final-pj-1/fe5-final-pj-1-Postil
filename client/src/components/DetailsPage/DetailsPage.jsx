@@ -3,6 +3,7 @@ import SingleItemSection from '../SingleItemSection';
 import CarouselSection from '../CarouselSection';
 import { useParams } from 'react-router-dom';
 import getOneProduct from '../../api/getOneProduct';
+import getAllProducts from '../../api/getAllProducts';
 
 function DetailsPage() {
     const [product, setProduct] = useState({});
@@ -13,10 +14,28 @@ function DetailsPage() {
             setProduct(res.data);
         });
     }, [productId]);
+    const [products, setProducts] = useState([]);
+
+    useEffect(() => {
+        getAllProducts().then((res) =>
+            setProducts(
+                res.data.length % 3
+                    ? res.data.slice(0, res.data.length - (res.data.length % 3)).map((item) => {
+                          const { name, currentPrice, imageUrls, itemNo } = item;
+                          return { name, currentPrice, imageUrls, itemNo };
+                      })
+                    : res.data.map((item) => {
+                          const { name, currentPrice, imageUrls, itemNo } = item;
+                          return { name, currentPrice, imageUrls, itemNo };
+                      }),
+            ),
+        );
+    }, []);
+
     return (
         <main>
             <SingleItemSection product={product} />
-            <CarouselSection />
+            <CarouselSection products={products} />
         </main>
     );
 }
