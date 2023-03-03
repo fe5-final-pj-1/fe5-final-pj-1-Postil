@@ -8,6 +8,7 @@ import Search from './Search/Search';
 
 function Header() {
     const [catalog, setCatalog] = useState(false);
+    const [userMenu, setUserMenu] = useState(false);
     return (
         <header className={HeaderMain.wrapper} onClick={() => setCatalog(() => false)}>
             <div className="container">
@@ -95,10 +96,39 @@ function Header() {
                         <Link to="cart" className={HeaderMain.header_buttons_cart}>
                             <Icon type="cart" />
                         </Link>
-                        <Button
-                            text={<Icon type="profile" />}
-                            className={HeaderMain.header_buttons_profile}
-                        />
+                        <div
+                            onClick={() => setUserMenu((userMenu) => !userMenu)}
+                            className={HeaderMain.userIconWrp}
+                        >
+                            <Button
+                                text={<Icon type="profile" />}
+                                className={HeaderMain.header_buttons_profile}
+                            />
+                            <Button
+                                className={
+                                    userMenu
+                                        ? classNames(HeaderMain.openBtn, HeaderMain.active)
+                                        : HeaderMain.openBtn
+                                }
+                                text={<Icon type="arrowDown" />}
+                            />
+                            <div className={HeaderMain.dropUserMenu}>
+                                <ul className={HeaderMain.userMenu_list}>
+                                    <li className={HeaderMain.userMenu_list_item}>
+                                        <Icon type="userPhoto" />
+                                        <NavLink to="">Your profile</NavLink>
+                                    </li>
+                                    <li className={HeaderMain.userMenu_list_item}>
+                                        <Icon type="accountManagement" />
+                                        <NavLink to="">Account management</NavLink>
+                                    </li>
+                                    <li className={HeaderMain.userMenu_list_item}>
+                                        <Icon type="logOut" className={HeaderMain.userMenuIcon} />
+                                        <NavLink to="">Log out</NavLink>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

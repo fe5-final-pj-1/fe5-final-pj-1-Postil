@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React from 'react';
 import PropTypes from 'prop-types';
 
@@ -499,6 +500,82 @@ function Icon(props) {
                             />
                         </filter>
                     </defs>
+                </svg>
+            );
+        case 'userPhoto':
+            return (
+                <svg
+                    height="30"
+                    id="Color"
+                    viewBox="0 0 200 200"
+                    width="30"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <defs>
+                        <style>.cls-1 fill:rgb(0, 0, 0); .cls-2 fill:rgb(0, 0, 0); </style>
+                    </defs>
+                    <title />
+                    <path
+                        className="cls-1"
+                        d="M100,101.39a42,42,0,0,1-30.06-12.6,42.75,42.75,0,0,1-12.34-30.2c0-13.43,2.6-23.63,7.93-31.17,7-9.9,18.63-14.92,34.47-14.92,16.17,0,27.89,5,34.8,15,5.18,7.44,7.6,17.34,7.6,31.11a42.75,42.75,0,0,1-12.34,30.2A41.88,41.88,0,0,1,100,101.39Zm0-77.91c-12.25,0-20.59,3.36-25.51,10.29-4,5.6-5.9,13.71-5.9,24.8a31.41,31.41,0,1,0,62.82,0c0-11.42-1.8-19.33-5.63-24.84C121,26.84,112.53,23.48,100,23.48Z"
+                    />
+                    <path
+                        className="cls-2"
+                        d="M141,187.5H59a38.3,38.3,0,0,1,0-76.6h82a38.3,38.3,0,0,1,0,76.6ZM59,121.89a27.31,27.31,0,0,0,0,54.61h82a27.31,27.31,0,0,0,0-54.61Z"
+                    />
+                </svg>
+            );
+        case 'accountManagement':
+            return (
+                <svg
+                    fill="#000000"
+                    height="28"
+                    width="28"
+                    version="1.1"
+                    id="Capa_1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xlink="http://www.w3.org/1999/xlink"
+                    viewBox="0 0 486.736 486.736"
+                    xmlSpace="preserve"
+                >
+                    <g>
+                        <path
+                            d="M481.883,61.238l-474.3,171.4c-8.8,3.2-10.3,15-2.6,20.2l70.9,48.4l321.8-169.7l-272.4,203.4v82.4c0,5.6,6.3,9,11,5.9
+		l60-39.8l59.1,40.3c5.4,3.7,12.8,2.1,16.3-3.5l214.5-353.7C487.983,63.638,485.083,60.038,481.883,61.238z"
+                        />
+                    </g>
+                </svg>
+            );
+        case 'logOut':
+            return (
+                <svg
+                    width="30"
+                    height="30"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+                    <path
+                        d="M21 12L13 12"
+                        stroke="#000000"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                    <path
+                        d="M18 15L20.913 12.087V12.087C20.961 12.039 20.961 11.961 20.913 11.913V11.913L18 9"
+                        stroke="#000000"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
+                    <path
+                        d="M16 5V4.5V4.5C16 3.67157 15.3284 3 14.5 3H5C3.89543 3 3 3.89543 3 5V19C3 20.1046 3.89543 21 5 21H14.5C15.3284 21 16 20.3284 16 19.5V19.5V19"
+                        stroke="#000000"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    />
                 </svg>
             );
         default:
