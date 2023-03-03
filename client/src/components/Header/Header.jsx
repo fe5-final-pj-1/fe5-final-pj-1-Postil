@@ -9,7 +9,7 @@ import Search from './Search/Search';
 function Header() {
     const [catalog, setCatalog] = useState(false);
     return (
-        <header className={HeaderMain.wrapper}>
+        <header className={HeaderMain.wrapper} onClick={() => setCatalog(() => false)}>
             <div className="container">
                 <div className={HeaderMain.header}>
                     <nav className={HeaderMain.header_nav}>
@@ -18,18 +18,27 @@ function Header() {
                                 <Icon type="logo" />
                             </NavLink>
                         </div>
-                        <ul className={HeaderMain.header_list}>
-                            <li id="catalogItem" className={HeaderMain.header_list_item}>
-                                <NavLink to="products" className="header_list_item_link">
-                                    Catalog
-                                </NavLink>
+                        <ul
+                            className={HeaderMain.header_list}
+                            onClick={(event) => event.stopPropagation()}
+                            role="presentation"
+                        >
+                            <li
+                                id="catalogItem"
+                                className={HeaderMain.header_list_item}
+                                onClick={() => setCatalog((catalog) => !catalog)}
+                                role="presentation"
+                            >
+                                <Button
+                                    text={'Catalog'}
+                                    className={HeaderMain.header_list_item_btn}
+                                />
                                 <Button
                                     className={
                                         catalog
                                             ? classNames(HeaderMain.openBtn, HeaderMain.active)
                                             : HeaderMain.openBtn
                                     }
-                                    handleClick={() => setCatalog((catalog) => !catalog)}
                                     text={<Icon type="arrowDown" />}
                                 ></Button>
                                 <div id="catalog" className={HeaderMain.dropCatalog}>
@@ -59,17 +68,20 @@ function Header() {
                                 </div>
                             </li>
                             <li className={HeaderMain.header_list_item}>
-                                <NavLink to="products/:productId" className="header_list_item_link">
+                                <NavLink
+                                    to="products/:productId"
+                                    className={HeaderMain.header_list_item_link}
+                                >
                                     About
                                 </NavLink>
                             </li>
                             <li className={HeaderMain.header_list_item}>
-                                <NavLink to="contact" className="header_list_item_link">
+                                <NavLink to="contact" className={HeaderMain.header_list_item_link}>
                                     Contact
                                 </NavLink>
                             </li>
                             <li className={HeaderMain.header_list_item}>
-                                <NavLink to="blog" className="header_list_item_link">
+                                <NavLink to="blog" className={HeaderMain.header_list_item_link}>
                                     Blog
                                 </NavLink>
                             </li>
@@ -83,9 +95,10 @@ function Header() {
                         <Link to="cart" className={HeaderMain.header_buttons_cart}>
                             <Icon type="cart" />
                         </Link>
-                        <Link to="profile" className={HeaderMain.header_buttons_profile}>
-                            <Icon type="profile" />
-                        </Link>
+                        <Button
+                            text={<Icon type="profile" />}
+                            className={HeaderMain.header_buttons_profile}
+                        />
                     </div>
                 </div>
             </div>

@@ -2,20 +2,22 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Icon from '../../Icon/Icon';
+import Image from '../../Image';
 import useDebounce from '../../../hooks/UseDebounce';
 import searchForProducts from '../../../api/searchForProducts';
 import styles from './Search.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadProducts } from '../../../store/productsSlice';
+import { loadProducts, setSearchPhrases } from '../../../store/searchProductsSlice';
 import { Link } from 'react-router-dom';
+import { filtersRemovedAll } from '../../../store/filtersSlice';
 
 function Search({ className }) {
-    const products = useSelector((store) => store.products);
+    const { searchPhrases, searchProducts: products } = useSelector(
+        (store) => store.searchProducts,
+    );
     const dispatch = useDispatch();
-
     const classes = classNames(className);
     const [productsShow, setProductsShow] = useState(false);
-    const [searchPhrases, setSearchPhrases] = useState('');
     const [isSearching, setIsSearching] = useState(false);
     const debouncedSearchTerm = useDebounce(searchPhrases, 800);
 
@@ -38,8 +40,13 @@ function Search({ className }) {
                 type="text"
                 placeholder="Search"
                 value={searchPhrases}
-                onChange={(e) => setSearchPhrases(e.target.value)}
-                onFocus={() => setProductsShow(true)}
+                onChange={(e) => {
+                    dispatch(filtersRemovedAll());
+                    dispatch(setSearchPhrases(e.target.value));
+                }}
+                onFocus={() => {
+                    setProductsShow(true);
+                }}
                 onBlur={() => setTimeout(() => setProductsShow(false), 250)}
             />
             <div>
@@ -54,22 +61,32 @@ function Search({ className }) {
                 {products.slice(0, 5).map((item) => {
                     return (
                         <li key={item._id}>
-                            <div>
-                                <p className={styles.name}>{item.name}</p>
+                            <Link to={`products/${item.itemNo}`}>
+                                <Image width={70} height={70} src={item.imageUrls[0]} />
                                 <div>
-                                    <p className={styles.size}>
-                                        Size: <span>{item.size}</span>
-                                    </p>
-                                    <p className={styles.fabric}>
-                                        Fabric: <span>{item.fabric}</span>
-                                    </p>
+                                    <p className={styles.name}>{item.name}</p>
+                                    <div>
+                                        {item.size && (
+                                            <p className={styles.size}>
+                                                Size: <span>{item.size}</span>
+                                            </p>
+                                        )}
+                                        <p className={styles.fabric}>
+                                            Fabric: <span>{item.fabric}</span>
+                                        </p>
 
-                                    <p className={styles.color}>
-                                        Color: <span style={{ backgroundColor: item.color }}></span>
-                                    </p>
+                                        {item.color && (
+                                            <p className={styles.color}>
+                                                Color:{' '}
+                                                <span
+                                                    style={{ backgroundColor: item.color }}
+                                                ></span>
+                                            </p>
+                                        )}
+                                    </div>
                                 </div>
-                            </div>
-                            <p className={styles.price}>${item.currentPrice}</p>
+                                <p className={styles.price}>${item.currentPrice}</p>
+                            </Link>
                         </li>
                     );
                 })}
