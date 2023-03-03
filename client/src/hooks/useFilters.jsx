@@ -6,6 +6,7 @@ import { filtersRemoved } from '../store/filtersSlice';
 function useFilters() {
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
     const filtersCheckedAny = useSelector((state) => state.filters.filtersChecked, shallowEqual);
+    const [activeFiltersSizeColor, setActiveFiltersSizeColor] = useState(true);
     const dispatch = useDispatch();
     const [filtersChecked, setFiltersChecked] = useState({
         size: {
@@ -38,6 +39,16 @@ function useFilters() {
         },
     });
     useEffect(() => {
+        const categoriesWithoutFilters = ['kitchen', 'bathroom', 'loungewear'];
+        setActiveFiltersSizeColor(true);
+        if (filters.categories) {
+            if (categoriesWithoutFilters.includes(filters.categories[0])) {
+                setActiveFiltersSizeColor(false);
+            }
+        }
+    }, [filters]);
+    // if one of filters is checked - change checked filter's state to true
+    useEffect(() => {
         if (filtersCheckedAny) {
             setFiltersChecked((prev) => {
                 const filtersObj = { ...prev };
@@ -54,6 +65,7 @@ function useFilters() {
             });
         }
     }, [filters, filtersCheckedAny]);
+    // if all filters are unchecked - change all filter's state to false
     useEffect(() => {
         if (!filtersCheckedAny) {
             setFiltersChecked((prev) => {
@@ -69,6 +81,7 @@ function useFilters() {
             });
         }
     }, [filtersCheckedAny]);
+    // this logic for handleChange filter (you need to provide type and event to use this function)
     const handleChange = (userEvent, type) => {
         const typeValue = userEvent.target.name;
         setFiltersChecked((prev) => {
@@ -81,15 +94,19 @@ function useFilters() {
             };
         });
         if (!(type in filters)) {
+            // if this type of filter is not active
             dispatch(filtersAdded({ [type]: [typeValue] }));
         } else if (!filters[type].includes(typeValue)) {
+            // if this type of filter is active but this value isn't in array of values
             dispatch(filtersAdded({ [type]: [...filters[type], typeValue] }));
         } else {
             const filtersObj = { ...filters };
             const filteredType = filtersObj[type].filter((elem) => elem !== typeValue);
             if (filteredType.length > 0) {
+                // if this value isn't last in array of values just dispatch mapped array
                 dispatch(filtersRemoved({ ...filtersObj, [type]: filteredType }));
             } else {
+                // delete this type of filter
                 delete filtersObj[type];
                 dispatch(filtersRemoved({ ...filtersObj }));
             }
@@ -98,6 +115,7 @@ function useFilters() {
     return {
         filtersChecked,
         handleChange,
+        activeFiltersSizeColor,
     };
 }
 
