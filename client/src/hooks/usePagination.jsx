@@ -1,33 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useSelector, shallowEqual } from 'react-redux';
-import getAllProducts from '../api/getAllProducts';
 
-function usePagination() {
+function usePagination(maxPageNumber) {
     const currentPage = Math.floor(
         Number(useSelector((state) => state.filters.filtersQuery.startPage[0], shallowEqual)),
     );
-    const perPage = useSelector((state) => state.filters.filtersQuery.perPage[0], shallowEqual);
-    const [maxPageNumber, setMaxPageNumber] = useState(3);
-    // eslint-disable-next-line no-unused-vars
-    const [pages, setPages] = useState([
-        {
-            number: 1,
-            active: false,
-        },
-        {
-            number: 2,
-            active: false,
-        },
-        {
-            number: 3,
-            active: false,
-        },
-    ]);
-    useEffect(() => {
-        getAllProducts().then((result) =>
-            setMaxPageNumber(Math.ceil(result.data.length / perPage)),
-        );
-    }, [perPage]);
+    const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
+    const [pages, setPages] = useState([]);
     useEffect(() => {
         setPages(() => {
             let pageArray = [];
@@ -36,7 +15,7 @@ function usePagination() {
             return pageArray;
         });
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [currentPage, maxPageNumber, perPage]);
+    }, [currentPage, maxPageNumber, filters]);
     function createPages(pages, pagesCount, currentPage) {
         if (pagesCount > 3 && currentPage <= pagesCount) {
             if (currentPage > 2) {
@@ -65,12 +44,14 @@ function usePagination() {
                 }
             }
         } else {
-            // if we have only 3 pages
-            for (let i = 1; i <= 3; i++) {
-                pages.push({
-                    number: i,
-                    active: false,
-                });
+            // if we have less then 3 pages or more then pagesCount
+            if (currentPage <= pagesCount) {
+                for (let i = 1; i <= pagesCount; i++) {
+                    pages.push({
+                        number: i,
+                        active: false,
+                    });
+                }
             }
         }
     }

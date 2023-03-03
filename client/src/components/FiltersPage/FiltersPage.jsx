@@ -9,12 +9,16 @@ import Pagination from './Pagination/Pagination';
 import getFilteredProducts from '../../api/getFilteredProducts';
 import { useSearchParams } from 'react-router-dom';
 import { filtersAdded } from '../../store/filtersSlice';
+import { Oval } from 'react-loader-spinner';
 
 function FiltersPage() {
     let [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch();
     const [products, setProducts] = useState([]);
-    const [didRun, setDidRun] = useState(false);
+    const [didRunOne, setDidRunOne] = useState(false);
+    const [didRunTwo, setDidRunTwo] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [maxPageNumber, setMaxPageNumber] = useState(1);
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
     useEffect(() => {
         for (const [key, value] of searchParams.entries()) {
@@ -28,19 +32,40 @@ function FiltersPage() {
             }
             dispatch(filtersAdded({ [key]: [value] }));
         }
-        setDidRun(true);
+        setDidRunOne(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
-        if (didRun) {
+        if (didRunOne) {
             const filtersParams = new URLSearchParams(filters);
-            getFilteredProducts(filtersParams.toString()).then((result) =>
-                setProducts(result.data.products),
-            );
+            filtersParams.delete('startPage');
+            filtersParams.delete('perPage');
+            getFilteredProducts(filtersParams.toString()).then((result) => {
+                const number = Math.ceil(
+                    Number(result.data.productsQuantity) / Number(filters.perPage[0]),
+                );
+                setMaxPageNumber(number > 0 ? number : 1);
+                setDidRunTwo(true);
+            });
+        }
+    }, [didRunOne, filters]);
+    useEffect(() => {
+        if (didRunOne && didRunTwo) {
+            const filtersParams = new URLSearchParams(filters);
+            const startPage = filtersParams.get('startPage');
+            if (startPage > maxPageNumber) {
+                dispatch(filtersAdded({ startPage: ['1'] }));
+            } else {
+                getFilteredProducts(filtersParams.toString()).then((result) => {
+                    setProducts(result.data.products);
+                    setIsLoaded(true);
+                });
+            }
             filtersParams.delete('perPage');
             setSearchParams(filtersParams.toString());
         }
-    }, [filters, didRun, setSearchParams]);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [filters, didRunOne, didRunTwo, maxPageNumber]);
     return (
         <main className={classnames(styles.wrapper, 'container')}>
             <article className={styles.left}>
@@ -49,8 +74,25 @@ function FiltersPage() {
             </article>
             <section className={styles.right}>
                 <Tabs />
-                <ProductList products={products} />
-                <Pagination />
+                {!isLoaded ? (
+                    <Oval
+                        height={130}
+                        width={130}
+                        color="#373F41"
+                        wrapperStyle={{}}
+                        wrapperClass={styles.loader}
+                        visible={true}
+                        ariaLabel="oval-loading"
+                        secondaryColor="#4fa94d"
+                        strokeWidth={2}
+                        strokeWidthSecondary={2}
+                    />
+                ) : (
+                    <>
+                        <ProductList products={products} />
+                        {products.length > 0 && <Pagination maxPageNumber={maxPageNumber} />}
+                    </>
+                )}
             </section>
         </main>
     );

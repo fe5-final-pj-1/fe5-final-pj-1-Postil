@@ -6,6 +6,7 @@ import { filtersRemoved } from '../store/filtersSlice';
 function useFilters() {
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
     const filtersCheckedAny = useSelector((state) => state.filters.filtersChecked, shallowEqual);
+    const [activeFiltersSizeColor, setActiveFiltersSizeColor] = useState(true);
     const dispatch = useDispatch();
     const [filtersChecked, setFiltersChecked] = useState({
         size: {
@@ -37,6 +38,15 @@ function useFilters() {
             '#C92B56': false,
         },
     });
+    useEffect(() => {
+        const categoriesWithoutFilters = ['kitchen', 'bathroom', 'loungewear'];
+        setActiveFiltersSizeColor(true);
+        if (filters.categories) {
+            if (categoriesWithoutFilters.includes(filters.categories[0])) {
+                setActiveFiltersSizeColor(false);
+            }
+        }
+    }, [filters]);
     // if one of filters is checked - change checked filter's state to true
     useEffect(() => {
         if (filtersCheckedAny) {
@@ -105,6 +115,7 @@ function useFilters() {
     return {
         filtersChecked,
         handleChange,
+        activeFiltersSizeColor,
     };
 }
 

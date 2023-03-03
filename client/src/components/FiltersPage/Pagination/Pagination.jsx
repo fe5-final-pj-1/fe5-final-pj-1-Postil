@@ -5,9 +5,10 @@ import Button from '../../Button/Button';
 import Icon from '../../Icon/Icon';
 import { filtersAdded } from '../../../store/filtersSlice.js';
 import usePagination from '../../../hooks/usePagination';
+import PropTypes from 'prop-types';
 
-function Pagination() {
-    const { currentPage, maxPageNumber, pages } = usePagination();
+function Pagination({ maxPageNumber }) {
+    const { currentPage, pages } = usePagination(maxPageNumber);
     const dispatch = useDispatch();
 
     const handleClickPage = (e) => {
@@ -20,13 +21,15 @@ function Pagination() {
         }
     };
     const handleClickArrowRight = () => {
-        if (currentPage < maxPageNumber || currentPage < 3) {
+        if (currentPage < maxPageNumber) {
             dispatch(filtersAdded({ startPage: [currentPage + 1] }));
         }
     };
     return (
         <div className={styles.paginationContainer}>
-            <Button text={<Icon type="arrowLeft" />} handleClick={handleClickArrowLeft} />
+            {maxPageNumber > 3 && (
+                <Button text={<Icon type="arrowLeft" />} handleClick={handleClickArrowLeft} />
+            )}
             <div className={styles.numbers}>
                 {pages.map((page, key) => {
                     return (
@@ -39,9 +42,15 @@ function Pagination() {
                     );
                 })}
             </div>
-            <Button text={<Icon type="arrowRight" />} handleClick={handleClickArrowRight} />
+            {maxPageNumber > 3 && (
+                <Button text={<Icon type="arrowRight" />} handleClick={handleClickArrowRight} />
+            )}
         </div>
     );
 }
 
 export default Pagination;
+
+Pagination.propTypes = {
+    maxPageNumber: PropTypes.number.isRequired,
+};
