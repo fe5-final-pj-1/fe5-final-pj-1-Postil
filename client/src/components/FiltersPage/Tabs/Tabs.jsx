@@ -1,20 +1,23 @@
 import React from 'react';
 import styles from './Tabs.module.scss';
+import classNames from 'classnames';
+import useTabs from '../../../hooks/useTabs';
 
 function Tabs() {
-    const tabs = [
-        { text: 'SHOP ALL' },
-        { text: 'BEDROOM' },
-        { text: 'BED LINEN' },
-        { text: 'KITCHEN' },
-        { text: 'BATHROOM' },
-        { text: 'LOUNGEWEAR' },
-        { text: 'SALE' },
-    ];
+    const { tabs, clickHandler } = useTabs();
+    const clickTabsHandler = (e) => {
+        clickHandler(e);
+    };
+
     return (
         <ul className={styles.tabsContainer}>
             {tabs.map((tab, key) => (
-                <li key={key} className={styles.tab}>
+                // eslint-disable-next-line jsx-a11y/no-noninteractive-element-interactions
+                <li
+                    key={key}
+                    onClick={clickTabsHandler}
+                    className={classNames(styles.tab, tab.active ? styles.active : null)}
+                >
                     {tab.text}
                 </li>
             ))}
