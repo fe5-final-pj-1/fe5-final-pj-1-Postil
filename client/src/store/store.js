@@ -4,6 +4,7 @@ import searchProductsReducer from './searchProductsSlice';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import filtersReducer from './filtersSlice';
+import modalReducer from './modalSlice';
 
 const storeReducer = combineReducers({
     cart: cartReducer,
@@ -21,6 +22,7 @@ const store = configureStore({
         store: persistedReducer,
         searchProducts: searchProductsReducer,
         filters: filtersReducer,
+        modal: modalReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

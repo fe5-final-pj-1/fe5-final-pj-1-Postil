@@ -3,8 +3,8 @@
 
 .bg {
     background: rgba($color: #000000, $alpha: 0.5);
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     z-index: 999;
     overflow: hidden;
     display: flex;
@@ -20,13 +20,13 @@
 
 .container {
     scale: 0.7;
-    transform: translateY(-30%);
+    transform: translateY(-21%);
     position: relative;
     display: flex;
     flex-direction: column;
     box-sizing: border-box;
-    margin-top: 7.3rem;
-    margin-right: 20.6%;
+    top: 7.6rem;
+    right: calc(100vw / 2 - 46rem);
     background: #ffffff;
     padding: 5rem 5.5rem;
     width: 56rem;
@@ -74,13 +74,14 @@
     right: 22px;
 }
 .valuesInputs {
-    & .error {
-        position: absolute;
-        top: -3.5rem;
-        left: 0;
-        color: #ff0000;
-    }
     & label {
+        & .error {
+            display: contents;
+            position: absolute;
+            top: -3.5rem;
+            left: 0;
+            color: #ff0000;
+        }
         & input {
             width: 100%;
             color: $dark-color;
