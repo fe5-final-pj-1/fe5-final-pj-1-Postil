@@ -168,11 +168,10 @@ function Header() {
                             <Icon type="cart" />
                         </Link>
                         {isLogged === true ? (
-                            <div
-                                onClick={() => setUserMenu((userMenu) => !userMenu)}
-                                className={HeaderMain.userIconWrp}
-                            >
+                            <>
+                                {/* onClick={() => setUserMenu((userMenu) => !userMenu)} */}
                                 <Button
+                                    onClick={() => setUserMenu((userMenu) => !userMenu)}
                                     className={
                                         userMenu
                                             ? classNames(HeaderMain.openBtn, HeaderMain.active)
@@ -205,7 +204,7 @@ function Header() {
                                         </li>
                                     </ul>
                                 </div>
-                            </div>
+                            </>
                         ) : (
                             <Link to="" className={HeaderMain.header_buttons_cart}>
                                 <Icon type="profile" />
