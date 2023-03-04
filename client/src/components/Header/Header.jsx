@@ -8,6 +8,7 @@ import Search from './Search/Search';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { filtersAdded } from '../../store/filtersSlice';
 import { filtersRemoved } from '../../store/filtersSlice';
+import { showModal } from '../../store/modalSlice';
 
 function Header() {
     const [catalog, setCatalog] = useState(false);
@@ -168,6 +169,7 @@ function Header() {
                         <Button
                             text={<Icon type="profile" />}
                             className={HeaderMain.header_buttons_profile}
+                            handleClick={() => dispatch(showModal())}
                         />
                     </div>
                 </div>
