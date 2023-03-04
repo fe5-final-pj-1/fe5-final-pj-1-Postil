@@ -15,9 +15,13 @@ const searchProductsSlice = createSlice({
         setSearchPhrases(state, action) {
             state.searchPhrases = action.payload;
         },
+        resetSearch(state) {
+            state.searchPhrases = '';
+            state.searchProducts = [];
+        },
     },
 });
 
-export const { loadProducts, setSearchPhrases } = searchProductsSlice.actions;
+export const { loadProducts, setSearchPhrases, resetSearch } = searchProductsSlice.actions;
 
 export default searchProductsSlice.reducer;

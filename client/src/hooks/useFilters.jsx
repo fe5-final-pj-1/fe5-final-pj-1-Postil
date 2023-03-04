@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { filtersAdded } from '../store/filtersSlice';
 import { filtersRemoved } from '../store/filtersSlice';
+import { resetSearch } from '../store/searchProductsSlice';
 
 function useFilters() {
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
@@ -93,6 +94,7 @@ function useFilters() {
                 },
             };
         });
+        dispatch(resetSearch());
         if (!(type in filters)) {
             // if this type of filter is not active
             dispatch(filtersAdded({ [type]: [typeValue] }));
