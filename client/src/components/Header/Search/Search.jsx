@@ -92,7 +92,7 @@ function Search({ className }) {
                 })}
                 {products.length > 5 && (
                     <li className={styles.showAll}>
-                        <Link onClick={() => setProductsShow(false)} to="/products">
+                        <Link onClick={() => setProductsShow(false)} to="/catalog">
                             Show all goods
                         </Link>
                     </li>
