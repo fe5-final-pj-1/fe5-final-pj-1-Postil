@@ -72,3 +72,16 @@
         }
     }
 }
+
+.noProductMatch {
+    text-align: center;
+    height: 70vh;
+    position: relative;
+    & p {
+        position: absolute;
+        top: 50%;
+        transform: translatY( -50%);
+        width: 100%;
+        font-size: 2.1rem;
+    }
+}

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useSelector, shallowEqual } from 'react-redux';
 import styles from './Filters.module.scss';
 import Icon from '../../Icon/Icon';
 import classNames from 'classnames';
@@ -8,9 +7,7 @@ import Button from '../../Button/Button';
 import useFilters from '../../../hooks/useFilters';
 
 function Filters() {
-    // eslint-disable-next-line no-unused-vars
-    const filtersCheckedAny = useSelector((state) => state.filters.filtersChecked, shallowEqual);
-    const { filtersChecked, handleChange } = useFilters();
+    const { filtersChecked, handleChange, activeFiltersSizeColor } = useFilters();
     const [active, setActive] = useState({
         price: false,
         size: false,
@@ -68,63 +65,79 @@ function Filters() {
                     </div>
                 )}
             </li>
-            <li className={active.size ? classNames(styles.filter, styles.active) : styles.filter}>
-                <Button
-                    handleClick={() => setActive({ ...active, size: active.size ? false : true })}
-                    className={styles.filterName}
-                    text={
-                        <>
-                            <Icon type={active.size ? 'minus' : 'plus'} />
-                            <p>size</p>
-                        </>
-                    }
-                />
-                {active.size && (
-                    <div className={styles.size}>
-                        {sizes.map((size, key) => {
-                            return (
-                                <label key={key}>
-                                    <input
-                                        onChange={handleSizeChange}
-                                        type="checkbox"
-                                        checked={filtersChecked.size[size.size]}
-                                        name={size.size}
-                                    />
-                                    <span>{size.size}</span>
-                                </label>
-                            );
-                        })}
-                    </div>
-                )}
-            </li>
-            <li className={active.color ? classNames(styles.filter, styles.active) : styles.filter}>
-                <Button
-                    handleClick={() => setActive({ ...active, color: active.color ? false : true })}
-                    className={styles.filterName}
-                    text={
-                        <>
-                            <Icon type={active.color ? 'minus' : 'plus'} />
-                            <p>color</p>
-                        </>
-                    }
-                />
-                {active.color && (
-                    <div className={styles.color}>
-                        {colors.map((color, key) => (
-                            <label key={key}>
-                                <input
-                                    onChange={handleColorChange}
-                                    type="checkbox"
-                                    checked={filtersChecked.color[`${color.color}`]}
-                                    value={color.color}
-                                    name={color.color}
-                                />
-                                <span style={{ backgroundColor: color.color }}>&nbsp;</span>
-                            </label>
-                        ))}
-                    </div>
-                )}
-            </li>
+            {activeFiltersSizeColor === true && (
+                <>
+                    <li
+                        className={
+                            active.size ? classNames(styles.filter, styles.active) : styles.filter
+                        }
+                    >
+                        <Button
+                            handleClick={() =>
+                                setActive({ ...active, size: active.size ? false : true })
+                            }
+                            className={styles.filterName}
+                            text={
+                                <>
+                                    <Icon type={active.size ? 'minus' : 'plus'} />
+                                    <p>size</p>
+                                </>
+                            }
+                        />
+                        {active.size && (
+                            <div className={styles.size}>
+                                {sizes.map((size, key) => {
+                                    return (
+                                        <label key={key}>
+                                            <input
+                                                onChange={handleSizeChange}
+                                                type="checkbox"
+                                                checked={filtersChecked.size[size.size]}
+                                                name={size.size}
+                                            />
+                                            <span>{size.size}</span>
+                                        </label>
+                                    );
+                                })}
+                            </div>
+                        )}
+                    </li>
+                    <li
+                        className={
+                            active.color ? classNames(styles.filter, styles.active) : styles.filter
+                        }
+                    >
+                        <Button
+                            handleClick={() =>
+                                setActive({ ...active, color: active.color ? false : true })
+                            }
+                            className={styles.filterName}
+                            text={
+                                <>
+                                    <Icon type={active.color ? 'minus' : 'plus'} />
+                                    <p>color</p>
+                                </>
+                            }
+                        />
+                        {active.color && (
+                            <div className={styles.color}>
+                                {colors.map((color, key) => (
+                                    <label key={key}>
+                                        <input
+                                            onChange={handleColorChange}
+                                            type="checkbox"
+                                            checked={filtersChecked.color[`${color.color}`]}
+                                            value={color.color}
+                                            name={color.color}
+                                        />
+                                        <span style={{ backgroundColor: color.color }}>&nbsp;</span>
+                                    </label>
+                                ))}
+                            </div>
+                        )}
+                    </li>
+                </>
+            )}
             <li
                 className={active.fabric ? classNames(styles.filter, styles.active) : styles.filter}
             >
