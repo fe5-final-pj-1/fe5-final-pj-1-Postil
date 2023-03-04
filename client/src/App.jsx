@@ -22,11 +22,11 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: 'products',
+                path: 'catalog',
                 element: <Navigate to="filter" replace />,
             },
             {
-                path: 'products/filter',
+                path: 'catalog/filter',
                 element: <FiltersRoute />,
             },
             {

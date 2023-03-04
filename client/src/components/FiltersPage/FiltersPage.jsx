@@ -9,6 +9,7 @@ import Pagination from './Pagination/Pagination';
 import getFilteredProducts from '../../api/getFilteredProducts';
 import { useSearchParams } from 'react-router-dom';
 import { filtersAdded } from '../../store/filtersSlice';
+import FiltersReset from './FiltersReset';
 import { Oval } from 'react-loader-spinner';
 
 function FiltersPage() {
@@ -89,6 +90,7 @@ function FiltersPage() {
                     />
                 ) : (
                     <>
+                        <FiltersReset />
                         <ProductList products={products} />
                         {products.length > 0 && <Pagination maxPageNumber={maxPageNumber} />}
                     </>

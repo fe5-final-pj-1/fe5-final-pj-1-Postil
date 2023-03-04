@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { filtersAdded } from '../store/filtersSlice';
 import { filtersRemoved } from '../store/filtersSlice';
+import { resetSearch } from '../store/searchProductsSlice';
 
 function useTabs() {
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
@@ -61,6 +62,7 @@ function useTabs() {
                 return tabObj;
             });
         });
+        dispatch(resetSearch());
         if (tabText === 'shop all') {
             const filtersObj = { ...filters };
             delete filtersObj.categories;
