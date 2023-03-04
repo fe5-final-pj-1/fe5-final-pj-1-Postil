@@ -4,6 +4,7 @@ import CarouselSection from '../CarouselSection';
 import { useParams, useNavigate } from 'react-router-dom';
 import getOneProduct from '../../api/getOneProduct';
 import getAllProducts from '../../api/getAllProducts';
+import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 
 function DetailsPage() {
     const [product, setProduct] = useState({});
@@ -39,6 +40,7 @@ function DetailsPage() {
 
     return (
         <main>
+            <BreadCrumbs category={product.categories} name={product.name} />
             <SingleItemSection product={product} />
             <CarouselSection products={products} />
         </main>

@@ -61,7 +61,7 @@ function Search({ className }) {
                 {products.slice(0, 5).map((item) => {
                     return (
                         <li key={item._id}>
-                            <Link to={`products/${item.itemNo}`}>
+                            <Link to={`catalog/${item.itemNo}`}>
                                 <Image width={70} height={70} src={item.imageUrls[0]} />
                                 <div>
                                     <p className={styles.name}>{item.name}</p>

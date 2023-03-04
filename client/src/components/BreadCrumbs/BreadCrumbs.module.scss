@@ -1,0 +1,15 @@
+@import '../../style/mixins';
+@import '../../style/variables';
+
+.container {
+    padding: 3rem 0;
+    & * {
+        color: $description-color;
+        line-height: 2.4rem;
+        text-transform: capitalize;
+    }
+    // & > p a:not(a:first-child),
+    // & > p a:not(a:last-child) {
+    //     margin: 0 1rem;
+    // }
+}
