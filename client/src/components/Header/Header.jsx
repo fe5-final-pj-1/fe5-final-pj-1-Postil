@@ -12,7 +12,8 @@ import { filtersRemoved } from '../../store/filtersSlice';
 function Header() {
     const [catalog, setCatalog] = useState(false);
     const [userMenu, setUserMenu] = useState(false);
-    const [isLogged] = useState(true);
+    // eslint-disable-next-line no-unused-vars
+    const [isLogIn, setIsLogIn] = useState(false);
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
     const dispatch = useDispatch();
     return (
@@ -167,17 +168,20 @@ function Header() {
                         <Link to="cart" className={HeaderMain.header_buttons_cart}>
                             <Icon type="cart" />
                         </Link>
-                        {isLogged === true ? (
+                        {isLogIn ? (
                             <>
-                                {/* onClick={() => setUserMenu((userMenu) => !userMenu)} */}
                                 <Button
-                                    onClick={() => setUserMenu((userMenu) => !userMenu)}
+                                    handleClick={() => setUserMenu((prev) => !prev)}
                                     className={
                                         userMenu
-                                            ? classNames(HeaderMain.openBtn, HeaderMain.active)
-                                            : HeaderMain.openBtn
+                                            ? classNames(
+                                                  HeaderMain.openBtn,
+                                                  HeaderMain.userBtn,
+                                                  HeaderMain.active,
+                                              )
+                                            : classNames(HeaderMain.openBtn, HeaderMain.userBtn)
                                     }
-                                    text={<Icon type="loggedUser" />}
+                                    text="D"
                                 />
                                 <div className={HeaderMain.dropUserMenu}>
                                     <ul className={HeaderMain.userMenu_list}>
@@ -206,9 +210,10 @@ function Header() {
                                 </div>
                             </>
                         ) : (
-                            <Link to="" className={HeaderMain.header_buttons_cart}>
-                                <Icon type="profile" />
-                            </Link>
+                            <Button
+                                text={<Icon type="profile" />}
+                                className={HeaderMain.header_buttons_profile}
+                            />
                         )}
                     </div>
                 </div>
