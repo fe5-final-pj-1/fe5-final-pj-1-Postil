@@ -12,6 +12,9 @@ import { showModal } from '../../store/modalSlice';
 
 function Header() {
     const [catalog, setCatalog] = useState(false);
+    const [userMenu, setUserMenu] = useState(false);
+    // eslint-disable-next-line no-unused-vars
+    const [isLogIn, setIsLogIn] = useState(false);
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
     const dispatch = useDispatch();
     return (
@@ -166,11 +169,54 @@ function Header() {
                         <Link to="cart" className={HeaderMain.header_buttons_cart}>
                             <Icon type="cart" />
                         </Link>
-                        <Button
-                            text={<Icon type="profile" />}
-                            className={HeaderMain.header_buttons_profile}
-                            handleClick={() => dispatch(showModal())}
-                        />
+                        {isLogIn ? (
+                            <>
+                                <Button
+                                    handleClick={() => setUserMenu((prev) => !prev)}
+                                    className={
+                                        userMenu
+                                            ? classNames(
+                                                  HeaderMain.openBtn,
+                                                  HeaderMain.userBtn,
+                                                  HeaderMain.active,
+                                              )
+                                            : classNames(HeaderMain.openBtn, HeaderMain.userBtn)
+                                    }
+                                    text="D"
+                                />
+                                <div className={HeaderMain.dropUserMenu}>
+                                    <ul className={HeaderMain.userMenu_list}>
+                                        <li className={HeaderMain.userMenu_list_item}>
+                                            <Icon type="userPhoto" />
+                                            <Link className={HeaderMain.userMenulinkText} to="">
+                                                Profile page
+                                            </Link>
+                                        </li>
+                                        <li className={HeaderMain.userMenu_list_item}>
+                                            <Icon type="accountManagement" />
+                                            <Link className={HeaderMain.userMenulinkText} to="">
+                                                Order page
+                                            </Link>
+                                        </li>
+                                        <li className={HeaderMain.userMenu_list_item}>
+                                            <Icon
+                                                type="logOut"
+                                                className={HeaderMain.userMenuIcon}
+                                            />
+                                            <Link className={HeaderMain.userMenulinkText} to="">
+                                                Log out
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </>
+                        ) : (
+                            <Button
+                                text={<Icon type="profile" />}
+                                className={HeaderMain.header_buttons_profile}
+                                handleClick={() => dispatch(showModal())}
+                            />
+                        )}
                     </div>
                 </div>
             </div>
