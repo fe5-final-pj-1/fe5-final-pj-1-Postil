@@ -1,0 +1,704 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TEST COMPONENT SingleItemSection shapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <section
+        class="singleItem"
+      >
+        <div
+          class="container"
+        >
+          <div
+            class="singleItemWrp"
+          >
+            <div
+              class="carousel"
+            >
+              <div
+                class="carousel-root"
+              >
+                <div
+                  class="carousel carousel-slider"
+                  style="width: 100%;"
+                >
+                  <button
+                    aria-label="previous slide / item"
+                    class="control-arrow control-prev"
+                    type="button"
+                  />
+                  <div
+                    class="slider-wrapper axis-horizontal"
+                  >
+                    <ul
+                      class="slider animated"
+                      style="transform: translate3d(-100%,0,0); transition-duration: 350ms;"
+                    >
+                      <li
+                        class="slide"
+                      >
+                        <div>
+                          <img
+                            alt="Carousel img 3"
+                          />
+                        </div>
+                      </li>
+                      <li
+                        class="slide selected previous"
+                      >
+                        <div>
+                          <img
+                            alt="Carousel img 3"
+                          />
+                        </div>
+                      </li>
+                      <li
+                        class="slide"
+                      >
+                        <div>
+                          <img
+                            alt="Carousel img 3"
+                          />
+                        </div>
+                      </li>
+                      <li
+                        class="slide"
+                      >
+                        <div>
+                          <img
+                            alt="Carousel img 3"
+                          />
+                        </div>
+                      </li>
+                      <li
+                        class="slide selected previous"
+                      >
+                        <div>
+                          <img
+                            alt="Carousel img 3"
+                          />
+                        </div>
+                      </li>
+                    </ul>
+                  </div>
+                  <button
+                    aria-label="next slide / item"
+                    class="control-arrow control-next"
+                    type="button"
+                  />
+                </div>
+                <div
+                  class="carousel"
+                >
+                  <div
+                    class="thumbs-wrapper axis-vertical"
+                  >
+                    <button
+                      aria-label="previous slide / item"
+                      class="control-arrow control-prev control-disabled"
+                      type="button"
+                    />
+                    <ul
+                      class="thumbs animated"
+                      style="transform: translate3d(0,0,0); transition-duration: 350ms;"
+                    >
+                      <li
+                        aria-label="slide item 1"
+                        class="thumb selected"
+                        role="button"
+                        style="width: 80px;"
+                        tabindex="0"
+                      >
+                        <img
+                          alt="Carousel img 3"
+                        />
+                      </li>
+                      <li
+                        aria-label="slide item 2"
+                        class="thumb"
+                        role="button"
+                        style="width: 80px;"
+                        tabindex="0"
+                      >
+                        <img
+                          alt="Carousel img 3"
+                        />
+                      </li>
+                      <li
+                        aria-label="slide item 3"
+                        class="thumb"
+                        role="button"
+                        style="width: 80px;"
+                        tabindex="0"
+                      >
+                        <img
+                          alt="Carousel img 3"
+                        />
+                      </li>
+                    </ul>
+                    <button
+                      aria-label="next slide / item"
+                      class="control-arrow control-next"
+                      type="button"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div
+              class="boxRight"
+            >
+              <div
+                class="boxRightHeader"
+              >
+                <h2
+                  class="singleItemTitle"
+                />
+                <div
+                  class="boxRightLinkWrp"
+                >
+                  <a
+                    class="boxRightLinks"
+                    href="https://www.facebook.com/"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <svg
+                      fill="none"
+                      height="19"
+                      viewBox="0 0 10 19"
+                      width="10"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M6.4908 19V10.3333H9.43919L9.8806 6.95561H6.4908V4.79914C6.4908 3.82123 6.76599 3.15484 8.18727 3.15484L10 3.154V0.133076C9.68641 0.091988 8.61041 0 7.35858 0C4.74505 0 2.95586 1.57403 2.95586 4.46473V6.95561H0V10.3333H2.95586V19H6.4908Z"
+                        fill="#373F41"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </a>
+                  <a
+                    class="boxRightLinks"
+                    href="https://www.twitter.com/"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <svg
+                      fill="none"
+                      height="19"
+                      viewBox="0 0 20 17"
+                      width="20"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        clip-rule="evenodd"
+                        d="M19.4484 0.31428C18.6548 0.805581 17.778 1.16289 16.8408 1.35407C16.0943 0.520714 15.0274 0 13.8462 0C11.582 0 9.74448 1.92163 9.74448 4.29153C9.74448 4.62814 9.77972 4.95441 9.85021 5.26869C6.44007 5.08949 3.41708 3.38301 1.39214 0.783249C1.03864 1.41944 0.836782 2.15748 0.836782 2.94345C0.836782 4.43151 1.56089 5.74528 2.66254 6.51491C1.99076 6.49422 1.3569 6.29922 0.802606 5.98004V6.03233C0.802606 8.11246 2.21718 9.84781 4.0958 10.2405C3.7519 10.3413 3.38878 10.3919 3.01444 10.3919C2.75011 10.3919 2.49219 10.3658 2.24228 10.3157C2.76453 12.02 4.27896 13.2613 6.07481 13.2945C4.67092 14.446 2.9007 15.1323 0.978827 15.1323C0.647745 15.1323 0.320402 15.1127 0 15.0735C1.81561 16.2892 3.97351 17 6.29002 17C13.8381 17 17.9644 10.4617 17.9644 4.78991C17.9644 4.60309 17.9612 4.41681 17.9542 4.2338C18.7558 3.62866 19.4521 2.87319 20 2.01259C19.2652 2.35356 18.4738 2.58451 17.644 2.68799C18.4914 2.15748 19.1419 1.31649 19.4484 0.31428Z"
+                        fill="#373F41"
+                        fill-rule="evenodd"
+                      />
+                    </svg>
+                  </a>
+                  <a
+                    class="boxRightLinks"
+                    href="https://www.instagram.com/"
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <svg
+                      fill="none"
+                      height="19"
+                      viewBox="0 0 18 19"
+                      width="18"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M17.7445 5.46323C17.7345 4.71453 17.5943 3.97327 17.3303 3.27261C17.1013 2.68161 16.7515 2.14487 16.3033 1.69669C15.8552 1.24852 15.3184 0.898755 14.7274 0.669757C14.0358 0.410121 13.3051 0.269731 12.5664 0.254566C11.6155 0.212058 11.314 0.200195 8.89991 0.200195C6.48587 0.200195 6.17646 0.200195 5.23239 0.254566C4.4941 0.269843 3.76375 0.410231 3.07241 0.669757C2.48132 0.898595 1.9445 1.2483 1.4963 1.6965C1.0481 2.14469 0.6984 2.68151 0.469561 3.27261C0.209405 3.96373 0.0693202 4.69425 0.0553588 5.43259C0.0128511 6.38456 0 6.68607 0 9.10011C0 11.5141 -7.36527e-09 11.8226 0.0553588 12.7676C0.070187 13.5071 0.209572 14.2366 0.469561 14.9296C0.698784 15.5205 1.04875 16.0571 1.4971 16.5051C1.94544 16.9531 2.48231 17.3027 3.0734 17.5314C3.76285 17.8015 4.49333 17.952 5.23338 17.9763C6.18536 18.0188 6.48686 18.0317 8.9009 18.0317C11.3149 18.0317 11.6244 18.0317 12.5684 17.9763C13.307 17.9618 14.0378 17.8217 14.7294 17.5621C15.3202 17.3328 15.8568 16.983 16.305 16.5348C16.7531 16.0867 17.103 15.5501 17.3322 14.9592C17.5922 14.2673 17.7316 13.5377 17.7464 12.7973C17.789 11.8463 17.8018 11.5448 17.8018 9.12976C17.7998 6.71573 17.7998 6.40928 17.7445 5.46323V5.46323ZM8.89398 13.6652C6.36923 13.6652 4.32392 11.6199 4.32392 9.09517C4.32392 6.57041 6.36923 4.5251 8.89398 4.5251C10.106 4.5251 11.2685 5.00659 12.1255 5.86364C12.9826 6.7207 13.464 7.88311 13.464 9.09517C13.464 10.3072 12.9826 11.4696 12.1255 12.3267C11.2685 13.1837 10.106 13.6652 8.89398 13.6652V13.6652ZM13.6459 5.42171C13.0558 5.42171 12.5803 4.94523 12.5803 4.35606C12.5803 4.21618 12.6078 4.07767 12.6614 3.94844C12.7149 3.81921 12.7934 3.70178 12.8923 3.60287C12.9912 3.50397 13.1086 3.42551 13.2378 3.37198C13.3671 3.31845 13.5056 3.2909 13.6454 3.2909C13.7853 3.2909 13.9238 3.31845 14.0531 3.37198C14.1823 3.42551 14.2997 3.50397 14.3986 3.60287C14.4975 3.70178 14.576 3.81921 14.6295 3.94844C14.6831 4.07767 14.7106 4.21618 14.7106 4.35606C14.7106 4.94523 14.2341 5.42171 13.6459 5.42171Z"
+                        fill="#373F41"
+                      />
+                      <path
+                        d="M8.89391 12.0637C10.5334 12.0637 11.8625 10.7346 11.8625 9.09508C11.8625 7.45556 10.5334 6.12646 8.89391 6.12646C7.25439 6.12646 5.92529 7.45556 5.92529 9.09508C5.92529 10.7346 7.25439 12.0637 8.89391 12.0637Z"
+                        fill="#373F41"
+                      />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+              <p
+                class="boxRightId"
+              >
+                PRODUCT ID: 
+              </p>
+              <div
+                class="boxOption"
+              />
+              <div
+                class="boxOption"
+              />
+              <div
+                class="boxForBuy"
+              >
+                <div
+                  class="boxForBuyL"
+                >
+                  <p
+                    class="buyTextOne"
+                  >
+                    USD $
+                  </p>
+                  <p
+                    class="buyTextTwo"
+                  >
+                    PRE-ORDER
+                  </p>
+                </div>
+                <div
+                  class="boxForBuyR"
+                >
+                  <button
+                    class="btn"
+                  >
+                    ADD TO BAG
+                  </button>
+                  <button
+                    class="btnHeart"
+                  />
+                </div>
+              </div>
+              <div
+                class="boxInfo"
+              >
+                <button
+                  class="boxInfoName"
+                >
+                  <svg
+                    fill="none"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    width="14"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M8 0H6V6H0V8H6V14H8V8H14V6H8V0Z"
+                      fill="#373F41"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <p
+                    class="boxInfoTitleFix"
+                  >
+                    Product Description
+                  </p>
+                </button>
+              </div>
+              <div
+                class="boxInfo"
+              >
+                <button
+                  class="boxInfoName"
+                >
+                  <svg
+                    fill="none"
+                    height="14"
+                    viewBox="0 0 14 14"
+                    width="14"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M8 0H6V6H0V8H6V14H8V8H14V6H8V0Z"
+                      fill="#373F41"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                  <p
+                    class="boxInfoTitleFix"
+                  >
+                    Reviews
+                  </p>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </body>,
+  "container": <div>
+    <section
+      class="singleItem"
+    >
+      <div
+        class="container"
+      >
+        <div
+          class="singleItemWrp"
+        >
+          <div
+            class="carousel"
+          >
+            <div
+              class="carousel-root"
+            >
+              <div
+                class="carousel carousel-slider"
+                style="width: 100%;"
+              >
+                <button
+                  aria-label="previous slide / item"
+                  class="control-arrow control-prev"
+                  type="button"
+                />
+                <div
+                  class="slider-wrapper axis-horizontal"
+                >
+                  <ul
+                    class="slider animated"
+                    style="transform: translate3d(-100%,0,0); transition-duration: 350ms;"
+                  >
+                    <li
+                      class="slide"
+                    >
+                      <div>
+                        <img
+                          alt="Carousel img 3"
+                        />
+                      </div>
+                    </li>
+                    <li
+                      class="slide selected previous"
+                    >
+                      <div>
+                        <img
+                          alt="Carousel img 3"
+                        />
+                      </div>
+                    </li>
+                    <li
+                      class="slide"
+                    >
+                      <div>
+                        <img
+                          alt="Carousel img 3"
+                        />
+                      </div>
+                    </li>
+                    <li
+                      class="slide"
+                    >
+                      <div>
+                        <img
+                          alt="Carousel img 3"
+                        />
+                      </div>
+                    </li>
+                    <li
+                      class="slide selected previous"
+                    >
+                      <div>
+                        <img
+                          alt="Carousel img 3"
+                        />
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+                <button
+                  aria-label="next slide / item"
+                  class="control-arrow control-next"
+                  type="button"
+                />
+              </div>
+              <div
+                class="carousel"
+              >
+                <div
+                  class="thumbs-wrapper axis-vertical"
+                >
+                  <button
+                    aria-label="previous slide / item"
+                    class="control-arrow control-prev control-disabled"
+                    type="button"
+                  />
+                  <ul
+                    class="thumbs animated"
+                    style="transform: translate3d(0,0,0); transition-duration: 350ms;"
+                  >
+                    <li
+                      aria-label="slide item 1"
+                      class="thumb selected"
+                      role="button"
+                      style="width: 80px;"
+                      tabindex="0"
+                    >
+                      <img
+                        alt="Carousel img 3"
+                      />
+                    </li>
+                    <li
+                      aria-label="slide item 2"
+                      class="thumb"
+                      role="button"
+                      style="width: 80px;"
+                      tabindex="0"
+                    >
+                      <img
+                        alt="Carousel img 3"
+                      />
+                    </li>
+                    <li
+                      aria-label="slide item 3"
+                      class="thumb"
+                      role="button"
+                      style="width: 80px;"
+                      tabindex="0"
+                    >
+                      <img
+                        alt="Carousel img 3"
+                      />
+                    </li>
+                  </ul>
+                  <button
+                    aria-label="next slide / item"
+                    class="control-arrow control-next"
+                    type="button"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <div
+            class="boxRight"
+          >
+            <div
+              class="boxRightHeader"
+            >
+              <h2
+                class="singleItemTitle"
+              />
+              <div
+                class="boxRightLinkWrp"
+              >
+                <a
+                  class="boxRightLinks"
+                  href="https://www.facebook.com/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <svg
+                    fill="none"
+                    height="19"
+                    viewBox="0 0 10 19"
+                    width="10"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M6.4908 19V10.3333H9.43919L9.8806 6.95561H6.4908V4.79914C6.4908 3.82123 6.76599 3.15484 8.18727 3.15484L10 3.154V0.133076C9.68641 0.091988 8.61041 0 7.35858 0C4.74505 0 2.95586 1.57403 2.95586 4.46473V6.95561H0V10.3333H2.95586V19H6.4908Z"
+                      fill="#373F41"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </a>
+                <a
+                  class="boxRightLinks"
+                  href="https://www.twitter.com/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <svg
+                    fill="none"
+                    height="19"
+                    viewBox="0 0 20 17"
+                    width="20"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      clip-rule="evenodd"
+                      d="M19.4484 0.31428C18.6548 0.805581 17.778 1.16289 16.8408 1.35407C16.0943 0.520714 15.0274 0 13.8462 0C11.582 0 9.74448 1.92163 9.74448 4.29153C9.74448 4.62814 9.77972 4.95441 9.85021 5.26869C6.44007 5.08949 3.41708 3.38301 1.39214 0.783249C1.03864 1.41944 0.836782 2.15748 0.836782 2.94345C0.836782 4.43151 1.56089 5.74528 2.66254 6.51491C1.99076 6.49422 1.3569 6.29922 0.802606 5.98004V6.03233C0.802606 8.11246 2.21718 9.84781 4.0958 10.2405C3.7519 10.3413 3.38878 10.3919 3.01444 10.3919C2.75011 10.3919 2.49219 10.3658 2.24228 10.3157C2.76453 12.02 4.27896 13.2613 6.07481 13.2945C4.67092 14.446 2.9007 15.1323 0.978827 15.1323C0.647745 15.1323 0.320402 15.1127 0 15.0735C1.81561 16.2892 3.97351 17 6.29002 17C13.8381 17 17.9644 10.4617 17.9644 4.78991C17.9644 4.60309 17.9612 4.41681 17.9542 4.2338C18.7558 3.62866 19.4521 2.87319 20 2.01259C19.2652 2.35356 18.4738 2.58451 17.644 2.68799C18.4914 2.15748 19.1419 1.31649 19.4484 0.31428Z"
+                      fill="#373F41"
+                      fill-rule="evenodd"
+                    />
+                  </svg>
+                </a>
+                <a
+                  class="boxRightLinks"
+                  href="https://www.instagram.com/"
+                  rel="noreferrer"
+                  target="_blank"
+                >
+                  <svg
+                    fill="none"
+                    height="19"
+                    viewBox="0 0 18 19"
+                    width="18"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      d="M17.7445 5.46323C17.7345 4.71453 17.5943 3.97327 17.3303 3.27261C17.1013 2.68161 16.7515 2.14487 16.3033 1.69669C15.8552 1.24852 15.3184 0.898755 14.7274 0.669757C14.0358 0.410121 13.3051 0.269731 12.5664 0.254566C11.6155 0.212058 11.314 0.200195 8.89991 0.200195C6.48587 0.200195 6.17646 0.200195 5.23239 0.254566C4.4941 0.269843 3.76375 0.410231 3.07241 0.669757C2.48132 0.898595 1.9445 1.2483 1.4963 1.6965C1.0481 2.14469 0.6984 2.68151 0.469561 3.27261C0.209405 3.96373 0.0693202 4.69425 0.0553588 5.43259C0.0128511 6.38456 0 6.68607 0 9.10011C0 11.5141 -7.36527e-09 11.8226 0.0553588 12.7676C0.070187 13.5071 0.209572 14.2366 0.469561 14.9296C0.698784 15.5205 1.04875 16.0571 1.4971 16.5051C1.94544 16.9531 2.48231 17.3027 3.0734 17.5314C3.76285 17.8015 4.49333 17.952 5.23338 17.9763C6.18536 18.0188 6.48686 18.0317 8.9009 18.0317C11.3149 18.0317 11.6244 18.0317 12.5684 17.9763C13.307 17.9618 14.0378 17.8217 14.7294 17.5621C15.3202 17.3328 15.8568 16.983 16.305 16.5348C16.7531 16.0867 17.103 15.5501 17.3322 14.9592C17.5922 14.2673 17.7316 13.5377 17.7464 12.7973C17.789 11.8463 17.8018 11.5448 17.8018 9.12976C17.7998 6.71573 17.7998 6.40928 17.7445 5.46323V5.46323ZM8.89398 13.6652C6.36923 13.6652 4.32392 11.6199 4.32392 9.09517C4.32392 6.57041 6.36923 4.5251 8.89398 4.5251C10.106 4.5251 11.2685 5.00659 12.1255 5.86364C12.9826 6.7207 13.464 7.88311 13.464 9.09517C13.464 10.3072 12.9826 11.4696 12.1255 12.3267C11.2685 13.1837 10.106 13.6652 8.89398 13.6652V13.6652ZM13.6459 5.42171C13.0558 5.42171 12.5803 4.94523 12.5803 4.35606C12.5803 4.21618 12.6078 4.07767 12.6614 3.94844C12.7149 3.81921 12.7934 3.70178 12.8923 3.60287C12.9912 3.50397 13.1086 3.42551 13.2378 3.37198C13.3671 3.31845 13.5056 3.2909 13.6454 3.2909C13.7853 3.2909 13.9238 3.31845 14.0531 3.37198C14.1823 3.42551 14.2997 3.50397 14.3986 3.60287C14.4975 3.70178 14.576 3.81921 14.6295 3.94844C14.6831 4.07767 14.7106 4.21618 14.7106 4.35606C14.7106 4.94523 14.2341 5.42171 13.6459 5.42171Z"
+                      fill="#373F41"
+                    />
+                    <path
+                      d="M8.89391 12.0637C10.5334 12.0637 11.8625 10.7346 11.8625 9.09508C11.8625 7.45556 10.5334 6.12646 8.89391 6.12646C7.25439 6.12646 5.92529 7.45556 5.92529 9.09508C5.92529 10.7346 7.25439 12.0637 8.89391 12.0637Z"
+                      fill="#373F41"
+                    />
+                  </svg>
+                </a>
+              </div>
+            </div>
+            <p
+              class="boxRightId"
+            >
+              PRODUCT ID: 
+            </p>
+            <div
+              class="boxOption"
+            />
+            <div
+              class="boxOption"
+            />
+            <div
+              class="boxForBuy"
+            >
+              <div
+                class="boxForBuyL"
+              >
+                <p
+                  class="buyTextOne"
+                >
+                  USD $
+                </p>
+                <p
+                  class="buyTextTwo"
+                >
+                  PRE-ORDER
+                </p>
+              </div>
+              <div
+                class="boxForBuyR"
+              >
+                <button
+                  class="btn"
+                >
+                  ADD TO BAG
+                </button>
+                <button
+                  class="btnHeart"
+                />
+              </div>
+            </div>
+            <div
+              class="boxInfo"
+            >
+              <button
+                class="boxInfoName"
+              >
+                <svg
+                  fill="none"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  width="14"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M8 0H6V6H0V8H6V14H8V8H14V6H8V0Z"
+                    fill="#373F41"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+                <p
+                  class="boxInfoTitleFix"
+                >
+                  Product Description
+                </p>
+              </button>
+            </div>
+            <div
+              class="boxInfo"
+            >
+              <button
+                class="boxInfoName"
+              >
+                <svg
+                  fill="none"
+                  height="14"
+                  viewBox="0 0 14 14"
+                  width="14"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    clip-rule="evenodd"
+                    d="M8 0H6V6H0V8H6V14H8V8H14V6H8V0Z"
+                    fill="#373F41"
+                    fill-rule="evenodd"
+                  />
+                </svg>
+                <p
+                  class="boxInfoTitleFix"
+                >
+                  Reviews
+                </p>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>,
+  "debug": [Function],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "unmount": [Function],
+}
+`;
