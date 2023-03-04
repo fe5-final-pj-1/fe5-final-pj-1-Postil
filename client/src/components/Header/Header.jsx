@@ -9,6 +9,7 @@ import Search from './Search/Search';
 function Header() {
     const [catalog, setCatalog] = useState(false);
     const [userMenu, setUserMenu] = useState(false);
+    const [isLogged] = useState(true);
     return (
         <header className={HeaderMain.wrapper} onClick={() => setCatalog(() => false)}>
             <div className="container">
@@ -96,39 +97,50 @@ function Header() {
                         <Link to="cart" className={HeaderMain.header_buttons_cart}>
                             <Icon type="cart" />
                         </Link>
-                        <div
-                            onClick={() => setUserMenu((userMenu) => !userMenu)}
-                            className={HeaderMain.userIconWrp}
-                        >
-                            <Button
-                                text={<Icon type="profile" />}
-                                className={HeaderMain.header_buttons_profile}
-                            />
-                            <Button
-                                className={
-                                    userMenu
-                                        ? classNames(HeaderMain.openBtn, HeaderMain.active)
-                                        : HeaderMain.openBtn
-                                }
-                                text={<Icon type="arrowDown" />}
-                            />
-                            <div className={HeaderMain.dropUserMenu}>
-                                <ul className={HeaderMain.userMenu_list}>
-                                    <li className={HeaderMain.userMenu_list_item}>
-                                        <Icon type="userPhoto" />
-                                        <NavLink to="">Your profile</NavLink>
-                                    </li>
-                                    <li className={HeaderMain.userMenu_list_item}>
-                                        <Icon type="accountManagement" />
-                                        <NavLink to="">Account management</NavLink>
-                                    </li>
-                                    <li className={HeaderMain.userMenu_list_item}>
-                                        <Icon type="logOut" className={HeaderMain.userMenuIcon} />
-                                        <NavLink to="">Log out</NavLink>
-                                    </li>
-                                </ul>
+                        {isLogged === true ? (
+                            <div
+                                onClick={() => setUserMenu((userMenu) => !userMenu)}
+                                className={HeaderMain.userIconWrp}
+                            >
+                                <Button
+                                    className={
+                                        userMenu
+                                            ? classNames(HeaderMain.openBtn, HeaderMain.active)
+                                            : HeaderMain.openBtn
+                                    }
+                                    text={<Icon type="loggedUser" />}
+                                />
+                                <div className={HeaderMain.dropUserMenu}>
+                                    <ul className={HeaderMain.userMenu_list}>
+                                        <li className={HeaderMain.userMenu_list_item}>
+                                            <Icon type="userPhoto" />
+                                            <Link className={HeaderMain.userMenulinkText} to="">
+                                                Profile page
+                                            </Link>
+                                        </li>
+                                        <li className={HeaderMain.userMenu_list_item}>
+                                            <Icon type="accountManagement" />
+                                            <Link className={HeaderMain.userMenulinkText} to="">
+                                                Order page
+                                            </Link>
+                                        </li>
+                                        <li className={HeaderMain.userMenu_list_item}>
+                                            <Icon
+                                                type="logOut"
+                                                className={HeaderMain.userMenuIcon}
+                                            />
+                                            <Link className={HeaderMain.userMenulinkText} to="">
+                                                Log out
+                                            </Link>
+                                        </li>
+                                    </ul>
+                                </div>
                             </div>
-                        </div>
+                        ) : (
+                            <Link to="" className={HeaderMain.header_buttons_cart}>
+                                <Icon type="profile" />
+                            </Link>
+                        )}
                     </div>
                 </div>
             </div>

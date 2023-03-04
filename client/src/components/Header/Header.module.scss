@@ -135,8 +135,7 @@
     position: absolute;
     border: $dark-color 0.1rem solid;
     right: 0;
-    top: 4.4rem;
-    padding: 3rem 0;
+    top: 5.8rem;
     background-color: rgb(255, 255, 255);
     display: none;
     z-index: 100;
@@ -146,24 +145,26 @@
 }
 .userMenu_list {
     display: flex;
-    align-items: center;
-    
+    align-items: flex-start;
     flex-direction: column;
-    width: 100%;
 }
 
 .userMenu_list_item {
     display: flex;
+    justify-content: flex-start;
     align-items: center;
-    padding: 1rem 2rem 1rem 2rem;
-    width: 30rem;
-    border-radius: 0.3rem;
     gap: 1.5rem;
+    padding: 1rem 3rem 1rem 3rem;
+    border-radius: 0.3rem;
+    width: max-content;
     font-size: $text-fs;
     color: $dark-color;
+    transition: all 0.3s;
 }
-
-.userMenu_list_item:hover {
+.userMenulinkText {
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+.userMenulinkText:hover {
     background-color: rgb(234, 234, 234);
-    transition: 300ms;    
 }
