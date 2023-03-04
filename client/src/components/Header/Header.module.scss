@@ -35,6 +35,12 @@
 .header_list_item a {
     font-size: $text-fs;
     color: $dark-color;
+    transition: all 0.1s ease-in;
+
+    &:hover {
+        font-weight: 700;
+    }
+
 }
 .header_list_item_btn {
     background: transparent;

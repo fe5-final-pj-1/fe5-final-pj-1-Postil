@@ -5,11 +5,16 @@ import classNames from 'classnames';
 import Icon from '../Icon/Icon';
 import Button from '../Button';
 import Search from './Search/Search';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import { filtersAdded } from '../../store/filtersSlice';
+import { filtersRemoved } from '../../store/filtersSlice';
 
 function Header() {
     const [catalog, setCatalog] = useState(false);
     const [userMenu, setUserMenu] = useState(false);
     const [isLogged] = useState(true);
+    const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
+    const dispatch = useDispatch();
     return (
         <header className={HeaderMain.wrapper} onClick={() => setCatalog(() => false)}>
             <div className="container">
@@ -46,25 +51,90 @@ function Header() {
                                 <div id="catalog" className={HeaderMain.dropCatalog}>
                                     <ul className={HeaderMain.catalog_menu_list}>
                                         <li className={HeaderMain.catalog_menu_list_item}>
-                                            <NavLink to="products">Bedroom</NavLink>
+                                            <Link
+                                                to="products/filter?categories=bedroom"
+                                                onClick={() => {
+                                                    dispatch(
+                                                        filtersAdded({ categories: ['bedroom'] }),
+                                                    );
+                                                }}
+                                            >
+                                                Bedroom
+                                            </Link>
                                         </li>
                                         <li className={HeaderMain.catalog_menu_list_item}>
-                                            <NavLink to="products">Bed linen</NavLink>
+                                            <Link
+                                                to="products/filter?categories=bed linen"
+                                                onClick={() => {
+                                                    dispatch(
+                                                        filtersAdded({ categories: ['bed linen'] }),
+                                                    );
+                                                }}
+                                            >
+                                                Bed linen
+                                            </Link>
                                         </li>
                                         <li className={HeaderMain.catalog_menu_list_item}>
-                                            <NavLink to="products">Kitchen</NavLink>
+                                            <Link
+                                                to="products/filter?categories=kitchen"
+                                                onClick={() => {
+                                                    dispatch(
+                                                        filtersAdded({ categories: ['kitchen'] }),
+                                                    );
+                                                }}
+                                            >
+                                                Kitchen
+                                            </Link>
                                         </li>
                                         <li className={HeaderMain.catalog_menu_list_item}>
-                                            <NavLink to="products">Bathroom</NavLink>
+                                            <Link
+                                                to="products/filter?categories=bathroom"
+                                                onClick={() => {
+                                                    dispatch(
+                                                        filtersAdded({ categories: ['bathroom'] }),
+                                                    );
+                                                }}
+                                            >
+                                                Bathroom
+                                            </Link>
                                         </li>
                                         <li className={HeaderMain.catalog_menu_list_item}>
-                                            <NavLink to="products">Loungewear</NavLink>
+                                            <Link
+                                                to="products/filter?categories=loungewear"
+                                                onClick={() => {
+                                                    dispatch(
+                                                        filtersAdded({
+                                                            categories: ['loungewear'],
+                                                        }),
+                                                    );
+                                                }}
+                                            >
+                                                Loungewear
+                                            </Link>
                                         </li>
                                         <li className={HeaderMain.catalog_menu_list_item}>
-                                            <NavLink to="products">Sale</NavLink>
+                                            <Link
+                                                to="products/filter?categories=sale"
+                                                onClick={() => {
+                                                    dispatch(
+                                                        filtersAdded({ categories: ['sale'] }),
+                                                    );
+                                                }}
+                                            >
+                                                Sale
+                                            </Link>
                                         </li>
                                         <li className={HeaderMain.catalog_menu_list_item}>
-                                            <NavLink to="products">Shop All</NavLink>
+                                            <Link
+                                                to="products"
+                                                onClick={() => {
+                                                    const filtersObj = { ...filters };
+                                                    delete filtersObj.categories;
+                                                    dispatch(filtersRemoved({ ...filtersObj }));
+                                                }}
+                                            >
+                                                Shop All
+                                            </Link>
                                         </li>
                                     </ul>
                                 </div>
