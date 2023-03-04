@@ -1,0 +1,56 @@
+@import '../../../style/mixins';
+@import '../../../style/variables';
+
+.list {
+    min-height: 6.6rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.element {
+    padding: 1rem 2.2rem 1rem 1.6rem;
+    border: 1px solid #c7c7c7;
+    text-transform: capitalize;
+    border-radius: 3px;
+    cursor: pointer;
+    margin-right: 1rem;
+    transition: all .2s ease-in;
+    position: relative;
+    
+    &:first-child {
+        border: 1px solid $dark-color;
+        padding: 1rem 1.6rem;
+
+        &:hover {
+            background-color: $dark-color;
+            color: $light-color;
+        }
+    }
+
+    &:not(:first-child)::before,
+    &:not(:first-child)::after {
+        content: "";
+        display: inline-block;
+        background-color: $lightGrey;
+        width: 1px;
+        height: 1.4rem;
+        position: absolute;
+        top: 48%;
+    }
+
+    &:not(:first-child)::before {
+        transform: rotate(45deg) translateY(-50%);
+        right: 1.5rem;
+    }
+
+    &:not(:first-child)::after {
+        transform: rotate(-45deg) translateY(-50%);
+        right: .5rem;
+    }
+
+    &:hover {
+        background-color: #f7f5f5;
+    }
+
+}

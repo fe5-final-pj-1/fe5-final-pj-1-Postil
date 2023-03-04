@@ -20,7 +20,7 @@
 
 .header_list {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
     margin-left: 7.7rem;
     margin-right: 5.6rem;
 }
@@ -30,22 +30,17 @@
     font-size: $text-fs;
     padding-bottom: 0.3rem;
     border-bottom: 0.1rem solid transparent;
-    align-items: center;
 }
 .header_list_item a {
     font-size: $text-fs;
     color: $dark-color;
-    transition: all 0.1s ease-in;
-
-    &:hover {
-        font-weight: 700;
-    }
-
 }
+
 .header_list_item_btn {
     background: transparent;
     font-size: $text-fs;
     color: $dark-color;
+    line-height: 0;
 }
 .header_list_item:hover {
     border-bottom: 0.1rem solid $dark-color;
@@ -111,7 +106,16 @@
     background-color: $light-color;
     display: none;
     z-index: 100;
+
+    & a {
+        transition: all 0.1s ease-in;
+
+        &:hover {
+            font-weight: 700;
+        }
+    }
 }
+
 .active + .dropCatalog {
     display: block;
 }

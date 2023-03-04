@@ -21,9 +21,9 @@ function Header() {
                 <div className={HeaderMain.header}>
                     <nav className={HeaderMain.header_nav}>
                         <div className={HeaderMain.logo}>
-                            <NavLink to="shop">
+                            <Link to="shop">
                                 <Icon type="logo" />
-                            </NavLink>
+                            </Link>
                         </div>
                         <ul
                             className={HeaderMain.header_list}
@@ -52,7 +52,7 @@ function Header() {
                                     <ul className={HeaderMain.catalog_menu_list}>
                                         <li className={HeaderMain.catalog_menu_list_item}>
                                             <Link
-                                                to="products/filter?categories=bedroom"
+                                                to="catalog/filter?categories=bedroom"
                                                 onClick={() => {
                                                     dispatch(
                                                         filtersAdded({ categories: ['bedroom'] }),
@@ -64,7 +64,7 @@ function Header() {
                                         </li>
                                         <li className={HeaderMain.catalog_menu_list_item}>
                                             <Link
-                                                to="products/filter?categories=bed linen"
+                                                to="catalog/filter?categories=bed linen"
                                                 onClick={() => {
                                                     dispatch(
                                                         filtersAdded({ categories: ['bed linen'] }),
@@ -76,7 +76,7 @@ function Header() {
                                         </li>
                                         <li className={HeaderMain.catalog_menu_list_item}>
                                             <Link
-                                                to="products/filter?categories=kitchen"
+                                                to="catalog/filter?categories=kitchen"
                                                 onClick={() => {
                                                     dispatch(
                                                         filtersAdded({ categories: ['kitchen'] }),
@@ -88,7 +88,7 @@ function Header() {
                                         </li>
                                         <li className={HeaderMain.catalog_menu_list_item}>
                                             <Link
-                                                to="products/filter?categories=bathroom"
+                                                to="catalog/filter?categories=bathroom"
                                                 onClick={() => {
                                                     dispatch(
                                                         filtersAdded({ categories: ['bathroom'] }),
@@ -100,7 +100,7 @@ function Header() {
                                         </li>
                                         <li className={HeaderMain.catalog_menu_list_item}>
                                             <Link
-                                                to="products/filter?categories=loungewear"
+                                                to="catalog/filter?categories=loungewear"
                                                 onClick={() => {
                                                     dispatch(
                                                         filtersAdded({
@@ -114,7 +114,7 @@ function Header() {
                                         </li>
                                         <li className={HeaderMain.catalog_menu_list_item}>
                                             <Link
-                                                to="products/filter?categories=sale"
+                                                to="catalog/filter?categories=sale"
                                                 onClick={() => {
                                                     dispatch(
                                                         filtersAdded({ categories: ['sale'] }),
@@ -126,7 +126,7 @@ function Header() {
                                         </li>
                                         <li className={HeaderMain.catalog_menu_list_item}>
                                             <Link
-                                                to="products"
+                                                to="catalog"
                                                 onClick={() => {
                                                     const filtersObj = { ...filters };
                                                     delete filtersObj.categories;

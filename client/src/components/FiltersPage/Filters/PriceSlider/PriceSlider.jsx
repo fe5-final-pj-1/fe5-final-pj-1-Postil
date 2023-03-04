@@ -3,6 +3,7 @@ import 'rc-slider/assets/index.css';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { filtersAdded } from '../../../../store/filtersSlice';
+import { resetSearch } from '../../../../store/searchProductsSlice';
 import styles from './PriceSlider.module.scss';
 
 function PriceSlider() {
@@ -89,6 +90,7 @@ function PriceSlider() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+        dispatch(resetSearch());
         dispatch(filtersAdded({ minPrice: values.value[0], maxPrice: values.value[1] }));
     };
     return (
