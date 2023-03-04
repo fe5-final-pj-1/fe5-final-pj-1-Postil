@@ -134,18 +134,24 @@
     margin-bottom: 0;
 }
 
-//
-
 .userIconWrp {
     display: flex;
     align-items: center;
 }
 
+.userBtn {
+    width: 3.8rem;
+    height: 3.8rem;
+    background-color: $lightGrey;
+    border-radius: 50%;
+    border: 2px solid $dark-color;
+}
+
 .dropUserMenu {
     position: absolute;
-    border: $dark-color 0.1rem solid;
+    border-top: #373F41 0.5rem solid;
     right: 0;
-    top: 5.8rem;
+    top: 5rem;
     background-color: rgb(255, 255, 255);
     display: none;
     z-index: 100;
@@ -157,24 +163,27 @@
     display: flex;
     align-items: flex-start;
     flex-direction: column;
+    padding: 1rem 3rem;
+    gap: 1.5rem;
 }
 
 .userMenu_list_item {
     display: flex;
-    justify-content: flex-start;
     align-items: center;
     gap: 1.5rem;
-    padding: 1rem 3rem 1rem 3rem;
-    border-radius: 0.3rem;
     width: max-content;
     font-size: $text-fs;
-    color: $dark-color;
-    transition: all 0.3s;
 }
 .userMenulinkText {
-    padding: 0.5rem;
-    border-radius: 0.3rem;
-}
-.userMenulinkText:hover {
-    background-color: rgb(234, 234, 234);
+    transition: all 0.3s;
+
+    &:link,
+    &:visited,
+    &:active {
+        color: $dark-color;
+    }
+
+    &:hover {
+           font-weight: 700;
+        }
 }
