@@ -1,48 +1,36 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import newInStyles from './NewInSection.module.scss';
-import imgOne from './NewInSection-img/img1-min.png';
-import imgTwo from './NewInSection-img/img2-min.png';
-import imgThree from './NewInSection-img/img3-min.png';
-import imgFour from './NewInSection-img/img4-min.png';
+import getFilteredProducts from '../../api/getFilteredProducts';
+import { Link } from 'react-router-dom';
 
 function NewInSection() {
     const { newIn, newInTitle, newInWrp, newInItem, newInImg, newInText, newInPrice } = newInStyles;
-    const items = [
-        {
-            text: 'Cotton Dark Blue Bed Linen',
-            price: '$280',
-            image: imgOne,
-        },
-        {
-            text: 'Phistachio French Linen',
-            price: '$220',
-            image: imgTwo,
-        },
-        {
-            text: 'Light Pink Bed Linen',
-            price: '$250',
-            image: imgThree,
-        },
-        {
-            text: 'French Dark Green Linen',
-            price: '$270',
-            image: imgFour,
-        },
-    ];
+    const [items, setIsItems] = useState([]);
+
+    useEffect(() => {
+        getFilteredProducts('isNew=false').then((res) => {
+            setIsItems(res.data.products);
+        });
+    }, []);
 
     return (
         <section className={newIn}>
             <div className="container">
                 <p className={newInTitle}>NEW IN</p>
                 <ul className={newInWrp}>
-                    {items.map((item, key) => {
+                    {items.map(({ name, itemNo, imageUrls, currentPrice }) => {
+                        let words = name.split(' ');
+                        for (let i = 0; i < words.length; i++) {
+                            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
+                        }
+                        let newName = words.join(' ');
                         return (
-                            <li className={newInItem} key={key}>
-                                <a href="!#" target="_blank">
-                                    <img className={newInImg} src={item.image} alt="new-img" />
-                                    <p className={newInText}>{item.text}</p>
-                                    <p className={newInPrice}>{item.price}</p>
-                                </a>
+                            <li className={newInItem} key={itemNo}>
+                                <Link to={`/products/${itemNo}`}>
+                                    <img className={newInImg} src={imageUrls[0]} alt="new-img" />
+                                    <p className={newInText}>{newName}</p>
+                                    <p className={newInPrice}>{currentPrice}$</p>
+                                </Link>
                             </li>
                         );
                     })}
