@@ -41,7 +41,6 @@
     font-size: $text-fs;
     color: $dark-color;
     line-height: 0;
-
 }
 .header_list_item:hover {
     border-bottom: 0.1rem solid $dark-color;
@@ -63,13 +62,14 @@
 .header_buttons {
     display: flex;
     align-items: center;
+    position: relative;
 }
 
 .header_buttons a:not(:last-child) {
     margin-right: 3rem;
     background: transparent;
 }
-.header_buttons_profile{
+.header_buttons_profile {
     background: transparent;
 }
 
@@ -132,4 +132,49 @@
 
 .catalog_menu_list_item:last-child {
     margin-bottom: 0;
+}
+
+//
+
+.userIconWrp {
+    display: flex;
+    align-items: center;
+}
+
+.dropUserMenu {
+    position: absolute;
+    border: $dark-color 0.1rem solid;
+    right: 0;
+    top: 5.8rem;
+    background-color: rgb(255, 255, 255);
+    display: none;
+    z-index: 100;
+}
+.active + .dropUserMenu {
+    display: block;
+}
+.userMenu_list {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+.userMenu_list_item {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 3rem 1rem 3rem;
+    border-radius: 0.3rem;
+    width: max-content;
+    font-size: $text-fs;
+    color: $dark-color;
+    transition: all 0.3s;
+}
+.userMenulinkText {
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+}
+.userMenulinkText:hover {
+    background-color: rgb(234, 234, 234);
 }
