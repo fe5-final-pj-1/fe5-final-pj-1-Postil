@@ -11,6 +11,7 @@ import { useSearchParams } from 'react-router-dom';
 import { filtersAdded } from '../../store/filtersSlice';
 import FiltersReset from './FiltersReset';
 import { Oval } from 'react-loader-spinner';
+import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 
 function FiltersPage() {
     let [searchParams, setSearchParams] = useSearchParams();
@@ -68,34 +69,37 @@ function FiltersPage() {
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [filters, didRunOne, didRunTwo, maxPageNumber]);
     return (
-        <main className={classnames(styles.wrapper, 'container')}>
-            <article className={styles.left}>
-                <h1>CATALOG</h1>
-                <Filters />
-            </article>
-            <section className={styles.right}>
-                <Tabs />
-                {!isLoaded ? (
-                    <Oval
-                        height={130}
-                        width={130}
-                        color="#373F41"
-                        wrapperStyle={{}}
-                        wrapperClass={styles.loader}
-                        visible={true}
-                        ariaLabel="oval-loading"
-                        secondaryColor="#4fa94d"
-                        strokeWidth={2}
-                        strokeWidthSecondary={2}
-                    />
-                ) : (
-                    <>
-                        <FiltersReset />
-                        <ProductList products={products} />
-                        {products.length > 0 && <Pagination maxPageNumber={maxPageNumber} />}
-                    </>
-                )}
-            </section>
+        <main>
+            <BreadCrumbs />
+            <div className={classnames(styles.wrapper, 'container')}>
+                <article className={styles.left}>
+                    <h1>CATALOG</h1>
+                    <Filters />
+                </article>
+                <section className={styles.right}>
+                    <Tabs />
+                    {!isLoaded ? (
+                        <Oval
+                            height={130}
+                            width={130}
+                            color="#373F41"
+                            wrapperStyle={{}}
+                            wrapperClass={styles.loader}
+                            visible={true}
+                            ariaLabel="oval-loading"
+                            secondaryColor="#4fa94d"
+                            strokeWidth={2}
+                            strokeWidthSecondary={2}
+                        />
+                    ) : (
+                        <>
+                            <FiltersReset />
+                            <ProductList products={products} />
+                            {products.length > 0 && <Pagination maxPageNumber={maxPageNumber} />}
+                        </>
+                    )}
+                </section>
+            </div>
         </main>
     );
 }

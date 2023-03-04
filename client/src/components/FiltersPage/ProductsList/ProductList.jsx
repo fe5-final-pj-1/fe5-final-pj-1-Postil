@@ -22,7 +22,7 @@ function ProductList({ products }) {
                     <div className={styles.productName}>
                         <p className={styles.title}>{product.name}</p>
                         <p className={styles.price}>{product.currentPrice}$</p>
-                        <Link to={`/products/${product.itemNo}`}>buy now</Link>
+                        <Link to={`/catalog/${product.itemNo}`}>buy now</Link>
                     </div>
                 </li>
             ))}
