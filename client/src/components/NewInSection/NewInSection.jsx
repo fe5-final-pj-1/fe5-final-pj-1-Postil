@@ -8,7 +8,7 @@ function NewInSection() {
     const [items, setIsItems] = useState([]);
 
     useEffect(() => {
-        getFilteredProducts('isNew=false').then((res) => {
+        getFilteredProducts('isNew=true').then((res) => {
             setIsItems(res.data.products);
         });
     }, []);
@@ -19,16 +19,11 @@ function NewInSection() {
                 <p className={newInTitle}>NEW IN</p>
                 <ul className={newInWrp}>
                     {items.map(({ name, itemNo, imageUrls, currentPrice }) => {
-                        let words = name.split(' ');
-                        for (let i = 0; i < words.length; i++) {
-                            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1);
-                        }
-                        let newName = words.join(' ');
                         return (
                             <li className={newInItem} key={itemNo}>
-                                <Link to={`/products/${itemNo}`}>
+                                <Link to={`/catalog/${itemNo}`}>
                                     <img className={newInImg} src={imageUrls[0]} alt="new-img" />
-                                    <p className={newInText}>{newName}</p>
+                                    <p className={newInText}>{name}</p>
                                     <p className={newInPrice}>{currentPrice}$</p>
                                 </Link>
                             </li>
