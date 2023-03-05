@@ -1,0 +1,88 @@
+@mixin content-container {
+  max-width: 1180px;
+  margin: 0 auto;
+}
+@mixin reset-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-center-wrap {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+@mixin flex-column-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+@mixin abel-font-normal {
+    font-family: 'Abel';
+    font-style: normal;
+    font-weight: 400;
+}
+@mixin muli-font-normal {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 400;
+}
+@mixin muli-font-bold {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 700;
+}
+@mixin roboto-font-bold {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 700;
+}
+@mixin grid-container {
+  position: relative;
+  overflow: hidden;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  border-radius: 2px;
+}
+@mixin before {
+  position: absolute;
+  display: block;
+  width: 0.65rem;
+  height: 1.2rem;
+  left: 12rem;
+  top: 1.1rem;
+}
+@mixin btn-size {
+  padding: 1.2rem 4.2rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid #373F41;
+  border-radius: 4px;
+  margin-top: 4.55rem;
+}
+@mixin total-size {
+  font-size: 14px;
+  line-height: 32px;
+  color: #373F41;
+}
+@mixin sum-size {
+  font-size: 2.4rem;
+  line-height: 4.8rem;
+  letter-spacing: 0.04em;
+}
+@mixin payBlock {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  height: 11.3rem;
+  border: 1px solid #8C8C8C;
+  border-radius: 2px;
+  position: relative;
+}

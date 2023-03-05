@@ -1,0 +1,46 @@
+@import "../../style/variables";
+@import "../../style/mixins";
+
+.carousel {
+
+    &Heading{
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+
+    &Slide {
+        display: flex;
+        gap: 2rem;
+    }
+
+    &SlideLink {
+        position: relative;
+    }
+
+    &Info {
+        text-align: left;
+        position: absolute;
+        left: 2rem;
+        bottom: 2rem;
+    }
+
+    &Text {
+        border-radius: 3px;
+        width: fit-content;
+        padding: 1rem;
+        letter-spacing: 2px;
+        text-transform: capitalize;
+    }
+
+    &TextBottom {
+        margin-top: 1rem;
+        @include roboto-font-bold;
+        font-size: 2.4rem;
+    }
+
+    & :global .carousel.carousel-slider .control-arrow {
+        width: 3.5rem;
+        height: 6.4rem;
+    }
+
+}

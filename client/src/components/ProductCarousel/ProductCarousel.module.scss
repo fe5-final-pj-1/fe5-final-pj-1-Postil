@@ -1,0 +1,39 @@
+@import "../../style/variables";
+@import "../../style/mixins";
+
+.carousel {
+    flex: 0 0 calc(49.5% - 10rem / 2);
+
+    & :global .carousel.carousel-slider .control-arrow {
+        width: 3.5rem;
+        height: 6.4rem;
+    }
+
+    & :global .carousel .slide img {
+        width: 99.2%;
+    }
+
+}
+
+:global .carousel .thumbs-wrapper {
+    margin: 0 !important;
+    margin-top: 2.3rem !important;
+}
+
+:global .carousel .thumbs {
+    display: flex;
+    justify-content: space-between;
+}
+
+:global .carousel .thumb {
+    width: 26% !important;
+    max-width: 15rem;
+    cursor: pointer;
+}
+
+:global .carousel .thumb.selected, 
+:global .carousel .thumb:hover {
+    border: 1px solid $dark-color;
+}
+
+

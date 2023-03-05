@@ -1,0 +1,81 @@
+@import "../../style/variables";
+@import "../../style/mixins";
+
+.carousel {
+    padding: 2rem 0 2.5rem;
+
+    &Info {
+        text-align: left;
+        position: absolute;
+        left: 5rem;
+        bottom: 5rem;
+    }
+
+    &Heading {
+        padding: 1.2rem;
+    }
+
+    &Text {
+        border-radius: 3px;
+        width: fit-content;
+    }
+
+    &TextTop {
+        border-bottom-left-radius: 0;
+        margin-top: .8rem;
+        padding: .7rem 1.2rem;
+    }
+
+    &TextBottom {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        margin-bottom: 3rem;
+        padding: 0 1.2rem .7rem 1.2rem;
+    }
+
+    &Btn {
+        @include abel-font-normal;
+        background-color: $light-color;
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        padding: 1.8rem 2.4rem;
+        border-radius: 3px;
+        letter-spacing: 1px;
+        transition: all .25s ease-in;
+
+        &:hover {
+            opacity: .7;
+        }
+    }
+
+    & :global .carousel.carousel-slider .control-arrow {
+        width: 5rem;
+        height: 8.5rem;
+    }
+    
+}
+
+:global .carousel .control-dots {
+    bottom: -2.5rem !important;
+    margin: 0 !important;
+    width: 58.2rem !important;
+    left: 50%;
+    transform: translateX(-50%);
+    border-top: 1px solid $dark-color;
+    display: flex;
+}
+
+:global .carousel .control-dots .dot {
+    opacity: 0 !important;
+    width: 19.4rem !important;
+    height: 5px !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: $dark-color !important;
+}
+
+:global .carousel .control-dots .dot.selected, 
+:global .carousel .control-dots .dot:hover {
+    opacity: 1 !important;
+}

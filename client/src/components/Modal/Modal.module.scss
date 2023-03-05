@@ -1,0 +1,165 @@
+@import '../../style/variables';
+@import '../../style/mixins';
+
+.bg {
+    background: rgba($color: #000000, $alpha: 0.5);
+    width: 100%;
+    height: 100%;
+    z-index: 999;
+    overflow: hidden;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    position: fixed;
+    top: 0;
+    left: 0;
+    &.hide {
+        display: none;
+    }
+}
+
+.container {
+    scale: 0.7;
+    transform: translateY(-21%);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    top: 7.6rem;
+    right: calc(100vw / 2 - 46rem);
+    background: #ffffff;
+    padding: 5rem 5.5rem;
+    width: 56rem;
+    & form {
+        display: flex;
+        flex-direction: column;
+        & label {
+            position: relative;
+        }
+    }
+    & > button {
+        align-self: flex-start;
+        @include muli-font-normal;
+        font-size: $description-fs;
+        line-height: 2.4rem;
+        color: $dark-color;
+        text-decoration-line: underline;
+        border: none;
+        background-color: transparent;
+    }
+}
+.btnsLogin {
+    @include flex-center;
+    margin-bottom: 2.6rem;
+    & button {
+        @include muli-font-normal;
+        font-size: $text-fs;
+        letter-spacing: 0.04em;
+        color: $dark-color;
+        padding: 1.5rem 7.7rem 1.2rem 7.7rem;
+        background: transparent;
+        border: none;
+        border-bottom: 1px solid $dark-color;
+    }
+}
+.active {
+    border-top: 1px solid $dark-color !important;
+    border-left: 1px solid $dark-color !important;
+    border-right: 1px solid $dark-color !important;
+    border-bottom: none !important;
+}
+.close {
+    position: absolute;
+    top: 17px;
+    right: 22px;
+}
+.valuesInputs {
+    & label {
+        & .error {
+            display: contents;
+            position: absolute;
+            top: -3.5rem;
+            left: 0;
+            color: #ff0000;
+        }
+        & input {
+            width: 100%;
+            color: $dark-color;
+            border: none;
+            border-bottom: 0.1rem solid $description-color;
+            font-size: $text-fs;
+            padding: 0.5rem 0.1rem;
+            &::placeholder {
+                color: $description-color;
+            }
+            &:focus {
+                outline: none;
+            }
+        }
+    }
+    & label:not(label:last-child) input {
+        margin-bottom: 2.7rem;
+    }
+    & label:last-child input {
+        margin-bottom: 1.6rem;
+    }
+}
+.checkbox {
+    display: flex;
+    margin-bottom: 2rem;
+    & p {
+        @include muli-font-normal;
+        font-weight: 300;
+        font-size: $description-fs;
+        line-height: 2rem;
+        color: $dark-color;
+        width: 90%;
+        display: inline-block;
+        margin: 0;
+    }
+    & input {
+        width: 1.8rem;
+        height: 1.8rem;
+        margin: 0.5rem 1.5rem 0 0;
+        border: 1px solid #6fb7ac;
+    }
+    & .error {
+        position: absolute;
+        top: 5.5rem;
+        left: 0;
+        color: #ff0000;
+    }
+}
+.termsPolicy {
+    @include muli-font-normal;
+    font-weight: 300;
+    font-size: 1.4rem;
+    line-height: 3.6rem;
+    color: $description-color;
+    margin: 0 0 3rem 0;
+    & a {
+        color: $dark-color;
+    }
+}
+input[type='submit'] {
+    @include abel-font-normal;
+    font-size: 1.8rem;
+    line-height: 3.2rem;
+    letter-spacing: 0.05em;
+    color: #ffffff;
+    padding: 1.5rem 9.3rem;
+    background: #373f41;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.25);
+    border-radius: 4px;
+    align-self: center;
+    margin-bottom: 30px;
+}
+.social {
+    @include flex-center;
+    margin-bottom: 2rem;
+    gap: 2.7rem;
+}
+input[type='submit']:hover,
+button:hover {
+    cursor: pointer;
+}

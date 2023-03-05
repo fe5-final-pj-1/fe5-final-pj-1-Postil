@@ -1,0 +1,133 @@
+@import '../../style/variables';
+@import '../../style/mixins';
+.nav {
+    border-bottom: solid $dark-color 0.1rem;
+    border-top: solid $dark-color 0.1rem;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    padding: 8rem 12rem 4rem 7rem;
+    font-size: $text-fs;
+}
+.menu_list,
+.about_list,
+.contact,
+.promotion {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-right: 1rem;
+}
+.menu_list_item,
+.about_list_item,
+.title,
+.promotion_text,
+.contact_title,
+.contact_email,
+.contact_address {
+    margin-bottom: 2rem;
+}
+.menu_list_item:first-child,
+.about_list_item:first-child,
+.contact_list_item:first-child,
+.title {
+    font-weight: 900;
+}
+
+.contact {
+    margin: 0;
+}
+.contact_email,
+.contact_tel,
+.contact_title,
+.links,
+.text {
+    color: $dark-color;
+}
+.contact_title{
+    font-weight: 900;
+
+}
+.contact_email,
+.contact_address {
+    border-bottom: transparent 1px solid;
+    color: $dark-color;
+
+}
+.links:hover,
+.contact_email:hover,
+.contact_tel:hover,
+.contact_address:hover,
+.followUs:hover {
+    border-bottom: $dark-color 1px solid;
+}
+.promotion {
+    margin: 0;
+}
+.promotion_text {
+    color: $lightGrey;
+    font-size: 1.4rem;
+}
+.subscription_input {
+    display: flex;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.input {
+    max-width: 32rem;
+    padding: 1.4rem 2rem;
+    border: 1px solid $dark-color;
+    color: $dark-color;
+    border-radius: 4px 0 0 4px;
+    background-color: transparent;
+}
+
+.button_submit {
+    padding: 1.45rem 4.5rem;
+    border-radius: 0 4px 4px 0;
+    background-color: $dark-color;
+    color: #fff;
+    font-family: 'Abel';
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.button_submit:hover {
+    background-color: #202627;
+}
+
+.input:focus,
+.input:focus-visible {
+    border-color: #1cadc6;
+    outline: none;
+}
+
+.promotion_btn {
+    display: flex;
+}
+.followUs {
+    margin-right: 3.5rem;
+    font-weight: 900;
+}
+.social_list {
+    display: flex;
+}
+.social_list_item {
+    margin-right: 3rem;
+    transition: color, transform 500ms ease;
+}
+.social_list_item:hover {
+    transform: scale(1.3);
+}
+.social_list_item:last-child {
+    margin: 0;
+}
+.info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 7.6rem 1.5rem 5.4rem;
+}

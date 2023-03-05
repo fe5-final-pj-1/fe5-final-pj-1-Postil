@@ -1,0 +1,179 @@
+@import '../../style/variables';
+@import '../../style/mixins';
+
+.singleItem {
+    margin: 8rem auto 8rem auto;
+}
+
+.singleItemWrp {
+    display: flex;
+    padding-left: 1.8rem;
+    // make smaller in media-queries
+    gap: 10rem;
+}
+
+.boxRight {
+    flex: 0 0 calc(50.5% - 10rem / 2);
+}
+
+.boxRightHeader {
+    display: flex;
+    justify-content: space-between;
+}
+
+.singleItemTitle {
+    @include abel-font-normal;
+    color: #373f41;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+.boxRightLinkWrp {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.boxRightId {
+    @include muli-font-normal;
+    color: rgba(92, 94, 96, 0.5);
+    font-size: 1.4rem;
+    margin: 1rem 0 2.6rem 0;
+}
+
+.boxOption {
+    & p:not(p:last-child) {
+        margin-bottom: 0.5rem;
+    }
+
+    & p {
+        display: flex;
+        text-transform: uppercase;
+        align-items: center;
+        line-height: 2rem;
+        &:nth-child(1) span {
+            margin-left: 1.8rem;
+        }
+        &:nth-child(2) span {
+            margin-left: 3.6rem;
+        }
+        &:nth-child(3) span {
+            margin-left: 1.5rem;
+        }
+        & span {
+            text-transform: capitalize;
+            color: $description-color;
+            text-align: center;
+        }
+        & .color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+    }
+}
+
+.boxForBuy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.2rem;
+    padding-bottom: 2.7rem;
+    border-bottom: 0.1rem solid #373f41;
+}
+
+.buyTextOne {
+    font-size: 2.4rem;
+    margin-bottom: 0.5rem;
+}
+
+.buyTextTwo {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: rgba(92, 94, 96, 0.5);
+}
+
+.boxForBuyR {
+    display: flex;
+}
+
+.btn {
+    @include abel-font-normal;
+    margin-right: 1.5rem;
+    display: block;
+    padding: 2rem 5.5rem;
+    font-size: 1.6rem;
+    background: rgba(55, 63, 65, 1);
+    border: 0.1rem solid rgba(55, 63, 65, 1);
+    box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
+    color: rgb(255, 255, 255);
+    border-radius: 0.4rem;
+}
+
+.btn:hover {
+    background: rgb(167, 167, 167);
+    border: 0.1rem solid rgba(55, 63, 65, 1);
+    transition: 250ms ease-in;
+}
+
+.btnHeart {
+    @include abel-font-normal;
+    display: block;
+    width: 6rem;
+    background: rgba(55, 63, 65, 1);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('./SingleItemPictures/HeartBtn.svg');
+    border: 0.1rem solid rgba(55, 63, 65, 1);
+    box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
+    color: rgb(255, 255, 255);
+    border-radius: 0.4rem;
+}
+
+.btnHeart:hover {
+    background: rgb(133, 133, 133);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-image: url('./SingleItemPictures/HeartBtn.svg');
+    border: 0.1rem solid rgba(55, 63, 65, 1);
+    transition: 250ms ease-in;
+}
+
+.boxInfo {
+    padding-top: 3rem;
+
+    &Title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #373f41;
+    }
+
+    &Name {
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+        background: transparent;
+
+        & p {
+            @include muli-font-bold;
+            font-size: $text-fs;
+            line-height: 24px;
+            color: $dark-color;
+            text-transform: uppercase;
+        }
+    }
+
+    &TitleFix {
+        margin-left: -3rem;
+    }
+}
+
+.reviewsText {
+    color: rgba(92, 94, 96, 0.5);
+    font-size: 1.6rem;
+    line-height: 3rem;
+    margin-left: 3.3rem;
+    padding-top: 2rem;
+}

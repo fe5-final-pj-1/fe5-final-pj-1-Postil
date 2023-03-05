@@ -1,0 +1,46 @@
+@import '../../../style/mixins';
+@import '../../../style/variables';
+
+.paginationContainer {
+    margin-top: 2.9rem;
+    margin-bottom: 8rem;
+    @include flex-center;
+    & button {
+        background: transparent;
+    }
+    & > button:first-child,
+    & > button:last-child {
+        position: relative;
+        padding: 2.1rem;
+        opacity: 0.7;
+        transition: 0.3s;
+        &:hover {
+            opacity: 1;
+            scale: 1.2;
+        }
+    }
+    & > button:first-child {
+        left: 3rem;
+    }
+    & > button:last-child {
+        right: 3rem;
+    }
+    & .numbers {
+        border-bottom: 1px solid $dark-color;
+        & > button {
+            box-sizing: border-box;
+            @include muli-font-normal;
+            font-weight: 300;
+            font-size: 2rem;
+            line-height: 3rem;
+            padding: 1.6rem 3.7rem;
+            border-bottom: 5px solid transparent;
+            transition: 0.3s;
+            &:hover,
+            &.active {
+                border-bottom: 5px solid $dark-color;
+                font-weight: 700;
+            }
+        }
+    }
+}

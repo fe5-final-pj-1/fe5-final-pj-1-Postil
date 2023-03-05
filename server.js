@@ -1,6 +1,7 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const passport = require('passport');
 const path = require('path');
 require('dotenv').config();
@@ -27,6 +28,9 @@ const partners = require('./routes/partners');
 
 const app = express();
 
+// Cors
+app.use(cors());
+
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
@@ -36,10 +40,14 @@ const db = require('./config/keys').mongoURI;
 
 mongoose.set('strictQuery', true);
 // Connect to MongoDB
-mongoose
-  .connect(db, { useNewUrlParser: true })
-  .then(() => console.log('MongoDB Connected'))
-  .catch((err) => console.log(err));
+const connectDB = async () => {
+  try {
+    const conn = await mongoose.connect(db, { useNewUrlParser: true });
+    console.log(`MongoDB Connected: ${conn.connection.host}`);
+  } catch (error) {
+    console.log(error);
+  }
+}
 
 // Passport middleware
 app.use(passport.initialize());
@@ -80,4 +88,8 @@ if (process.env.NODE_ENV === 'production') {
 
 const port = process.env.PORT || 5000;
 
-app.listen(port, () => console.log(`Server running on port ${port}`));
+connectDB().then(() => {
+  app.listen(port, () => {
+      console.log(`Server running on port ${port}`);
+  })
+})

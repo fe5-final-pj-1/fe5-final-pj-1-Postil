@@ -1,0 +1,129 @@
+@import '../../../style/mixins';
+@import '../../../style/variables';
+.filtersContainer {
+    margin-top: 1rem;
+}
+.filter {
+    position: relative;
+    padding: 2rem 0;
+    border-bottom: 1px solid $description-color;
+    &Name {
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+        background: transparent;
+        & p {
+            @include muli-font-bold;
+            font-size: $text-fs;
+            line-height: 24px;
+            color: $dark-color;
+            text-transform: uppercase;
+        }
+    }
+}
+.active {
+    &.filter {
+        border-bottom: none;
+        padding: 2rem 0 1rem 0;
+        left: -2.9rem;
+    }
+    & .filterName {
+        gap: 1.4rem;
+        margin-bottom: 1.5rem;
+    }
+}
+.price {
+    padding-left: 2.8rem;
+}
+
+.size,
+.fabric {
+    display: flex;
+    flex-direction: column;
+    padding-left: 2.8rem;
+    & label:not(label:last-child) {
+        margin-bottom: 1rem;
+    }
+    & label {
+        position: relative;
+        display: flex;
+        align-items: center;
+        & > input {
+            position: absolute;
+            z-index: -1;
+            opacity: 0;
+            &:checked + span::after {
+                display: inline-block;
+                opacity: 1;
+            }
+            &:hover + span::after {
+                display: inline-block;
+            }
+        }
+        & > span {
+            @include muli-font-normal;
+            font-size: $description-fs;
+            color: $dark-color;
+            display: inline-flex;
+            align-items: center;
+            user-select: none;
+            text-transform: uppercase;
+            &::before {
+                content: '';
+                display: inline-block;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+                border: 1px solid $dark-color;
+                margin-right: 2.7rem;
+            }
+            &::after {
+                display: none;
+                position: absolute;
+                left: 0.4rem;
+                content: '';
+                width: 1.2rem;
+                height: 1.2rem;
+                border-radius: 50%;
+                background: $description-color;
+                opacity: 0.4;
+            }
+        }
+    }
+}
+.color {
+    padding-left: 2.8rem;
+    display: flex;
+    flex-wrap: wrap;
+    width: 20rem;
+    & label:not(label:nth-child(6n)) {
+        margin-right: 1rem;
+    }
+    & label:nth-child(-n + 6) {
+        margin-bottom: 1rem;
+    }
+    & span {
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        opacity: .5;
+        transition: all 0.25s ease-in;
+        &:hover {
+            opacity: 1;
+            scale: 1.3;
+        }
+    }
+    & input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+    }
+    & input:checked + span {
+        opacity: 1;
+        scale: 1.3;
+    }
+}
+label:hover {
+    cursor: pointer;
+}

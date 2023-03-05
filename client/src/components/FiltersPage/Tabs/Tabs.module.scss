@@ -1,0 +1,27 @@
+@import '../../../style/mixins';
+@import '../../../style/variables';
+.tabsContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+}
+.tab {
+    @include abel-font-normal;
+    font-size: $text-fs;
+    color: $dark-color;
+    line-height: 2rem;
+    padding: 1rem 2rem;
+    background: #ffffff;
+    border: 1.5px solid #8c8c8c;
+    border-radius: 4px;
+    text-transform: uppercase;
+    border: 1.5px solid $dark-color;
+    cursor: pointer;
+    transition: all 0.25s ease-in;
+    &:hover,
+    &.active {
+        color: $light-color;
+        background-color: $dark-color;
+    }
+}

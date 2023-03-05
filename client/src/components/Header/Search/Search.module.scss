@@ -1,0 +1,95 @@
+@import '../../../style/mixins';
+@import '../../../style/variables';
+
+// input:focus + div + .listItem {
+//     display: block;
+// }
+.active.listItem {
+    display: block;
+}
+
+.listItem {
+    display: none;
+    position: absolute;
+    background-color: #f5f5f5;
+    top: 4.5rem;
+    min-width: 120%;
+    border-top: $dark-color 0.5rem solid;
+    z-index: 3;
+    & > li {
+        &.showAll a {
+            text-align: center;
+            width: 100%;
+            justify-content: center;
+            color: $dark-color;
+        }
+        & > a {
+            display: flex;
+            align-items: center;
+            // justify-content: space-between;
+            width: 100%;
+            padding: 0.3rem 0.6rem;
+            border-bottom: $description-color 1px solid;
+            & img {
+                margin-right: 1rem;
+            }
+            & p {
+                color: $dark-color;
+            }
+            & > div {
+                & > .name {
+                    font-size: $text-fs;
+                    text-transform: capitalize;
+                    margin-bottom: 0.25rem;
+                }
+                & > div {
+                    display: flex;
+                    column-gap: 1.5rem;
+                    & .size {
+                        width: 8rem;
+                        & span {
+                            color: $description-color;
+                        }
+                    }
+                    & .fabric {
+                        width: 12rem;
+                        & span {
+                            color: $description-color;
+                        }
+                    }
+                    & .color {
+                        display: flex;
+                        & span {
+                            margin-left: 0.5rem;
+                            width: 2rem;
+                            height: 2rem;
+                            border-radius: 50%;
+                            display: inline-block;
+                        }
+                    }
+                }
+            }
+            & .price {
+                font-size: $subtitles-fs;
+                margin-left: 2rem;
+                margin-left: auto;
+                padding-left: 2rem;
+            }
+        }
+        &:hover {
+            cursor: pointer;
+            background-color: $description-color;
+            border-bottom: $dark-color 1px solid;
+            & .size span,
+            & .price,
+            & .size,
+            & .color,
+            & .name,
+            & .fabric,
+            & .fabric span,
+            &.showAll a {
+                color: $light-color;
+            }
+        }
+    }
+}

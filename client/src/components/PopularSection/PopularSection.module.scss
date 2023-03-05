@@ -1,0 +1,174 @@
+@import '../../style/mixins';
+.popular {
+  margin-top: 8rem;
+}
+.container {
+ @include content-container;
+}
+.title {
+  @include abel-font-normal;
+  font-size: 3.2rem;
+  line-height: 5.8rem;
+  align-items: center;
+  text-align: center;
+  letter-spacing: 0.5rem;
+  color: #373F41;
+}
+.box {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  grid-template-areas:
+    "one one two"
+    "three four four";
+  column-gap: 1.6rem;
+  row-gap: 1.55rem;
+}
+.boxOne {
+  grid-area: one;
+  @include grid-container;
+  background-image: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/Background_bed_t4b3iu.png');
+  width: 100%;
+  height: 34.2rem;
+}
+.boxOne_footer {
+  position: relative;
+  margin-top: 24.15rem;
+  width: 100%;
+  height: 10rem;
+  background: rgba(255, 255, 255, 0.6);
+  &::after {
+    content: 'BEDROOM';
+    position: absolute;
+    @include abel-font-normal;
+    font-size: 2.4rem;
+    line-height: 2.5rem;
+    letter-spacing: 1rem;
+    right: 4.5rem;
+    top: 1.5rem;
+  }
+}
+.boxTwo {
+  grid-area: two;
+  @include grid-container;
+  background-image: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_bath_wkihwl.png');
+  width: 100%;
+  height: 34.2rem;
+}
+.boxTwo_footer {
+  position: relative;
+  margin-top: 24.15rem;
+  width: 100%;
+  height: 10rem;
+  background: rgba(255, 255, 255, 0.6);
+  &::after {
+    content: 'BATHROOM';
+    position: absolute;
+    @include abel-font-normal;
+    font-size: 2.4rem;
+    line-height: 2.5rem;
+    letter-spacing: 0.9rem;
+    right: 4.5rem;
+    top: 1.5rem;
+  }
+}
+.boxThree {
+  grid-area: three;
+  @include grid-container;
+  background-image: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_lin_mgqrhh.png');
+  width: 100%;
+  height: 34.2rem;
+}
+.boxThree_footer {
+  position: relative;
+  margin-top: 24.15rem;
+  width: 100%;
+  height: 10.5rem;
+  background: rgba(255, 255, 255, 0.6);
+  &::after {
+    content: 'BED LINEN';
+    position: absolute;
+    @include abel-font-normal;
+    font-size: 2.4rem;
+    line-height: 2.5rem;
+    letter-spacing: 0.8rem;
+    right: 4.5rem;
+    top: 1rem;
+  }
+}
+.boxFour {
+  grid-area: four;
+  @include grid-container;
+  background-image: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_louhg_ftn6by.png');
+  width: 100%;
+  height: 34.2rem;
+}
+.boxFour_footer {
+  position: relative;
+  margin-top: 24.2rem;
+  width: 100%;
+  height: 10rem;
+  background: rgba(255, 255, 255, 0.6);
+  &::after {
+    content: 'LOUNGEWEAR';
+    position: absolute;
+    @include abel-font-normal;
+    font-size: 2.4rem;
+    line-height: 2.5rem;
+    letter-spacing: 1rem;
+    right: 4.5rem;
+    top: 1rem;
+  }
+}
+.btn_long {
+  @include abel-font-normal;
+  @include btn-size;
+  margin-left: 79%;
+  margin-right: 4.7rem;
+  &:hover {
+    background: gainsboro;
+    transition: all 0.25s ease-in;
+  }
+}
+.btn_small {
+  @include abel-font-normal;
+  @include btn-size;
+  margin-left: 57%;
+  margin-right: 4.7rem;
+  &:hover {
+    background: gainsboro;
+    transition: all 0.25s ease-in;
+  }
+}
+.btn {
+  @include abel-font-normal;
+  position: relative;
+  margin: 3rem auto;
+  display: block;
+  padding: 1rem 7.5rem 1rem 5.5rem;
+  font-size: 1.6rem;
+  line-height: 3.2rem;
+  background: #FFFFFF;
+  border: 0.1rem solid #373F41;
+  box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
+  border-radius: 0.4rem;
+  cursor: pointer;
+  &:hover::before {
+    content: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1677499637/Linens/SVG/Vector_right-w_pvehzs.svg');
+    @include before;
+    transition: all 0.25s ease-in;
+  }
+}
+.btn:hover {
+  background: #373F41;
+  color: #FFFFFF;
+  transition: all 0.25s ease-in;
+}
+.btn::before {
+  content: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1677499637/Linens/SVG/Vector_right_swofjg.svg');
+  @include before;
+}
+
+
+
+

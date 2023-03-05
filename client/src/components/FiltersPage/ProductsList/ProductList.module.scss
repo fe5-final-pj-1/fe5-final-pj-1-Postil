@@ -1,0 +1,86 @@
+@import '../../../style/mixins';
+@import '../../../style/variables';
+
+.productsContainer {
+    @include flex-center-wrap;
+    column-gap: 2rem;
+    row-gap: 4.2rem;
+    justify-content: flex-start;
+}
+.product {
+    width: calc(33.3333% - (2rem / 3));
+    width: 28rem;
+    height: 28rem;
+    border-radius: 1px;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-image: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_lin_mgqrhh.png');
+    & .productName {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+        transition: 0.2s;
+        & .title {
+            @include muli-font-bold;
+            font-size: 1.8rem;
+            color: #ffffff;
+            margin-bottom: 2.1rem;
+            background: $dark-color;
+            border-radius: 2px;
+            padding: 0.4rem 0.8rem;
+            text-transform: capitalize;
+        }
+        & .price {
+            display: none;
+            @include muli-font-bold;
+            font-size: $titles-fs;
+            color: #ffffff;
+            margin-bottom: 2rem;
+        }
+        & a {
+            display: none;
+            @include abel-font-normal;
+            font-size: $text-fs;
+            color: $dark-color;
+            padding: 1rem 3.5rem;
+            background: #ffffff;
+            border: 1px solid $dark-color;
+            border-radius: 4px;
+            text-transform: uppercase;
+        }
+    }
+    &:hover {
+        scale: 1.02;
+        & .productName {
+            background: rgba($color: #000000, $alpha: 0.6);
+            border: 4px solid rgba(38, 37, 36, 0.7);
+            border-radius: 1px;
+            justify-content: center;
+            & .title {
+                background: transparent;
+            }
+            & .price {
+                display: block;
+            }
+            & a {
+                display: block;
+            }
+        }
+    }
+}
+
+.noProductMatch {
+    text-align: center;
+    height: 70vh;
+    position: relative;
+    & p {
+        position: absolute;
+        top: 50%;
+        transform: translatY( -50%);
+        width: 100%;
+        font-size: 2.1rem;
+    }
+}

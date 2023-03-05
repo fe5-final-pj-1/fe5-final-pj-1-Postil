@@ -6,7 +6,6 @@ import CartRoute from './routes/CartRoute';
 import FiltersRoute from './routes/FiltersRoute';
 import DetailsRoute from './routes/DetailsRoute';
 import ErrorPage from './routes/ErrorPage';
-import './App.scss';
 
 const router = createBrowserRouter([
     {
@@ -23,11 +22,15 @@ const router = createBrowserRouter([
                 element: <Home />,
             },
             {
-                path: 'products',
+                path: 'catalog',
+                element: <Navigate to="filter" replace />,
+            },
+            {
+                path: 'catalog/filter',
                 element: <FiltersRoute />,
             },
             {
-                path: 'products/:productId',
+                path: 'catalog/:productId',
                 element: <DetailsRoute />,
             },
             {
