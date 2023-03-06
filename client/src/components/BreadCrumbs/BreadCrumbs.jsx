@@ -11,7 +11,6 @@ function BreadCrumbs({ category, name }) {
     const location = useLocation();
     const path = location.pathname;
     const pathArr = path.split('/');
-    console.log(pathArr);
     return (
         <>
             <div className={classNames(styles.container, 'container')}>

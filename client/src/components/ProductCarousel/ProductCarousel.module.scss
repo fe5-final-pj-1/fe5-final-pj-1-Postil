@@ -1,8 +1,15 @@
-@import "../../style/variables";
-@import "../../style/mixins";
+@import '../../style/variables';
+@import '../../style/mixins';
 
 .carousel {
     flex: 0 0 calc(49.5% - 10rem / 2);
+    & li {
+        display: flex !important;
+        align-items: center;
+        & div {
+            margin: auto;
+        }
+    }
 
     & :global .carousel.carousel-slider .control-arrow {
         width: 3.5rem;
@@ -12,7 +19,6 @@
     & :global .carousel .slide img {
         width: 99.2%;
     }
-
 }
 
 :global .carousel .thumbs-wrapper {
@@ -31,9 +37,7 @@
     cursor: pointer;
 }
 
-:global .carousel .thumb.selected, 
+:global .carousel .thumb.selected,
 :global .carousel .thumb:hover {
     border: 1px solid $dark-color;
 }
-
-
