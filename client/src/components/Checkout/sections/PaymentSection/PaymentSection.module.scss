@@ -1,8 +1,8 @@
 @import '../../../../style/mixins';
 
 .payMain {
-  width: 72.6rem;
-  //flex: 0 0 73rem;
+  max-width: 72.6rem;
+  width: 100%;
   height: 51.7rem;
 }
 .payTitle {
@@ -48,6 +48,7 @@
 }
 .payCardIcon {
     padding-left: 26rem;
+  padding-right: 2rem;
 }
 .payCashBloc {
   @include payBlock;
