@@ -5,9 +5,11 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import filtersReducer from './filtersSlice';
 import modalReducer from './modalSlice';
+import loginReducer from './loginSlice';
 
 const storeReducer = combineReducers({
     cart: cartReducer,
+    login: loginReducer,
 });
 
 const persistConfig = {

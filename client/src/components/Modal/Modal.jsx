@@ -9,6 +9,7 @@ import { hideModal } from '../../store/modalSlice';
 import { useDispatch } from 'react-redux';
 import loginCustomer from '../../api/loginCustomer';
 import createCustomer from '../../api/createCustomer';
+import { userLogIn } from '../../store/loginSlice';
 
 function Modal() {
     const dispatch = useDispatch();
@@ -59,14 +60,15 @@ function Modal() {
             sign
                 ? createCustomer({
                       firstName,
-                      lastName: lastName ? lastName : '',
+                      lastName: lastName ? lastName : ' ',
                       login,
                       email,
                       password,
                   }).then((res) => console.log(res.data))
-                : loginCustomer({ loginOrEmail: email, password: password }).then((res) =>
-                      console.log(res.data),
-                  );
+                : loginCustomer({ loginOrEmail: email, password: password }).then((res) => {
+                      const token = res.data.token;
+                      dispatch(userLogIn(token));
+                  });
             dispatch(hideModal());
         },
     });
