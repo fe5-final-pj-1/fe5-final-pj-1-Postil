@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import HeaderMain from './Header.module.scss';
 import { NavLink, Link } from 'react-router-dom';
-import classNames from 'classnames';
 import Icon from '../Icon/Icon';
 import Button from '../Button';
 import Search from './Search/Search';
@@ -12,7 +11,6 @@ import { showModal } from '../../store/modalSlice';
 import Profile from './Profile/Profile';
 
 function Header() {
-    const [catalog, setCatalog] = useState(false);
     const isLogIn = useSelector((state) => state.store.login.isLogIn, shallowEqual);
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
     const dispatch = useDispatch();
