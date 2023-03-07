@@ -1,4 +1,4 @@
-@import "index.scss";
+@import 'index.scss';
 @import '../../style';
 
 $inputBorder: 1px solid $mainTxtColor;
@@ -8,6 +8,7 @@ $inputBorder: 1px solid $mainTxtColor;
     height: 50px;
     border: $inputBorder;
     border-radius: 2px;
+    align-self: flex-end;
 
     .numInput {
         @include flex-center;

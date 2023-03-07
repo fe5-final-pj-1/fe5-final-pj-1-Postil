@@ -1,13 +1,6 @@
 @import 'style/_mixins.scss';
 @import '../../style';
 
-.itemWrapper {
-    display: flex;
-    gap: 80px;
-    align-items: stretch;
-    padding: 20px 34px 20px 0;
-}
-
 .itemImg {
     width: 200px;
     height: 200px;
@@ -23,6 +16,7 @@
     line-height: 4.8rem;
     color: $mainTxtColor;
     margin-top: -1.5rem;
+    text-transform: uppercase
 }
 
 .description {
@@ -68,7 +62,16 @@
 }
 .confValue {
     @include muli-font-light;
-
+    text-transform: capitalize;
     color: $lightTxtColor;
 }
-
+.colorBlock {
+    display: flex;
+    align-items: center;
+}
+.color {
+    display: block;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+}

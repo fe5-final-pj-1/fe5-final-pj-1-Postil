@@ -31,6 +31,11 @@
 }
 
 .bagLiItem {
+    display: flex;
+    gap: 80px;
+    align-items: stretch;
+    padding: 20px 34px 20px 0;
+
     border-bottom: 1px solid hsl(192, 8%, 24%, 0.25);
 
     &:first-of-type {
