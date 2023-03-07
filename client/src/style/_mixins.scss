@@ -31,11 +31,25 @@
     font-style: normal;
     font-weight: 400;
 }
+
+@mixin muli-font-light {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 300;
+}
+
 @mixin muli-font-normal {
     font-family: 'Mulish';
     font-style: normal;
     font-weight: 400;
 }
+
+@mixin muli-font-semibold {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 600;
+}
+
 @mixin muli-font-bold {
     font-family: 'Mulish';
     font-style: normal;
