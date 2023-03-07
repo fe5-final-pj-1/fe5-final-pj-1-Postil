@@ -3,6 +3,7 @@ import 'rc-slider/assets/index.css';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { filtersAdded } from '../../../../store/filtersSlice';
+import { resetSearch } from '../../../../store/searchProductsSlice';
 import styles from './PriceSlider.module.scss';
 
 function PriceSlider() {
@@ -13,7 +14,6 @@ function PriceSlider() {
         value: [100, 350],
         min: 0,
         max: 600,
-        step: 10,
     });
 
     const onLowerBoundChange = (e) => {
@@ -90,6 +90,7 @@ function PriceSlider() {
     };
     const handleSubmit = (e) => {
         e.preventDefault();
+        dispatch(resetSearch());
         dispatch(filtersAdded({ minPrice: values.value[0], maxPrice: values.value[1] }));
     };
     return (
@@ -100,7 +101,6 @@ function PriceSlider() {
                 value={values.value}
                 min={values.min}
                 max={values.max}
-                // step={values.step}
                 onChange={onSliderChange}
                 railStyle={{ backgroundColor: '#000000', borderRadius: '0', height: '2px' }}
                 trackStyle={{ backgroundColor: '#000000', borderRadius: '0', height: '2px' }}

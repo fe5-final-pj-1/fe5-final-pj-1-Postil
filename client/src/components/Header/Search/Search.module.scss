@@ -1,21 +1,20 @@
 @import '../../../style/mixins';
 @import '../../../style/variables';
 
-// input:focus + div + .listItem {
-//     display: block;
-// }
 .active.listItem {
     display: block;
 }
-
 .listItem {
     display: none;
     position: absolute;
     background-color: #f5f5f5;
     top: 4.5rem;
-    // width: 39rem;
+    min-width: 120%;
     border-top: $dark-color 0.5rem solid;
-    z-index: 2;
+    z-index: 3;
+    @media only screen and (max-width: $bp-large) {
+        min-width: 130%;
+    }
     & > li {
         &.showAll a {
             text-align: center;

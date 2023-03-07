@@ -15,11 +15,16 @@
     background: #ffffff;
     border: 1.5px solid #8c8c8c;
     border-radius: 4px;
-    &:hover {
-        cursor: pointer;
-        border: 1.5px solid $dark-color;
-    }
+    text-transform: uppercase;
+    border: 1.5px solid $dark-color;
+    cursor: pointer;
+    transition: all 0.25s ease-in;
+    &:hover,
     &.active {
-        border: 1.5px solid $dark-color;
+        color: $light-color;
+        background-color: $dark-color;
+    }
+    @media only screen and (max-width: $bp-large) {
+        padding: 1rem 1.8rem;
     }
 }

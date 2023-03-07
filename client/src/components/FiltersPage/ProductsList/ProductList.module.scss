@@ -3,20 +3,21 @@
 
 .productsContainer {
     @include flex-center-wrap;
-    margin-top: 6.6rem;
     column-gap: 2rem;
     row-gap: 4.2rem;
     justify-content: flex-start;
 }
 .product {
-    width: calc(33.3333% - (2rem / 3));
-    width: 28rem;
-    height: 28rem;
+    width: calc(33.3333% - (4rem / 3));
+    padding-top: calc(33.3333% - (4rem / 3));
     border-radius: 1px;
     background-size: cover;
     background-repeat: no-repeat;
-    background-image: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1676972765/POPULAR/background_lin_mgqrhh.png');
+    position: relative;
     & .productName {
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         display: flex;
@@ -33,6 +34,7 @@
             border-radius: 2px;
             padding: 0.4rem 0.8rem;
             text-transform: capitalize;
+            text-align: center;
         }
         & .price {
             display: none;
@@ -70,5 +72,18 @@
                 display: block;
             }
         }
+    }
+}
+
+.noProductMatch {
+    text-align: center;
+    height: 70vh;
+    position: relative;
+    & p {
+        position: absolute;
+        top: 50%;
+        transform: translatY(-50%);
+        width: 100%;
+        font-size: 2.1rem;
     }
 }

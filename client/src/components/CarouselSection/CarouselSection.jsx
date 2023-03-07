@@ -43,8 +43,12 @@ function CarouselSection({ sectionTitle, products }) {
         for (let i = 0; i < arr.length; i += 3) {
             slidesArr.push(
                 <div className={carouselSlide}>
-                    <Link to={`/products/${arr[i].itemNo}`} className={carouselSlideLink}>
-                        <img src={arr[i].imageUrls[0]} alt={`Carousel img ${i + 1}`} />
+                    <Link
+                        to={`/catalog/${arr[i].itemNo}`}
+                        style={{ backgroundImage: `url(${arr[i].imageUrls[0]})` }}
+                        className={carouselSlideLink}
+                    >
+                        {/* <img src={arr[i].imageUrls[0]} alt={`Carousel img ${i + 1}`} /> */}
                         <div className={carouselInfo}>
                             <p className={classNames(carouselText, 'h4--dark')}>{arr[i].name}</p>
                             <p className={classNames(carouselText, carouselTextBottom, 'p--dark')}>
@@ -52,8 +56,12 @@ function CarouselSection({ sectionTitle, products }) {
                             </p>
                         </div>
                     </Link>
-                    <Link to={`/products/${arr[i + 1].itemNo}`} className={carouselSlideLink}>
-                        <img src={arr[i + 1].imageUrls[0]} alt={`Carousel img ${i + 2}`} />
+                    <Link
+                        to={`/catalog/${arr[i + 1].itemNo}`}
+                        style={{ backgroundImage: `url(${arr[i + 1].imageUrls[0]})` }}
+                        className={carouselSlideLink}
+                    >
+                        {/* <img src={arr[i + 1].imageUrls[0]} alt={`Carousel img ${i + 2}`} /> */}
                         <div className={carouselInfo}>
                             <p className={classNames(carouselText, 'h4--dark')}>
                                 {arr[i + 1].name}
@@ -63,8 +71,12 @@ function CarouselSection({ sectionTitle, products }) {
                             >{`$${arr[i + 1].currentPrice}`}</p>
                         </div>
                     </Link>
-                    <Link to={`/products/${arr[i + 2].itemNo}`} className={carouselSlideLink}>
-                        <img src={arr[i + 2].imageUrls[0]} alt={`Carousel img ${i + 3}`} />
+                    <Link
+                        to={`/catalog/${arr[i + 2].itemNo}`}
+                        style={{ backgroundImage: `url(${arr[i + 2].imageUrls[0]})` }}
+                        className={carouselSlideLink}
+                    >
+                        {/* <img src={arr[i + 2].imageUrls[0]} alt={`Carousel img ${i + 3}`} /> */}
                         <div className={carouselInfo}>
                             <p className={classNames(carouselText, 'h4--dark')}>
                                 {arr[i + 2].name}

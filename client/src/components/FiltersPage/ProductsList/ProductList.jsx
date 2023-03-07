@@ -4,6 +4,13 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
 function ProductList({ products }) {
+    if (products.length === 0) {
+        return (
+            <div className={styles.noProductMatch}>
+                <p>No matching model found for given parameters</p>
+            </div>
+        );
+    }
     return (
         <ul className={styles.productsContainer}>
             {products.map((product) => (
@@ -15,7 +22,7 @@ function ProductList({ products }) {
                     <div className={styles.productName}>
                         <p className={styles.title}>{product.name}</p>
                         <p className={styles.price}>{product.currentPrice}$</p>
-                        <Link to={`/products/${product.itemNo}`}>buy now</Link>
+                        <Link to={`/catalog/${product.itemNo}`}>buy now</Link>
                     </div>
                 </li>
             ))}

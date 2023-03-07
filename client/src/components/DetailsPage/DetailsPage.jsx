@@ -1,19 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import SingleItemSection from '../SingleItemSection';
 import CarouselSection from '../CarouselSection';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import getOneProduct from '../../api/getOneProduct';
 import getAllProducts from '../../api/getAllProducts';
+import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 
 function DetailsPage() {
     const [product, setProduct] = useState({});
     const params = useParams();
+    const navigate = useNavigate();
     const productId = params.productId;
     useEffect(() => {
         getOneProduct(productId).then((res) => {
-            setProduct(res.data);
+            if (res) {
+                setProduct(res.data);
+            } else {
+                navigate('/');
+            }
         });
-    }, [productId]);
+    }, [productId, navigate]);
     const [products, setProducts] = useState([]);
 
     useEffect(() => {
@@ -34,6 +40,7 @@ function DetailsPage() {
 
     return (
         <main>
+            <BreadCrumbs category={product.categories} name={product.name} />
             <SingleItemSection product={product} />
             <CarouselSection products={products} />
         </main>

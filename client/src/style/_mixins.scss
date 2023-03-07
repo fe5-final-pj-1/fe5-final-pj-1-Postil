@@ -1,6 +1,8 @@
 @mixin content-container {
     max-width: 1180px;
     margin: 0 auto;
+    padding-right: 2.5rem;
+    padding-left: 2.5rem;
 }
 @mixin reset-list {
     margin: 0;

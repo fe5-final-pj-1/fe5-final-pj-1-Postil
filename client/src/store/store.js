@@ -1,14 +1,37 @@
-import { configureStore } from '@reduxjs/toolkit';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import cartReducer from './cartSlice';
 import searchProductsReducer from './searchProductsSlice';
+import { persistStore, persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 import filtersReducer from './filtersSlice';
+import modalReducer from './modalSlice';
+import loginReducer from './loginSlice';
+
+const storeReducer = combineReducers({
+    cart: cartReducer,
+    login: loginReducer,
+});
+
+const persistConfig = {
+    key: 'postil',
+    storage,
+};
+
+const persistedReducer = persistReducer(persistConfig, storeReducer);
 
 const store = configureStore({
     reducer: {
-        cart: cartReducer,
+        store: persistedReducer,
         searchProducts: searchProductsReducer,
         filters: filtersReducer,
+        modal: modalReducer,
     },
+    middleware: (getDefaultMiddleware) =>
+        getDefaultMiddleware({
+            serializableCheck: false,
+        }),
 });
+
+export const persistor = persistStore(store);
 
 export default store;
