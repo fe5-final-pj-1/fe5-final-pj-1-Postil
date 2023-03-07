@@ -1,7 +1,6 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HeaderMain from './Header.module.scss';
 import { NavLink, Link } from 'react-router-dom';
-import classNames from 'classnames';
 import Icon from '../Icon/Icon';
 import Button from '../Button';
 import Search from './Search/Search';
@@ -9,11 +8,10 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { filtersAdded } from '../../store/filtersSlice';
 import { filtersRemoved } from '../../store/filtersSlice';
 import { showModal } from '../../store/modalSlice';
+import Profile from './Profile/Profile';
 
 function Header() {
-    const [userMenu, setUserMenu] = useState(false);
-    // eslint-disable-next-line no-unused-vars
-    const [isLogIn, setIsLogIn] = useState(false);
+    const isLogIn = useSelector((state) => state.store.login.isLogIn, shallowEqual);
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
     const dispatch = useDispatch();
     return (
@@ -166,46 +164,7 @@ function Header() {
                             <Icon type="cart" />
                         </Link>
                         {isLogIn ? (
-                            <>
-                                <Button
-                                    handleClick={() => setUserMenu((prev) => !prev)}
-                                    className={
-                                        userMenu
-                                            ? classNames(
-                                                  HeaderMain.openBtn,
-                                                  HeaderMain.userBtn,
-                                                  HeaderMain.active,
-                                              )
-                                            : classNames(HeaderMain.openBtn, HeaderMain.userBtn)
-                                    }
-                                    text="D"
-                                />
-                                <div className={HeaderMain.dropUserMenu}>
-                                    <ul className={HeaderMain.userMenu_list}>
-                                        <li className={HeaderMain.userMenu_list_item}>
-                                            <Icon type="userPhoto" />
-                                            <Link className={HeaderMain.userMenulinkText} to="">
-                                                Profile page
-                                            </Link>
-                                        </li>
-                                        <li className={HeaderMain.userMenu_list_item}>
-                                            <Icon type="accountManagement" />
-                                            <Link className={HeaderMain.userMenulinkText} to="">
-                                                Order page
-                                            </Link>
-                                        </li>
-                                        <li className={HeaderMain.userMenu_list_item}>
-                                            <Icon
-                                                type="logOut"
-                                                className={HeaderMain.userMenuIcon}
-                                            />
-                                            <Link className={HeaderMain.userMenulinkText} to="">
-                                                Log out
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </>
+                            <Profile />
                         ) : (
                             <Button
                                 text={<Icon type="profile" />}
