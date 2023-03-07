@@ -40,16 +40,24 @@ function Profile() {
                     <ul className={profileStyles.userMenu_list}>
                         <li className={profileStyles.userMenu_list_item}>
                             <Icon type="userPhoto" />
-                            <Link className={profileStyles.userMenulinkText} to="">
-                                Profile page
+                            <Link className={profileStyles.userMenulinkText} to="user/profile">
+                                Profile
                             </Link>
                         </li>
                         <li className={profileStyles.userMenu_list_item}>
                             <Icon type="accountManagement" />
-                            <Link className={profileStyles.userMenulinkText} to="">
-                                Order page
+                            <Link className={profileStyles.userMenulinkText} to="user/orders">
+                                Orders
                             </Link>
                         </li>
+                        {user.isAdmin && (
+                            <li className={profileStyles.userMenu_list_item}>
+                                <Icon type="key" />
+                                <Link className={profileStyles.userMenulinkText} to="user/admin">
+                                    Admin panel
+                                </Link>
+                            </li>
+                        )}
                         <li className={profileStyles.userMenu_list_item}>
                             <Icon type="logOut" className={profileStyles.userMenuIcon} />
                             <Button

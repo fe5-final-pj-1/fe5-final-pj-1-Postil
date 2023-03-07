@@ -6,6 +6,15 @@ import CartRoute from './routes/CartRoute';
 import FiltersRoute from './routes/FiltersRoute';
 import DetailsRoute from './routes/DetailsRoute';
 import ErrorPage from './routes/ErrorPage';
+import ProtectedUserRoutes from './routes/ProtectedUserRoutes';
+import ProtectedCheckoutRoutes from './routes/ProtectedCheckoutRoutes';
+import ProtectedAdminRoutes from './routes/ProtectedAdminRoutes';
+import UserOrdersPage from './components/UserOrdersPage';
+import UserProfilePage from './components/UserProfilePage';
+import BagPage from './components/Checkout/pages/BagPage/BagPage';
+import ShippingDetailsPage from './components/Checkout/pages/ShippingDetailsPage';
+import PaymentOptionsPage from './components/Checkout/pages/PaymentOptionsPage';
+import AdminPanel from './components/AdminPanel';
 
 const router = createBrowserRouter([
     {
@@ -36,6 +45,56 @@ const router = createBrowserRouter([
             {
                 path: 'cart',
                 element: <CartRoute />,
+            },
+            {
+                path: 'user',
+                element: <ProtectedUserRoutes />,
+                children: [
+                    {
+                        index: true,
+                        element: <Navigate to="profile" replace />,
+                    },
+                    {
+                        path: 'profile',
+                        element: <UserProfilePage />,
+                    },
+                    {
+                        path: 'orders',
+                        element: <UserOrdersPage />,
+                    },
+                    {
+                        path: 'admin',
+                        element: <ProtectedAdminRoutes />,
+                        children: [
+                            {
+                                index: true,
+                                element: <AdminPanel />,
+                            },
+                        ],
+                    },
+                ],
+            },
+            {
+                path: 'checkout',
+                element: <ProtectedCheckoutRoutes />,
+                children: [
+                    {
+                        index: true,
+                        element: <Navigate to="confirm" replace />,
+                    },
+                    {
+                        path: 'confirm',
+                        element: <BagPage />,
+                    },
+                    {
+                        path: 'details',
+                        element: <ShippingDetailsPage />,
+                    },
+                    {
+                        path: 'options',
+                        element: <PaymentOptionsPage />,
+                    },
+                ],
             },
         ],
     },
