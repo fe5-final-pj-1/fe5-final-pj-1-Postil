@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import HeaderMain from './Header.module.scss';
 import { NavLink, Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
