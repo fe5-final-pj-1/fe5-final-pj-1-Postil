@@ -18,12 +18,12 @@ function Header() {
         <header className={HeaderMain.wrapper}>
             <div className="container">
                 <div className={HeaderMain.header}>
+                    <div className={HeaderMain.logo}>
+                        <Link to="shop">
+                            <Icon type="logo" />
+                        </Link>
+                    </div>
                     <nav className={HeaderMain.header_nav}>
-                        <div className={HeaderMain.logo}>
-                            <Link to="shop">
-                                <Icon type="logo" />
-                            </Link>
-                        </div>
                         <ul className={HeaderMain.header_list}>
                             <li id="catalogItem" className={HeaderMain.header_list_item}>
                                 <Button
@@ -154,8 +154,8 @@ function Header() {
                                 </NavLink>
                             </li>
                         </ul>
-                        <Search className={HeaderMain.group} />
                     </nav>
+                    <Search className={HeaderMain.group} />
                     <div className={HeaderMain.header_buttons}>
                         <Link to="favorite" className={HeaderMain.header_buttons_favorite}>
                             <Icon type="favorites" />
