@@ -48,6 +48,14 @@ textarea {
 input :-ms-clear {
     display: none;
 }
+// select {
+//     -webkit-appearance: none;
+//     -moz-appearance: none;
+//   }
+  
+//   select::-ms-expand {
+//     display: none;
+//   }
 button {
     cursor: pointer;
 }
