@@ -50,6 +50,9 @@
 .header_list_item:first-child {
     position: relative;
 }
+.header_list_item:first-child:hover .dropCatalog {
+    display: block;
+}
 .openBtn {
     margin-left: 0.4rem;
     background: transparent;
@@ -93,25 +96,25 @@
         width: 2.3rem;
     }
 }
-.dropCatalog {
+.catalog_wrapper{
     position: absolute;
-    border-top: $dark-color 0.5rem solid;
+    z-index: 100;
     right: -5.6rem;
-    top: 4.2rem;
+    padding-top: 2.5rem;
+}
+.dropCatalog {
+    border-top: $dark-color 0.5rem solid;
+    padding-top: 2rem;
+    display: none;
+    
     padding: 3rem 4rem;
     background-color: $light-color;
-    display: none;
-    z-index: 100;
     & a {
         transition: all 0.1s ease-in;
-
         &:hover {
             font-weight: 700;
         }
     }
-}
-.active + .dropCatalog {
-    display: block;
 }
 .catalog_menu_list {
     display: flex;
@@ -127,48 +130,4 @@
 .userIconWrp {
     display: flex;
     align-items: center;
-}
-.userBtn {
-    width: 3.8rem;
-    height: 3.8rem;
-    background-color: $lightGrey;
-    border-radius: 50%;
-    border: 2px solid $dark-color;
-}
-.dropUserMenu {
-    position: absolute;
-    border-top: #373f41 0.5rem solid;
-    right: 0;
-    top: 5rem;
-    background-color: rgb(255, 255, 255);
-    display: none;
-    z-index: 100;
-}
-.active + .dropUserMenu {
-    display: block;
-}
-.userMenu_list {
-    display: flex;
-    align-items: flex-start;
-    flex-direction: column;
-    padding: 1rem 3rem;
-    gap: 1.5rem;
-}
-.userMenu_list_item {
-    display: flex;
-    align-items: center;
-    gap: 1.5rem;
-    width: max-content;
-    font-size: $text-fs;
-}
-.userMenulinkText {
-    transition: all 0.3s;
-    &:link,
-    &:visited,
-    &:active {
-        color: $dark-color;
-    }
-    &:hover {
-        font-weight: 700;
-    }
 }

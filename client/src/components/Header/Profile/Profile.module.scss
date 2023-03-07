@@ -1,0 +1,96 @@
+@import '../../../style/mixins';
+@import '../../../style/variables';
+
+.userBtn {
+    width: 3.8rem;
+    height: 3.8rem;
+    background-color: #d9d9d9;
+    border-radius: 50%;
+    border: 1px solid $dark-color;
+    transition: all 0.2s ease-in;
+    position: relative;
+    z-index: 200;
+    margin: 0;
+
+    &:hover {
+        background-color: $lightGrey;
+    }
+}
+
+.userMenu {
+    position: relative;
+    border-radius: 50%;
+}
+
+.dropUserMenu {
+    position: absolute;
+    right: 0;
+    top: 2.5rem;
+    background-color: transparent;
+    display: none;
+    z-index: 100;
+    padding-top: 2.5rem;
+}
+
+.dropUserMenuContent {
+    border-top: #373F41 0.5rem solid;
+    background-color: rgb(255, 255, 255);
+    padding-bottom: .5rem;
+}
+
+.userMenu:hover > .dropUserMenu {
+    display: block;
+}
+
+.userMenu_list {
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 1rem 3rem;
+    gap: 1.5rem;
+}
+
+.userMenu_list_item {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    width: max-content;
+    font-size: $text-fs;
+    
+    & svg {
+        height: 2rem;
+    }
+}
+.userMenulinkText {
+    transition: all 0.3s;
+
+    &:link,
+    &:visited,
+    &:active {
+        color: $dark-color;
+    }
+
+    &:hover {
+           font-weight: 700;
+        }
+}
+
+.userMenuLogOut {
+    transition: all 0.3s;
+    background-color: transparent;
+    font-size: 1.6rem;
+
+    &:hover {
+           font-weight: 700;
+        }
+}
+
+.avatar {
+    background-size: cover;
+    background-position: center;
+    transition: all 0.2s ease-in;
+
+    &:hover {
+        background-blend-mode: darken;
+    }
+}
