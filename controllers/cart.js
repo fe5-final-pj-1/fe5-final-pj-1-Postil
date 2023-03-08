@@ -13,12 +13,7 @@ exports.createCart = (req, res, next) => {
       const initialQuery = _.cloneDeep(req.body);
       initialQuery.customerId = req.user.id;
 
-      const newCart = new Cart(queryCreator(initialQuery));
-
-      newCart
-        .populate('products.product')
-        .populate('customerId')
-        .execPopulate();
+      const newCart = new Cart(initialQuery);
 
       newCart
         .save()

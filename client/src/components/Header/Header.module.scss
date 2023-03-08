@@ -1,5 +1,6 @@
-@import '../../style/variables';
-@import '../../style/mixins';
+@import "../../style/variables";
+@import "../../style/mixins";
+@import "../../style/animation";
 .wrapper {
     border-bottom: 0.07rem solid $dark-color;
     padding-top: 2.2rem;
@@ -69,6 +70,15 @@
 }
 .header_buttons_profile {
     background: transparent;
+
+    & svg {
+        fill: transparent;
+        transition: all 0.2s ease-in;
+
+        &:hover {
+            fill: #000;
+        }
+    }
 }
 .group {
     position: relative;
@@ -96,7 +106,7 @@
         width: 2.3rem;
     }
 }
-.catalog_wrapper{
+.catalog_wrapper {
     position: absolute;
     z-index: 100;
     right: -5.6rem;
@@ -106,7 +116,7 @@
     border-top: $dark-color 0.5rem solid;
     padding-top: 2rem;
     display: none;
-    
+
     padding: 3rem 4rem;
     background-color: $light-color;
     & a {
@@ -130,4 +140,34 @@
 .userIconWrp {
     display: flex;
     align-items: center;
+}
+.headerLinkHeart {
+    &:hover {
+        animation: pulse 1s infinite;
+    }
+}
+.headerLinkCart {
+    position: relative;
+    transition: all .2s ease-in;
+    
+    & > span {
+        position: absolute;
+        display: flex;
+        background-color: $dark-color;
+        width: 2rem;
+        height: 2rem;
+        border-radius: 50%;
+        font-size: 1rem;
+        align-items: center;
+        justify-content: center;
+        line-height: 0;
+        color: $light-color;
+        right: -1.5rem;
+        bottom: -1rem;
+    }
+
+    &:hover {
+        transform: scale(1.05);
+    }
+
 }

@@ -4,31 +4,56 @@ import Button from '../Button';
 import Icon from '../Icon/Icon';
 import ProductCarousel from '../ProductCarousel';
 import PropTypes from 'prop-types';
+// eslint-disable-next-line no-unused-vars
 import { itemAdded } from '../../store/cartSlice';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
+import createWishList from 'api/createWishList';
+import getWishList from 'api/getWishList';
+import addProductToWishList from 'api/addProductToWishList';
+// eslint-disable-next-line no-unused-vars
+import getCart from 'api/getCart';
+// eslint-disable-next-line no-unused-vars
+import createCart from 'api/createCart';
 
 const SingleItemSection = ({ product }) => {
-    const { color, currentPrice, imageUrls, fabric, itemNo, name, size } = product;
+    const { _id, color, currentPrice, imageUrls, fabric, itemNo, name, size } = product;
     const [active, setActive] = useState({
         reviews: false,
         description: false,
     });
+    // eslint-disable-next-line no-unused-vars
     const dispatch = useDispatch();
-    const cart = useSelector((state) => state.store.cart);
-
+    const isLogIn = useSelector((state) => state.store.login.isLogIn, shallowEqual);
+    // eslint-disable-next-line no-unused-vars
+    const cart = useSelector((state) => state.store.cart, shallowEqual);
     //user not login
     const addToCart = () => {
-        if (cart.map((item) => item.product).includes(itemNo)) {
-            const findCart = cart.find((item) => item.product === itemNo);
-            const filteredCart = cart.filter((item) => item.product !== itemNo);
-            dispatch(
-                itemAdded([
-                    ...filteredCart,
-                    { product: itemNo, cartQuantity: findCart.cartQuantity + 1 },
-                ]),
-            );
+        getCart().then((cart) => console.log(cart));
+        // if (cart.map((item) => item.product).includes(itemNo)) {
+        //     const findCart = cart.find((item) => item.product === itemNo);
+        //     const filteredCart = cart.filter((item) => item.product !== itemNo);
+        //     dispatch(
+        //         itemAdded([
+        //             ...filteredCart,
+        //             { product: itemNo, cartQuantity: findCart.cartQuantity + 1 },
+        //         ]),
+        //     );
+        // } else {
+        //     dispatch(itemAdded([...cart, { product: itemNo, cartQuantity: 1 }]));
+        // }
+    };
+    const addToFavourites = async () => {
+        const wishList = await getWishList();
+        const wishListData = wishList.data;
+        if (!wishListData) {
+            createWishList({
+                products: [_id],
+            });
         } else {
-            dispatch(itemAdded([...cart, { product: itemNo, cartQuantity: 1 }]));
+            const currentProduct = wishListData.products.find((elem) => elem._id === _id);
+            if (!currentProduct) {
+                addProductToWishList(_id);
+            }
         }
     };
     return (
@@ -100,7 +125,12 @@ const SingleItemSection = ({ product }) => {
                                     text={'ADD TO BAG'}
                                     className={styles.btn}
                                 />
-                                <Button className={styles.btnHeart} />
+                                {isLogIn && (
+                                    <Button
+                                        className={styles.btnHeart}
+                                        handleClick={addToFavourites}
+                                    />
+                                )}
                             </div>
                         </div>
                         <div className={styles.boxInfo}>
