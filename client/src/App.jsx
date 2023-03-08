@@ -3,12 +3,14 @@ import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom'
 import AppLayout from './routes/AppLayout';
 import Home from './routes/Home';
 import CartRoute from './routes/CartRoute';
+import FavouritesRoute from 'routes/FavouritesRoute';
 import FiltersRoute from './routes/FiltersRoute';
 import DetailsRoute from './routes/DetailsRoute';
 import ErrorPage from './routes/ErrorPage';
 import ProtectedUserRoutes from './routes/ProtectedUserRoutes';
 import ProtectedCheckoutRoutes from './routes/ProtectedCheckoutRoutes';
 import ProtectedAdminRoutes from './routes/ProtectedAdminRoutes';
+import CustomerServiceRoute from 'routes/CustomerServiceRoute';
 import UserOrdersPage from './components/UserOrdersPage';
 import UserProfilePage from './components/UserProfilePage';
 import BagPage from './components/Checkout/pages/BagPage/BagPage';
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
             {
                 path: 'cart',
                 element: <CartRoute />,
+            },
+            {
+                path: 'favourites',
+                element: <FavouritesRoute />,
+            },
+            {
+                path: 'service',
+                element: <CustomerServiceRoute />,
             },
             {
                 path: 'user',

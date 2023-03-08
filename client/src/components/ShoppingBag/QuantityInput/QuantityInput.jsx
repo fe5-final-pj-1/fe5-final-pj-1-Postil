@@ -46,6 +46,7 @@ const QuantityInput = ({ quantity }) => {
                 type="text"
                 name="amount"
                 value={quantity}
+                onChange={() => console.log(1)}
                 // onChange={onChangeInputHandler}
                 // onBlur={onBlurInputHandler}
                 className={styles.numInput}

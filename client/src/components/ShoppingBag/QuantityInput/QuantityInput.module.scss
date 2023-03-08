@@ -1,12 +1,11 @@
-@import 'index.scss';
-@import '../../style';
+@import 'style/_variables.scss';
+@import 'style/_mixins.scss';
 
-$inputBorder: 1px solid $mainTxtColor;
 .numInputBlock {
     display: flex;
     width: 70px;
     height: 50px;
-    border: $inputBorder;
+    border: $border-dark;
     border-radius: 2px;
     align-self: flex-end;
 
@@ -15,10 +14,10 @@ $inputBorder: 1px solid $mainTxtColor;
         @include muli-font-semibold;
         font-size: 1.8rem;
         line-height: 3.2rem;
-        color: $mainTxtColor;
+        color: $dark-color;
         width: 40px;
 
-        border-right: $inputBorder;
+        border-right: $border-dark;
         text-align: center;
     }
 
@@ -26,7 +25,6 @@ $inputBorder: 1px solid $mainTxtColor;
         display: flex;
         flex-direction: column;
         width: 100%;
-        // justify-content: stretch;
     }
 
     .counterBtn {
@@ -36,7 +34,7 @@ $inputBorder: 1px solid $mainTxtColor;
         cursor: default;
 
         &:first-of-type {
-            border-bottom: $inputBorder;
+            border-bottom: $border-dark;
         }
     }
 }
