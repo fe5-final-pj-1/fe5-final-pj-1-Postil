@@ -4,6 +4,8 @@ import Button from '../Button';
 import Icon from '../Icon/Icon';
 import ProductCarousel from '../ProductCarousel';
 import PropTypes from 'prop-types';
+import { itemAdded } from '../../store/cartSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const SingleItemSection = ({ product }) => {
     const { color, currentPrice, imageUrls, fabric, itemNo, name, size } = product;
@@ -11,6 +13,24 @@ const SingleItemSection = ({ product }) => {
         reviews: false,
         description: false,
     });
+    const dispatch = useDispatch();
+    const cart = useSelector((state) => state.store.cart);
+
+    //user not login
+    const addToCart = () => {
+        if (cart.map((item) => item.product).includes(itemNo)) {
+            const findCart = cart.find((item) => item.product === itemNo);
+            const filteredCart = cart.filter((item) => item.product !== itemNo);
+            dispatch(
+                itemAdded([
+                    ...filteredCart,
+                    { product: itemNo, cartQuantity: findCart.cartQuantity + 1 },
+                ]),
+            );
+        } else {
+            dispatch(itemAdded([...cart, { product: itemNo, cartQuantity: 1 }]));
+        }
+    };
     return (
         <section className={styles.singleItem}>
             <div className="container">
@@ -75,7 +95,11 @@ const SingleItemSection = ({ product }) => {
                                 <p className={styles.buyTextTwo}>PRE-ORDER</p>
                             </div>
                             <div className={styles.boxForBuyR}>
-                                <Button text={'ADD TO BAG'} className={styles.btn} />
+                                <Button
+                                    handleClick={addToCart}
+                                    text={'ADD TO BAG'}
+                                    className={styles.btn}
+                                />
                                 <Button className={styles.btnHeart} />
                             </div>
                         </div>

@@ -5,37 +5,36 @@
     padding-top: 2.2rem;
     padding-bottom: 1rem;
 }
-
 .header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
 }
-
+.logo {
+    width: 10%;
+}
 .header_nav {
     display: flex;
     align-items: center;
     color: $dark-color;
+    width: 34%;
 }
-
 .header_list {
     display: flex;
     align-items: center;
-    margin-left: 7.7rem;
-    margin-right: 5.6rem;
 }
-
 .header_list_item {
     margin-right: 3.8rem;
     font-size: $text-fs;
     padding-bottom: 0.3rem;
     border-bottom: 0.1rem solid transparent;
+    @media only screen and (max-width: $bp-large) {
+        margin-right: 2.5rem;
+    }
 }
 .header_list_item a {
     font-size: $text-fs;
     color: $dark-color;
 }
-
 .header_list_item_btn {
     background: transparent;
     font-size: $text-fs;
@@ -45,29 +44,25 @@
 .header_list_item:hover {
     border-bottom: 0.1rem solid $dark-color;
 }
-
 .header_list_item:last-child {
     margin-right: 0;
 }
-
 .header_list_item:first-child {
     position: relative;
 }
 .header_list_item:first-child:hover .dropCatalog {
     display: block;
 }
-
 .openBtn {
     margin-left: 0.4rem;
     background: transparent;
 }
-
 .header_buttons {
     display: flex;
     align-items: center;
     position: relative;
+    margin-left: auto;
 }
-
 .header_buttons a:not(:last-child) {
     margin-right: 3rem;
     background: transparent;
@@ -75,15 +70,16 @@
 .header_buttons_profile {
     background: transparent;
 }
-
 .group {
     position: relative;
     line-height: 1.8rem;
-    align-items: center;
-    position: relative;
     width: 39rem;
+    max-width: calc(39rem);
     height: 2.5rem;
     border-bottom: $dark-color 0.07rem solid;
+    @media only screen and (max-width: $bp-large) {
+        width: calc(100vw - 65rem);
+    }
     & > input {
         outline: none;
         color: #0d0c22;
@@ -113,10 +109,8 @@
     
     padding: 3rem 4rem;
     background-color: $light-color;
-
     & a {
         transition: all 0.1s ease-in;
-
         &:hover {
             font-weight: 700;
         }
@@ -126,16 +120,13 @@
     display: flex;
     flex-direction: column;
 }
-
 .catalog_menu_list_item {
     margin-bottom: 2rem;
     color: $dark-color;
 }
-
 .catalog_menu_list_item:last-child {
     margin-bottom: 0;
 }
-
 .userIconWrp {
     display: flex;
     align-items: center;
