@@ -4,7 +4,6 @@ const getConfigs = require("../config/getConfigs");
 
 module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
   const configs = await getConfigs();
-
   //authorization for sending email
   let transporter = nodemailer.createTransport({
     service:
@@ -22,7 +21,6 @@ module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
           : configs.development.email.mailPassword
     }
   });
-
   const mailOptions = {
     from:
       process.env.NODE_ENV === "production"
@@ -32,8 +30,15 @@ module.exports = async (subscriberMail, letterSubject, letterHtml, res) => {
     subject: letterSubject,
     html: letterHtml
   };
-
-  const result = await transporter.sendMail(mailOptions);
-
+  const result = await transporter.sendMail(mailOptions, function(error, info){
+    if (error) {
+        console.log("error is "+error);
+       resolve(false); // or use rejcet(false) but then you will have to handle errors
+    } 
+   else {
+       console.log('Email sent: ' + info.response);
+       resolve(true);
+    }
+   });
   return result;
 };
