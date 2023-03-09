@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import newInStyles from './NewInSection.module.scss';
 import getFilteredProducts from '../../api/getFilteredProducts';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function NewInSection() {
     const { newIn, newInTitle, newInWrp, newInItem, newInImg, newInText, newInPrice } = newInStyles;
@@ -18,10 +19,10 @@ function NewInSection() {
             <div className="container">
                 <p className={newInTitle}>NEW IN</p>
                 <ul className={newInWrp}>
-                    {items.map(({ name, itemNo, imageUrls, currentPrice }) => {
+                    {items.map(({ name, itemNo, imageUrls, currentPrice, _id }) => {
                         return (
                             <li className={newInItem} key={itemNo}>
-                                <Link to={`/catalog/${itemNo}`}>
+                                <Link to={`/catalog/${_id}`}>
                                     <img className={newInImg} src={imageUrls[0]} alt="new-img" />
                                     <div className={newInStyles.descriptionContainer}>
                                         <p className={newInText}>{name}</p>
@@ -38,3 +39,11 @@ function NewInSection() {
 }
 
 export default NewInSection;
+
+NewInSection.propTypes = {
+    items: PropTypes.array,
+};
+
+NewInSection.defaultProps = {
+    items: [],
+};

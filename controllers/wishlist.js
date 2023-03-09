@@ -12,10 +12,7 @@ exports.createWishlist = (req, res, next) => {
     } else {
       const wishlistData = _.cloneDeep(req.body);
       wishlistData.customerId = req.user.id;
-
-      const newWishlist = new Wishlist(queryCreator(wishlistData));
-
-      newWishlist.populate('products').populate('customerId').execPopulate();
+      const newWishlist = new Wishlist(wishlistData);
 
       newWishlist
         .save()

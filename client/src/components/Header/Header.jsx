@@ -13,6 +13,7 @@ import Profile from './Profile/Profile';
 function Header() {
     const isLogIn = useSelector((state) => state.store.login.isLogIn, shallowEqual);
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
+    const cart = useSelector((state) => state.store.cart, shallowEqual);
     const dispatch = useDispatch();
     return (
         <header className={HeaderMain.wrapper}>
@@ -157,11 +158,16 @@ function Header() {
                     </nav>
                     <Search className={HeaderMain.group} />
                     <div className={HeaderMain.header_buttons}>
-                        <Link to="favorite" className={HeaderMain.header_buttons_favorite}>
+                        <Link to="favourites" className={HeaderMain.headerLinkHeart}>
                             <Icon type="favorites" />
                         </Link>
-                        <Link to="cart" className={HeaderMain.header_buttons_cart}>
+                        <Link to="cart" className={HeaderMain.headerLinkCart}>
                             <Icon type="cart" />
+                            {cart.length > 0 && (
+                                <span>
+                                    {cart.reduce((acc, item) => acc + item.cartQuantity, 0)}
+                                </span>
+                            )}
                         </Link>
                         {isLogIn ? (
                             <Profile />
