@@ -8,7 +8,7 @@ const BagPage = () => {
         <>
             <TabsSection />
             <div className={styles.mainContainer}>
-                <SummaryTextSection />
+                <SummaryTextSection route="/checkout/details" />
             </div>
         </>
     );

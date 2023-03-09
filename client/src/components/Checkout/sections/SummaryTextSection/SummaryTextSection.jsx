@@ -1,7 +1,9 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import styles from './SummaryTextSection.module.scss';
-import Button from '../../../Button';
-const SummaryTextSection = () => {
+// import Button from '../../../Button';
+import { Link } from 'react-router-dom';
+const SummaryTextSection = ({ route }) => {
     return (
         <section>
             <div className={styles.summary}>
@@ -21,9 +23,18 @@ const SummaryTextSection = () => {
                 <p className={styles.totalName}>
                     TOTAL<span className={styles.sum}>$495</span>
                 </p>
-                <Button className={styles.sumBtn} text={'BUY'} />
+                <Link to={route} className={styles.sumBtn}>
+                    BUY
+                </Link>
             </div>
         </section>
     );
 };
 export default SummaryTextSection;
+
+SummaryTextSection.propTypes = {
+    route: PropTypes.string,
+};
+SummaryTextSection.defaultProps = {
+    route: 'confirm',
+};
