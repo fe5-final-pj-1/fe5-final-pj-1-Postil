@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';
 import styles from './CartPage.module.scss';
 import ShoppingBag from 'components/ShoppingBag';
-import Button from 'components/Button';
 import CarouselSection from 'components/CarouselSection';
 import { useSelector } from 'react-redux';
 import getAllProducts from 'api/getAllProducts';
@@ -36,7 +36,9 @@ function CartPage() {
             ) : (
                 <>
                     <ShoppingBag />
-                    <Button text="PROCEED TO CHECKOUT" className={styles.checkoutBtn} />
+                    <Link to="/checkout" className={styles.checkoutBtn}>
+                        PROCEED TO CHECKOUT
+                    </Link>
                 </>
             )}
             <CarouselSection products={products} sectionTitle="YOU MIGHT LIKE IT TOO" />
