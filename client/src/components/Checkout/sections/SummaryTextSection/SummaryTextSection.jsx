@@ -1,7 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SummaryTextSection.module.scss';
-// import Button from '../../../Button';
 import { Link } from 'react-router-dom';
 const SummaryTextSection = ({ subtotal, route }) => {
     return (
@@ -37,6 +36,6 @@ SummaryTextSection.propTypes = {
     subtotal: PropTypes.number,
 };
 SummaryTextSection.defaultProps = {
-    route: 'confirm',
+    route: '/checkout/confirm',
     subtotal: 0,
 };
