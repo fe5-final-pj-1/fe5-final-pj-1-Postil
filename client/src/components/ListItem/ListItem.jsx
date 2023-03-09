@@ -6,6 +6,7 @@ import QuantityInput from '../ShoppingBag/QuantityInput';
 import getWishList from 'api/getWishList';
 import createWishList from 'api/createWishList';
 import addProductToWishList from 'api/addProductToWishList';
+import Button from 'components/Button';
 
 const ListItem = ({ item, type }) => {
     const { _id, name, imageUrls, currentPrice, color, size, fabric, cartQuantity } = item;
@@ -68,24 +69,35 @@ const ListItem = ({ item, type }) => {
                 </div>
             </div>
             <div className={styles.flexBlockBtns}>
-                <button className={styles.removeBtn}>
-                    <Icon type="bagRemoveBtn" />
-                </button>
-                <div className={styles.addToFav}>
-                    <span className={styles.addToFavTxt}>
-                        {favouritesClicked ? 'ADD TO' : 'REMOVE FROM'} FAVORITES
-                    </span>
-                    <button
-                        className={styles.favBtn}
-                        onClick={favouritesClicked ? RemoveFromFavourites : addToFavourites}
-                    >
-                        {favouritesClicked ? (
-                            <Icon type="bagFavIcon" />
-                        ) : (
-                            <Icon type="bagFavIconFill" />
-                        )}
-                    </button>
-                </div>
+                <Button
+                    handleClick={favouritesClicked ? RemoveFromFavourites : addToFavourites}
+                    text={<Icon type="bagRemoveBtn" />}
+                    className={styles.removeBtn}
+                />
+                {type === 'cart' ? (
+                    <div className={styles.addToFav}>
+                        <span className={styles.addToFavTxt}>
+                            {favouritesClicked ? 'REMOVE FROM' : 'ADD TO'} FAVORITES
+                        </span>
+                        <Button
+                            handleClick={favouritesClicked ? RemoveFromFavourites : addToFavourites}
+                            text={
+                                favouritesClicked ? (
+                                    <Icon type="bagFavIconFill" />
+                                ) : (
+                                    <Icon type="bagFavIcon" />
+                                )
+                            }
+                            className={styles.favBtn}
+                        />
+                    </div>
+                ) : (
+                    <Button
+                        handleClick={() => console.log('add to cart')}
+                        text={'ADD TO CART'}
+                        className={styles.btnCart}
+                    />
+                )}
             </div>
         </>
     );
