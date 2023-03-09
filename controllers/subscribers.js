@@ -64,7 +64,7 @@ exports.addSubscriber = (req, res, next) => {
         );
     } else {
       const initialQuery = _.cloneDeep(req.body);
-      const newSubscriber = new Subscriber(queryCreator(initialQuery));
+      const newSubscriber = new Subscriber(initialQuery);
 
       newSubscriber
         .save()
@@ -75,7 +75,6 @@ exports.addSubscriber = (req, res, next) => {
             letterHtml,
             res
           );
-
           res.json({
             subscriber,
             mailResult
