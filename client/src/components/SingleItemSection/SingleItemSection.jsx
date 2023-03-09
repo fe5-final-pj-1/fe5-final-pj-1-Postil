@@ -122,7 +122,7 @@ const SingleItemSection = ({ product }) => {
                             <div className={styles.boxForBuyR}>
                                 <Button
                                     handleClick={addToCart}
-                                    text={'ADD TO BAG'}
+                                    text={'ADD TO CART'}
                                     className={styles.btn}
                                 />
                                 {isLogIn && (

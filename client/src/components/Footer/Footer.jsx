@@ -2,7 +2,24 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import FooterStyle from './Footer.module.scss';
+import addSubscriber from '../../api/addSubscriber';
+
 function Footer() {
+    let inputValue;
+    const getValue = (evt) => {
+        evt.preventDefault();
+        inputValue = evt.target.value;
+        evt.target.value = '';
+    };
+    const postForm = (evt) => {
+        evt.preventDefault();
+        addSubscriber({
+            email: inputValue,
+            letterSubject: 'Тестовое письмо (окончательный проект)',
+            letterHtml:
+                "<!DOCTYPE html><html lang='en'> <head> <meta charset='UTF -8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' / > <title>Документ</title> <style> td { padding: 20px 50px; цвет фона: желтый; цвет: сине-фиолетовый; размер шрифта: 20px; } </style> </head> <body> <table> <tr> <td>Тест1</td> <td>Тест2</td> <td>Тест3</td> </tr> <tr> <td>Test1.1</td> <td>Test2.1</td> <td>Test3.1</td> </tr> </table> </body></ html>",
+        }).then((res) => console.log(res.data));
+    };
     return (
         <footer className={FooterStyle.wrapper}>
             <div className="container">
@@ -81,8 +98,13 @@ function Footer() {
                         <p className={FooterStyle.promotion_text}>
                             Subscribe now and get 15% off on your first <br /> order
                         </p>
-                        <form className={FooterStyle.subscription_input}>
+                        <form
+                            className={FooterStyle.subscription_input}
+                            onSubmit={postForm}
+                            role="presentation"
+                        >
                             <input
+                                onBlur={getValue}
                                 type="email"
                                 className={FooterStyle.input}
                                 id="Email"
