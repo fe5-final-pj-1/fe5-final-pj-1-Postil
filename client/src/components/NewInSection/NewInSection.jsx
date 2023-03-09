@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import newInStyles from './NewInSection.module.scss';
 import getFilteredProducts from '../../api/getFilteredProducts';
 import { Link } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 function NewInSection() {
     const { newIn, newInTitle, newInWrp, newInItem, newInImg, newInText, newInPrice } = newInStyles;
@@ -38,3 +39,11 @@ function NewInSection() {
 }
 
 export default NewInSection;
+
+NewInSection.propTypes = {
+    items: PropTypes.array,
+};
+
+NewInSection.defaultProps = {
+    items: [],
+};
