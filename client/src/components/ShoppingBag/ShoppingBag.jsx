@@ -1,12 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import ListItem from 'components/ListItem';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import styles from './ShoppingBag.module.scss';
 import getOneProduct from 'api/getOneProduct';
 import getCart from 'api/getCart';
 import createCart from 'api/createCart';
-// eslint-disable-next-line no-unused-vars
-import { removeAllItems } from 'store/cartSlice';
 import updateCart from 'api/updateCart';
 import { Oval } from 'react-loader-spinner';
 
@@ -15,8 +13,6 @@ const ShoppingBag = () => {
     const [isLoaded, setIsLoaded] = useState(true);
     const cartStorage = useSelector((state) => state.store.cart);
     const isLogIn = useSelector((state) => state.store.login.isLogIn);
-    // eslint-disable-next-line no-unused-vars
-    const dispatch = useDispatch();
     const addProducts = async () => {
         const tempCart = [];
         for (let i = 0; i < cartStorage.length; i++) {
@@ -26,8 +22,6 @@ const ShoppingBag = () => {
                 cartQuantity: cartStorage[i].cartQuantity,
             });
         }
-        console.log(tempCart);
-        // console.log(cartStorage);
         setIsLoaded(true);
         setCart(tempCart);
     };
@@ -55,7 +49,6 @@ const ShoppingBag = () => {
                 } else {
                     if (cartStorage.length > 0) {
                         updateCart({ products: [...cartStorage] }).then((res) => {
-                            console.log(res.data);
                             setCart(res.data.products);
                             setIsLoaded(true);
                         });
@@ -85,6 +78,13 @@ const ShoppingBag = () => {
                 strokeWidth={2}
                 strokeWidthSecondary={2}
             />
+        );
+    }
+    if (cart.length === 0) {
+        return (
+            <h2 className="h2" style={{ textAlign: 'center' }}>
+                Cart is empty
+            </h2>
         );
     }
     return (

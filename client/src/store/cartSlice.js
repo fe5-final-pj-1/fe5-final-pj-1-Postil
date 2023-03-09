@@ -8,12 +8,11 @@ const cartSlice = createSlice({
     reducers: {
         itemAdded(state, action) {
             if (state.map((item) => item.product).includes(action.payload)) {
-                const findCart = state.find((item) => item.product === action.payload);
-                const filteredCart = state.filter((item) => item.product !== action.payload);
-                return [
-                    ...filteredCart,
-                    { product: action.payload, cartQuantity: findCart.cartQuantity + 1 },
-                ];
+                return state.map((item) => {
+                    if (item.product === action.payload) {
+                        return { product: action.payload, cartQuantity: item.cartQuantity + 1 };
+                    } else return item;
+                });
             } else {
                 return [...state, { product: action.payload, cartQuantity: 1 }];
             }
@@ -24,13 +23,13 @@ const cartSlice = createSlice({
             }
         },
         decreaseProduct(state, action) {
-            const newCart = state.filter((item) => item.product !== action.payload);
             const findCart = state.find((item) => item.product === action.payload);
             if (findCart.cartQuantity > 1) {
-                return [
-                    ...newCart,
-                    { product: findCart.product, cartQuantity: findCart.cartQuantity - 1 },
-                ];
+                return state.map((item) => {
+                    if (item.product === action.payload) {
+                        return { product: action.payload, cartQuantity: item.cartQuantity - 1 };
+                    } else return item;
+                });
             }
         },
         changeQuantity(state, action) {
