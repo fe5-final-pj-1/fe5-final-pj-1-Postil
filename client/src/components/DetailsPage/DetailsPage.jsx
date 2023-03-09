@@ -27,12 +27,12 @@ function DetailsPage() {
             setProducts(
                 res.data.length % 3
                     ? res.data.slice(0, res.data.length - (res.data.length % 3)).map((item) => {
-                          const { name, currentPrice, imageUrls, itemNo } = item;
-                          return { name, currentPrice, imageUrls, itemNo };
+                          const { name, currentPrice, imageUrls, _id } = item;
+                          return { name, currentPrice, imageUrls, _id };
                       })
                     : res.data.map((item) => {
-                          const { name, currentPrice, imageUrls, itemNo } = item;
-                          return { name, currentPrice, imageUrls, itemNo };
+                          const { name, currentPrice, imageUrls, _id } = item;
+                          return { name, currentPrice, imageUrls, _id };
                       }),
             ),
         );

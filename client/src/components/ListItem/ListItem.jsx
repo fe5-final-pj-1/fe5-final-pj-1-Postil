@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
+import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import styles from './ListItem.module.scss';
 import Icon from 'components/Icon';
 import QuantityInput from '../ShoppingBag/QuantityInput';
@@ -7,27 +8,40 @@ import getWishList from 'api/getWishList';
 import createWishList from 'api/createWishList';
 import addProductToWishList from 'api/addProductToWishList';
 import Button from 'components/Button';
+import deleteProductFromCart from 'api/deleteProductFromCart';
+import { removeItem } from 'store/cartSlice';
 
-const ListItem = ({ item, type }) => {
-    const { _id, name, imageUrls, currentPrice, color, size, fabric, cartQuantity } = item;
+const ListItem = ({ cartChange, quantity, item, type }) => {
+    const { _id, name, imageUrls, currentPrice, color, size, fabric, itemNo } = item;
+    const isLogin = useSelector((state) => state.store.login.isLogIn, shallowEqual);
     const [favouritesClicked, setFavouritesClicked] = useState(false);
+    const dispatch = useDispatch();
     const addToFavourites = async () => {
-        const wishList = await getWishList();
-        const wishListData = wishList.data;
-        if (!wishListData) {
-            createWishList({
-                products: [_id],
-            });
-        } else {
-            const currentProduct = wishListData.products.find((elem) => elem._id === _id);
-            if (!currentProduct) {
-                addProductToWishList(_id);
+        if (isLogin) {
+            const wishList = await getWishList();
+            const wishListData = wishList.data;
+            if (!wishListData) {
+                createWishList({
+                    products: [_id],
+                });
+            } else {
+                const currentProduct = wishListData.products.find((elem) => elem._id === _id);
+                if (!currentProduct) {
+                    addProductToWishList(_id);
+                }
             }
+            setFavouritesClicked(true);
         }
-        setFavouritesClicked(true);
     };
     const RemoveFromFavourites = async () => {
         setFavouritesClicked(false);
+    };
+    const deleteFromCart = async () => {
+        dispatch(removeItem(_id));
+        if (isLogin) {
+            await deleteProductFromCart(_id);
+            cartChange(true);
+        }
     };
     return (
         <>
@@ -65,38 +79,51 @@ const ListItem = ({ item, type }) => {
                             </p>
                         )}
                     </div>
-                    {type === 'cart' ? <QuantityInput quantity={cartQuantity} /> : null}
+                    {type === 'cart' ? (
+                        <QuantityInput itemNo={itemNo} id={_id} quantity={quantity} />
+                    ) : null}
                 </div>
             </div>
             <div className={styles.flexBlockBtns}>
-                <Button
-                    handleClick={favouritesClicked ? RemoveFromFavourites : addToFavourites}
-                    text={<Icon type="bagRemoveBtn" />}
-                    className={styles.removeBtn}
-                />
                 {type === 'cart' ? (
-                    <div className={styles.addToFav}>
-                        <span className={styles.addToFavTxt}>
-                            {favouritesClicked ? 'REMOVE FROM' : 'ADD TO'} FAVORITES
-                        </span>
+                    <>
+                        <Button
+                            handleClick={deleteFromCart}
+                            text={<Icon type="bagRemoveBtn" />}
+                            className={styles.removeBtn}
+                        />
+                        <div className={styles.addToFav}>
+                            <span className={styles.addToFavTxt}>
+                                {favouritesClicked ? 'REMOVE FROM' : 'ADD TO'} FAVORITES
+                            </span>
+                            <Button
+                                handleClick={
+                                    favouritesClicked ? RemoveFromFavourites : addToFavourites
+                                }
+                                text={
+                                    favouritesClicked ? (
+                                        <Icon type="bagFavIconFill" />
+                                    ) : (
+                                        <Icon type="bagFavIcon" />
+                                    )
+                                }
+                                className={styles.favBtn}
+                            />
+                        </div>
+                    </>
+                ) : (
+                    <>
                         <Button
                             handleClick={favouritesClicked ? RemoveFromFavourites : addToFavourites}
-                            text={
-                                favouritesClicked ? (
-                                    <Icon type="bagFavIconFill" />
-                                ) : (
-                                    <Icon type="bagFavIcon" />
-                                )
-                            }
-                            className={styles.favBtn}
+                            text={<Icon type="bagRemoveBtn" />}
+                            className={styles.removeBtn}
                         />
-                    </div>
-                ) : (
-                    <Button
-                        handleClick={() => console.log('add to cart')}
-                        text={'ADD TO CART'}
-                        className={styles.btnCart}
-                    />
+                        <Button
+                            handleClick={() => console.log('add to cart')}
+                            text={'ADD TO CART'}
+                            className={styles.btnCart}
+                        />
+                    </>
                 )}
             </div>
         </>
@@ -106,10 +133,13 @@ const ListItem = ({ item, type }) => {
 ListItem.propTypes = {
     item: PropTypes.object,
     type: PropTypes.string,
+    quantity: PropTypes.number,
+    cartChange: PropTypes.func,
 };
 ListItem.defaultProps = {
     item: {},
     type: '',
+    quantity: 1,
 };
 
 export default ListItem;
