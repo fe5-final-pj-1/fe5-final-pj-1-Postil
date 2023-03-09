@@ -7,6 +7,7 @@ import getCart from 'api/getCart';
 import deleteProductFromCart from 'api/deleteProductFromCart';
 import updateCart from 'api/updateCart';
 import { useDispatch, useSelector } from 'react-redux';
+// eslint-disable-next-line no-unused-vars
 import { changeQuantity, decreaseProduct, itemAdded } from 'store/cartSlice';
 
 import Icon from 'components/Icon';
@@ -16,8 +17,6 @@ const QuantityInput = ({ id, quantity }) => {
     const [cartQuantity, setCartQuantity] = useState(quantity);
     const dispatch = useDispatch();
     const increaseProductQuantity = () => {
-        dispatch(itemAdded(id));
-        console.log(id);
         if (isLogIn) {
             addProductToCart(id).then((res) => {
                 const quantity = res.data.products.filter(
@@ -26,10 +25,10 @@ const QuantityInput = ({ id, quantity }) => {
                 setCartQuantity(quantity);
             });
         }
+        dispatch(itemAdded(id));
     };
 
     const decreaseProductQuantityInput = async () => {
-        dispatch(decreaseProduct(id));
         if (isLogIn) {
             const resCart = await getCart();
             const tempQuantity = resCart.data.products.filter(
@@ -43,6 +42,7 @@ const QuantityInput = ({ id, quantity }) => {
                 setCartQuantity(quantity);
             }
         }
+        dispatch(decreaseProduct(id));
     };
 
     const onChangeInputHandler = (e) => {
@@ -71,10 +71,10 @@ const QuantityInput = ({ id, quantity }) => {
             if (!currentValue) return 1;
             return prevState;
         });
-        dispatch(changeQuantity({ id, quantity: cartQuantity }));
         if (isLogIn) {
             updateCartFunc();
         }
+        dispatch(changeQuantity({ id, quantity: cartQuantity }));
     };
 
     return (
