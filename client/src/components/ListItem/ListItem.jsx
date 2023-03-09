@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import styles from './ListItem.module.scss';
@@ -9,9 +9,11 @@ import createWishList from 'api/createWishList';
 import addProductToWishList from 'api/addProductToWishList';
 import Button from 'components/Button';
 import deleteProductFromCart from 'api/deleteProductFromCart';
+import { itemAdded } from 'store/cartSlice';
 import { removeItem } from 'store/cartSlice';
+import deleteProductFromWishList from 'api/deleteProductFromWishList';
 
-const ListItem = ({ quantity, item, type }) => {
+const ListItem = ({ quantity, item, type, favouritesReload }) => {
     const { _id, name, imageUrls, currentPrice, color, size, fabric, itemNo } = item;
     const isLogin = useSelector((state) => state.store.login.isLogIn, shallowEqual);
     const [favouritesClicked, setFavouritesClicked] = useState(false);
@@ -33,8 +35,13 @@ const ListItem = ({ quantity, item, type }) => {
             setFavouritesClicked(true);
         }
     };
-    const RemoveFromFavourites = async () => {
+    const RemoveFromFavourites = () => {
         setFavouritesClicked(false);
+        deleteProductFromWishList(_id);
+    };
+    const DeleteFromFavourites = async () => {
+        await deleteProductFromWishList(_id);
+        favouritesReload((prev) => !prev);
     };
     const deleteFromCart = async () => {
         if (isLogin) {
@@ -42,6 +49,21 @@ const ListItem = ({ quantity, item, type }) => {
         }
         dispatch(removeItem(_id));
     };
+    const addToCart = () => {
+        dispatch(itemAdded(_id));
+    };
+    useEffect(() => {
+        if (type === 'cart') {
+            getWishList().then((res) => {
+                const wishlist = res.data.products;
+                const isInArray = wishlist.find((elem) => elem._id === _id);
+                if (isInArray) {
+                    setFavouritesClicked(true);
+                }
+            });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     return (
         <>
             <img src={imageUrls[0]} alt="bed linen" className={styles.itemImg} />
@@ -113,12 +135,12 @@ const ListItem = ({ quantity, item, type }) => {
                 ) : (
                     <>
                         <Button
-                            handleClick={favouritesClicked ? RemoveFromFavourites : addToFavourites}
+                            handleClick={DeleteFromFavourites}
                             text={<Icon type="bagRemoveBtn" />}
                             className={styles.removeBtn}
                         />
                         <Button
-                            handleClick={() => console.log('add to cart')}
+                            handleClick={addToCart}
                             text={'ADD TO CART'}
                             className={styles.btnCart}
                         />
@@ -133,6 +155,7 @@ ListItem.propTypes = {
     item: PropTypes.object,
     type: PropTypes.string,
     quantity: PropTypes.number,
+    favouritesReload: PropTypes.func,
 };
 ListItem.defaultProps = {
     item: {},
