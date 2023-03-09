@@ -1,0 +1,79 @@
+.red {
+    color: red;
+}
+.form_section {
+    width: 100%;
+    margin-top: 8rem;
+    margin-right: 8rem;
+}
+.input_wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.checkbox_wrapper {
+    display: flex;
+    padding-top: 3rem;
+}
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    border-top: 1px solid #373f41;
+    border-bottom: 1px solid #373f41;
+}
+.shipping_title {
+    font-family: 'Mulish';
+    font-style: normal;
+    font-weight: 400;
+    color: #373f41;
+    font-size: 2.4rem;
+    line-height: 4.8rem;
+    text-transform: uppercase;
+}
+.inputs_wrapper {
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #373f41;
+}
+.input:first-child {
+    margin-right: 2rem;
+}
+.input {
+    border: 1px solid #8c8c8c;
+    margin-bottom: 2rem;
+    width: 100%;
+    border-radius: 0.5rem;
+    color: #8c8c8c;
+    padding: 0.8rem 1rem 0.8rem 2rem;
+}
+.select {
+    width: 100%;
+    color: #8c8c8c;
+}
+
+.select_wrapper {
+    position: relative;
+    display: flex;
+    width: 100%;
+    border: 1px solid #8c8c8c;
+    margin-bottom: 2rem;
+    border-radius: 0.5rem;
+    padding: 0.8rem 1rem 0.8rem 2rem;
+    margin-right: 2rem;
+}
+.select_wrapper::before {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 43px;
+    right: 3.4rem;
+    top: 0;
+    background-color: #8c8c8c;
+}
+.input_area {
+    width: 100%;
+    padding: 5px;
+}
