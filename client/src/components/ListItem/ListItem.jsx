@@ -11,7 +11,7 @@ import Button from 'components/Button';
 import deleteProductFromCart from 'api/deleteProductFromCart';
 import { removeItem } from 'store/cartSlice';
 
-const ListItem = ({ cartChange, quantity, item, type }) => {
+const ListItem = ({ quantity, item, type }) => {
     const { _id, name, imageUrls, currentPrice, color, size, fabric, itemNo } = item;
     const isLogin = useSelector((state) => state.store.login.isLogIn, shallowEqual);
     const [favouritesClicked, setFavouritesClicked] = useState(false);
@@ -37,11 +37,10 @@ const ListItem = ({ cartChange, quantity, item, type }) => {
         setFavouritesClicked(false);
     };
     const deleteFromCart = async () => {
-        dispatch(removeItem(_id));
         if (isLogin) {
             await deleteProductFromCart(_id);
-            cartChange(true);
         }
+        dispatch(removeItem(_id));
     };
     return (
         <>
@@ -134,7 +133,6 @@ ListItem.propTypes = {
     item: PropTypes.object,
     type: PropTypes.string,
     quantity: PropTypes.number,
-    cartChange: PropTypes.func,
 };
 ListItem.defaultProps = {
     item: {},

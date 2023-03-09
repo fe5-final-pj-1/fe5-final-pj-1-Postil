@@ -8,13 +8,13 @@ import { Oval } from 'react-loader-spinner';
 function FavouritesPage() {
     const isLogIn = useSelector((state) => state.store.login.isLogIn, shallowEqual);
     const [favourites, setFavourites] = useState([]);
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(true);
     useEffect(() => {
         if (isLogIn) {
-            setIsLoaded(true);
+            setIsLoaded(false);
             getWishList().then((res) => {
                 setFavourites(res.data.products);
-                setIsLoaded(false);
+                setIsLoaded(true);
             });
         }
     }, [isLogIn]);
@@ -27,7 +27,7 @@ function FavouritesPage() {
             </main>
         );
     }
-    if (isLoaded) {
+    if (!isLoaded) {
         return (
             <main>
                 <Oval

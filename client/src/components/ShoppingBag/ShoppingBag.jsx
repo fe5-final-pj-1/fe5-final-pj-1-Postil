@@ -1,17 +1,22 @@
 import React, { useEffect, useState } from 'react';
 import ListItem from 'components/ListItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import styles from './ShoppingBag.module.scss';
 import getOneProduct from 'api/getOneProduct';
 import getCart from 'api/getCart';
+import createCart from 'api/createCart';
+// eslint-disable-next-line no-unused-vars
+import { removeAllItems } from 'store/cartSlice';
+import updateCart from 'api/updateCart';
 import { Oval } from 'react-loader-spinner';
 
 const ShoppingBag = () => {
-    const [cartChange, setCartChange] = useState(false);
     const [cart, setCart] = useState([]);
-    const [isLoaded, setIsLoaded] = useState(false);
+    const [isLoaded, setIsLoaded] = useState(true);
     const cartStorage = useSelector((state) => state.store.cart);
     const isLogIn = useSelector((state) => state.store.login.isLogIn);
+    // eslint-disable-next-line no-unused-vars
+    const dispatch = useDispatch();
     const addProducts = async () => {
         const tempCart = [];
         for (let i = 0; i < cartStorage.length; i++) {
@@ -21,31 +26,51 @@ const ShoppingBag = () => {
                 cartQuantity: cartStorage[i].cartQuantity,
             });
         }
+        console.log(tempCart);
+        // console.log(cartStorage);
         setIsLoaded(true);
         setCart(tempCart);
     };
     useEffect(() => {
-        setIsLoaded(false);
+        if (!isLogIn) {
+            setCart([...cartStorage]);
+        }
+    }, [cartStorage, isLogIn]);
+    useEffect(() => {
         if (isLogIn) {
+            setIsLoaded(false);
             getCart().then((res) => {
-                setCart(res.data.products);
-                setIsLoaded(true);
+                if (res.data === null) {
+                    if (cartStorage.length > 0) {
+                        createCart({ products: [...cartStorage] }).then(() => {
+                            getCart().then((res) => {
+                                setCart(res.data.products);
+                                setIsLoaded(true);
+                            });
+                        });
+                    } else {
+                        setCart([]);
+                        setIsLoaded(true);
+                    }
+                } else {
+                    if (cartStorage.length > 0) {
+                        updateCart({ products: [...cartStorage] }).then((res) => {
+                            console.log(res.data);
+                            setCart(res.data.products);
+                            setIsLoaded(true);
+                        });
+                    } else {
+                        setCart([]);
+                        setIsLoaded(true);
+                    }
+                }
             });
         } else if (cartStorage.length > 0) {
+            setIsLoaded(false);
             addProducts();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cartStorage, isLogIn]);
-    useEffect(() => {
-        if (cartChange) {
-            setIsLoaded(false);
-            getCart().then((res) => {
-                setCart(res.data.products);
-                setIsLoaded(true);
-                setCartChange(false);
-            });
-        }
-    }, [cartChange]);
     if (!isLoaded) {
         return (
             <Oval
@@ -78,12 +103,7 @@ const ShoppingBag = () => {
             <ul className={styles.itemsList}>
                 {cart.map((item) => (
                     <li key={item.product._id} className={styles.bagLiItem}>
-                        <ListItem
-                            cartChange={setCartChange}
-                            quantity={item.cartQuantity}
-                            item={item.product}
-                            type="cart"
-                        />
+                        <ListItem quantity={item.cartQuantity} item={item.product} type="cart" />
                     </li>
                 ))}
             </ul>
