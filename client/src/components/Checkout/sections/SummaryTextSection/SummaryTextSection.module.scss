@@ -2,9 +2,10 @@
 
 .summary {
     max-width: 37rem;
-    width: 100%;
-    margin-top: 8rem;
+    width: 40%;
     background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
 }
 .summaryTitle {
     @include muli-font-normal;
@@ -45,6 +46,8 @@
 }
 .subName {
     @include muli-font-normal;
+    display: flex;
+    justify-content: space-between;
     font-weight: 400;
     font-size: 1.4rem;
     line-height: 3.2rem;
@@ -53,31 +56,30 @@
 .total {
     @include muli-font-normal;
     @include total-size;
-    margin-left: 26rem;
 }
 .deliv {
     @include muli-font-normal;
     @include total-size;
-    margin-left: 26.9rem;
 }
 .taxes {
     @include muli-font-normal;
     @include total-size;
-    margin-left: 30.5rem;
 }
 .totalName {
     @include muli-font-normal;
     @include sum-size;
     color: #373f41;
+    display: flex;
+    justify-content: space-between;
 }
 .sum {
     @include muli-font-normal;
     @include sum-size;
     color: #373f41;
-    margin-left: 23rem;
 }
 .sumBtn {
     display: inline-block;
+    align-self: flex-end;
     padding: 1.5rem 8.6rem;
     background: #373f41;
     box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
@@ -85,6 +87,5 @@
     color: white;
     cursor: pointer;
     margin-top: 5rem;
-    margin-left: 17rem;
     margin-bottom: 8rem;
 }
