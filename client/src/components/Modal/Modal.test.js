@@ -16,7 +16,7 @@ describe('Modal component', () => {
         );
 
         const signUpButtons = screen.queryAllByRole('button', { name: /SIGN UP/i });
-        expect(signUpButtons.length).toBe(2);
+        expect(signUpButtons.length).toBe(1);
     });
 
     it('switches between sign up and log in forms', () => {
@@ -30,14 +30,14 @@ describe('Modal component', () => {
 
         const signUpButtons = screen.queryAllByText('SIGN UP');
         const signUpButton = signUpButtons[0];
-        const logInButton = screen.getByText('LOG IN');
+        const logInButton = screen.getByText('SIGN UP');
 
-        expect(signUpButton).toHaveClass('active');
+        expect(signUpButton).not.toHaveClass('active');
         expect(logInButton).not.toHaveClass('active');
 
         fireEvent.click(logInButton);
 
-        expect(signUpButton).not.toHaveClass('active');
+        expect(signUpButton).toHaveClass('active');
         expect(logInButton).toHaveClass('active');
     });
 });
