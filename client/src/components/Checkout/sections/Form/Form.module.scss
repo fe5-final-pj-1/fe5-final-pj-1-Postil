@@ -1,6 +1,5 @@
-.red {
-    color: red;
-}
+@import '../../../../style/variables';
+
 .form_section {
     width: 100%;
     margin-top: 8rem;
@@ -12,7 +11,29 @@
 }
 .checkbox_wrapper {
     display: flex;
+    justify-content: space-between;
     padding-top: 3rem;
+}
+.radio_btn_wrapper {
+    display: flex;
+    width: 100%;
+    // padding: 3rem 0 3rem 2.4rem;
+    border: 1px solid $description-color;
+    border-radius: 0.5rem;
+    position: relative;
+}
+.radio_btn_wrapper:first-child {
+    margin-right: 2rem;
+}
+.radio_btn {
+    accent-color: $description-color;
+    width: 25px;
+    height: 25px;
+    // padding: 3rem 0 3rem 2.4rem;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
 }
 .form {
     display: flex;
@@ -42,23 +63,23 @@
     margin-right: 2rem;
 }
 .input {
-    border: 1px solid #8c8c8c;
+    border: 1px solid $description-color;
     margin-bottom: 2rem;
     width: 100%;
     border-radius: 0.5rem;
-    color: #8c8c8c;
+    color: $description-color;
     padding: 0.8rem 1rem 0.8rem 2rem;
 }
 .select {
     width: 100%;
-    color: #8c8c8c;
+    color: $description-color;
 }
 
 .select_wrapper {
     position: relative;
     display: flex;
     width: 100%;
-    border: 1px solid #8c8c8c;
+    border: 1px solid $description-color;
     margin-bottom: 2rem;
     border-radius: 0.5rem;
     padding: 0.8rem 1rem 0.8rem 2rem;
@@ -71,9 +92,27 @@
     height: 43px;
     right: 3.4rem;
     top: 0;
-    background-color: #8c8c8c;
+    background-color: $description-color;
 }
 .input_area {
     width: 100%;
     padding: 5px;
+}
+.checkbox_title {
+    color: $dark-color;
+    font-size: 18px;
+    margin-bottom: 1.2rem;
+}
+.checkbox_text {
+    color: $description-color;
+    font-size: $description-fs;
+}
+.radio_btn_wrapper input:checked + div {
+  
+    background: red;
+}
+.btn_text_wrapper {
+    padding: 3rem 0 3rem 2.4rem;
+    width: 100%;
+
 }
