@@ -30,9 +30,10 @@ const BagPage = () => {
 
     useEffect(() => {
         if (isLogIn) {
-            getCart().then((res) => setProductsCart(res.data.product));
+            getCart().then((res) => {
+                setProductsCart(res.data.products);
+            });
         } else {
-            console.log(cart);
             loadCart();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps

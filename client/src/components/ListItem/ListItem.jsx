@@ -55,10 +55,12 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
     useEffect(() => {
         if (type === 'cart') {
             getWishList().then((res) => {
-                const wishlist = res.data.products;
-                const isInArray = wishlist.find((elem) => elem._id === _id);
-                if (isInArray) {
-                    setFavouritesClicked(true);
+                if (res.data !== null) {
+                    const wishlist = res.data.products;
+                    const isInArray = wishlist.find((elem) => elem._id === _id);
+                    if (isInArray) {
+                        setFavouritesClicked(true);
+                    }
                 }
             });
         }
