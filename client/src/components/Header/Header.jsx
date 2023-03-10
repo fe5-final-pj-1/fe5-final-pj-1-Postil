@@ -163,7 +163,11 @@ function Header() {
                         </Link>
                         <Link to="cart" className={HeaderMain.headerLinkCart}>
                             <Icon type="cart" />
-                            {cart.length > 0 && <span>1</span>}
+                            {cart.length > 0 && (
+                                <span>
+                                    {cart.reduce((acc, item) => acc + item.cartQuantity, 0)}
+                                </span>
+                            )}
                         </Link>
                         {isLogIn ? (
                             <Profile />

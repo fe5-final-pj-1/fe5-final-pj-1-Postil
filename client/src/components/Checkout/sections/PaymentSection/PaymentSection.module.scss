@@ -1,110 +1,112 @@
 @import '../../../../style/mixins';
 
 .payMain {
-  max-width: 72.6rem;
-  width: 100%;
-  height: 51.7rem;
+    // max-width: 72.6rem;
+    width: 60%;
 }
 .payTitle {
-  @include muli-font-normal;
-  margin-top: 8rem;
-  position: relative;
-  font-size: 2.4rem;
-  line-height: 4.8rem;
-  letter-spacing: 0.04em;
-  color: #373F41;
-  &::before {
-    content: '';
-    position: absolute;
-    background: #373F41;
-    transform: matrix(1, 0, 0, -1, 0, 0);
-    width: 100%;
-    height: 0.1rem;
-    top: 6rem
-  }
+    @include muli-font-normal;
+    position: relative;
+    font-size: 2.4rem;
+    line-height: 4.8rem;
+    letter-spacing: 0.04em;
+    color: #373f41;
+    &::before {
+        content: '';
+        position: absolute;
+        background: #373f41;
+        transform: matrix(1, 0, 0, -1, 0, 0);
+        width: 100%;
+        height: 0.1rem;
+        top: 6rem;
+    }
 }
 .payCardBlock {
-  @include payBlock;
-  margin-top: 5.1rem;
-  color: #373F41;
-  &::before {
-    content: '';
-    position: absolute;
-    background: #373F41;
-    transform: matrix(1, 0, 0, -1, 0, 0);
-    width: 100%;
-    height: 0.1rem;
-    top: 14rem;
-  }
+    @include payBlock;
+    margin-top: 5.1rem;
+    color: #373f41;
+    &::before {
+        content: '';
+        position: absolute;
+        background: #373f41;
+        transform: matrix(1, 0, 0, -1, 0, 0);
+        width: 100%;
+        height: 0.1rem;
+        top: 14rem;
+    }
 }
 .payCardBlockActive {
-  background: #373F41;
-  color: white;
+    background: #373f41;
+    color: white;
 }
 .payCardTitle {
-  font-size: 1.8rem;
-  line-height: 3.2rem;
-  margin-left: 4.52rem
+    font-size: 1.8rem;
+    line-height: 3.2rem;
+    margin-left: 4.52rem;
 }
 .payCardIcon {
-    padding-left: 26rem;
-  padding-right: 2rem;
+    // padding-left: 26rem;
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+    padding-right: 2rem;
 }
 .payCashBloc {
-  @include payBlock;
-  margin-top: 6.1rem;
-  color: #373F41;
-  &::before {
-    content: '';
-    position: absolute;
-    background: #373F41;
-    transform: matrix(1, 0, 0, -1, 0, 0);
-    width: 100%;
-    height: 0.1rem;
-    top: 14rem;
-  }
-  &::after {
-    content: url("https://res.cloudinary.com/dm2s5stjy/image/upload/v1677499637/Linens/SVG/Hands_with_money_kesqus.svg");
-    position: absolute;
-    right: 2.5rem;
-  }
+    @include payBlock;
+    margin-top: 6.1rem;
+    color: #373f41;
+    &::before {
+        content: '';
+        position: absolute;
+        background: #373f41;
+        transform: matrix(1, 0, 0, -1, 0, 0);
+        width: 100%;
+        height: 0.1rem;
+        top: 14rem;
+    }
+    &::after {
+        content: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1677499637/Linens/SVG/Hands_with_money_kesqus.svg');
+        position: absolute;
+        right: 2.5rem;
+    }
 }
 .payCashBlocActive {
-  background: #373F41;
-  color: white;
+    background: #373f41;
+    color: white;
 }
 .payBtn {
-  @include muli-font-normal;
-  margin-top: 5.1rem;
-  font-size: 1.8rem;
-  line-height: 4.8rem;
-  letter-spacing: 0.04em;
-  background: white;
-  position: relative;
-  padding-left: 2rem;
-  color: #373F41;
+    display: inline-block;
+    @include muli-font-normal;
+    margin-top: 5.1rem;
+    font-size: 1.8rem;
+    line-height: 4.8rem;
+    letter-spacing: 0.04em;
+    background: white;
+    position: relative;
+    padding-left: 2rem;
+    color: #373f41;
 }
 .payBtn::before {
-  content: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1677499637/Linens/SVG/VectorBig_imqj8a.svg');
-  position: absolute;
-  top: 0.1rem;
-  left: 0.2rem;
+    content: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1677499637/Linens/SVG/VectorBig_imqj8a.svg');
+    position: absolute;
+    top: 0.1rem;
+    left: 0.2rem;
 }
 .payIcon {
-  margin-left: 2.5rem;
-  cursor: pointer;
+    margin-left: 2.5rem;
+    cursor: pointer;
 }
 .payText {
-  margin-left: 4.52rem;
+    margin-left: 4.52rem;
 }
 .payTextTitle {
-  @include muli-font-normal;
-  font-size: 1.8rem;
-  line-height: 2.4rem;
+    @include muli-font-normal;
+    font-size: 1.8rem;
+    line-height: 2.4rem;
 }
 .payTextInfo {
-  @include muli-font-normal;
-  font-size: 1.4rem;
-  line-height: 2.4rem;
-  color: #A1ADB0;
+    @include muli-font-normal;
+    font-size: 1.4rem;
+    line-height: 2.4rem;
+    color: #a1adb0;
 }

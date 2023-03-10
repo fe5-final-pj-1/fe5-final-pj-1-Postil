@@ -8,7 +8,7 @@ const ShippingDetailsPage = () => {
         <>
             <TabsSection />
             <div className={styles.mainContainer}>
-                <SummarySection />
+                <SummarySection route="/checkout/options" />
             </div>
         </>
     );
