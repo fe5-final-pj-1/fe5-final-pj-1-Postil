@@ -53,7 +53,7 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
         dispatch(itemAdded(_id));
     };
     useEffect(() => {
-        if (type === 'cart') {
+        if (type === 'cart' && isLogin) {
             getWishList().then((res) => {
                 if (res.data !== null) {
                     const wishlist = res.data.products;
