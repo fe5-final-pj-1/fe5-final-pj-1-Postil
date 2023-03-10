@@ -11,6 +11,8 @@ import ProtectedUserRoutes from './routes/ProtectedUserRoutes';
 import ProtectedCheckoutRoutes from './routes/ProtectedCheckoutRoutes';
 import ProtectedAdminRoutes from './routes/ProtectedAdminRoutes';
 import CustomerServiceRoute from 'routes/CustomerServiceRoute';
+import ContactsRoute from 'routes/ContactsRoute';
+import AboutRoute from 'routes/AboutRoute';
 import UserOrdersPage from './components/UserOrdersPage';
 import UserProfilePage from './components/UserProfilePage';
 import BagPage from './components/Checkout/pages/BagPage/BagPage';
@@ -55,6 +57,14 @@ const router = createBrowserRouter([
             {
                 path: 'service',
                 element: <CustomerServiceRoute />,
+            },
+            {
+                path: 'contact',
+                element: <ContactsRoute />,
+            },
+            {
+                path: 'about',
+                element: <AboutRoute />,
             },
             {
                 path: 'user',
