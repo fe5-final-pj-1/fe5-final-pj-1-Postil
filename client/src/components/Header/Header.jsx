@@ -137,10 +137,7 @@ function Header() {
                                 </div>
                             </li>
                             <li className={HeaderMain.header_list_item}>
-                                <NavLink
-                                    to="products/:productId"
-                                    className={HeaderMain.header_list_item_link}
-                                >
+                                <NavLink to="about" className={HeaderMain.header_list_item_link}>
                                     About
                                 </NavLink>
                             </li>
