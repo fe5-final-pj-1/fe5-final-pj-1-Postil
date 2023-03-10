@@ -53,7 +53,7 @@ function Profile() {
                         {user.isAdmin && (
                             <li className={profileStyles.userMenu_list_item}>
                                 <Icon type="key" />
-                                <Link className={profileStyles.userMenulinkText} to="user/admin">
+                                <Link className={profileStyles.userMenulinkText} to="admin">
                                     Admin panel
                                 </Link>
                             </li>

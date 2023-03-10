@@ -1,11 +1,11 @@
 import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
-// import { useSelector, shallowEqual } from 'react-redux';
+import { useSelector, shallowEqual } from 'react-redux';
 
 const ProtectedCheckoutRoutes = () => {
-    const isByeActive = true;
+    const cart = useSelector((state) => state.store.cart, shallowEqual);
 
-    return isByeActive ? <Outlet /> : <Navigate to="/cart" />;
+    return cart.length > 0 ? <Outlet /> : <Navigate to="/cart" />;
 };
 
 export default ProtectedCheckoutRoutes;
