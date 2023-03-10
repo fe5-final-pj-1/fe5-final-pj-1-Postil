@@ -9,10 +9,11 @@ import { hideModal } from '../../store/modalSlice';
 import { useDispatch } from 'react-redux';
 import loginCustomer from '../../api/loginCustomer';
 import createCustomer from '../../api/createCustomer';
+import { userLogIn } from '../../store/loginSlice';
 
 function Modal() {
     const dispatch = useDispatch();
-    const [sign, setSign] = useState(true);
+    const [sign, setSign] = useState(false);
     const EMAIL_REGEX =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const NAME_REGEX = /^[a-z ,.'-]+$/i;
@@ -59,14 +60,15 @@ function Modal() {
             sign
                 ? createCustomer({
                       firstName,
-                      lastName: lastName ? lastName : '',
+                      lastName: lastName ? lastName : ' ',
                       login,
                       email,
                       password,
                   }).then((res) => console.log(res.data))
-                : loginCustomer({ loginOrEmail: email, password: password }).then((res) =>
-                      console.log(res.data),
-                  );
+                : loginCustomer({ loginOrEmail: email, password: password }).then((res) => {
+                      const token = res.data.token;
+                      dispatch(userLogIn(token));
+                  });
             dispatch(hideModal());
         },
     });

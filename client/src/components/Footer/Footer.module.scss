@@ -4,10 +4,10 @@
     border-bottom: solid $dark-color 0.1rem;
     border-top: solid $dark-color 0.1rem;
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
     align-items: flex-start;
-    padding: 8rem 12rem 4rem 7rem;
+    padding: 8rem 0 4rem 0;
     font-size: $text-fs;
 }
 .menu_list,
@@ -46,15 +46,13 @@
 .text {
     color: $dark-color;
 }
-.contact_title{
+.contact_title {
     font-weight: 900;
-
 }
 .contact_email,
 .contact_address {
     border-bottom: transparent 1px solid;
     color: $dark-color;
-
 }
 .links:hover,
 .contact_email:hover,
@@ -128,6 +126,7 @@
 .info {
     display: flex;
     justify-content: space-between;
+    justify-content: center;
     align-items: center;
     padding: 1rem 7.6rem 1.5rem 5.4rem;
 }

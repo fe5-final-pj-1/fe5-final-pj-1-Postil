@@ -2,7 +2,25 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import FooterStyle from './Footer.module.scss';
+import addSubscriber from '../../api/addSubscriber';
+
 function Footer() {
+    let inputValue;
+    const getValue = (evt) => {
+        evt.preventDefault();
+        inputValue = evt.target.value;
+        evt.target.value = '';
+    };
+    const postForm = (evt) => {
+        evt.preventDefault();
+        const newSubscriber = {
+            email: inputValue,
+            letterSubject: 'Greetings from Postil team',
+            letterHtml:
+                "<!DOCTYPE html><html lang='en'> <head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> p { margin-top:10px; } </style> </head> <body> <h2>Thank you for subscribe!</h2> <p>We will send you only actual info.</p> </body></html>",
+        };
+        addSubscriber(newSubscriber).then((res) => console.log(res.data));
+    };
     return (
         <footer className={FooterStyle.wrapper}>
             <div className="container">
@@ -81,8 +99,13 @@ function Footer() {
                         <p className={FooterStyle.promotion_text}>
                             Subscribe now and get 15% off on your first <br /> order
                         </p>
-                        <form className={FooterStyle.subscription_input}>
+                        <form
+                            className={FooterStyle.subscription_input}
+                            onSubmit={postForm}
+                            role="presentation"
+                        >
                             <input
+                                onBlur={getValue}
                                 type="email"
                                 className={FooterStyle.input}
                                 id="Email"
@@ -119,11 +142,7 @@ function Footer() {
                     </div>
                 </nav>
                 <div className={FooterStyle.info}>
-                    <div className={FooterStyle.logo}>
-                        <Icon type="footerLogo" />
-                    </div>
-                    <p className={FooterStyle.text}>© 2010 — 2023 Simple Studio </p>
-                    <Icon type="chat" className={FooterStyle.chat} />
+                    <p className={FooterStyle.text}>©2023 Developed by fe5-team</p>
                 </div>
             </div>
         </footer>

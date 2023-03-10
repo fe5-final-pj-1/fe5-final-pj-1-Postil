@@ -1,7 +1,81 @@
 @import '../../../../style/mixins';
+@import '../../../../style/variables';
 
 .mainContainer {
-  @include content-container;
-  display: flex;
-  justify-content: space-between;
+    @include content-container;
+    display: flex;
+    justify-content: space-between;
+    gap: 8.4rem;
+    @media only screen and (max-width: $bp-large) {
+        gap: 4.2rem;
+    }
+}
+.itemsList {
+    width: 60%;
+    & > h2 {
+        line-height: 4.8rem;
+        border-bottom: 1px solid $dark-color;
+        padding-bottom: 1.1rem;
+        margin-bottom: 1rem;
+    }
+    & li:last-child {
+        border-bottom: 1px solid $dark-color;
+    }
+}
+.bagLiItem {
+    display: flex;
+    gap: 8rem;
+    padding: 1rem 0;
+    @media only screen and (max-width: $bp-large) {
+        gap: 4rem;
+    }
+
+    // border-bottom: 1px solid hsl(192, 8%, 24%, 0.25);
+
+    // &:last-of-type {
+    //     border-top: 1px solid hsl(192, 8%, 24%, 0.25);
+    // }
+    & .imgWrapper {
+        max-width: 20%;
+        & .itemImg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+    & .descriptionWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        & > *:not(:last-child) {
+            margin-bottom: 0.7rem;
+        }
+        & .itemName {
+            font-size: $subtitles-fs;
+        }
+        & .description {
+            color: $dark-color;
+            width: 80%;
+        }
+        & .currentPrice {
+            color: $dark-color;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        & .quantity {
+            color: $dark-color;
+            & span {
+                color: $description-color;
+            }
+        }
+    }
+}
+.linkWrapper {
+    @include content-container;
+    margin-top: 2rem;
+    margin-bottom: 8rem;
+    & .backLink {
+        display: inline-block;
+        color: $dark-color;
+        font-size: 1.8rem;
+    }
 }

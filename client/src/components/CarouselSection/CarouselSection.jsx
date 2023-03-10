@@ -44,7 +44,7 @@ function CarouselSection({ sectionTitle, products }) {
             slidesArr.push(
                 <div className={carouselSlide}>
                     <Link
-                        to={`/catalog/${arr[i].itemNo}`}
+                        to={`/catalog/${arr[i]._id}`}
                         style={{ backgroundImage: `url(${arr[i].imageUrls[0]})` }}
                         className={carouselSlideLink}
                     >
@@ -57,7 +57,7 @@ function CarouselSection({ sectionTitle, products }) {
                         </div>
                     </Link>
                     <Link
-                        to={`/catalog/${arr[i + 1].itemNo}`}
+                        to={`/catalog/${arr[i + 1]._id}`}
                         style={{ backgroundImage: `url(${arr[i + 1].imageUrls[0]})` }}
                         className={carouselSlideLink}
                     >
@@ -72,7 +72,7 @@ function CarouselSection({ sectionTitle, products }) {
                         </div>
                     </Link>
                     <Link
-                        to={`/catalog/${arr[i + 2].itemNo}`}
+                        to={`/catalog/${arr[i + 2]._id}`}
                         style={{ backgroundImage: `url(${arr[i + 2].imageUrls[0]})` }}
                         className={carouselSlideLink}
                     >
