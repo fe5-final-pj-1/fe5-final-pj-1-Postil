@@ -28,7 +28,7 @@ const SummarySection = ({ route }) => {
 
     useEffect(() => {
         if (isLogIn) {
-            getCart().then((res) => setProductsCart(res.data.product));
+            getCart().then((res) => setProductsCart(res.data.products));
         } else {
             console.log(cart);
             loadCart();
