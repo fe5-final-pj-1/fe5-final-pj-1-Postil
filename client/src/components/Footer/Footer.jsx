@@ -15,9 +15,9 @@ function Footer() {
         evt.preventDefault();
         const newSubscriber = {
             email: inputValue,
-            letterSubject: 'Test letter (final project)',
+            letterSubject: 'Greetings from Postil team',
             letterHtml:
-                "<!DOCTYPE html><html lang='en'> <head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> td { padding: 20px 50px; background-color: yellow; color: blueviolet; font-size: 20px; } </style> </head> <body> <table> <tr> <td>Test1</td> <td>Test2</td> <td>Test3</td> </tr> <tr> <td>Test1.1</td> <td>Test2.1</td> <td>Test3.1</td> </tr> </table> </body></html>",
+                "<!DOCTYPE html><html lang='en'> <head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> p { margin-top:10px; } </style> </head> <body> <h2>Thank you for subscribe!</h2> <p>We will send you only actual info.</p> </body></html>",
         };
         addSubscriber(newSubscriber).then((res) => console.log(res.data));
     };
