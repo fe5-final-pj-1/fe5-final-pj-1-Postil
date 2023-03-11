@@ -10,12 +10,15 @@
     max-width: 42rem;
 
     & a {
-        &:link
+        &:link,
+        &:focus,
+        &:active
         {
             display: inline-block;
         }
         &:hover {
             text-decoration: underline;
+            text-decoration-color: $dark-color;
         }
 
     }
