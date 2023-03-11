@@ -81,47 +81,49 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
     }, []);
     return (
         <>
-            <Link to={`/catalog/${_id}`}>
-                <img src={imageUrls[0]} alt="bed linen" className={styles.itemImg} />
-            </Link>
-            <div className={styles.textWrapper}>
+            <div className={styles.itemWrapper}>
                 <Link to={`/catalog/${_id}`}>
-                    <span className={styles.itemName}>{name}</span>
+                    <img src={imageUrls[0]} alt="bed linen" className={styles.itemImg} />
                 </Link>
-                <p className={styles.description}>
-                    {
-                        "This is the luxury bedding set with absolutely everything in it, at a price that won't keep you up at night."
-                    }
-                </p>
-                <p className={styles.currentPrice}>${currentPrice}</p>
+                <div className={styles.textWrapper}>
+                    <Link to={`/catalog/${_id}`}>
+                        <span className={styles.itemName}>{name}</span>
+                    </Link>
+                    <p className={styles.description}>
+                        {
+                            "This is the luxury bedding set with absolutely everything in it, at a price that won't keep you up at night."
+                        }
+                    </p>
+                    <p className={styles.currentPrice}>${currentPrice}</p>
 
-                <div className={styles.flexBlock}>
-                    <div className={styles.configWrapper}>
-                        {color && (
-                            <p className={styles.colorBlock}>
-                                <span className={styles.confName}>COLOR:</span>
-                                <span
-                                    className={styles.color}
-                                    style={{ backgroundColor: color }}
-                                ></span>
-                            </p>
-                        )}
-                        {size && (
-                            <p className={styles.configBlock}>
-                                <span className={styles.confName}>SIZE:</span>
-                                <span className={styles.confValue}>{size}</span>
-                            </p>
-                        )}
-                        {fabric && (
-                            <p className={styles.configBlock}>
-                                <span className={styles.confName}>FABRIC:</span>
-                                <span className={styles.confValue}>{fabric}</span>
-                            </p>
-                        )}
+                    <div className={styles.flexBlock}>
+                        <div className={styles.configWrapper}>
+                            {color && (
+                                <p className={styles.colorBlock}>
+                                    <span className={styles.confName}>COLOR:</span>
+                                    <span
+                                        className={styles.color}
+                                        style={{ backgroundColor: color }}
+                                    ></span>
+                                </p>
+                            )}
+                            {size && (
+                                <p className={styles.configBlock}>
+                                    <span className={styles.confName}>SIZE:</span>
+                                    <span className={styles.confValue}>{size}</span>
+                                </p>
+                            )}
+                            {fabric && (
+                                <p className={styles.configBlock}>
+                                    <span className={styles.confName}>FABRIC:</span>
+                                    <span className={styles.confValue}>{fabric}</span>
+                                </p>
+                            )}
+                        </div>
+                        {type === 'cart' ? (
+                            <QuantityInput itemNo={itemNo} id={_id} quantity={quantity} />
+                        ) : null}
                     </div>
-                    {type === 'cart' ? (
-                        <QuantityInput itemNo={itemNo} id={_id} quantity={quantity} />
-                    ) : null}
                 </div>
             </div>
             <div className={styles.flexBlockBtns}>

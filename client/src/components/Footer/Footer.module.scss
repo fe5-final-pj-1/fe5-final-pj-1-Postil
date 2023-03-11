@@ -4,6 +4,7 @@
 .top,
 .bottom {
     border-top: $border-dark;
+    min-width: 375px;
 }
 
 .nav {
