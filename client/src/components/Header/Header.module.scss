@@ -9,6 +9,7 @@
 .header {
     display: flex;
     align-items: center;
+    position: relative;
     @media only screen and (max-width: $bp-medium) {
         flex-wrap: wrap;
     }
@@ -19,9 +20,9 @@
         width: 20%;
     }
     @media only screen and (max-width: $bp-small) {
-        width: 40%;
+        width: 55%;
         display: flex;
-        justify-content: center;
+        justify-content: flex-end;
     }
 }
 .header_nav {
@@ -35,8 +36,8 @@
         width: 100%;
     }
     @media only screen and (max-width: $bp-small) {
-        order: -1;
-        width: 30%;
+        order: 3;
+        width: 100%;
         // background: #000;
         position: relative;
         margin-top: 0;
@@ -52,15 +53,13 @@
     @media only screen and (max-width: $bp-small) {
         flex-direction: column;
         align-items: center;
-        position: absolute;
-        width: 100vw;
+        width: 100%;
         justify-content: center;
-        top: 4rem;
-        left: -2.5rem;
-        z-index: 5;
         background-color: $light-color;
-        transform: translateY(-200%);
-        transition: transform 0.5s ease-in-out;
+        margin-top: 2rem;
+        max-height: 0;
+        transition: max-height 0.5s ease-out;
+        overflow: hidden;
     }
 }
 .header_list_item {
@@ -104,6 +103,7 @@
         display: flex;
         flex-direction: column;
         align-items: center;
+        width: 100%;
     }
     & .catalogBtnWrapper {
         display: flex;
@@ -111,6 +111,16 @@
 }
 .header_list_item:first-child:hover .dropCatalog {
     display: block;
+    @media only screen and (max-width: $bp-small) {
+        max-height: 100rem;
+        transition: max-height 0.5s ease-in;
+    }
+}
+.header_list_item:first-child:hover .catalog_wrapper {
+    @media only screen and (max-width: $bp-small) {
+        max-height: 100rem;
+        transition: max-height 0.5s ease-in;
+    }
 }
 .openBtn {
     margin-left: 0.4rem;
@@ -197,6 +207,10 @@
         position: static;
         padding-top: 0;
         width: 100%;
+        max-height: 0;
+        transition: max-height 0.25s ease-in;
+        overflow: hidden;
+        display: block;
     }
 }
 .dropCatalog {
@@ -207,8 +221,13 @@
     background-color: $light-color;
     @media only screen and (max-width: $bp-small) {
         border-top: $dark-color 0.1rem solid;
-        padding: 1.5rem 8rem;
+        padding: 1.5rem 0;
         margin-top: 1rem;
+        width: 100%;
+        max-height: 0;
+        transition: max-height 0.25s ease-out;
+        overflow: hidden;
+        display: block;
     }
 
     & a {
@@ -275,13 +294,14 @@
 }
 
 // burger
+
 @media only screen and (max-width: $bp-small) {
     .hamburgerLines {
         display: block;
         height: 26px;
         width: 32px;
         position: absolute;
-        top: -1.4rem;
+        top: 1rem;
         left: 0;
         z-index: 5;
         display: flex;
@@ -311,25 +331,26 @@
         display: block;
         height: 32px;
         width: 32px;
-        top: -1.7rem;
+        top: 1rem;
         left: 0;
         z-index: 6;
         opacity: 0;
         cursor: pointer;
     }
-    .header_nav input[type='checkbox']:checked ~ .header_list {
-        transform: translateY(0);
+    .header input[type='checkbox']:checked ~ .header_nav .header_list {
+        max-height: 100rem;
+        transition: max-height 0.5s ease-in;
     }
 
-    .header_nav input[type='checkbox']:checked ~ .hamburgerLines .line1 {
+    .header input[type='checkbox']:checked ~ .hamburgerLines .line1 {
         transform: rotate(45deg);
     }
 
-    .header_nav input[type='checkbox']:checked ~ .hamburgerLines .line2 {
+    .header input[type='checkbox']:checked ~ .hamburgerLines .line2 {
         transform: scaleY(0);
     }
 
-    .header_nav input[type='checkbox']:checked ~ .hamburgerLines .line3 {
+    .header input[type='checkbox']:checked ~ .hamburgerLines .line3 {
         transform: rotate(-45deg);
     }
 }

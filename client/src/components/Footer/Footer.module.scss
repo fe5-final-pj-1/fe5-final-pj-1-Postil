@@ -22,6 +22,12 @@
         display: none !important;
     }
 }
+.contact,
+.menu_list {
+    @media only screen and (max-width: $bp-small) {
+        width: calc(50% - 0.5rem);
+    }
+}
 
 .menu_list,
 .about_list,
@@ -105,6 +111,7 @@
     color: $dark-color;
     border-radius: 4px 0 0 4px;
     background-color: transparent;
+    width: 100%;
 }
 
 .button_submit {

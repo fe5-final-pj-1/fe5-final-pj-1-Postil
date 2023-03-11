@@ -21,23 +21,24 @@ function Header() {
         <header className={HeaderMain.wrapper}>
             <div className="container">
                 <div className={HeaderMain.header}>
+                    <input
+                        checked={burgerShow}
+                        onChange={() => setBurgerShow(!burgerShow)}
+                        className={HeaderMain.checkbox}
+                        type="checkbox"
+                    />
+                    <div className={HeaderMain.hamburgerLines}>
+                        <span className={classNames(HeaderMain.line, HeaderMain.line1)}></span>
+                        <span className={classNames(HeaderMain.line, HeaderMain.line2)}></span>
+                        <span className={classNames(HeaderMain.line, HeaderMain.line3)}></span>
+                    </div>
+
                     <div className={HeaderMain.logo}>
-                        <Link to="shop">
+                        <Link onClick={() => setBurgerShow(false)} to="shop">
                             <Icon type="logo" />
                         </Link>
                     </div>
                     <nav className={HeaderMain.header_nav}>
-                        <input
-                            checked={burgerShow}
-                            onChange={() => setBurgerShow(!burgerShow)}
-                            className={HeaderMain.checkbox}
-                            type="checkbox"
-                        />
-                        <div className={HeaderMain.hamburgerLines}>
-                            <span className={classNames(HeaderMain.line, HeaderMain.line1)}></span>
-                            <span className={classNames(HeaderMain.line, HeaderMain.line2)}></span>
-                            <span className={classNames(HeaderMain.line, HeaderMain.line3)}></span>
-                        </div>
                         <ul className={HeaderMain.header_list}>
                             <li id="catalogItem" className={HeaderMain.header_list_item}>
                                 <div className={HeaderMain.catalogBtnWrapper}>
