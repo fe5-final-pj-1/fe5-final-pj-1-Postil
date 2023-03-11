@@ -11,9 +11,33 @@ function AdminPanel() {
         <main>
             <div className={classNames(adminPanelStyles.adminPanelWrapper, 'container')}>
                 <div className={adminPanelStyles.navigation}>
-                    <NavLink>
+                    <NavLink
+                        to="/admin/dashboard/home"
+                        className={({ isActive }) =>
+                            isActive
+                                ? classNames(
+                                      adminPanelStyles.navigationLink,
+                                      adminPanelStyles.navigationLinkActive,
+                                  )
+                                : adminPanelStyles.navigationLink
+                        }
+                    >
                         <Icon type="home" />
                         <span>Dashboard</span>
+                    </NavLink>
+                    <NavLink
+                        to="/admin/dashboard/customers"
+                        className={({ isActive }) =>
+                            isActive
+                                ? classNames(
+                                      adminPanelStyles.navigationLink,
+                                      adminPanelStyles.navigationLinkActive,
+                                  )
+                                : adminPanelStyles.navigationLink
+                        }
+                    >
+                        <Icon type="person" />
+                        <span>Customers</span>
                     </NavLink>
                 </div>
                 <div className={adminPanelStyles.content}>

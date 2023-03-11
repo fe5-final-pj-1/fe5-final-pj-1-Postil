@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './SingleItemSection.module.scss';
 import Button from '../Button';
 import Icon from '../Icon/Icon';
@@ -12,6 +12,8 @@ import addProductToWishList from 'api/addProductToWishList';
 import getCart from 'api/getCart';
 import addProductToCart from 'api/addProductToCart';
 import createCart from 'api/createCart';
+import deleteProductFromWishList from 'api/deleteProductFromWishList';
+import { Oval } from 'react-loader-spinner';
 
 const SingleItemSection = ({ product }) => {
     const { _id, color, currentPrice, imageUrls, fabric, itemNo, name, size } = product;
@@ -19,10 +21,31 @@ const SingleItemSection = ({ product }) => {
         reviews: false,
         description: false,
     });
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [favouritesClicked, setFavouritesClicked] = useState(false);
+    // eslint-disable-next-line no-unused-vars
+    const [double, setDouble] = useState(false);
+    const [wishlist, setWishlist] = useState([]);
     const dispatch = useDispatch();
     const isLogIn = useSelector((state) => state.store.login.isLogIn, shallowEqual);
-    // eslint-disable-next-line no-unused-vars
-    const cart = useSelector((state) => state.store.cart, shallowEqual);
+
+    useEffect(() => {
+        if (isLogIn) {
+            getWishList().then((res) => {
+                if (res.data !== null) {
+                    const wishlist = res.data.products;
+                    setWishlist(res.data.products);
+                    const isInArray = wishlist.find((elem) => elem._id === _id);
+                    if (isInArray) {
+                        setFavouritesClicked(true);
+                    }
+                }
+                setTimeout(() => setIsLoaded(true), 400);
+            });
+        } else {
+            setTimeout(() => setIsLoaded(true), 300);
+        }
+    }, [wishlist, isLogIn, _id]);
     //user is not login
     const addToCart = async () => {
         dispatch(itemAdded(_id));
@@ -43,19 +66,55 @@ const SingleItemSection = ({ product }) => {
         }
     };
     const addToFavourites = async () => {
-        const wishList = await getWishList();
-        const wishListData = wishList.data;
-        if (!wishListData) {
-            createWishList({
-                products: [_id],
-            });
-        } else {
-            const currentProduct = wishListData.products.find((elem) => elem._id === _id);
-            if (!currentProduct) {
-                addProductToWishList(_id);
+        if (!favouritesClicked && !double) {
+            setDouble(true);
+            const wishList = await getWishList();
+            const wishListData = wishList.data;
+            if (!wishListData) {
+                createWishList({
+                    products: [_id],
+                }).then(() => {
+                    setFavouritesClicked(true);
+                    setDouble(false);
+                });
+            } else {
+                const currentProduct = wishListData.products.find((elem) => elem._id === _id);
+                if (!currentProduct) {
+                    addProductToWishList(_id).then(() => {
+                        setFavouritesClicked(true);
+                        setDouble(false);
+                    });
+                }
             }
         }
     };
+    const removeFromFavourites = () => {
+        if (favouritesClicked && !double) {
+            setDouble(true);
+            deleteProductFromWishList(_id).then(() => {
+                setFavouritesClicked(false);
+                setDouble(false);
+            });
+        }
+    };
+    if (!isLoaded) {
+        return (
+            <div className="container">
+                <Oval
+                    height={130}
+                    width={130}
+                    color="#373F41"
+                    wrapperStyle={{}}
+                    wrapperClass={styles.loader}
+                    visible={true}
+                    ariaLabel="oval-loading"
+                    secondaryColor="#4fa94d"
+                    strokeWidth={2}
+                    strokeWidthSecondary={2}
+                />
+            </div>
+        );
+    }
     return (
         <section className={styles.singleItem}>
             <div className="container">
@@ -128,7 +187,20 @@ const SingleItemSection = ({ product }) => {
                                 {isLogIn && (
                                     <Button
                                         className={styles.btnHeart}
-                                        handleClick={addToFavourites}
+                                        handleClick={
+                                            favouritesClicked
+                                                ? removeFromFavourites
+                                                : addToFavourites
+                                        }
+                                        text={
+                                            <Icon
+                                                type={
+                                                    favouritesClicked
+                                                        ? 'bagFavIconFill'
+                                                        : 'bagFavIcon'
+                                                }
+                                            />
+                                        }
                                     />
                                 )}
                             </div>
