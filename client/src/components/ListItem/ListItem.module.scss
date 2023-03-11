@@ -2,12 +2,24 @@
 @import '../../style/mixins';
 
 .itemImg {
-    width: 200px;
-    height: 200px;
+    width: 20rem;
+    height: 20rem;
 }
 .textWrapper {
     margin-right: auto;
-    max-width: 420px;
+    max-width: 42rem;
+
+    & a {
+        &:link
+        {
+            display: inline-block;
+        }
+        &:hover {
+            text-decoration: underline;
+        }
+
+    }
+
 }
 
 .itemName {

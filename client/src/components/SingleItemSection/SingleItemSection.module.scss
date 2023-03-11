@@ -126,23 +126,19 @@
     width: 6rem;
     margin-left: 1.5rem;
     background: rgba(55, 63, 65, 1);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url('./SingleItemPictures/HeartBtn.svg');
     border: 0.1rem solid rgba(55, 63, 65, 1);
     box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
     color: rgb(255, 255, 255);
     border-radius: 0.4rem;
     transition: all .2s ease-in;
+
+    & svg {
+        fill: $light-color;
+    }
 }
 
 .btnHeart:hover {
     background-color: rgb(133, 133, 133);
-    transform: translateY(-3px);
-}
-
-.btnHeart:active {
-    transform: translateY(0);
 }
 
 .boxInfo {
@@ -181,4 +177,11 @@
     line-height: 3rem;
     margin-left: 3.3rem;
     padding-top: 2rem;
+}
+
+.loader {
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    opacity: .7;
 }

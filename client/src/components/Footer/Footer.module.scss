@@ -1,8 +1,12 @@
 @import '../../style/variables';
 @import '../../style/mixins';
+
+.top, 
+.bottom {
+    border-top: $border-dark;
+}
+
 .nav {
-    border-bottom: solid $dark-color 0.1rem;
-    border-top: solid $dark-color 0.1rem;
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
