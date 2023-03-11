@@ -1,7 +1,7 @@
 @import '../../style/variables';
 @import '../../style/mixins';
 
-.top, 
+.top,
 .bottom {
     border-top: $border-dark;
 }
@@ -13,7 +13,22 @@
     align-items: flex-start;
     padding: 8rem 0 4rem 0;
     font-size: $text-fs;
+    @media only screen and (max-width: $bp-medium) {
+        padding-top: 3rem;
+    }
 }
+.about_list {
+    @media only screen and (max-width: $bp-small) {
+        display: none !important;
+    }
+}
+.contact,
+.menu_list {
+    @media only screen and (max-width: $bp-small) {
+        width: calc(50% - 0.5rem);
+    }
+}
+
 .menu_list,
 .about_list,
 .contact,
@@ -67,6 +82,17 @@
 }
 .promotion {
     margin: 0;
+    @media only screen and (max-width: $bp-medium) {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 3rem;
+        padding-bottom: 3rem;
+        border-bottom: $dark-color 1px solid;
+
+        order: -1;
+        width: 100%;
+    }
 }
 .promotion_text {
     color: $lightGrey;
@@ -85,6 +111,7 @@
     color: $dark-color;
     border-radius: 4px 0 0 4px;
     background-color: transparent;
+    width: 100%;
 }
 
 .button_submit {

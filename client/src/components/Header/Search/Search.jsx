@@ -47,7 +47,7 @@ function Search({ className }) {
                 onFocus={() => {
                     setProductsShow(true);
                 }}
-                onBlur={() => setTimeout(() => setProductsShow(false), 250)}
+                // onBlur={() => setTimeout(() => setProductsShow(false), 250)}
             />
             <div>
                 <Icon type="search" />
