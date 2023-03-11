@@ -9,6 +9,7 @@ import createWishList from 'api/createWishList';
 import addProductToWishList from 'api/addProductToWishList';
 import Button from 'components/Button';
 import deleteProductFromCart from 'api/deleteProductFromCart';
+import { Link } from 'react-router-dom';
 import { itemAdded } from 'store/cartSlice';
 import { removeItem } from 'store/cartSlice';
 import deleteProductFromWishList from 'api/deleteProductFromWishList';
@@ -17,27 +18,39 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
     const { _id, name, imageUrls, currentPrice, color, size, fabric, itemNo } = item;
     const isLogin = useSelector((state) => state.store.login.isLogIn, shallowEqual);
     const [favouritesClicked, setFavouritesClicked] = useState(false);
+    const [double, setDouble] = useState(false);
     const dispatch = useDispatch();
     const addToFavourites = async () => {
-        if (isLogin) {
+        if (!favouritesClicked && !double) {
+            setDouble(true);
             const wishList = await getWishList();
             const wishListData = wishList.data;
             if (!wishListData) {
                 createWishList({
                     products: [_id],
+                }).then(() => {
+                    setFavouritesClicked(true);
+                    setDouble(false);
                 });
             } else {
                 const currentProduct = wishListData.products.find((elem) => elem._id === _id);
                 if (!currentProduct) {
-                    addProductToWishList(_id);
+                    addProductToWishList(_id).then(() => {
+                        setFavouritesClicked(true);
+                        setDouble(false);
+                    });
                 }
             }
-            setFavouritesClicked(true);
         }
     };
-    const RemoveFromFavourites = () => {
-        setFavouritesClicked(false);
-        deleteProductFromWishList(_id);
+    const removeFromFavourites = () => {
+        if (favouritesClicked && !double) {
+            setDouble(true);
+            deleteProductFromWishList(_id).then(() => {
+                setFavouritesClicked(false);
+                setDouble(false);
+            });
+        }
     };
     const DeleteFromFavourites = async () => {
         await deleteProductFromWishList(_id);
@@ -68,9 +81,13 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
     }, []);
     return (
         <>
-            <img src={imageUrls[0]} alt="bed linen" className={styles.itemImg} />
+            <Link to={`/catalog/${_id}`}>
+                <img src={imageUrls[0]} alt="bed linen" className={styles.itemImg} />
+            </Link>
             <div className={styles.textWrapper}>
-                <h3 className={styles.itemName}>{name}</h3>
+                <Link to={`/catalog/${_id}`}>
+                    <span className={styles.itemName}>{name}</span>
+                </Link>
                 <p className={styles.description}>
                     {
                         "This is the luxury bedding set with absolutely everything in it, at a price that won't keep you up at night."
@@ -115,24 +132,26 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
                             text={<Icon type="bagRemoveBtn" />}
                             className={styles.removeBtn}
                         />
-                        <div className={styles.addToFav}>
-                            <span className={styles.addToFavTxt}>
-                                {favouritesClicked ? 'REMOVE FROM' : 'ADD TO'} FAVORITES
-                            </span>
-                            <Button
-                                handleClick={
-                                    favouritesClicked ? RemoveFromFavourites : addToFavourites
-                                }
-                                text={
-                                    favouritesClicked ? (
-                                        <Icon type="bagFavIconFill" />
-                                    ) : (
-                                        <Icon type="bagFavIcon" />
-                                    )
-                                }
-                                className={styles.favBtn}
-                            />
-                        </div>
+                        {isLogin && (
+                            <div className={styles.addToFav}>
+                                <span className={styles.addToFavTxt}>
+                                    {favouritesClicked ? 'REMOVE FROM' : 'ADD TO'} FAVORITES
+                                </span>
+                                <Button
+                                    handleClick={
+                                        favouritesClicked ? removeFromFavourites : addToFavourites
+                                    }
+                                    text={
+                                        favouritesClicked ? (
+                                            <Icon type="bagFavIconFill" />
+                                        ) : (
+                                            <Icon type="bagFavIcon" />
+                                        )
+                                    }
+                                    className={styles.favBtn}
+                                />
+                            </div>
+                        )}
                     </>
                 ) : (
                     <>

@@ -1,6 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import styles from './PopularSection.module.scss';
-import Button from '../Button';
 
 const PopularSection = () => {
     return (
@@ -10,26 +10,52 @@ const PopularSection = () => {
                 <div className={styles.box}>
                     <div className={styles.boxOne}>
                         <div className={styles.boxOne_footer}>
-                            <Button text={'SHOP'} className={styles.btn_long} />
+                            <Link
+                                to="/catalog/filter?categories=bedroom"
+                                className={styles.btn_long}
+                                target="_top"
+                            >
+                                SHOP
+                            </Link>
                         </div>
                     </div>
                     <div className={styles.boxTwo}>
                         <div className={styles.boxTwo_footer}>
-                            <Button text={'SHOP'} className={styles.btn_small} />
+                            <Link
+                                to="/catalog/filter?categories=bathroom"
+                                className={styles.btn_small}
+                                target="_top"
+                            >
+                                SHOP
+                            </Link>
                         </div>
                     </div>
                     <div className={styles.boxThree}>
                         <div className={styles.boxThree_footer}>
-                            <Button text={'SHOP'} className={styles.btn_small} />
+                            <Link
+                                to="/catalog/filter?categories=bed linen"
+                                className={styles.btn_small}
+                                target="_top"
+                            >
+                                SHOP
+                            </Link>
                         </div>
                     </div>
                     <div className={styles.boxFour}>
                         <div className={styles.boxFour_footer}>
-                            <Button text={'SHOP'} className={styles.btn_long} />
+                            <Link
+                                to="/catalog/filter?categories=loungewear"
+                                className={styles.btn_long}
+                                target="_top"
+                            >
+                                SHOP
+                            </Link>
                         </div>
                     </div>
                 </div>
-                <Button className={styles.btn} text={'SEE ALL'} />
+                <Link to="/catalog" className={styles.btn} target="_top">
+                    SEE ALL
+                </Link>
             </div>
         </section>
     );

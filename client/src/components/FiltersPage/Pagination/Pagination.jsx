@@ -14,6 +14,7 @@ function Pagination({ maxPageNumber }) {
     const handleClickPage = (e) => {
         const pageNumber = Number(e.target.innerText);
         dispatch(filtersAdded({ startPage: [pageNumber] }));
+        window.scrollTo(0, 0);
     };
     const handleClickArrowLeft = () => {
         if (currentPage > 1) {

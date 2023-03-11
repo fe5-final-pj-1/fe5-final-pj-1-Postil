@@ -13,15 +13,14 @@ import ProtectedAdminRoutes from './routes/ProtectedAdminRoutes';
 import CustomerServiceRoute from 'routes/CustomerServiceRoute';
 import ContactsRoute from 'routes/ContactsRoute';
 import AboutRoute from 'routes/AboutRoute';
-// eslint-disable-next-line no-unused-vars
-import AdminDashboard from 'components/AdminPanel/AdminDashboard';
 import UserOrdersPage from './components/UserOrdersPage';
 import UserProfilePage from './components/UserProfilePage';
 import BagPage from './components/Checkout/pages/BagPage/BagPage';
 import ShippingDetailsPage from './components/Checkout/pages/ShippingDetailsPage';
 import PaymentOptionsPage from './components/Checkout/pages/PaymentOptionsPage';
-// eslint-disable-next-line no-unused-vars
-import AdminPanel from 'components/AdminPanel';
+import AdminPanelRoute from 'routes/AdminPanelRoute';
+import AdminDashboardHomeRoute from 'routes/AdminDashboardHomeRoute';
+import AdminDashboardCustomersRoute from 'routes/AdminDashboardCustomersRoute';
 
 const router = createBrowserRouter([
     {
@@ -97,11 +96,19 @@ const router = createBrowserRouter([
                     },
                     {
                         path: 'dashboard',
-                        element: <AdminPanel />,
+                        element: <AdminPanelRoute />,
                         children: [
                             {
                                 index: true,
-                                element: <AdminDashboard />,
+                                element: <Navigate to="home" replace />,
+                            },
+                            {
+                                path: 'home',
+                                element: <AdminDashboardHomeRoute />,
+                            },
+                            {
+                                path: 'customers',
+                                element: <AdminDashboardCustomersRoute />,
                             },
                         ],
                     },
