@@ -3,41 +3,48 @@ import * as Yup from 'yup';
 import formStyle from './Form.module.scss';
 import React from 'react';
 function Form() {
+    const EMAIL_REGEX =
+        /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const formik = useFormik({
         initialValues: {
             firstName: '',
             lastName: '',
             phoneNumber: '',
             address: '',
-            address2: '',
+            email: '',
             city: '',
             zip: '',
-            pay1: 'type2',
+            shipping: 'FreeShipping',
             country: '',
         },
 
         validationSchema: Yup.object({
-            firstName: Yup.string().required('What is your name?'),
-            lastName: Yup.string().required('What is your surname?'),
-            phoneNumber: Yup.number().required('What is your phone number?'),
-            address: Yup.string().required('What is your delivery address?'),
-            city: Yup.string().required('What is your city?'),
+            firstName: Yup.string()
+                .min(3, 'Must be more than 3 characters')
+                .required('What is your name?'),
+            lastName: Yup.string()
+                .min(3, 'Must be more than 3 characters')
+                .required('What is your surname?'),
+            phoneNumber: Yup.number()
+                .min(10, 'Must be more than 10 characters')
+                .required('What is your phone number?'),
+            address: Yup.string()
+                .min(3, 'Must be more than 3 characters')
+                .required('What is your delivery address?'),
+            email: Yup.string().matches(EMAIL_REGEX, 'No valid email address').required('Required'),
+
+            city: Yup.string()
+                .min(3, 'Must be more than 3 characters')
+                .required('What is your city?'),
             country: Yup.string().required('What is your Country?'),
-            zip: Yup.string().required('What is your Zip/Postal Code?'),
-            pay1: Yup.string().required('Choose your delivery method'),
+            zip: Yup.string()
+                .min(3, 'Must be more than 3 characters')
+                .required('What is your Zip/Postal Code?'),
+            shipping: Yup.string().required('Choose your delivery method'),
         }),
         onSubmit: (values) => {
-            const { firstName, lastName, city, address, country, pay1, phoneNumber, zip } = values;
-            //             console.log(
-            //                 `Name: ${values.firstName}
-            // Surname: ${values.lastName}
-            // Address: ${values.address}
-            // City: ${values.city}
-            // Country: ${values.country}
-            // Payment Method: ${values.pay1}
-            // Phone Number: ${values.phoneNumber}
-            // Zip: ${values.zip}`,
-            //             );
+            const { firstName, lastName, city, address, country, shipping, phoneNumber, zip } =
+                values;
             const order = {
                 deliveryAddress: {
                     country,
@@ -50,7 +57,7 @@ function Form() {
                 mobile: phoneNumber,
                 firstName,
                 lastName,
-                shipping: pay1,
+                shipping,
             };
             console.log(order);
         },
@@ -67,45 +74,54 @@ function Form() {
                     <div className={formStyle.inputs_wrapper}>
                         <div className={formStyle.input_wrapper}>
                             <div className={formStyle.input}>
+                                <label htmlFor="firstName" className={formStyle.form_label}>
+                                    {formik.errors.firstName && formik.touched.firstName ? (
+                                        <p className={formStyle.red}>{formik.errors.firstName}</p>
+                                    ) : null}
+                                </label>
                                 <input
                                     type="text"
                                     name="firstName"
-                                    id="form3Example1"
+                                    id="firstName"
                                     value={formik.values.firstName}
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     className={formStyle.input_area}
-                                    placeholder={
-                                        formik.errors.firstName && formik.touched.firstName
-                                            ? 'What is your name?'
-                                            : 'First name'
-                                    }
+                                    placeholder={'First name'}
                                 />
                             </div>
                             <div className={formStyle.input}>
                                 <div className="form-outline">
+                                    <label htmlFor="lastName" className={formStyle.form_label}>
+                                        {formik.errors.lastName && formik.touched.lastName ? (
+                                            <p className={formStyle.red}>
+                                                {formik.errors.lastName}
+                                            </p>
+                                        ) : null}
+                                    </label>
                                     <input
                                         type="text"
                                         name="lastName"
                                         onChange={formik.handleChange}
                                         value={formik.values.lastName}
                                         onBlur={formik.handleBlur}
-                                        id="form3Example2"
+                                        id="lastName"
                                         className={formStyle.input_area}
-                                        placeholder={
-                                            formik.errors.lastName && formik.touched.lastName
-                                                ? 'What is your surname?'
-                                                : 'Last Name'
-                                        }
+                                        placeholder={'Last Name'}
                                     />
                                 </div>
                             </div>
                         </div>
                         <div className={formStyle.input}>
+                            <label htmlFor="city" className={formStyle.form_label}>
+                                {formik.errors.address && formik.touched.address ? (
+                                    <p className={formStyle.red}>{formik.errors.address}</p>
+                                ) : null}
+                            </label>
                             <input
                                 type="textarea"
                                 name="address"
-                                id="form3Example3"
+                                id="address"
                                 onBlur={formik.handleBlur}
                                 onChange={formik.handleChange}
                                 value={formik.values.address}
@@ -118,30 +134,39 @@ function Form() {
                             />
                         </div>
                         <div className={formStyle.input}>
+                            <label htmlFor="email" className={formStyle.form_label}>
+                                {formik.errors.email && formik.touched.email ? (
+                                    <p className={formStyle.red}>{formik.errors.email}</p>
+                                ) : null}
+                            </label>
                             <input
                                 type="textarea"
-                                name="address2"
-                                id="form3Example3"
+                                name="email"
+                                id="email"
                                 onBlur={formik.handleBlur}
                                 onChange={formik.handleChange}
                                 value={formik.values.address2}
                                 className={formStyle.input_area}
-                                placeholder={
-                                    formik.errors.address2 && formik.touched.address2
-                                        ? 'What is your Address 2?'
-                                        : 'Address 2 *' // email
-                                }
+                                placeholder={'Email'}
                             />
                         </div>
                         <div className={formStyle.input_wrapper}>
                             <div className={formStyle.select_wrapper}>
+                                <label htmlFor="country" className={formStyle.form_label}>
+                                    {formik.errors.country && formik.touched.country ? (
+                                        <p className={formStyle.red}>{formik.errors.country}</p>
+                                    ) : null}
+                                </label>
                                 <select
                                     id="country"
                                     className={formStyle.select}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
+                                    defaultValue={'DEFAULT'}
                                 >
-                                    <option>Select Country</option>
+                                    <option disabled value="DEFAULT">
+                                        Select Country
+                                    </option>
                                     <option value="Ukraine">Ukraine</option>
                                     <option value="Poland">Poland</option>
                                     <option value="France">France</option>
@@ -151,54 +176,59 @@ function Form() {
                                 </select>
                             </div>
                             <div className={formStyle.input}>
+                                <label htmlFor="city" className={formStyle.form_label}>
+                                    {formik.errors.city && formik.touched.city ? (
+                                        <p className={formStyle.red}>{formik.errors.city}</p>
+                                    ) : null}
+                                </label>
                                 <input
                                     type="textarea"
                                     name="city"
-                                    id="form3Example3"
+                                    id="city"
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
                                     value={formik.values.city}
                                     className={formStyle.input_area}
-                                    placeholder={
-                                        formik.errors.city && formik.touched.city
-                                            ? 'What is your city?'
-                                            : 'City'
-                                    }
+                                    placeholder={'City'}
                                 />
                             </div>
                         </div>
                         <div className={formStyle.input_wrapper}>
                             <div className={formStyle.input}>
+                                <label htmlFor="zip" className={formStyle.form_label}>
+                                    {formik.errors.zip && formik.touched.zip ? (
+                                        <p className={formStyle.red}>{formik.errors.zip}</p>
+                                    ) : null}
+                                </label>
                                 <input
                                     type="textarea"
                                     name="zip"
-                                    id="form3Example3"
+                                    id="zip"
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
                                     value={formik.values.zip}
                                     className={formStyle.input_area}
-                                    placeholder={
-                                        formik.errors.zip && formik.touched.zip
-                                            ? 'What is your Zip/Postal Code?'
-                                            : 'Zip/Postal Code'
-                                    }
+                                    placeholder={'Zip/Postal Code'}
                                 />
                             </div>
                             <div className={formStyle.input}>
                                 <div className="form-outline">
+                                    <label htmlFor="phoneNumber" className={formStyle.form_label}>
+                                        {formik.errors.phoneNumber && formik.touched.phoneNumber ? (
+                                            <p className={formStyle.red}>
+                                                {formik.errors.phoneNumber}
+                                            </p>
+                                        ) : null}
+                                    </label>
                                     <input
                                         type="tel"
                                         name="phoneNumber"
                                         onBlur={formik.handleBlur}
                                         onChange={formik.handleChange}
                                         value={formik.values.phoneNumber}
-                                        id="form3Example2"
+                                        id="phoneNumber"
                                         className={formStyle.input_area}
-                                        placeholder={
-                                            formik.errors.phoneNumber && formik.touched.phoneNumber
-                                                ? 'What is your phone number?'
-                                                : 'Phone Number'
-                                        }
+                                        placeholder={'Phone Number'}
                                     />
                                 </div>
                             </div>
@@ -210,11 +240,12 @@ function Form() {
                             <input
                                 className={formStyle.radio_btn}
                                 type="radio"
-                                name="pay1"
+                                name="shipping"
                                 onBlur={formik.handleBlur}
                                 onChange={formik.handleChange}
-                                value="type1"
-                                id="form2Example33"
+                                value="FreeShipping"
+                                id="radio_wrapper"
+                                defaultChecked={true}
                             />
                             <div className={formStyle.btn_text_wrapper}>
                                 <h2 className={formStyle.checkbox_title}>Free Shipping</h2>
@@ -225,12 +256,11 @@ function Form() {
                             <input
                                 className={formStyle.radio_btn}
                                 type="radio"
-                                name="pay1"
+                                name="shipping"
                                 onBlur={formik.handleBlur}
                                 onChange={formik.handleChange}
-                                value="type2"
-                                id="form2Example34"
-                                defaultChecked={true}
+                                value="PayDelivery"
+                                id="radio_wrapper"
                             />
                             <div className={formStyle.btn_text_wrapper}>
                                 <h2 className={formStyle.checkbox_title}>
@@ -242,9 +272,9 @@ function Form() {
                     </div>
                 </div>
             </form>
-            <button type="submit" form="shippingForm">
+            {/* <button type="submit" form="shippingForm">
                 submit
-            </button>
+            </button> */}
         </>
     );
 }
