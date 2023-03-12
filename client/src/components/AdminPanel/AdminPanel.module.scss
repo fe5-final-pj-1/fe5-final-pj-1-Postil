@@ -11,12 +11,16 @@
     &Link {
         display: flex;
         align-items: center;
-        justify-content: center;
+        justify-content: flex-start;
         @include muli-font-semibold;
         font-size: 2rem;
         color: $dark-color;
         border: $border-dark;
         padding: 1.2rem 3rem;
+
+        &:not(:last-child) {
+            margin-bottom: .5rem;
+        }
 
         & > span {
             margin-left: 1rem;

@@ -52,6 +52,14 @@
         width: 5rem;
         height: 8.5rem;
     }
+
+    & :global .carousel .slide img {
+        width: 99.7%;
+    }
+
+    & :global .carousel .selected img {
+        width: 100%;
+    }
     
 }
 

@@ -22,7 +22,7 @@ function NewInSection() {
                     {items.map(({ name, itemNo, imageUrls, currentPrice, _id }) => {
                         return (
                             <li className={newInItem} key={itemNo}>
-                                <Link to={`/catalog/${_id}`}>
+                                <Link to={`/catalog/${_id}`} target="_top">
                                     <img className={newInImg} src={imageUrls[0]} alt="new-img" />
                                     <div className={newInStyles.descriptionContainer}>
                                         <p className={newInText}>{name}</p>
