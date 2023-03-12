@@ -7,13 +7,20 @@ import PropTypes from 'prop-types';
 function NewInSection() {
     const { newIn, newInTitle, newInWrp, newInItem, newInImg, newInText, newInPrice } = newInStyles;
     const [items, setIsItems] = useState([]);
+    const [isEmpty, setIsEmpty] = useState(false);
 
     useEffect(() => {
         getFilteredProducts('isNew=true').then((res) => {
-            setIsItems(res.data.products);
+            if (res && res.data) {
+                setIsItems(res.data.products.slice(0, 4));
+            } else {
+                setIsEmpty(true);
+            }
         });
     }, []);
-
+    if (isEmpty) {
+        return null;
+    }
     return (
         <section className={newIn}>
             <div className="container">
