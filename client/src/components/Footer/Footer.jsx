@@ -1,5 +1,5 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import FooterStyle from './Footer.module.scss';
 import addSubscriber from '../../api/addSubscriber';
@@ -28,54 +28,54 @@ function Footer() {
                     <nav className={FooterStyle.nav}>
                         <ul className={FooterStyle.menu_list}>
                             <li className={FooterStyle.menu_list_item}>
-                                <NavLink className={FooterStyle.links} to="shop">
+                                <NavLink className={FooterStyle.links} to="shop" target="_top">
                                     Shop
                                 </NavLink>
                             </li>
                             <li className={FooterStyle.menu_list_item}>
-                                <NavLink className={FooterStyle.links} to="products">
+                                <NavLink className={FooterStyle.links} to="catalog" target="_top">
                                     Catalog
                                 </NavLink>
                             </li>
                             <li className={FooterStyle.menu_list_item}>
-                                <NavLink className={FooterStyle.links} to="shop">
+                                <NavLink className={FooterStyle.links} to="service" target="_top">
                                     Payment & Delivery
                                 </NavLink>
                             </li>
                             <li className={FooterStyle.menu_list_item}>
-                                <NavLink className={FooterStyle.links} to="shop">
+                                <NavLink className={FooterStyle.links} to="service" target="_top">
                                     Returns
                                 </NavLink>
                             </li>
                             <li className={FooterStyle.menu_list_item}>
-                                <NavLink className={FooterStyle.links} to="shop">
+                                <NavLink className={FooterStyle.links} to="service" target="_top">
                                     Privacy Policy
                                 </NavLink>
                             </li>
                             <li className={FooterStyle.menu_list_item}>
-                                <NavLink className={FooterStyle.links} to="shop">
+                                <NavLink className={FooterStyle.links} to="service" target="_top">
                                     Terms of service
                                 </NavLink>
                             </li>
                         </ul>
                         <ul className={FooterStyle.about_list}>
                             <li className={FooterStyle.about_list_item}>
-                                <NavLink className={FooterStyle.links} to="products/:productId">
+                                <NavLink className={FooterStyle.links} to="about" target="_top">
                                     About
                                 </NavLink>
                             </li>
                             <li className={FooterStyle.about_list_item}>
-                                <NavLink className={FooterStyle.links} to="shop">
+                                <NavLink className={FooterStyle.links} to="about" target="_top">
                                     About Us
                                 </NavLink>
                             </li>
                             <li className={FooterStyle.about_list_item}>
-                                <NavLink className={FooterStyle.links} to="shop">
+                                <NavLink className={FooterStyle.links} to="shop" target="_top">
                                     Reviews
                                 </NavLink>
                             </li>
                             <li className={FooterStyle.about_list_item}>
-                                <NavLink className={FooterStyle.links} to="shop">
+                                <NavLink className={FooterStyle.links} to="shop" target="_top">
                                     Blog
                                 </NavLink>
                             </li>
@@ -100,7 +100,9 @@ function Footer() {
                         <div className={FooterStyle.promotion}>
                             <p className={FooterStyle.title}>Subscribe</p>
                             <p className={FooterStyle.promotion_text}>
-                                Subscribe now and get 15% off on your first <br /> order
+                                {
+                                    "Let's get personal! We'll send you only the good stuff: Exclusive early access to Sale, new arrivals and promotions. No nasties."
+                                }
                             </p>
                             <form
                                 className={FooterStyle.subscription_input}
@@ -126,19 +128,19 @@ function Footer() {
                                 <p className={FooterStyle.followUs}>Follow Us</p>
                                 <ul className={FooterStyle.social_list}>
                                     <li className={FooterStyle.social_list_item}>
-                                        <NavLink target="_blank" to="shop">
+                                        <Link target="_blank" to="https://www.facebook.com/">
                                             <Icon type="FacebookMin" />
-                                        </NavLink>
+                                        </Link>
                                     </li>
                                     <li className={FooterStyle.social_list_item}>
-                                        <NavLink target="_blank" to="shop">
+                                        <Link target="_blank" to="https://twitter.com/">
                                             <Icon type="TwitterMin" />
-                                        </NavLink>
+                                        </Link>
                                     </li>
                                     <li className={FooterStyle.social_list_item}>
-                                        <NavLink target="_blank" to="shop">
+                                        <Link target="_blank" to="https://www.instagram.com/">
                                             <Icon type="InstagramMin" />
-                                        </NavLink>
+                                        </Link>
                                     </li>
                                 </ul>
                             </div>

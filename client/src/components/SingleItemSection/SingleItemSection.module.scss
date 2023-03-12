@@ -6,7 +6,6 @@
     @media only screen and (max-width: $bp-small) {
         margin-bottom: 4rem;
     }
-
 }
 
 .singleItemWrp {
@@ -21,7 +20,6 @@
         gap: 4rem;
         flex-direction: column;
     }
-
 }
 
 .boxRight {
@@ -100,6 +98,16 @@
     margin-top: 2.2rem;
     padding-bottom: 2.7rem;
     border-bottom: 0.1rem solid #373f41;
+    @media only screen and (max-width: $bp-medium) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+    }
 }
 
 .buyTextOne {

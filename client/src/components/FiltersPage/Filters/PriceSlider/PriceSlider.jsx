@@ -117,16 +117,24 @@ function PriceSlider() {
             />
             <form onSubmit={handleSubmit}>
                 <div className={styles.inputs}>
-                    <span>FROM</span>
-                    <input type="number" value={values.lowerBound} onChange={onLowerBoundChange} />
+                    <div className={styles.inputsWrapper}>
+                        <span>FROM</span>
+                        <input
+                            type="number"
+                            value={values.lowerBound}
+                            onChange={onLowerBoundChange}
+                        />
+                    </div>
                     <br />
-                    <span>TO</span>
-                    <input
-                        type="number"
-                        value={values.upperBound}
-                        onBlur={onUpperBoundBlur}
-                        onChange={onUpperBoundChange}
-                    />
+                    <div className={styles.inputsWrapper}>
+                        <span>TO</span>
+                        <input
+                            type="number"
+                            value={values.upperBound}
+                            onBlur={onUpperBoundBlur}
+                            onChange={onUpperBoundChange}
+                        />
+                    </div>
                 </div>
                 <input className={styles.submitBtn} type="submit" value="OK" />
             </form>
