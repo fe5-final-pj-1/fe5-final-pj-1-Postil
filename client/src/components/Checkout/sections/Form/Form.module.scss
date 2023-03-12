@@ -1,49 +1,10 @@
 @import '../../../../style/variables';
-.red{
-  font-size: $description-fs;
-  color: red;
+.accent_color {
+    font-size: $description-fs;
+    color: red;
 }
-.form_section {
+.section {
     width: 60%;
-}
-.input_wrapper {
-    display: flex;
-    justify-content: space-between;
-}
-.checkbox_wrapper {
-    display: flex;
-    justify-content: space-between;
-    padding-top: 3rem;
-}
-.radio_btn_wrapper {
-    display: flex;
-    width: 100%;
-    border: 1px solid $description-color;
-    border-radius: 0.5rem;
-    position: relative;
-}
-.radio_btn_wrapper:first-child {
-    margin-right: 2rem;
-}
-.radio_btn {
-    accent-color: $description-color;
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    top: 50%;
-    left: 1.6rem;
-    transform: translateY(-50%);
-}
-.form {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 2rem;
-    padding-bottom: 2rem;
-    margin-top: 1.2rem;
-    margin-bottom: 3rem;
-    border-top: 1px solid $dark-color;
-    border-bottom: 1px solid $dark-color;
 }
 .shipping_title {
     font-family: 'Mulish';
@@ -54,12 +15,24 @@
     line-height: 4.8rem;
     text-transform: uppercase;
 }
-.inputs_wrapper {
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+    margin-top: 1.2rem;
+    margin-bottom: 3rem;
+    border-top: 1px solid $dark-color;
+    border-bottom: 1px solid $dark-color;
+}
+.main_inputs {
     padding-bottom: 2rem;
     border-bottom: 1px solid $dark-color;
 }
-.input:first-child {
-    margin-right: 2rem;
+.inputs_wrapper {
+    display: flex;
+    justify-content: space-between;
 }
 .input {
     border: 1px solid $description-color;
@@ -69,15 +42,18 @@
     color: $description-color;
     padding: 0.8rem 1rem 0.8rem 2rem;
 }
-.select {
+.input:first-child {
+    margin-right: 2rem;
+}
+.input_label {
+    position: relative;
+}
+.input_area {
     width: 100%;
-    color: $description-color;
     padding: 5px;
 }
-
 .select_wrapper {
     position: relative;
-    // display: flex;
     width: 100%;
     border: 1px solid $description-color;
     margin-bottom: 2rem;
@@ -94,9 +70,44 @@
     top: 0;
     background-color: $description-color;
 }
-.input_area {
+.select {
     width: 100%;
+    color: $description-color;
     padding: 5px;
+}
+.checkbox_wrapper {
+    display: flex;
+    justify-content: space-between;
+    padding-top: 3rem;
+}
+.radio_btn_wrapper {
+    display: flex;
+    width: 100%;
+    border: 1px solid $description-color;
+    border-radius: 0.5rem;
+    position: relative;
+}
+.radio_btn_wrapper:first-child {
+    margin-right: 2rem;
+}
+.radio_btn_wrapper input:checked + div {
+    background: $dark-color;
+}
+.radio_btn_wrapper input:checked + div h2 {
+    color: white;
+}
+.radio_btn {
+    accent-color: $description-color;
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 50%;
+    left: 1.6rem;
+    transform: translateY(-50%);
+}
+.btn_text {
+    padding: 3rem 0 3rem 7rem;
+    width: 100%;
 }
 .checkbox_title {
     color: $dark-color;
@@ -106,18 +117,4 @@
 .checkbox_text {
     color: $description-color;
     font-size: $description-fs;
-}
-.radio_btn_wrapper input:checked + div{
-    background: $dark-color;
-}
-.radio_btn_wrapper input:checked + div h2{
-  color: white;
-}
-.btn_text_wrapper {
-    padding: 3rem 0 3rem 7rem;
-    width: 100%;
-
-}
-.form_label{
-  position: relative;
 }
