@@ -19,6 +19,9 @@
     & :global .carousel .slide img {
         width: 99.2%;
     }
+    & :global .thumbs {
+        transform: translate3d(0, 0, 0) !important;
+    }
 }
 
 :global .carousel .thumbs-wrapper {
