@@ -5,6 +5,34 @@
     justify-content: space-between;
     align-items: flex-start;
     width: 100%;
+    @media only screen and (max-width: $bp-medium) {
+        flex-wrap: wrap;
+        row-gap: 0.5rem;
+        & .tab {
+            text-align: center;
+        }
+        & .tab:nth-child(-n + 3) {
+            width: 33%;
+        }
+        & .tab:nth-child(4) {
+            width: 22.5%;
+        }
+        & .tab:nth-child(5) {
+            width: 25%;
+        }
+        & .tab:nth-child(6) {
+            width: 31%;
+        }
+        & .tab:nth-child(7) {
+            width: 20%;
+        }
+    }
+    @media only screen and (max-width: $bp-small) {
+        position: absolute;
+        max-width: calc(100vw - 5rem);
+        top: 50px;
+        min-width: calc(375px - 5rem);
+    }
 }
 .tab {
     @include abel-font-normal;

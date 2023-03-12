@@ -83,7 +83,9 @@
 }
 .promotion {
     margin: 0;
+    max-width: 30%;
     @media only screen and (max-width: $bp-medium) {
+        max-width: 100%;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -98,10 +100,18 @@
 .promotion_text {
     color: $lightGrey;
     font-size: 1.4rem;
+    display: inline-block;
+    @media only screen and (max-width: $bp-medium) {
+        width: 50%;
+        text-align: center;
+    }
+    @media only screen and (max-width: $bp-small) {
+        width: 80%;
+    }
 }
 .subscription_input {
     display: flex;
-    align-items: center;
+    align-items: stretch;
     margin-bottom: 2rem;
 }
 
@@ -116,7 +126,7 @@
 }
 
 .button_submit {
-    padding: 1.45rem 4.5rem;
+    padding: 1.46rem 4.5rem;
     border-radius: 0 4px 4px 0;
     background-color: $dark-color;
     color: #fff;
