@@ -1,39 +1,59 @@
-import React, { useEffect } from 'react';
-import adminPanelStyles from './AdminProductsAdd.module.scss';
+import React, { useState, useEffect } from 'react';
+import adminPanelStyles from './AdminProductsActions.module.scss';
 import { useFormik } from 'formik';
+import { useParams } from 'react-router-dom';
 import getAllProducts from 'api/getAllProducts';
+import getOneProduct from 'api/getOneProduct';
+import updateOneProduct from 'api/updateOneProduct';
 import classNames from 'classnames';
+import addNewProduct from 'api/addNewProduct';
+import PropTypes from 'prop-types';
 import * as Yup from 'yup';
+import { Oval } from 'react-loader-spinner';
 
-function AdminProductsAdd() {
+function AdminProductsActions({ type }) {
+    const [isLoaded, setIsLoaded] = useState(false);
+    const [product, setProduct] = useState('');
+    let { productId } = useParams();
     useEffect(() => {
-        getAllProducts().then((res) => {
-            if (res && res.data) {
-                const numberStr = res.data[res.data.length - 1].itemNo;
-                const numberArr = numberStr.split('-');
-                numberArr[1] = (Number(numberArr[1]) + 1).toString();
-                formik.values.itemNo = numberArr.join('-');
-            }
-        });
+        if (type !== 'edit') {
+            getAllProducts().then((res) => {
+                setIsLoaded(true);
+                if (res && res.data) {
+                    const numberStr = res.data[res.data.length - 1].itemNo;
+                    const numberArr = numberStr.split('-');
+                    numberArr[1] = (Number(numberArr[1]) + 1).toString();
+                    formik.values.itemNo = numberArr.join('-');
+                }
+            });
+        } else {
+            getOneProduct(productId).then((res) => {
+                setProduct(res.data);
+                setIsLoaded(true);
+            });
+        }
     });
     const formik = useFormik({
+        enableReinitialize: type !== 'edit' ? false : true,
         initialValues: {
             enabled: true,
-            name: '',
-            currentPrice: 0,
-            previousPrice: 0,
-            categories: '',
-            imageUrls: ['', '', ''],
-            quantity: 0,
-            fabric: '',
-            color: '',
-            size: '',
-            itemNo: '',
+            isNew: product.isNew ? product.isNew : 'true',
+            name: product.name ? product.name : '',
+            currentPrice: product.currentPrice ? product.currentPrice : 0,
+            previousPrice: product.previousPrice ? product.previousPrice : 0,
+            categories: product.categories ? product.categories : '',
+            imageUrls: product.imageUrls ? product.imageUrls : ['', '', ''],
+            quantity: product.quantity ? product.quantity : 0,
+            fabric: product.fabric ? product.fabric : '',
+            color: product.color ? product.color : '',
+            size: product.size ? product.size : '',
+            itemNo: product.itemNo ? product.itemNo : '',
         },
         validationSchema: Yup.object({
             enabled: Yup.bool(),
+            isNew: Yup.string(),
             name: Yup.string()
-                .max(15, 'Must be 15 characters or less')
+                .max(30, 'Must be 30 characters or less')
                 .min(3, 'Must be 3 characters or more')
                 .required('Required'),
             currentPrice: Yup.number().required('Required').positive().integer(),
@@ -42,7 +62,7 @@ function AdminProductsAdd() {
             imageUrls: Yup.array()
                 .required('Required')
                 .of(Yup.string().required('Required').min(15, 'Must be 15 characters or more')),
-            quantity: Yup.number().positive().integer(),
+            quantity: Yup.number().required('Required').positive().integer(),
             fabric: Yup.string().required('Required'),
             color: Yup.string(),
             size: Yup.string(),
@@ -52,6 +72,7 @@ function AdminProductsAdd() {
             const {
                 enabled,
                 name,
+                isNew,
                 currentPrice,
                 previousPrice,
                 categories,
@@ -64,6 +85,7 @@ function AdminProductsAdd() {
             } = values;
             const data = {
                 enabled,
+                isNew,
                 name,
                 currentPrice: Number(currentPrice),
                 previousPrice: Number(previousPrice),
@@ -75,15 +97,39 @@ function AdminProductsAdd() {
                 size,
                 itemNo,
             };
-            console.log(data);
+            setIsLoaded(false);
+            if (type !== 'edit') {
+                addNewProduct(data).then(() => setIsLoaded(true));
+            } else {
+                updateOneProduct(product._id, data);
+            }
         },
     });
+    if (!isLoaded) {
+        return (
+            <Oval
+                height={130}
+                width={130}
+                color="#373F41"
+                wrapperStyle={{}}
+                wrapperClass={adminPanelStyles.loader}
+                visible={true}
+                ariaLabel="oval-loading"
+                secondaryColor="#4fa94d"
+                strokeWidth={2}
+                strokeWidthSecondary={2}
+            />
+        );
+    }
     return (
         <div className={adminPanelStyles.wrapper}>
-            <h2 className="h2">add new product</h2>
+            <h2 className="h2">
+                {type !== 'edit' ? 'add new product' : `edit ${product.name} №${product.itemNo}`}
+            </h2>
             <form onSubmit={formik.handleSubmit} className={adminPanelStyles.form}>
                 <input name="enabled" type="hidden" value={formik.values.name} />
                 <input name="itemNo" type="hidden" value={formik.values.itemNo} />
+                <input name="isNew" type="hidden" value={formik.values.isNew} />
                 <label className={adminPanelStyles.formLabel} htmlFor="name">
                     add product name
                 </label>
@@ -297,32 +343,45 @@ function AdminProductsAdd() {
                     <option value="queen">Queen</option>
                     <option value="king">King</option>
                 </select>
-                <button type="submit">Add product</button>
-                <button
-                    onClick={() =>
-                        formik.resetForm({
-                            values: {
-                                enabled: true,
-                                name: '',
-                                currentPrice: 0,
-                                previousPrice: 0,
-                                categories: '',
-                                imageUrls: ['', '', ''],
-                                quantity: 0,
-                                fabric: '',
-                                color: '',
-                                size: '',
-                                itemNo: formik.values.itemNo,
-                            },
-                        })
-                    }
-                    type="reset"
-                >
-                    Reset Changes
-                </button>
+                <div className={adminPanelStyles.formButtons}>
+                    <button type="submit" className={adminPanelStyles.formSubmitBtn}>
+                        {type !== 'edit' ? 'Add product' : 'Edit product'}
+                    </button>
+                    <button
+                        onClick={() =>
+                            formik.resetForm({
+                                values: {
+                                    enabled: true,
+                                    name: '',
+                                    currentPrice: 0,
+                                    previousPrice: 0,
+                                    categories: '',
+                                    imageUrls: ['', '', ''],
+                                    quantity: 0,
+                                    fabric: '',
+                                    color: '',
+                                    size: '',
+                                    itemNo: formik.values.itemNo,
+                                },
+                            })
+                        }
+                        type="reset"
+                        className={adminPanelStyles.formResetBtn}
+                    >
+                        Reset Changes
+                    </button>
+                </div>
             </form>
         </div>
     );
 }
 
-export default AdminProductsAdd;
+export default AdminProductsActions;
+
+AdminProductsActions.propTypes = {
+    type: PropTypes.string,
+};
+
+AdminProductsActions.defaultProps = {
+    type: '',
+};

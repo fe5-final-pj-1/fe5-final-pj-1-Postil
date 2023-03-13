@@ -1,8 +1,8 @@
 import React from 'react';
-import AdminProductsAdd from 'components/AdminPanel/AdminDashboardProducts/AdminProductsAdd';
+import AdminProductsActions from '../../components/AdminPanel/AdminDashboardProducts/AdminProductsActions';
 
 function AdminProductsAddRoute() {
-    return <AdminProductsAdd />;
+    return <AdminProductsActions />;
 }
 
 export default AdminProductsAddRoute;

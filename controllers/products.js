@@ -23,7 +23,7 @@ exports.addImages = (req, res, next) => {
 exports.addProduct = (req, res, next) => {
   const productFields = _.cloneDeep(req.body);
 
-  productFields.itemNo = rand();
+  // productFields.itemNo = rand();
 
   try {
     productFields.name = productFields.name
@@ -54,6 +54,30 @@ exports.addProduct = (req, res, next) => {
         message: `Error happened on server: "${err}" `
       })
     );
+};
+
+exports.deleteProduct = (req, res, next) => {
+  Product.findOne({ _id: req.params.id }).then(async product => {
+    if (!product) {
+      return res
+        .status(400)
+        .json({ message: `Product with id ${req.params.id} is not found.` });
+    } else {
+      const productToDelete = await Product.findOne({ _id: req.params.id });
+
+      Product.deleteOne({ _id: req.params.id })
+        .then(deletedCount =>
+          res.status(200).json({
+            message: `Product witn id "${productToDelete._id}" is successfully deletes from DB`
+          })
+        )
+        .catch(err =>
+          res.status(400).json({
+            message: `Error happened on server: "${err}" `
+          })
+        );
+    }
+  });
 };
 
 exports.updateProduct = (req, res, next) => {

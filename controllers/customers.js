@@ -144,6 +144,41 @@ exports.getCustomer = (req, res) => {
   res.json(req.user);
 };
 
+// Controller for getting all customers
+exports.getCustomers = (req, res) => {
+  Customer.find()
+    .then(customers => res.send(customers))
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err.message}" `
+      })
+    );
+};
+
+exports.deleteCustomer = (req, res, next) => {
+  Customer.findOne({ _id: req.params.id }).then(async customer => {
+    if (!customer) {
+      return res
+        .status(400)
+        .json({ message: `Customer with id ${req.params.id} is not found.` });
+    } else {
+      const customerToDelete = await Customer.findOne({ _id: req.params.id });
+
+      Customer.deleteOne({ _id: req.params.id })
+        .then(deletedCount =>
+          res.status(200).json({
+            message: `Cusromer witn id "${customerToDelete._id}" is successfully deletes from DB`
+          })
+        )
+        .catch(err =>
+          res.status(400).json({
+            message: `Error happened on server: "${err}" `
+          })
+        );
+    }
+  });
+};
+
 // Controller for editing customer personal info
 exports.editCustomerInfo = (req, res) => {
   // Clone query object, because validator module mutates req.body, adding other fields to object
