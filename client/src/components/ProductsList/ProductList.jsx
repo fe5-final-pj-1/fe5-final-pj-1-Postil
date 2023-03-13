@@ -1,11 +1,15 @@
 import styles from './ProductList.module.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Icon from 'components/Icon';
 import Button from 'components/Button';
+import deleteProductFromDB from 'api/deleteProductFromDB';
+import { filtersResetAll } from 'store/filtersSlice';
 import PropTypes from 'prop-types';
 
 function ProductList({ products, isAdmin }) {
+    const dispatch = useDispatch();
     if (products.length === 0) {
         return (
             <div className={styles.noProductMatch}>
@@ -24,7 +28,10 @@ function ProductList({ products, isAdmin }) {
                     <div className={styles.productName}>
                         {isAdmin && (
                             <Button
-                                handleClick={() => console.log('click')}
+                                handleClick={() => {
+                                    deleteProductFromDB(product._id);
+                                    dispatch(filtersResetAll());
+                                }}
                                 text={<Icon type="delete" />}
                                 className={styles.removeBtn}
                             />
