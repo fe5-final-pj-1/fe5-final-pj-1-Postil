@@ -7,13 +7,15 @@
 }
 .tabsNav {
     @include content-container;
+    //max-width: 1180px;
+    //margin: 0 auto;
     position: relative;
     display: flex;
     justify-content: center;
     &::after {
         content: '';
         position: absolute;
-        width: 117.9rem;
+        width: 100%;
         border-bottom: 0.11rem solid white;
         top: 6.9rem;
     }
