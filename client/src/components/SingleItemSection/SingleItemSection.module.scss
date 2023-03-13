@@ -2,7 +2,10 @@
 @import '../../style/mixins';
 
 .singleItem {
-    margin: 8rem auto 8rem auto;
+    margin-bottom: 8rem;
+    @media only screen and (max-width: $bp-small) {
+        margin-bottom: 4rem;
+    }
 }
 
 .singleItemWrp {
@@ -10,16 +13,29 @@
     padding-left: 1.8rem;
     // make smaller in media-queries
     gap: 10rem;
+    @media only screen and (max-width: $bp-medium) {
+        gap: 4rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+        gap: 4rem;
+        flex-direction: column;
+    }
 }
 
 .boxRight {
     flex: 0 0 calc(50.5% - 10rem / 2);
+    @media only screen and (max-width: $bp-medium) {
+        flex: 0 0 calc(50.5%);
+    }
 }
 
 .boxRightHeader {
     display: flex;
     justify-content: space-between;
     gap: 2rem;
+    @media only screen and (max-width: $bp-medium) {
+        flex-direction: column;
+    }
 }
 
 .singleItemTitle {
@@ -82,6 +98,16 @@
     margin-top: 2.2rem;
     padding-bottom: 2.7rem;
     border-bottom: 0.1rem solid #373f41;
+    @media only screen and (max-width: $bp-medium) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+    }
 }
 
 .buyTextOne {
@@ -109,7 +135,7 @@
     box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
     color: rgb(255, 255, 255);
     border-radius: 0.4rem;
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
 }
 
 .btn:hover {
@@ -126,23 +152,19 @@
     width: 6rem;
     margin-left: 1.5rem;
     background: rgba(55, 63, 65, 1);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-image: url('./SingleItemPictures/HeartBtn.svg');
     border: 0.1rem solid rgba(55, 63, 65, 1);
     box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
     color: rgb(255, 255, 255);
     border-radius: 0.4rem;
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
+
+    & svg {
+        fill: $light-color;
+    }
 }
 
 .btnHeart:hover {
     background-color: rgb(133, 133, 133);
-    transform: translateY(-3px);
-}
-
-.btnHeart:active {
-    transform: translateY(0);
 }
 
 .boxInfo {
@@ -181,4 +203,11 @@
     line-height: 3rem;
     margin-left: 3.3rem;
     padding-top: 2rem;
+}
+
+.loader {
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    opacity: 0.7;
 }
