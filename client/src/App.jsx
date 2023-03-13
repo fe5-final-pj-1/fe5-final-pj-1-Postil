@@ -18,7 +18,16 @@ import UserProfilePage from './components/UserProfilePage';
 import BagPage from './components/Checkout/pages/BagPage/BagPage';
 import ShippingDetailsPage from './components/Checkout/pages/ShippingDetailsPage';
 import PaymentOptionsPage from './components/Checkout/pages/PaymentOptionsPage';
-import AdminPanel from './components/AdminPanel';
+import AdminPanelRoute from 'routes/admin/AdminPanelRoute';
+import AdminDashboardHomeRoute from 'routes/admin/AdminDashboardHomeRoute';
+import AdminDashboardCustomersRoute from 'routes/admin/AdminDashboardCustomersRoute';
+import AdminDashboardProductsRoute from 'routes/admin/AdminDashboardProductsRoute';
+import AdminDashboardPromotionsRoute from 'routes/admin/AdminDashboardPromotionsRoute';
+import AdminDashboardOrdersRoute from 'routes/admin/AdminDashboardOrdersRoute';
+import AdminDashboardSubscribersRoute from 'routes/admin/AdminDashboardSubscribersRoute';
+import AdminProductsRoute from 'routes/admin/AdminProductsRoute';
+import AdminProductsAdd from 'components/AdminPanel/AdminDashboardProducts/AdminProductsAdd';
+import AdminProductsEditRoute from 'routes/admin/AdminProductsEditRoute';
 
 const router = createBrowserRouter([
     {
@@ -82,13 +91,61 @@ const router = createBrowserRouter([
                         path: 'orders',
                         element: <UserOrdersPage />,
                     },
+                ],
+            },
+            {
+                path: 'admin',
+                element: <ProtectedAdminRoutes />,
+                children: [
                     {
-                        path: 'admin',
-                        element: <ProtectedAdminRoutes />,
+                        index: true,
+                        element: <Navigate to="dashboard" replace />,
+                    },
+                    {
+                        path: 'dashboard',
+                        element: <AdminPanelRoute />,
                         children: [
                             {
                                 index: true,
-                                element: <AdminPanel />,
+                                element: <Navigate to="home" replace />,
+                            },
+                            {
+                                path: 'home',
+                                element: <AdminDashboardHomeRoute />,
+                            },
+                            {
+                                path: 'orders',
+                                element: <AdminDashboardOrdersRoute />,
+                            },
+                            {
+                                path: 'customers',
+                                element: <AdminDashboardCustomersRoute />,
+                            },
+                            {
+                                path: 'products',
+                                element: <AdminDashboardProductsRoute />,
+                                children: [
+                                    {
+                                        index: true,
+                                        element: <AdminProductsRoute />,
+                                    },
+                                    {
+                                        path: 'add',
+                                        element: <AdminProductsAdd />,
+                                    },
+                                    {
+                                        path: 'edit/:productId',
+                                        element: <AdminProductsEditRoute />,
+                                    },
+                                ],
+                            },
+                            {
+                                path: 'promotions',
+                                element: <AdminDashboardPromotionsRoute />,
+                            },
+                            {
+                                path: 'subscribers',
+                                element: <AdminDashboardSubscribersRoute />,
                             },
                         ],
                     },

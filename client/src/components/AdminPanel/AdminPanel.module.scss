@@ -1,0 +1,46 @@
+@import '../../style/mixins';
+@import '../../style/variables';
+
+.adminPanelWrapper {
+    display: flex;
+    padding: 1rem 0;
+}
+.navigation {
+        flex: 1 1 10%;
+
+    &Link {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 1.8rem;
+        color: $dark-color;
+        border: $border-dark;
+        padding: 1.2rem 3rem;
+
+        &:not(:last-child) {
+            margin-bottom: .5rem;
+        }
+
+        & > span {
+            margin-left: 1rem;
+        }
+
+        & svg {
+            fill: $dark-color;
+        }
+    }
+
+    &LinkActive {
+        color: $light-color;
+        background-color: $dark-color;
+
+
+        & svg {
+            fill: $light-color;
+        }
+    }
+}
+
+.content {
+    flex: 1 2 90%;
+}

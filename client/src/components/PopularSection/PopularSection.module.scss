@@ -124,7 +124,9 @@
   @include abel-font-normal;
   @include btn-size;
   margin-left: 79%;
+  display: inline-block;
   margin-right: 4.7rem;
+  color: #373F41;
   &:hover {
     background: gainsboro;
     transition: all 0.25s ease-in;
@@ -134,7 +136,9 @@
   @include abel-font-normal;
   @include btn-size;
   margin-left: 57%;
+  display: inline-block;
   margin-right: 4.7rem;
+  color: #373F41;
   &:hover {
     background: gainsboro;
     transition: all 0.25s ease-in;
@@ -144,7 +148,9 @@
   @include abel-font-normal;
   position: relative;
   margin: 3rem auto;
+  color: #373F41;
   display: block;
+  width: max-content;
   padding: 1rem 7.5rem 1rem 5.5rem;
   font-size: 1.6rem;
   line-height: 3.2rem;

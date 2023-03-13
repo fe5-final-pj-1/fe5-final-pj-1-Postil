@@ -47,6 +47,7 @@ function CarouselSection({ sectionTitle, products }) {
                         to={`/catalog/${arr[i]._id}`}
                         style={{ backgroundImage: `url(${arr[i].imageUrls[0]})` }}
                         className={carouselSlideLink}
+                        target="_top"
                     >
                         {/* <img src={arr[i].imageUrls[0]} alt={`Carousel img ${i + 1}`} /> */}
                         <div className={carouselInfo}>
@@ -60,6 +61,7 @@ function CarouselSection({ sectionTitle, products }) {
                         to={`/catalog/${arr[i + 1]._id}`}
                         style={{ backgroundImage: `url(${arr[i + 1].imageUrls[0]})` }}
                         className={carouselSlideLink}
+                        target="_top"
                     >
                         {/* <img src={arr[i + 1].imageUrls[0]} alt={`Carousel img ${i + 2}`} /> */}
                         <div className={carouselInfo}>
@@ -75,6 +77,7 @@ function CarouselSection({ sectionTitle, products }) {
                         to={`/catalog/${arr[i + 2]._id}`}
                         style={{ backgroundImage: `url(${arr[i + 2].imageUrls[0]})` }}
                         className={carouselSlideLink}
+                        target="_top"
                     >
                         {/* <img src={arr[i + 2].imageUrls[0]} alt={`Carousel img ${i + 3}`} /> */}
                         <div className={carouselInfo}>
