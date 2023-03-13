@@ -34,9 +34,8 @@ function ContactsPage() {
                     {/* eslint-disable-next-line jsx-a11y/iframe-has-title */}
                     <iframe
                         src="https://www.google.com/maps/embed?pb=!1m10!1m8!1m3!1d162583.11395771115!2d30.52877154454943!3d50.45299909261162!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sru!2sua!4v1678449520839!5m2!1sru!2sua"
-                        width="400"
                         height="300"
-                        style={{ border: `${0}em` }}
+                        style={{ border: `${0}em`, width: `${100}%` }}
                         allowFullScreen=""
                         loading="lazy"
                         referrerPolicy="no-referrer-when-downgrade"
