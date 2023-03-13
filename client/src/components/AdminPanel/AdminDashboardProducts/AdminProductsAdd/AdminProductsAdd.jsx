@@ -1,118 +1,325 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import adminPanelStyles from './AdminProductsAdd.module.scss';
 import { useFormik } from 'formik';
+import getAllProducts from 'api/getAllProducts';
+import classNames from 'classnames';
 import * as Yup from 'yup';
 
 function AdminProductsAdd() {
+    useEffect(() => {
+        getAllProducts().then((res) => {
+            if (res && res.data) {
+                const numberStr = res.data[res.data.length - 1].itemNo;
+                const numberArr = numberStr.split('-');
+                numberArr[1] = (Number(numberArr[1]) + 1).toString();
+                formik.values.itemNo = numberArr.join('-');
+            }
+        });
+    });
     const formik = useFormik({
         initialValues: {
+            enabled: true,
             name: '',
             currentPrice: 0,
             previousPrice: 0,
-            categories: 'bedroom',
-            imageUrls: [],
+            categories: '',
+            imageUrls: ['', '', ''],
+            quantity: 0,
+            fabric: '',
+            color: '',
+            size: '',
+            itemNo: '',
         },
         validationSchema: Yup.object({
+            enabled: Yup.bool(),
             name: Yup.string()
                 .max(15, 'Must be 15 characters or less')
                 .min(3, 'Must be 3 characters or more')
                 .required('Required'),
             currentPrice: Yup.number().required('Required').positive().integer(),
-            previousPrice: Yup.number().positive().integer(),
-            categories: Yup.string(),
-            imageUrls: Yup.array().required('Required'),
+            previousPrice: Yup.number().integer(),
+            categories: Yup.string().required('Required'),
+            imageUrls: Yup.array()
+                .required('Required')
+                .of(Yup.string().required('Required').min(15, 'Must be 15 characters or more')),
+            quantity: Yup.number().positive().integer(),
+            fabric: Yup.string().required('Required'),
+            color: Yup.string(),
+            size: Yup.string(),
+            itemNo: Yup.string(),
         }),
         onSubmit: (values) => {
-            alert(values.name);
+            const {
+                enabled,
+                name,
+                currentPrice,
+                previousPrice,
+                categories,
+                imageUrls,
+                quantity,
+                fabric,
+                color,
+                size,
+                itemNo,
+            } = values;
+            const data = {
+                enabled,
+                name,
+                currentPrice: Number(currentPrice),
+                previousPrice: Number(previousPrice),
+                categories,
+                imageUrls,
+                quantity: Number(quantity),
+                fabric,
+                color,
+                size,
+                itemNo,
+            };
+            console.log(data);
         },
     });
     return (
         <div className={adminPanelStyles.wrapper}>
-            <form onSubmit={formik.handleSubmit}>
-                <label htmlFor="name">Product Name</label>
-                {formik.touched.name && formik.errors.name ? <div>{formik.errors.name}</div> : null}
+            <h2 className="h2">add new product</h2>
+            <form onSubmit={formik.handleSubmit} className={adminPanelStyles.form}>
+                <input name="enabled" type="hidden" value={formik.values.name} />
+                <input name="itemNo" type="hidden" value={formik.values.itemNo} />
+                <label className={adminPanelStyles.formLabel} htmlFor="name">
+                    add product name
+                </label>
+                {formik.touched.name && formik.errors.name ? (
+                    <div className={adminPanelStyles.formError}>{formik.errors.name}</div>
+                ) : null}
                 <input
                     id="name"
                     name="name"
                     type="text"
-                    className={adminPanelStyles.ProductInput}
+                    className={adminPanelStyles.formInput}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.name}
+                    autoComplete="off"
+                    placeholder="Linen"
                 />
-                <label htmlFor="currentPrice">Current Price</label>
+                <label className={adminPanelStyles.formLabel} htmlFor="currentPrice">
+                    add current price
+                </label>
                 {formik.touched.currentPrice && formik.errors.currentPrice ? (
-                    <div>{formik.errors.currentPrice}</div>
+                    <div className={adminPanelStyles.formError}>{formik.errors.currentPrice}</div>
                 ) : null}
                 <input
                     id="currentPrice"
                     name="currentPrice"
                     type="text"
-                    className={adminPanelStyles.ProductInput}
+                    className={adminPanelStyles.formInput}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.currentPrice}
+                    autoComplete="off"
                 />
-                <label htmlFor="previousPrice">Previous Price</label>
+                <label className={adminPanelStyles.formLabel} htmlFor="previousPrice">
+                    add previous price (optional)
+                </label>
                 {formik.touched.previousPrice && formik.errors.previousPrice ? (
-                    <div>{formik.errors.previousPrice}</div>
+                    <div className={adminPanelStyles.formError}>{formik.errors.previousPrice}</div>
                 ) : null}
                 <input
                     id="previousPrice"
                     name="previousPrice"
                     type="text"
-                    className={adminPanelStyles.ProductInput}
+                    className={adminPanelStyles.formInput}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.previousPrice}
+                    autoComplete="off"
                 />
-                <label htmlFor="categories">Select category</label>
+                <label className={adminPanelStyles.formLabel} htmlFor="categories">
+                    select product&rsquo;s category
+                </label>
                 {formik.touched.categories && formik.errors.categories ? (
-                    <div>{formik.errors.categories}</div>
+                    <div className={adminPanelStyles.formError}>{formik.errors.categories}</div>
                 ) : null}
                 <select
                     id="categories"
                     name="categories"
-                    className={adminPanelStyles.ProductSelect}
+                    className={adminPanelStyles.formSelect}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
                     value={formik.values.categories}
                 >
-                    <option value="bedroom" selected>
-                        Bedroom
-                    </option>
-                    <option value="bed linen" selected>
-                        Bed linen
-                    </option>
-                    <option value="kitchen" selected>
-                        Kitchen
-                    </option>
-                    <option value="bathroom" selected>
-                        Bathroom
-                    </option>
-                    <option value="loungewear" selected>
-                        Loungewear
-                    </option>
-                    <option value="Sale" selected>
-                        Sale
-                    </option>
+                    <option value="">Select category</option>
+                    <option value="bedroom">Bedroom</option>
+                    <option value="bed linen">Bed linen</option>
+                    <option value="kitchen">Kitchen</option>
+                    <option value="bathroom">Bathroom</option>
+                    <option value="loungewear">Loungewear</option>
+                    <option value="Sale">Sale</option>
                 </select>
 
-                <label htmlFor="imageUrls">Add product image urls</label>
+                <label className={adminPanelStyles.formLabel} htmlFor="imageUrls">
+                    add product image URL&rsquo;s
+                </label>
                 {formik.touched.imageUrls && formik.errors.imageUrls ? (
-                    <div>{formik.errors.imageUrls}</div>
+                    <div className={adminPanelStyles.formError}>{formik.errors.imageUrls[0]}</div>
                 ) : null}
                 <input
                     id="imageUrls"
-                    name="imageUrls"
+                    name="imageUrls[0]"
                     type="text"
-                    className={adminPanelStyles.ProductInput}
+                    className={classNames(
+                        adminPanelStyles.formInput,
+                        adminPanelStyles.formInputUrl,
+                    )}
                     onChange={formik.handleChange}
                     onBlur={formik.handleBlur}
-                    value={formik.values.previousPrice}
+                    value={formik.values.imageUrls[0]}
+                    autoComplete="off"
+                    placeholder="https://res.cloudinary.com/url-1"
+                />
+                {formik.touched.imageUrls && formik.errors.imageUrls ? (
+                    <div className={adminPanelStyles.formError}>{formik.errors.imageUrls[1]}</div>
+                ) : null}
+                <input
+                    id="imageUrls"
+                    name="imageUrls[1]"
+                    type="text"
+                    className={classNames(
+                        adminPanelStyles.formInput,
+                        adminPanelStyles.formInputUrl,
+                    )}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.imageUrls[1]}
+                    autoComplete="off"
+                    placeholder="https://res.cloudinary.com/url-2"
+                />
+                {formik.touched.imageUrls && formik.errors.imageUrls ? (
+                    <div className={adminPanelStyles.formError}>{formik.errors.imageUrls[2]}</div>
+                ) : null}
+                <input
+                    id="imageUrls"
+                    name="imageUrls[2]"
+                    type="text"
+                    className={classNames(
+                        adminPanelStyles.formInput,
+                        adminPanelStyles.formInputUrl,
+                    )}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.imageUrls[2]}
+                    autoComplete="off"
+                    placeholder="https://res.cloudinary.com/url-3"
+                />
+                <label className={adminPanelStyles.formLabel} htmlFor="quantity">
+                    add product quantity
+                </label>
+                {formik.touched.quantity && formik.errors.quantity ? (
+                    <div className={adminPanelStyles.formError}>{formik.errors.quantity}</div>
+                ) : null}
+                <input
+                    id="quantity"
+                    name="quantity"
+                    type="text"
+                    className={adminPanelStyles.formInput}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.quantity}
+                    autoComplete="off"
                 />
 
-                <button type="submit">Submit</button>
+                <label className={adminPanelStyles.formLabel} htmlFor="fabric">
+                    select product&rsquo;s fabric
+                </label>
+                {formik.touched.fabric && formik.errors.fabric ? (
+                    <div className={adminPanelStyles.formError}>{formik.errors.fabric}</div>
+                ) : null}
+                <select
+                    id="fabric"
+                    name="fabric"
+                    className={adminPanelStyles.formSelect}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.fabric}
+                >
+                    <option value="">Select fabric</option>
+                    <option value="cotton">Cotton</option>
+                    <option value="cashemire">Cashemire</option>
+                    <option value="satin">Satin</option>
+                    <option value="silk">Silk</option>
+                    <option value="viscose">Viscose</option>
+                    <option value="linen">Linen</option>
+                </select>
+                <label className={adminPanelStyles.formLabel} htmlFor="color">
+                    select product&rsquo;s color (optional)
+                </label>
+                {formik.touched.color && formik.errors.color ? (
+                    <div className={adminPanelStyles.formError}>{formik.errors.color}</div>
+                ) : null}
+                <select
+                    id="color"
+                    name="color"
+                    className={adminPanelStyles.formSelect}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.color}
+                >
+                    <option value="">Select color</option>
+                    <option value="#C96456">Salmon</option>
+                    <option value="#957157">BurlyWood</option>
+                    <option value="#E6C463">LightGold</option>
+                    <option value="#E4CFCC">LemonChiffon</option>
+                    <option value="#DBC6BF">Lavender</option>
+                    <option value="#F2DED0">PapayaWhip</option>
+                    <option value="#5A5D51">Gray</option>
+                    <option value="#6E7181">LightSlateGray</option>
+                    <option value="#99B5BB">LightSteelBlue</option>
+                    <option value="#A1ADB0">PapayaWhip</option>
+                    <option value="#A9AAAC">Silver</option>
+                    <option value="#C92B56">PaleVioletRed</option>
+                </select>
+                <label className={adminPanelStyles.formLabel} htmlFor="size">
+                    select product&rsquo;s size (optional)
+                </label>
+                {formik.touched.size && formik.errors.size ? (
+                    <div className={adminPanelStyles.formError}>{formik.errors.size}</div>
+                ) : null}
+                <select
+                    id="size"
+                    name="size"
+                    className={adminPanelStyles.formSelect}
+                    onChange={formik.handleChange}
+                    onBlur={formik.handleBlur}
+                    value={formik.values.size}
+                >
+                    <option value="">Select size</option>
+                    <option value="single">Single</option>
+                    <option value="double">Double</option>
+                    <option value="queen">Queen</option>
+                    <option value="king">King</option>
+                </select>
+                <button type="submit">Add product</button>
+                <button
+                    onClick={() =>
+                        formik.resetForm({
+                            values: {
+                                enabled: true,
+                                name: '',
+                                currentPrice: 0,
+                                previousPrice: 0,
+                                categories: '',
+                                imageUrls: ['', '', ''],
+                                quantity: 0,
+                                fabric: '',
+                                color: '',
+                                size: '',
+                                itemNo: formik.values.itemNo,
+                            },
+                        })
+                    }
+                    type="reset"
+                >
+                    Reset Changes
+                </button>
             </form>
         </div>
     );
