@@ -3,23 +3,43 @@ import formStyle from './Form.module.scss';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { PatternFormat } from 'react-number-format';
+import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { addCustomerDataToOrder } from 'store/orderSlice';
 function Form() {
+    const customerData = useSelector((state) => state.order.customerData);
+    const navigate = useNavigate();
+    const dispatch = useDispatch();
     const phoneRegex = /^(\+\d{1,2}\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/;
     const NAME_REGEX = /^[a-z ,.'-]+$/i;
     const EMAIL_REGEX =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const formik = useFormik({
-        initialValues: {
-            firstName: '',
-            lastName: '',
-            mobile: '',
-            address: '',
-            email: '',
-            city: '',
-            zip: '',
-            shipping: 'FreeShipping',
-            country: '',
-        },
+        // eslint-disable-next-line no-extra-boolean-cast
+        initialValues: !!Object.keys(customerData).length
+            ? {
+                  firstName: customerData.firstName,
+                  lastName: customerData.lastName,
+                  mobile: customerData.mobile,
+                  address: customerData.deliveryAddress.address,
+                  email: customerData.email,
+                  city: customerData.deliveryAddress.city,
+                  zip: customerData.deliveryAddress.postal,
+                  shipping: customerData.shipping,
+                  country: customerData.deliveryAddress.country,
+              }
+            : {
+                  firstName: '',
+                  lastName: '',
+                  mobile: '',
+                  address: '',
+                  email: '',
+                  city: '',
+                  zip: '',
+                  shipping: 'FreeShipping',
+                  country: 'Select Country',
+              },
 
         validationSchema: Yup.object({
             firstName: Yup.string()
@@ -37,12 +57,21 @@ function Form() {
             email: Yup.string().matches(EMAIL_REGEX, 'No valid email address').required('Required'),
 
             city: Yup.string().min(3, 'Must be more than 3 characters').required('Required'),
-            country: Yup.string().required('Required'),
-            zip: Yup.string().min(3, 'Must be more than 3 characters').required('Required'),
+            country: Yup.string()
+                .oneOf(
+                    ['Ukraine', 'Poland', 'France', 'Germany', 'USA', 'Italy'],
+                    'Choose the Country',
+                )
+                .required('Required'),
+            zip: Yup.number()
+                .typeError('Must be a number')
+                .min(3, 'Must be more than 3 characters')
+                .required('Required'),
             shipping: Yup.string().required('Choose your delivery method'),
         }),
         onSubmit: (values) => {
-            const { firstName, lastName, city, address, country, shipping, mobile, zip } = values;
+            const { firstName, lastName, city, address, country, shipping, mobile, zip, email } =
+                values;
             const order = {
                 deliveryAddress: {
                     country,
@@ -51,18 +80,19 @@ function Form() {
                     postal: zip,
                 },
                 status: 'not shipped',
-                email: 'saribeg@gmail.com',
+                email,
                 mobile,
                 firstName,
                 lastName,
                 shipping,
             };
-            console.log(order);
+            dispatch(addCustomerDataToOrder(order));
+            navigate('/checkout/options');
         },
     });
     return (
-        <>
-            <form className={formStyle.section} onSubmit={formik.handleSubmit} id="shippingForm">
+        <section className={formStyle.section}>
+            <form onSubmit={formik.handleSubmit} id="shippingForm">
                 <h2 className={formStyle.shipping_title}>Shipping Details</h2>
                 <div className={formStyle.main}>
                     <div className={formStyle.main_inputs}>
@@ -83,7 +113,7 @@ function Form() {
                                     onChange={formik.handleChange}
                                     onBlur={formik.handleBlur}
                                     className={formStyle.input_area}
-                                    placeholder={'First name'}
+                                    placeholder={'First Name *'}
                                 />
                             </div>
                             <div className={formStyle.input}>
@@ -102,7 +132,7 @@ function Form() {
                                     onBlur={formik.handleBlur}
                                     id="lastName"
                                     className={formStyle.input_area}
-                                    placeholder={'Last Name'}
+                                    placeholder={'Last Name *'}
                                 />
                             </div>
                         </div>
@@ -122,7 +152,7 @@ function Form() {
                                 onChange={formik.handleChange}
                                 value={formik.values.address}
                                 className={formStyle.input_area}
-                                placeholder={'Address'}
+                                placeholder={'Address *'}
                             />
                         </div>
                         <div className={formStyle.input}>
@@ -137,9 +167,9 @@ function Form() {
                                 id="email"
                                 onBlur={formik.handleBlur}
                                 onChange={formik.handleChange}
-                                value={formik.values.address2}
+                                value={formik.values.email}
                                 className={formStyle.input_area}
-                                placeholder={'Email'}
+                                placeholder={'Email *'}
                             />
                         </div>
                         <div className={formStyle.inputs_wrapper}>
@@ -156,10 +186,10 @@ function Form() {
                                     className={formStyle.select}
                                     onBlur={formik.handleBlur}
                                     onChange={formik.handleChange}
-                                    defaultValue={'DEFAULT'}
+                                    defaultValue={formik.values.country}
                                 >
-                                    <option disabled value="DEFAULT">
-                                        Select Country
+                                    <option disabled value={formik.values.country}>
+                                        {formik.values.country}
                                     </option>
                                     <option value="Ukraine">Ukraine</option>
                                     <option value="Poland">Poland</option>
@@ -185,7 +215,7 @@ function Form() {
                                     onChange={formik.handleChange}
                                     value={formik.values.city}
                                     className={formStyle.input_area}
-                                    placeholder={'City'}
+                                    placeholder={'City *'}
                                 />
                             </div>
                         </div>
@@ -206,7 +236,7 @@ function Form() {
                                     onChange={formik.handleChange}
                                     value={formik.values.zip}
                                     className={formStyle.input_area}
-                                    placeholder={'Zip/Postal Code'}
+                                    placeholder={'Zip/Postal Code *'}
                                 />
                             </div>
                             <div className={formStyle.input}>
@@ -225,7 +255,7 @@ function Form() {
                                     value={formik.values.mobile}
                                     id="mobile"
                                     className={formStyle.input_area}
-                                    placeholder={'Phone Number'}
+                                    placeholder={'Phone Number *'}
                                     allowEmptyFormatting
                                     mask="_"
                                     format="+## (###) ###-####"
@@ -244,7 +274,9 @@ function Form() {
                                 onChange={formik.handleChange}
                                 value="FreeShipping"
                                 id="radio_label1"
-                                defaultChecked={true}
+                                defaultChecked={
+                                    formik.values.shipping === 'FreeShipping' ? true : false
+                                }
                             />
                             <div className={formStyle.btn_text}>
                                 <h2 className={formStyle.checkbox_title}>Free Shipping</h2>
@@ -260,6 +292,9 @@ function Form() {
                                 onChange={formik.handleChange}
                                 value="PayDelivery"
                                 id="radio_label2"
+                                defaultChecked={
+                                    formik.values.shipping === 'PayDelivery' ? true : false
+                                }
                             />
                             <div className={formStyle.btn_text}>
                                 <h2 className={formStyle.checkbox_title}>
@@ -271,10 +306,10 @@ function Form() {
                     </div>
                 </div>
             </form>
-            {/* <button type="submit" form="shippingForm">
-                submit
-            </button> */}
-        </>
+            <Link to="/checkout/confirm" className={formStyle.payBtn}>
+                BACK
+            </Link>
+        </section>
     );
 }
 
