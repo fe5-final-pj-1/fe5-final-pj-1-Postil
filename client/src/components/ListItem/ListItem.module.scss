@@ -16,7 +16,6 @@
 .textWrapper {
     margin-right: auto;
     max-width: 42rem;
-
     & a {
         &:link,
         &:focus,
@@ -30,7 +29,6 @@
         @media only screen and (max-width: $bp-small) {
             width: 75%;
         }
-    
     }
 }
 
@@ -54,6 +52,7 @@
     margin-bottom: 30px;
     @media only screen and (max-width: $bp-small) {
         margin-bottom: 1rem;
+        width: 80%;
     }
 }
 
@@ -131,17 +130,13 @@
     @media only screen and (max-width: $bp-medium) {
         align-items: flex-start;
         width: 100%;
-
-        //////////////////
     }
 }
 .addToFav {
     display: flex;
     align-items: center;
     gap: 2rem;
-    margin-bottom: 2.6rem;
     @media only screen and (max-width: $bp-medium) {
-        margin-bottom: 0;
         flex-direction: row-reverse;
     }
 }
@@ -181,6 +176,19 @@
     border-radius: 0.4rem;
     transition: all 0.2s ease-in;
 
+    @media only screen and (max-width: $bp-medium) {
+        position: absolute;
+        bottom: 4rem;
+        right: 0.5rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+        position: absolute;
+        top: 23rem;
+        left: 0.5rem;
+        right: auto;
+        bottom: auto;
+    }
+
     &:hover {
         background: rgb(167, 167, 167);
         transform: translateY(-3px);
@@ -188,5 +196,49 @@
 
     &:active {
         transform: translateY(0);
+    }
+}
+.largePadding {
+    @media only screen and (max-width: $bp-small) {
+        padding-bottom: 5.3rem;
+    }
+}
+
+.favourite {
+    &:not(.largePadding) {
+        @media only screen and (max-width: $bp-small) {
+            padding-bottom: 5.3rem;
+        }
+        @media only screen and (max-width: 483px) {
+            padding-bottom: 2.8rem;
+        }
+        @media only screen and (max-width: 449px) {
+            padding-bottom: 1rem;
+        }
+        @media only screen and (max-width: 405px) {
+            padding-bottom: 0;
+        }
+    }
+    & .configWrapper {
+        .colorBlock {
+            @media only screen and (max-width: $bp-small) {
+                display: flex;
+                align-items: center;
+                flex-direction: row;
+            }
+        }
+
+        @media only screen and (max-width: $bp-small) {
+            margin-right: 0;
+            gap: 0.7rem;
+        }
+        & p {
+            @media only screen and (max-width: $bp-small) {
+                display: block;
+                // display: flex;
+                // flex-direction: row;
+                // justify-content: space-between;
+            }
+        }
     }
 }

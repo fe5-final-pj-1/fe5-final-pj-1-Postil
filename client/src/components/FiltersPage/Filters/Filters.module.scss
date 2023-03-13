@@ -96,6 +96,7 @@
     display: flex;
     flex-wrap: wrap;
     width: 20rem;
+
     & label:not(label:nth-child(6n)) {
         margin-right: 1rem;
     }
@@ -107,7 +108,7 @@
         width: 2rem;
         height: 2rem;
         border-radius: 50%;
-        opacity: .5;
+        opacity: 0.5;
         transition: all 0.25s ease-in;
         &:hover {
             opacity: 1;
@@ -123,7 +124,42 @@
         opacity: 1;
         scale: 1.3;
     }
+    & input:not(:checked) + span {
+        opacity: 0.5;
+        scale: 1;
+    }
 }
 label:hover {
     cursor: pointer;
+}
+
+@media only screen and (max-width: $bp-medium) {
+    .color {
+        width: calc(2.2rem * 6 + 2.8rem);
+        & label:not(label:nth-child(6n)) {
+            margin-right: 0.7rem;
+        }
+        & label:nth-child(-n + 6) {
+            margin-bottom: 0.7rem;
+        }
+        & span {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    }
+}
+@media only screen and (max-width: $bp-small) {
+    .color {
+        width: calc(5rem * 6 + 2.8rem);
+        & label:not(label:nth-child(6n)) {
+            margin-right: 2rem;
+        }
+        & label:nth-child(-n + 6) {
+            margin-bottom: 2rem;
+        }
+        & span {
+            width: 3rem;
+            height: 3rem;
+        }
+    }
 }

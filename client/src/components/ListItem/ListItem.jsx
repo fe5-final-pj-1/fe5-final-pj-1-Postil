@@ -13,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { itemAdded } from 'store/cartSlice';
 import { removeItem } from 'store/cartSlice';
 import deleteProductFromWishList from 'api/deleteProductFromWishList';
+import classNames from 'classnames';
 
 const ListItem = ({ quantity, item, type, favouritesReload }) => {
     const { _id, name, imageUrls, currentPrice, color, size, fabric, itemNo } = item;
@@ -79,9 +80,17 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+    console.log(color && size && !!type);
+    console.log(type);
     return (
         <>
-            <div className={styles.itemWrapper}>
+            <div
+                className={classNames(
+                    styles.itemWrapper,
+                    type === 'cart' ? null : color && size ? null : styles.largePadding,
+                    type !== 'cart' ? styles.favourite : null,
+                )}
+            >
                 <Link to={`/catalog/${_id}`}>
                     <img src={imageUrls[0]} alt="bed linen" className={styles.itemImg} />
                 </Link>
