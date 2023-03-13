@@ -15,6 +15,17 @@
     @media only screen and (max-width: $bp-large) {
         min-width: 130%;
     }
+    @media only screen and (max-width: $bp-medium) {
+        width: 390px;
+        min-width: 390px;
+        max-width: 390px;
+    }
+    @media only screen and (max-width: $bp-small) {
+        min-width: 130%;
+        left: -15%;
+        width: 100%;
+    }
+
     & > li {
         &.showAll a {
             text-align: center;
@@ -44,6 +55,9 @@
                 & > div {
                     display: flex;
                     column-gap: 1.5rem;
+                    @media only screen and (max-width: $bp-small) {
+                        flex-direction: column;
+                    }
                     & .size {
                         width: 8rem;
                         & span {

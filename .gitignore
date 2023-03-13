@@ -10,6 +10,9 @@
 /build
 documentation
 
+# env
+.env
+
 # misc
 .idea/
 .DS_Store
