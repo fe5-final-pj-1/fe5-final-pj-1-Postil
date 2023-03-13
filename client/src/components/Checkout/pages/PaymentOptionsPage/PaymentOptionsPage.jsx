@@ -10,7 +10,7 @@ const PaymentOptionsPage = () => {
             <TabsSection />
             <div className={styles.mainContainer}>
                 <PaymentSection />
-                <SummarySection route="" />
+                <SummarySection />
             </div>
         </>
     );

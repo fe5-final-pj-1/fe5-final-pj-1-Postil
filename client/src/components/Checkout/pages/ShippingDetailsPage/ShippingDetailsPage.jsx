@@ -10,7 +10,7 @@ const ShippingDetailsPage = () => {
             <TabsSection />
             <div className={styles.mainContainer}>
                 <Form />
-                <SummarySection route="/checkout/options" />
+                <SummarySection type="shipping" />
             </div>
         </>
     );
