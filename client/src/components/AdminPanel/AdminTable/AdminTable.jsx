@@ -1,5 +1,6 @@
 import React from 'react';
 import adminPanelStyles from './AdminTable.module.scss';
+import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import AdminTableRow from './AdminTableRow';
 
@@ -8,11 +9,25 @@ function AdminTable({ data, forceUpdate }) {
         <table className={adminPanelStyles.table}>
             <tbody>
                 <tr className={adminPanelStyles.row}>
-                    <th>№</th>
+                    <th className={adminPanelStyles.rowNoneLarge}>№</th>
                     <th>Name</th>
-                    <th>Email</th>
-                    <th className={adminPanelStyles.rowTextCenter}>Address</th>
-                    <th className={adminPanelStyles.rowTextCenter}>Phone</th>
+                    <th className={adminPanelStyles.rowNoneSmall}>Email</th>
+                    <th
+                        className={classNames(
+                            adminPanelStyles.rowNoneLarge,
+                            adminPanelStyles.rowTextCenter,
+                        )}
+                    >
+                        Address
+                    </th>
+                    <th
+                        className={classNames(
+                            adminPanelStyles.rowTextCenter,
+                            adminPanelStyles.rowNoneMedium,
+                        )}
+                    >
+                        Phone
+                    </th>
                     <th className={adminPanelStyles.rowTextCenter}>Delete</th>
                 </tr>
                 {data.map((element) => {

@@ -1,9 +1,29 @@
+@import '../../../../style/mixins';
+@import '../../../../style/variables';
 .row {
 
     &UserName {
         display: flex;
         align-items: center;
         gap: 1rem;
+    }
+
+    &NoneLarge {
+        @media only screen and (max-width: $bp-large) {
+            display: none;
+        }
+    }
+
+    &NoneMedium {
+        @media only screen and (max-width: $bp-medium) {
+            display: none;
+        }
+    }
+    
+    &NoneSmall {
+        @media only screen and (max-width: $bp-small) {
+            display: none;
+        }
     }
     
     &UserName {
@@ -32,6 +52,13 @@
         & img {
             width: 5rem;
             height: auto;
+
+            @media only screen and (max-width: $bp-medium) {
+                width: 3rem;
+            }
+            @media only screen and (max-width: $bp-small) {
+                width: 5rem;
+            }
         }
     }
 

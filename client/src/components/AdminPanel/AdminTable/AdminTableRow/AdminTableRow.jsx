@@ -1,6 +1,7 @@
 import React from 'react';
 import userAvatar from './img/UserAvatar.png';
 import adminPanelStyles from './AdminTableRow.module.scss';
+import classNames from 'classnames';
 import Button from '../../../Button';
 import Icon from '../../../Icon';
 import PropTypes from 'prop-types';
@@ -17,7 +18,7 @@ function AdminTableRow(props) {
 
     return (
         <tr className={adminPanelStyles.row}>
-            <td>{customerNo}</td>
+            <td className={adminPanelStyles.rowNoneLarge}>{customerNo}</td>
             <td className={adminPanelStyles.rowUserName}>
                 <img
                     className={adminPanelStyles.img}
@@ -27,11 +28,25 @@ function AdminTableRow(props) {
 
                 <span>{`${firstName} ${lastName}`}</span>
             </td>
-            <td>{email}</td>
-            <td className={!address && adminPanelStyles.rowTextCenter}>
+            <td className={adminPanelStyles.rowNoneSmall}>{email}</td>
+            <td
+                className={
+                    !address
+                        ? classNames(adminPanelStyles.rowTextCenter, adminPanelStyles.rowNoneLarge)
+                        : adminPanelStyles.rowNoneLarge
+                }
+            >
                 {address ? address : '-'}
             </td>
-            <td className={!phone && adminPanelStyles.rowTextCenter}>{phone ? phone : '-'}</td>
+            <td
+                className={
+                    !phone
+                        ? classNames(adminPanelStyles.rowTextCenter, adminPanelStyles.rowNoneMedium)
+                        : adminPanelStyles.rowNoneMedium
+                }
+            >
+                {phone ? phone : '-'}
+            </td>
             <td className={adminPanelStyles.rowDeleteBtn}>
                 <Button
                     handleClick={handleDeleteCustomerClick}
@@ -48,7 +63,7 @@ export default AdminTableRow;
 AdminTableRow.propTypes = {
     id: PropTypes.string.isRequired,
     customerNo: PropTypes.string,
-    avatarUrl: PropTypes.string.isRequired,
+    avatarUrl: PropTypes.string,
     email: PropTypes.string,
     firstName: PropTypes.string,
     lastName: PropTypes.string.isRequired,
@@ -56,5 +71,3 @@ AdminTableRow.propTypes = {
     phone: PropTypes.string,
     forceUpdate: PropTypes.func,
 };
-
-AdminTableRow.defaultProps = {};

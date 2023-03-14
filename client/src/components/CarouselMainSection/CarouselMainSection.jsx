@@ -1,128 +1,83 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import carouselStyles from './CarouselMainSection.module.scss';
+import { Link } from 'react-router-dom';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
+import getAllSlides from 'api/getAllSlides';
+import { useDispatch } from 'react-redux';
+import { filtersResetAll } from 'store/filtersSlice';
 import { Carousel } from 'react-responsive-carousel';
 import classNames from 'classnames';
-import Button from '../Button';
 
 function CarouselMainSection() {
+    const dispatch = useDispatch();
+    const [promotions, setPromotions] = useState([]);
     const {
         carousel,
         carouselInfo,
         carouselText,
-        carouselTextTop,
-        carouselTextBottom,
-        carouselBtn,
+        carouselTextDescription,
+        carouselLink,
         carouselHeading,
     } = carouselStyles;
+    useEffect(() => {
+        getAllSlides().then((slides) => {
+            setPromotions(slides.data);
+        });
+    }, []);
+    const onClickHandler = () => {
+        dispatch(filtersResetAll());
+    };
+    const getLink = (promotion) => {
+        if (promotion.product) {
+            return `/catalog/${promotion.product._id}`;
+        } else if (promotion.categoryName) {
+            return `/catalog/filter?categories=${promotion.categoryName}`;
+        } else {
+            return `/catalog`;
+        }
+    };
     return (
         <section className={carousel}>
             <div className="container">
                 <Carousel showThumbs={false} showStatus={false} autoPlay={true} infiniteLoop={true}>
-                    <div>
-                        <picture>
-                            <source
-                                srcSet="https://res.cloudinary.com/dm2s5stjy/image/upload/v1676906365/Linens/Slider/carousel-img-1_b3mfyi.webp"
-                                type="image/webp"
-                            />
-                            <source
-                                srcSet="https://res.cloudinary.com/dm2s5stjy/image/upload/v1676906365/Linens/Slider/carousel-img-1_zvbu3e.jpg"
-                                type="image/jpeg"
-                            />
-                            <img
-                                src="https://res.cloudinary.com/dm2s5stjy/image/upload/v1676906365/Linens/Slider/carousel-img-1_zvbu3e.jpg"
-                                alt="Carousel img 1"
-                            />
-                        </picture>
-                        <div className={carouselInfo}>
-                            <p className={classNames(carouselText, carouselHeading, 'h2 h2--dark')}>
-                                Ocean collection
-                            </p>
-                            <p className={classNames(carouselText, carouselTextTop, 'p p--dark')}>
-                                This is the luxury bedding set with absolutely everything in it,
-                            </p>
-                            <p
-                                className={classNames(
-                                    carouselText,
-                                    carouselTextBottom,
-                                    'p p--dark',
-                                )}
-                            >
-                                at a price that won&apos;t keep you up at night.
-                            </p>
-                            <Button className={carouselBtn} text="Shop new arrivals" />
-                        </div>
-                    </div>
-                    <div>
-                        <picture>
-                            <source
-                                srcSet="https://res.cloudinary.com/dm2s5stjy/image/upload/v1676906364/Linens/Slider/carousel-img-2_wbvgq0.webp"
-                                type="image/webp"
-                            />
-                            <source
-                                srcSet="https://res.cloudinary.com/dm2s5stjy/image/upload/v1676906363/Linens/Slider/carousel-img-2_siz7mv.jpg"
-                                type="image/jpeg"
-                            />
-                            <img
-                                src="https://res.cloudinary.com/dm2s5stjy/image/upload/v1676906363/Linens/Slider/carousel-img-2_siz7mv.jpg"
-                                alt="Carousel img 2"
-                            />
-                        </picture>
-                        <div className={carouselInfo}>
-                            <p
-                                className={classNames(
-                                    carouselText,
-                                    carouselHeading,
-                                    carouselTextTop,
-                                    'h2 h2--dark',
-                                )}
-                            >
-                                Subscribe now and get 15% off
-                            </p>
-                            <p
-                                className={classNames(
-                                    carouselText,
-                                    carouselHeading,
-                                    carouselTextBottom,
-                                    'h2 h2--dark',
-                                )}
-                            >
-                                on your first order
-                            </p>
-                            <Button className={carouselBtn} text="Shop new arrivals" />
-                        </div>
-                    </div>
-                    <div>
-                        <picture>
-                            <source
-                                srcSet="https://res.cloudinary.com/dm2s5stjy/image/upload/v1676906364/Linens/Slider/carousel-img-3_qxblde.webp"
-                                type="image/webp"
-                            />
-                            <source
-                                srcSet="https://res.cloudinary.com/dm2s5stjy/image/upload/v1676906364/Linens/Slider/carousel-img-3_rocukh.jpg"
-                                type="image/jpeg"
-                            />
-                            <img
-                                src="https://res.cloudinary.com/dm2s5stjy/image/upload/v1676906364/Linens/Slider/carousel-img-3_rocukh.jpg"
-                                alt="Carousel img 3"
-                            />
-                        </picture>
-                        <div className={carouselInfo}>
-                            <p className={classNames(carouselText, carouselTextTop, 'h2 h2--dark')}>
-                                Up to 30% off
-                            </p>
-                            <p
-                                className={classNames(
-                                    carouselText,
-                                    carouselTextBottom,
-                                    'h2 h2--dark',
-                                )}
-                            >
-                                on your favourite french linen
-                            </p>
-                            <Button className={carouselBtn} text="Shop new arrivals" />
-                        </div>
-                    </div>
+                    {promotions.map((promotion) => {
+                        let linkStr = getLink(promotion);
+                        return (
+                            <div key={promotion.customId}>
+                                <img
+                                    src={promotion.imageUrl}
+                                    alt={`Carousel img ${promotion.customId}`}
+                                />
+                                <div className={carouselInfo}>
+                                    <p
+                                        className={classNames(
+                                            carouselText,
+                                            carouselHeading,
+                                            'h2 h2--dark',
+                                        )}
+                                    >
+                                        {promotion.title}
+                                    </p>
+                                    <p
+                                        className={classNames(
+                                            carouselText,
+                                            carouselTextDescription,
+                                            'p p--dark',
+                                        )}
+                                    >
+                                        {promotion.description}
+                                    </p>
+                                    <Link
+                                        to={linkStr}
+                                        className={carouselLink}
+                                        onClick={onClickHandler}
+                                    >
+                                        Watch now
+                                    </Link>
+                                </div>
+                            </div>
+                        );
+                    })}
                 </Carousel>
             </div>
         </section>
