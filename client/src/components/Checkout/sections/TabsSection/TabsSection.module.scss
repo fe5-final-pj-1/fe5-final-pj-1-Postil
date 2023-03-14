@@ -10,6 +10,13 @@
     position: relative;
     display: flex;
     justify-content: center;
+    &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        border-bottom: 0.11rem solid white;
+        top: 6.9rem;
+    }
 }
 .tabsLink {
     @include muli-font-normal;
