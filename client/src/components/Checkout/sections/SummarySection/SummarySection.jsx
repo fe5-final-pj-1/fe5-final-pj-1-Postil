@@ -41,10 +41,15 @@ const SummarySection = ({ type }) => {
             setuserID(decoded.id);
         }
     }, [isLogIn, tokenSting]);
-    const createOrderFunc = () => {
-        const customOrderNumder = Math.random().toString().slice(2, 11);
 
+    const createOrderFunc = () => {
         const { products, customerData, paymentMethod } = orderData;
+        if (!Object.keys(customerData).length) {
+            navigate('/checkout/details');
+            window.scrollTo(0, 0);
+            return;
+        }
+        const customOrderNumder = Math.random().toString().slice(2, 11);
         let newOrder = {};
         if (isLogIn) {
             newOrder = {

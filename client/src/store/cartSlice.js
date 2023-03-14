@@ -33,12 +33,11 @@ const cartSlice = createSlice({
             }
         },
         changeQuantity(state, action) {
-            const newCart = state.filter((item) => item.product !== action.payload.id);
-            const findCart = state.find((item) => item.product === action.payload.id);
-            return [
-                ...newCart,
-                { product: findCart.product, cartQuantity: action.payload.quantity },
-            ];
+            return state.map((item) => {
+                if (item.product === action.payload.id) {
+                    return { product: action.payload.id, cartQuantity: action.payload.quantity };
+                } else return item;
+            });
         },
         removeAllItems() {
             return [];
