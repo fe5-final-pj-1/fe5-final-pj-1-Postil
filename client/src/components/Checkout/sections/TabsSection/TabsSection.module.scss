@@ -1,28 +1,39 @@
 @import '../../../../style/mixins';
+@import '../../../../style/variables';
+
 .tabsMain {
     width: 100%;
-    height: 10rem;
-    background: #373f41;
+    min-width: 375px;
+    background: $dark-color;
+    padding-bottom: 2rem;
     margin-bottom: 8rem;
+    display: flex;
+    justify-content: center;
 }
 .tabsNav {
-    @include content-container;
+    max-width: 1180px;
     position: relative;
     display: flex;
     justify-content: center;
+    border-bottom: 1px solid $light-color;
+    width: calc(100% - 5rem);
 }
 .tabsLink {
     @include muli-font-normal;
     padding: 2rem;
     width: 39.3rem;
     color: #949697;
-    font-size: 14px;
+    font-size: $description-fs;
     line-height: 24px;
-    background-color: #373f41;
-    border-bottom: 0.11rem solid white;
+    background-color: $dark-color;
+    border-bottom: 0.52rem solid transparent;
+
     text-align: center;
+    @media only screen and (max-width: $bp-large) {
+        padding-bottom: 1.4rem;
+    }
 }
 .tabsActive {
-    color: white;
-    border-bottom: 0.52rem solid white;
+    color: $light-color;
+    border-bottom: 0.52rem solid $light-color;
 }

@@ -46,7 +46,7 @@ const PaymentSection = () => {
                         </p>
                     </div>
                 </div>
-                <Link to="/checkout/details" className={styles.payBtn}>
+                <Link to="/checkout/details" className={styles.payBtn} target="_top">
                     BACK
                 </Link>
             </section>
