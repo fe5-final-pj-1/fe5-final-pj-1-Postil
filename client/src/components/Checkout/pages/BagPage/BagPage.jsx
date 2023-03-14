@@ -87,7 +87,7 @@ const BagPage = () => {
                 />
             </div>
             <div className={styles.linkWrapper}>
-                <Link className={styles.backLink} to="/cart">
+                <Link className={styles.backLink} to="/cart" target="_top">
                     <Icon type="arrowLeft" /> BACK
                 </Link>
             </div>

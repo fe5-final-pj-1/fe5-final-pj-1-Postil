@@ -7,6 +7,12 @@
 }
 .section {
     width: 60%;
+    @media only screen and (max-width: $bp-medium) {
+        width: 55%;
+    }
+    @media only screen and (max-width: $bp-small) {
+        width: 100%;
+    }
 }
 .shipping_title {
     font-family: 'Mulish';
@@ -35,6 +41,9 @@
 .inputs_wrapper {
     display: flex;
     justify-content: space-between;
+    @media only screen and (max-width: $bp-medium) {
+        flex-direction: column;
+    }
 }
 .input {
     border: 1px solid $description-color;
@@ -81,6 +90,10 @@
     display: flex;
     justify-content: space-between;
     padding-top: 3rem;
+    @media only screen and (max-width: $bp-medium) {
+        flex-direction: column;
+        gap: 2.5rem;
+    }
 }
 .radio_btn_wrapper {
     display: flex;
@@ -130,6 +143,10 @@
     position: relative;
     padding-left: 2rem;
     color: #373f41;
+    @media only screen and (max-width: $bp-small) {
+        position: absolute;
+        bottom: 0;
+    }
 }
 .payBtn::before {
     content: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1677499637/Linens/SVG/VectorBig_imqj8a.svg');
