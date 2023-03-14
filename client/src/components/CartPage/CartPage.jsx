@@ -36,7 +36,11 @@ function CartPage() {
             ) : (
                 <>
                     <ShoppingBag />
-                    <Link to="/checkout" className={styles.checkoutBtn}>
+                    <Link
+                        to="/checkout"
+                        className={styles.checkoutBtn}
+                        onClick={() => window.scroll(0, 0)}
+                    >
                         PROCEED TO CHECKOUT
                     </Link>
                 </>

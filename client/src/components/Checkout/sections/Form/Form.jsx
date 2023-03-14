@@ -307,7 +307,11 @@ function Form() {
                     </div>
                 </div>
             </form>
-            <Link to="/checkout/confirm" className={formStyle.payBtn} target="_top">
+            <Link
+                to="/checkout/confirm"
+                className={formStyle.payBtn}
+                onClick={() => window.scroll(0, 0)}
+            >
                 BACK
             </Link>
         </section>
