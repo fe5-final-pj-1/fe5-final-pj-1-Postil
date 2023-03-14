@@ -3,14 +3,16 @@ import TabsSection from '../../sections/TabsSection';
 import SummaryTextSection from '../../sections/SummaryTextSection';
 import styles from './BagPage.module.scss';
 // import ListItem from 'components/ListItem';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import getCart from 'api/getCart';
 import getOneProduct from 'api/getOneProduct';
 import { Link } from 'react-router-dom';
 import Icon from 'components/Icon';
+import { addProductsToOrder } from 'store/orderSlice';
 
 const BagPage = () => {
+    const dispatch = useDispatch();
     const [productsCart, setProductsCart] = useState([]);
     const { cart, isLogIn } = useSelector((state) => ({
         cart: state.store.cart,
@@ -38,6 +40,9 @@ const BagPage = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cart, isLogIn]);
+    useEffect(() => {
+        if (!isLogIn) dispatch(addProductsToOrder(productsCart));
+    }, [isLogIn, productsCart, dispatch]);
     return (
         <>
             <TabsSection />

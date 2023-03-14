@@ -6,6 +6,7 @@ import storage from 'redux-persist/lib/storage';
 import filtersReducer from './filtersSlice';
 import modalReducer from './modalSlice';
 import loginReducer from './loginSlice';
+import orderReducer from './orderSlice';
 
 const storeReducer = combineReducers({
     cart: cartReducer,
@@ -25,6 +26,7 @@ const store = configureStore({
         searchProducts: searchProductsReducer,
         filters: filtersReducer,
         modal: modalReducer,
+        order: orderReducer,
     },
     middleware: (getDefaultMiddleware) =>
         getDefaultMiddleware({

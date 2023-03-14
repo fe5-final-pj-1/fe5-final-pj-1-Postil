@@ -26,7 +26,7 @@ import AdminDashboardPromotionsRoute from 'routes/admin/AdminDashboardPromotions
 import AdminDashboardOrdersRoute from 'routes/admin/AdminDashboardOrdersRoute';
 import AdminDashboardSubscribersRoute from 'routes/admin/AdminDashboardSubscribersRoute';
 import AdminProductsRoute from 'routes/admin/AdminProductsRoute';
-import AdminProductsAdd from 'components/AdminPanel/AdminDashboardProducts/AdminProductsAdd';
+import AdminProductsAddRoute from 'routes/admin/AdminProductsAddRoute';
 import AdminProductsEditRoute from 'routes/admin/AdminProductsEditRoute';
 
 const router = createBrowserRouter([
@@ -131,7 +131,7 @@ const router = createBrowserRouter([
                                     },
                                     {
                                         path: 'add',
-                                        element: <AdminProductsAdd />,
+                                        element: <AdminProductsAddRoute />,
                                     },
                                     {
                                         path: 'edit/:productId',
