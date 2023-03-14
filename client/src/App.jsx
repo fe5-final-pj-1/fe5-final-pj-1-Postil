@@ -18,6 +18,7 @@ import UserProfilePage from './components/UserProfilePage';
 import BagPage from './components/Checkout/pages/BagPage/BagPage';
 import ShippingDetailsPage from './components/Checkout/pages/ShippingDetailsPage';
 import PaymentOptionsPage from './components/Checkout/pages/PaymentOptionsPage';
+import EmptyList from 'components/Checkout/sections/EmptyListSection/EmptyList';
 import AdminPanelRoute from 'routes/admin/AdminPanelRoute';
 import AdminDashboardHomeRoute from 'routes/admin/AdminDashboardHomeRoute';
 import AdminDashboardCustomersRoute from 'routes/admin/AdminDashboardCustomersRoute';
@@ -170,6 +171,10 @@ const router = createBrowserRouter([
                     {
                         path: 'options',
                         element: <PaymentOptionsPage />,
+                    },
+                    {
+                        path: 'success',
+                        element: <EmptyList />,
                     },
                 ],
             },
