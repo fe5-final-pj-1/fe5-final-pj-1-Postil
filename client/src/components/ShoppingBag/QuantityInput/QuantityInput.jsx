@@ -23,12 +23,8 @@ const QuantityInput = ({ id, quantity }) => {
     const dispatch = useDispatch();
     const increaseProductQuantity = () => {
         if (cartQuantity >= itemQuantityInDB) {
-            console.log(cartQuantity);
-            console.log(itemQuantityInDB);
             return;
         }
-        console.log(cartQuantity);
-        console.log(itemQuantityInDB);
         if (isLogIn) {
             addProductToCart(id).then((res) => {
                 const quantity = res.data.products.filter(
@@ -72,9 +68,7 @@ const QuantityInput = ({ id, quantity }) => {
     const updateCartFunc = async () => {
         const response = await deleteProductFromCart(id);
         const cartItems = response.data.products;
-        updateCart({ products: [{ product: id, cartQuantity: cartQuantity }, ...cartItems] }).then(
-            (res) => console.log(res),
-        );
+        updateCart({ products: [{ product: id, cartQuantity: cartQuantity }, ...cartItems] });
     };
 
     const onBlurInputHandler = (e) => {
