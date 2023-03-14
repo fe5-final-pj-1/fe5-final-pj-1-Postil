@@ -1,0 +1,41 @@
+.row {
+
+    &UserName {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    &UserName {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &DeleteBtn {
+        display: flex;
+        justify-content: center;
+
+        & button {
+            background-color: transparent;
+            transition: transform .2s ease-in;
+
+            &:hover {
+                transform: scale(1.2);
+            }
+        }
+    }
+
+    & td {
+        padding: 1rem;
+
+        & img {
+            width: 5rem;
+            height: auto;
+        }
+    }
+
+    &TextCenter {
+        text-align: center;
+    }
+}

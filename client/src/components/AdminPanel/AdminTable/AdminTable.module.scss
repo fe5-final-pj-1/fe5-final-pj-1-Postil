@@ -1,0 +1,19 @@
+@import '../../../style/mixins';
+@import '../../../style/variables';
+
+.table {
+    padding: 1rem;
+    text-align: left;
+    width: 100%;
+}
+
+.row {
+
+    & th {
+        padding: 1rem;
+    }
+    
+    &TextCenter {
+        text-align: center;
+    }
+}

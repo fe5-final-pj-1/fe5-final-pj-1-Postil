@@ -149,6 +149,10 @@
     @include sum-size;
     color: #373f41;
 }
+.linkSumBtn {
+    display: inline-block;
+    align-self: flex-end;
+}
 .sumBtn {
     display: inline-block;
     align-self: flex-end;

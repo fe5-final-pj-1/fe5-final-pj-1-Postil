@@ -89,9 +89,8 @@ exports.placeOrder = async (req, res, next) => {
       }
 
       const newOrder = new Order(order);
-
       if (order.customerId) {
-        newOrder.populate("customerId").execPopulate();
+        newOrder.populate("customerId");
       }
 
       newOrder

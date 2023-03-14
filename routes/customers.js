@@ -7,6 +7,8 @@ const {
   createCustomer,
   loginCustomer,
   getCustomer,
+  getCustomers,
+  deleteCustomer,
   editCustomerInfo,
   updatePassword
 } = require("../controllers/customers");
@@ -28,6 +30,24 @@ router.get(
   "/customer",
   passport.authenticate("jwt", { session: false }),
   getCustomer
+);
+
+// @route   GET /
+// @desc    Return all customers
+// @access  Private
+router.get(
+  "/",
+  passport.authenticate("jwt", { session: false }),
+  getCustomers
+);
+
+// @route   DELETE /customer
+// @desc    Delete specific customer
+// @access  Private
+router.delete(
+  "/:id",
+  passport.authenticate("jwt-admin", { session: false }),
+  deleteCustomer
 );
 
 // @route   PUT /customers

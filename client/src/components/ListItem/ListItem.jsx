@@ -80,8 +80,6 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
-    console.log(color && size && !!type);
-    console.log(type);
     return (
         <>
             <div

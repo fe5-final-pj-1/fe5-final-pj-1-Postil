@@ -8,6 +8,7 @@ const fse = require("fs-extra");
 const {
   addImages,
   addProduct,
+  deleteProduct,
   updateProduct,
   getProducts,
   getProductById,
@@ -68,6 +69,15 @@ router.post(
   "/",
   passport.authenticate("jwt-admin", { session: false }),
   addProduct
+);
+
+// @route   DELETE /products
+// @desc    Delete product product
+// @access  Private
+router.delete(
+  "/:id",
+  passport.authenticate("jwt-admin", { session: false }),
+  deleteProduct
 );
 
 // @route   PUT /products/:id

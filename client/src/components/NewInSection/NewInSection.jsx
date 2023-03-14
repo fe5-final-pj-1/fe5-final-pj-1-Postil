@@ -8,11 +8,10 @@ function NewInSection() {
     const { newIn, newInTitle, newInWrp, newInItem, newInImg, newInText, newInPrice } = newInStyles;
     const [items, setIsItems] = useState([]);
     const [isEmpty, setIsEmpty] = useState(false);
-
     useEffect(() => {
         getFilteredProducts('isNew=true').then((res) => {
             if (res && res.data) {
-                setIsItems(res.data.products.slice(0, 4));
+                setIsItems(res.data.products.slice(-4));
             } else {
                 setIsEmpty(true);
             }
