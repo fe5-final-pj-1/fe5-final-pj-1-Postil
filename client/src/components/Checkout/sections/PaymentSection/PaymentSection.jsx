@@ -46,7 +46,11 @@ const PaymentSection = () => {
                         </p>
                     </div>
                 </div>
-                <Link to="/checkout/details" className={styles.payBtn}>
+                <Link
+                    to="/checkout/details"
+                    className={styles.payBtn}
+                    onClick={() => window.scroll(0, 0)}
+                >
                     BACK
                 </Link>
             </section>

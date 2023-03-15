@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import TabsSection from '../../sections/TabsSection';
 import SummaryTextSection from '../../sections/SummaryTextSection';
 import styles from './BagPage.module.scss';
-// import ListItem from 'components/ListItem';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import getCart from 'api/getCart';
@@ -73,8 +72,6 @@ const BagPage = () => {
                                     Quantity: <span>{item.cartQuantity}</span>
                                 </p>
                             </div>
-
-                            {/* <ListItem quantity={item.cartQuantity} item={item.product} /> */}
                         </li>
                     ))}
                 </ul>
@@ -87,7 +84,7 @@ const BagPage = () => {
                 />
             </div>
             <div className={styles.linkWrapper}>
-                <Link className={styles.backLink} to="/cart">
+                <Link className={styles.backLink} to="/cart" onClick={() => window.scroll(0, 0)}>
                     <Icon type="arrowLeft" /> BACK
                 </Link>
             </div>
