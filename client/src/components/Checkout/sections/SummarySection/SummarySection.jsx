@@ -9,8 +9,10 @@ import Button from 'components/Button';
 import { addProductsToOrder } from 'store/orderSlice';
 import createOrder from 'api/createOrder';
 import jwt_decode from 'jwt-decode';
+import { useNavigate } from 'react-router-dom';
 
 const SummarySection = ({ type }) => {
+    const navigate = useNavigate();
     const tokenSting = useSelector((state) => state.store.login.token, shallowEqual);
     const [userID, setuserID] = useState('');
     const shippingCost = useSelector((state) => state.order.customerData.shipping);
@@ -39,10 +41,15 @@ const SummarySection = ({ type }) => {
             setuserID(decoded.id);
         }
     }, [isLogIn, tokenSting]);
-    const createOrderFunc = () => {
-        const customOrderNumder = Math.random().toString().slice(2, 11);
 
+    const createOrderFunc = () => {
         const { products, customerData, paymentMethod } = orderData;
+        if (!Object.keys(customerData).length) {
+            navigate('/checkout/details');
+            window.scrollTo(0, 0);
+            return;
+        }
+        const customOrderNumder = Math.random().toString().slice(2, 11);
         let newOrder = {};
         if (isLogIn) {
             newOrder = {
@@ -63,7 +70,13 @@ const SummarySection = ({ type }) => {
                 letterHtml: `<h1>Your order is placed. OrderNo is ${customOrderNumder}.</h1><p>{Other details about order in your HTML}</p>`,
             };
         }
-        createOrder(newOrder).then((res) => console.log(res));
+        createOrder(newOrder).then((res) => {
+            if (res) {
+                navigate('/checkout/success');
+                window.scrollTo(0, 0);
+                console.log(res);
+            }
+        });
     };
     useEffect(() => {
         if (isLogIn) {

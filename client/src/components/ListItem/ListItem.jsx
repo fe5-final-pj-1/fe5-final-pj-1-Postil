@@ -14,13 +14,21 @@ import { itemAdded } from 'store/cartSlice';
 import { removeItem } from 'store/cartSlice';
 import deleteProductFromWishList from 'api/deleteProductFromWishList';
 import classNames from 'classnames';
+import getOneProduct from 'api/getOneProduct';
 
 const ListItem = ({ quantity, item, type, favouritesReload }) => {
-    const { _id, name, imageUrls, currentPrice, color, size, fabric, itemNo } = item;
+    const { _id, name, imageUrls, currentPrice, color, size, fabric } = item;
     const isLogin = useSelector((state) => state.store.login.isLogIn, shallowEqual);
-    const [favouritesClicked, setFavouritesClicked] = useState(false);
-    const [double, setDouble] = useState(false);
     const dispatch = useDispatch();
+
+    //for checking balance of products in DB
+    const localCart = useSelector((state) => state.store.cart, shallowEqual);
+    const [itemQuantityInDB, setItemQuantityInDB] = useState();
+
+    //favourites
+    const [double, setDouble] = useState(false);
+    const [favouritesClicked, setFavouritesClicked] = useState(false);
+
     const addToFavourites = async () => {
         if (!favouritesClicked && !double) {
             setDouble(true);
@@ -64,8 +72,19 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
         dispatch(removeItem(_id));
     };
     const addToCart = () => {
+        //for checking balance of products in DB
+        if (localCart.map((item) => item.product).includes(_id)) {
+            if (localCart.find((item) => item.product === _id).cartQuantity >= itemQuantityInDB) {
+                return;
+            }
+        }
         dispatch(itemAdded(_id));
     };
+    //for checking balance of products in DB
+    useEffect(() => {
+        if (_id) getOneProduct(_id).then((res) => setItemQuantityInDB(res.data.quantity));
+    }, [_id]);
+
     useEffect(() => {
         if (type === 'cart' && isLogin) {
             getWishList().then((res) => {
@@ -127,9 +146,7 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
                                 </p>
                             )}
                         </div>
-                        {type === 'cart' ? (
-                            <QuantityInput itemNo={itemNo} id={_id} quantity={quantity} />
-                        ) : null}
+                        {type === 'cart' ? <QuantityInput id={_id} quantity={quantity} /> : null}
                     </div>
                 </div>
             </div>

@@ -1,8 +1,12 @@
 @import '../../../../style/mixins';
+@import '../../../../style/variables';
 
 .payMain {
     // max-width: 72.6rem;
     width: 60%;
+    @media only screen and (max-width: $bp-small) {
+        width: 100%;
+    }
 }
 .payTitle {
     @include muli-font-normal;
@@ -43,6 +47,10 @@
     font-size: 1.8rem;
     line-height: 3.2rem;
     margin-left: 4.52rem;
+    @media only screen and (max-width: $bp-medium) {
+        margin-left: 2rem;
+        line-height: 2rem;
+    }
 }
 .payCardIcon {
     // padding-left: 26rem;
@@ -50,6 +58,9 @@
     flex-direction: column;
     margin-left: auto;
     padding-right: 2rem;
+    @media only screen and (max-width: $bp-medium) {
+        display: none;
+    }
 }
 .payCashBloc {
     @include payBlock;
@@ -68,6 +79,9 @@
         content: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1677499637/Linens/SVG/Hands_with_money_kesqus.svg');
         position: absolute;
         right: 2.5rem;
+        @media only screen and (max-width: $bp-medium) {
+            display: none;
+        }
     }
 }
 .payCashBlocActive {
@@ -85,6 +99,10 @@
     position: relative;
     padding-left: 2rem;
     color: #373f41;
+    @media only screen and (max-width: $bp-small) {
+        position: absolute;
+        bottom: 0;
+    }
 }
 .payBtn::before {
     content: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1677499637/Linens/SVG/VectorBig_imqj8a.svg');
@@ -95,9 +113,15 @@
 .payIcon {
     margin-left: 2.5rem;
     cursor: pointer;
+    @media only screen and (max-width: $bp-medium) {
+        margin-left: 2rem;
+    }
 }
 .payText {
     margin-left: 4.52rem;
+    @media only screen and (max-width: $bp-medium) {
+        margin-left: 2rem;
+    }
 }
 .payTextTitle {
     @include muli-font-normal;

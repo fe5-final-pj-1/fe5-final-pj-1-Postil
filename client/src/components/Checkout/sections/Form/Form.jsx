@@ -88,6 +88,7 @@ function Form() {
             };
             dispatch(addCustomerDataToOrder(order));
             navigate('/checkout/options');
+            window.scrollTo(0, 0);
         },
     });
     return (
@@ -306,7 +307,11 @@ function Form() {
                     </div>
                 </div>
             </form>
-            <Link to="/checkout/confirm" className={formStyle.payBtn}>
+            <Link
+                to="/checkout/confirm"
+                className={formStyle.payBtn}
+                onClick={() => window.scroll(0, 0)}
+            >
                 BACK
             </Link>
         </section>

@@ -14,20 +14,30 @@ import addProductToCart from 'api/addProductToCart';
 import createCart from 'api/createCart';
 import deleteProductFromWishList from 'api/deleteProductFromWishList';
 import { Oval } from 'react-loader-spinner';
+import getOneProduct from 'api/getOneProduct';
 
 const SingleItemSection = ({ product }) => {
     const { _id, color, currentPrice, imageUrls, fabric, itemNo, name, size } = product;
+    const dispatch = useDispatch();
+    const isLogIn = useSelector((state) => state.store.login.isLogIn, shallowEqual);
+    const [isLoaded, setIsLoaded] = useState(false);
+
     const [active, setActive] = useState({
         reviews: false,
         description: false,
     });
-    const [isLoaded, setIsLoaded] = useState(false);
+
     const [favouritesClicked, setFavouritesClicked] = useState(false);
     // eslint-disable-next-line no-unused-vars
     const [double, setDouble] = useState(false);
     const [wishlist, setWishlist] = useState([]);
-    const dispatch = useDispatch();
-    const isLogIn = useSelector((state) => state.store.login.isLogIn, shallowEqual);
+
+    //for checking balance of products in DB
+    const localCart = useSelector((state) => state.store.cart, shallowEqual);
+    const [itemQuantityInDB, setItemQuantityInDB] = useState();
+    useEffect(() => {
+        if (_id) getOneProduct(_id).then((res) => setItemQuantityInDB(res.data.quantity));
+    }, [_id]);
 
     useEffect(() => {
         if (isLogIn) {
@@ -46,8 +56,15 @@ const SingleItemSection = ({ product }) => {
             setTimeout(() => setIsLoaded(true), 300);
         }
     }, [wishlist, isLogIn, _id]);
-    //user is not login
+
     const addToCart = async () => {
+        //for checking balance of products in DB
+        if (localCart.map((item) => item.product).includes(_id)) {
+            if (localCart.find((item) => item.product === _id).cartQuantity >= itemQuantityInDB) {
+                return;
+            }
+        }
+        //user is not login
         dispatch(itemAdded(_id));
         if (isLogIn) {
             addToCartForLoginUser();

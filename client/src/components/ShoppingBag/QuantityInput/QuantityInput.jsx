@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './QuantityInput.module.scss';
 import PropTypes from 'prop-types';
 import addProductToCart from 'api/addProductToCart';
@@ -6,6 +6,7 @@ import decreaseProductQuantity from 'api/decreaseProductQuantity';
 import getCart from 'api/getCart';
 import deleteProductFromCart from 'api/deleteProductFromCart';
 import updateCart from 'api/updateCart';
+import getOneProduct from 'api/getOneProduct';
 import { useDispatch, useSelector } from 'react-redux';
 // eslint-disable-next-line no-unused-vars
 import { changeQuantity, decreaseProduct, itemAdded } from 'store/cartSlice';
@@ -15,8 +16,15 @@ import Icon from 'components/Icon';
 const QuantityInput = ({ id, quantity }) => {
     const isLogIn = useSelector((state) => state.store.login.isLogIn);
     const [cartQuantity, setCartQuantity] = useState(quantity);
+    const [itemQuantityInDB, setItemQuantityInDB] = useState();
+    useEffect(() => {
+        getOneProduct(id).then((res) => setItemQuantityInDB(res.data.quantity));
+    }, [id]);
     const dispatch = useDispatch();
     const increaseProductQuantity = () => {
+        if (cartQuantity >= itemQuantityInDB) {
+            return;
+        }
         if (isLogIn) {
             addProductToCart(id).then((res) => {
                 const quantity = res.data.products.filter(
@@ -49,6 +57,7 @@ const QuantityInput = ({ id, quantity }) => {
         e.stopPropagation();
         const newValue = +e.currentTarget.value;
         setCartQuantity((prevState) => {
+            if (newValue >= itemQuantityInDB) return itemQuantityInDB;
             if (newValue >= 100) return 99;
             if (newValue <= 0) return 0;
             if (/^[1-9]\d*$/.test(newValue)) return newValue;
@@ -59,9 +68,7 @@ const QuantityInput = ({ id, quantity }) => {
     const updateCartFunc = async () => {
         const response = await deleteProductFromCart(id);
         const cartItems = response.data.products;
-        updateCart({ products: [{ product: id, cartQuantity: cartQuantity }, ...cartItems] }).then(
-            (res) => console.log(res),
-        );
+        updateCart({ products: [{ product: id, cartQuantity: cartQuantity }, ...cartItems] });
     };
 
     const onBlurInputHandler = (e) => {
