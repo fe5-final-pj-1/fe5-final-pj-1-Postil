@@ -122,7 +122,7 @@ function Footer() {
                                     "Let's get personal! We'll send you only the good stuff: Exclusive early access to Sale, new arrivals and promotions. No nasties."
                                 }
                             </p>
-                            <InfoModal text={''} isOpen={isOpen} closeModal={closeModal} />
+
                             <form
                                 className={FooterStyle.subscription_input}
                                 onSubmit={postForm}
@@ -163,6 +163,7 @@ function Footer() {
                                     </li>
                                 </ul>
                             </div>
+                            <InfoModal text={''} isOpen={isOpen} closeModal={closeModal} />
                         </div>
                     </nav>
                 </div>

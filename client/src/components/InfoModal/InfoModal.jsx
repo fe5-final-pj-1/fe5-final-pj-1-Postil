@@ -12,7 +12,7 @@ const InfoModal = ({ text, isOpen, closeModal }) => {
         if (isOpen) {
             const timer = setTimeout(() => {
                 closeModal();
-            }, 4000);
+            }, 3000);
             return () => clearTimeout(timer);
         }
     }, [closeModal, isOpen]);
@@ -24,16 +24,16 @@ const InfoModal = ({ text, isOpen, closeModal }) => {
     }
 
     return (
-        isOpen && (
-            <div className={styles.infoBody}>
-                <Button
-                    className={styles.close}
-                    text={<Icon type="miniClose" />}
-                    handleClick={() => closeModal()}
-                />
-                {text}
-            </div>
-        )
+        <div
+            className={`${styles.infoBody} ${isOpen ? styles['block-show'] : styles['block-hide']}`}
+        >
+            <Button
+                className={styles.close}
+                text={<Icon type="miniClose" />}
+                handleClick={() => closeModal()}
+            />
+            {text}
+        </div>
     );
 };
 
