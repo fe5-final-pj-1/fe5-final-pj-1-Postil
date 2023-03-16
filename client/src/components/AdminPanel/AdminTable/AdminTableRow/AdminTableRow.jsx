@@ -101,7 +101,9 @@ function AdminTableRow(props) {
                 </td>
             )}
             <td className={adminPanelStyles.rowNoneSmall}>
-                {type !== 'orders' ? data.email : `${data.totalSum}$`}
+                {type !== 'orders'
+                    ? data.email
+                    : `${(data.totalSum * 1.1 + data.shipping).toFixed(2)}$`}
             </td>
             {type !== 'orders' && (
                 <td

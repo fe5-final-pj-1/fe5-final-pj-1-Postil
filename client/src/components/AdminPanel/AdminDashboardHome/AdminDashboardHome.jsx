@@ -39,7 +39,10 @@ function AdminDashboardHome() {
     }
     return (
         <div className={classNames(adminPanelStyles.wrapper, adminPanelStyles.adminHome)}>
-            <div className={adminPanelStyles.adminHomeProductsSold}>1</div>
+            <div className={adminPanelStyles.adminHomeProductsSold}>
+                <span>products sold</span>
+                <span>25</span>
+            </div>
             <div className={adminPanelStyles.adminHomeTotalBalance}>2</div>
             <div className={adminPanelStyles.adminHomeUsers}>3</div>
             <div className={adminPanelStyles.adminHomeSubscribers}>4</div>
