@@ -7,7 +7,11 @@ const EmptyList = () => {
         <>
             <div className={styles.emptyMain}>
                 <h1 className={styles.emptyTitle}>THANK YOU FOR YOUR ORDER!</h1>
-                <Link to="/" className={styles.emptyButton}>
+                <Link
+                    to="/catalog"
+                    className={styles.emptyButton}
+                    onClick={() => window.scrollTo(0, 0)}
+                >
                     CONTINUE SHOPPING
                 </Link>
             </div>

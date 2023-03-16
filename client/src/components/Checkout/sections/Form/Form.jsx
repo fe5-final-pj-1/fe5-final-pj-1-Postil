@@ -37,7 +37,7 @@ function Form() {
                   email: '',
                   city: '',
                   zip: '',
-                  shipping: 'FreeShipping',
+                  shipping: '0',
                   country: 'Select Country',
               },
 
@@ -84,7 +84,7 @@ function Form() {
                 mobile,
                 firstName,
                 lastName,
-                shipping,
+                shipping: Number(shipping),
             };
             dispatch(addCustomerDataToOrder(order));
             navigate('/checkout/options');
@@ -273,11 +273,9 @@ function Form() {
                                 name="shipping"
                                 onBlur={formik.handleBlur}
                                 onChange={formik.handleChange}
-                                value="FreeShipping"
+                                value="0"
                                 id="radio_label1"
-                                defaultChecked={
-                                    formik.values.shipping === 'FreeShipping' ? true : false
-                                }
+                                defaultChecked={formik.values.shipping == '0' ? true : false}
                             />
                             <div className={formStyle.btn_text}>
                                 <h2 className={formStyle.checkbox_title}>Free Shipping</h2>
@@ -291,11 +289,9 @@ function Form() {
                                 name="shipping"
                                 onBlur={formik.handleBlur}
                                 onChange={formik.handleChange}
-                                value="PayDelivery"
+                                value="10"
                                 id="radio_label2"
-                                defaultChecked={
-                                    formik.values.shipping === 'PayDelivery' ? true : false
-                                }
+                                defaultChecked={formik.values.shipping == '10' ? true : false}
                             />
                             <div className={formStyle.btn_text}>
                                 <h2 className={formStyle.checkbox_title}>
