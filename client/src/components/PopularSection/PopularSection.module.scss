@@ -1,4 +1,6 @@
 @import '../../style/mixins';
+@import '../../style/variables';
+
 .popular {
   margin-top: 8rem;
 }
@@ -23,6 +25,23 @@
     "three four four";
   column-gap: 1.6rem;
   row-gap: 1.55rem;
+  @media only screen and (max-width: $bp-medium) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-template-areas:
+    "one one"
+    "two three"
+    "four four";
+  }
+  @media only screen and (max-width: $bp-small){
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    grid-template-areas:
+    "one"
+    "two"
+    "three"
+    "four";
+  }
 }
 .boxOne {
   grid-area: one;
@@ -44,8 +63,15 @@
     font-size: 2.4rem;
     line-height: 2.5rem;
     letter-spacing: 1rem;
-    right: 4.5rem;
+    left: 73.5%;
     top: 1.5rem;
+    @media only screen and (max-width: $bp-medium){
+      left: 68.5%
+    }
+    @media only screen and (max-width: $bp-small){
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
 .boxTwo {
@@ -68,8 +94,15 @@
     font-size: 2.4rem;
     line-height: 2.5rem;
     letter-spacing: 0.9rem;
-    right: 4.5rem;
+    left: 43.5%;
     top: 1.5rem;
+    @media only screen and (max-width: $bp-medium){
+      left: 39%
+    }
+    @media only screen and (max-width: $bp-small){
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
 .boxThree {
@@ -92,8 +125,15 @@
     font-size: 2.4rem;
     line-height: 2.5rem;
     letter-spacing: 0.8rem;
-    right: 4.5rem;
+    left: 39%;
     top: 1rem;
+    @media only screen and (max-width: $bp-medium){
+      left: 39%
+    }
+    @media only screen and (max-width: $bp-small){
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
 .boxFour {
@@ -115,9 +155,16 @@
     @include abel-font-normal;
     font-size: 2.4rem;
     line-height: 2.5rem;
-    letter-spacing: 1rem;
-    right: 4.5rem;
+    letter-spacing: 0.8rem;
+    left: 66%;
     top: 1rem;
+    @media only screen and (max-width: $bp-medium){
+      left: 62%
+    }
+    @media only screen and (max-width: $bp-small){
+      left: 50%;
+      transform: translateX(-50%);
+    }
   }
 }
 .btn_long {
@@ -131,6 +178,13 @@
     background: gainsboro;
     transition: all 0.25s ease-in;
   }
+  @media only screen and (max-width: $bp-medium){
+    margin-left: 74%
+  }
+  @media only screen and (max-width: $bp-small){
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
 }
 .btn_small {
   @include abel-font-normal;
@@ -142,6 +196,13 @@
   &:hover {
     background: gainsboro;
     transition: all 0.25s ease-in;
+  }
+  @media only screen and (max-width: $bp-medium){
+    margin-left: 52%;
+  }
+  @media only screen and (max-width: $bp-small){
+    margin-left: 50%;
+    transform: translateX(-50%);
   }
 }
 .btn {

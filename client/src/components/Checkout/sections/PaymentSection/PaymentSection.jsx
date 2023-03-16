@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styles from './PaymentSection.module.scss';
 import Icon from '../../../Icon';
 import { Link } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { addPaymentMethod } from 'store/orderSlice';
 
 const PaymentSection = () => {
-    const [active, setActive] = useState(1);
+    const [active, setActive] = useState('credit cart');
+    const dispatch = useDispatch();
+    useEffect(() => {
+        dispatch(addPaymentMethod({ paymentMethod: active }));
+    }, [dispatch, active]);
     return (
         <>
             <section className={styles.payMain}>
                 <h2 className={styles.payTitle}>PAYMENT METHOD</h2>
                 <div
                     className={`${styles.payCardBlock} ${
-                        active === 1 ? `${styles.payCardBlockActive}` : ''
+                        active === 'credit cart' ? `${styles.payCardBlockActive}` : ''
                     }`}
-                    onClick={() => setActive(1)}
+                    onClick={() => setActive('credit cart')}
                 >
                     <p className={styles.payIcon}>
                         <Icon type={'pressedCircle'} />
@@ -26,9 +32,9 @@ const PaymentSection = () => {
                 </div>
                 <div
                     className={`${styles.payCashBloc} ${
-                        active === 2 ? `${styles.payCashBlocActive}` : ''
+                        active === 'cash' ? `${styles.payCashBlocActive}` : ''
                     }`}
-                    onClick={() => setActive(2)}
+                    onClick={() => setActive('cash')}
                 >
                     <p className={styles.payIcon}>
                         <Icon type={'pressedCircle'} />
@@ -40,7 +46,11 @@ const PaymentSection = () => {
                         </p>
                     </div>
                 </div>
-                <Link to="/checkout/details" className={styles.payBtn}>
+                <Link
+                    to="/checkout/details"
+                    className={styles.payBtn}
+                    onClick={() => window.scroll(0, 0)}
+                >
                     BACK
                 </Link>
             </section>

@@ -7,13 +7,19 @@ import PropTypes from 'prop-types';
 function NewInSection() {
     const { newIn, newInTitle, newInWrp, newInItem, newInImg, newInText, newInPrice } = newInStyles;
     const [items, setIsItems] = useState([]);
-
+    const [isEmpty, setIsEmpty] = useState(false);
     useEffect(() => {
         getFilteredProducts('isNew=true').then((res) => {
-            setIsItems(res.data.products);
+            if (res && res.data) {
+                setIsItems(res.data.products.slice(-4));
+            } else {
+                setIsEmpty(true);
+            }
         });
     }, []);
-
+    if (isEmpty) {
+        return null;
+    }
     return (
         <section className={newIn}>
             <div className="container">
@@ -22,7 +28,7 @@ function NewInSection() {
                     {items.map(({ name, itemNo, imageUrls, currentPrice, _id }) => {
                         return (
                             <li className={newInItem} key={itemNo}>
-                                <Link to={`/catalog/${_id}`}>
+                                <Link to={`/catalog/${_id}`} target="_top">
                                     <img className={newInImg} src={imageUrls[0]} alt="new-img" />
                                     <div className={newInStyles.descriptionContainer}>
                                         <p className={newInText}>{name}</p>

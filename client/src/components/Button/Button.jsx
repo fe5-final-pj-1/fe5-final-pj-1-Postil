@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
-function Button({ handleClick, text, className }) {
+function Button({ handleClick, text, className, ...attrs }) {
     const classes = classNames(className);
     return (
-        <button className={classes} onClick={handleClick}>
+        <button className={classes} onClick={handleClick} {...attrs}>
             {text}
         </button>
     );

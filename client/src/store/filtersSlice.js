@@ -33,9 +33,19 @@ const filtersSlice = createSlice({
                 filtersChecked: false,
             };
         },
+        filtersResetAll(state) {
+            return {
+                filtersQuery: {
+                    perPage: state.filtersQuery.perPage,
+                    startPage: ['1'],
+                },
+                filtersChecked: false,
+            };
+        },
     },
 });
 
-export const { filtersAdded, filtersRemoved, filtersRemovedAll } = filtersSlice.actions;
+export const { filtersAdded, filtersRemoved, filtersRemovedAll, filtersResetAll } =
+    filtersSlice.actions;
 
 export default filtersSlice.reducer;

@@ -89,9 +89,8 @@ exports.placeOrder = async (req, res, next) => {
       }
 
       const newOrder = new Order(order);
-
       if (order.customerId) {
-        newOrder.populate("customerId").execPopulate();
+        newOrder.populate("customerId");
       }
 
       newOrder
@@ -133,62 +132,24 @@ exports.updateOrder = (req, res, next) => {
         .status(400)
         .json({ message: `Order with id ${req.params.id} is not found` });
     } else {
-      const order = _.cloneDeep(req.body);
+      const order = _.cloneDeep(currentOrder);
 
+      if (req.body.mobile) {
+        order.mobile = req.body.mobile;
+      }
+      if (req.body.email) {
+        order.email = req.body.email;
+      }
       if (req.body.deliveryAddress) {
         order.deliveryAddress = req.body.deliveryAddress;
       }
-
-      if (req.body.shipping) {
-        order.shipping = req.body.shipping;
+      if (req.body.status) {
+        order.status = req.body.status;
       }
 
-      if (req.body.paymentInfo) {
-        order.paymentInfo = req.body.paymentInfo;
-      }
-
-      if (req.body.customerId) {
-        order.customerId = req.body.customerId;
-      }
-
-      if (req.body.products) {
-        order.products = req.body.products;
-
-        order.totalSum = order.products.reduce(
-          (sum, cartItem) =>
-            sum + cartItem.product.currentPrice * cartItem.cartQuantity,
-          0
-        );
-
-        const productAvailibilityInfo = await productAvailibilityChecker(
-          order.products
-        );
-
-        if (!productAvailibilityInfo.productsAvailibilityStatus) {
-          res.json({
-            message: "Some of your products are unavailable for now",
-            productAvailibilityInfo
-          });
-        }
-      }
-
-      const subscriberMail = req.body.email;
-      const letterSubject = req.body.letterSubject;
-      const letterHtml = req.body.letterHtml;
-
-      const { errors, isValid } = validateOrderForm(req.body);
-
-      // Check Validation
-      if (!isValid) {
-        return res.status(400).json(errors);
-      }
-
-      if (!letterSubject) {
-        return res.status(400).json({
-          message:
-            "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter."
-        });
-      }
+      const subscriberMail = order.email;
+      const letterSubject = "Your order was updated!";
+      const letterHtml = order.letterHtml;
 
       if (!letterHtml) {
         return res.status(400).json({
@@ -202,7 +163,7 @@ exports.updateOrder = (req, res, next) => {
         { $set: order },
         { new: true }
       )
-        .populate("customerId")
+        // .populate("customerId")
         .then(async order => {
           const mailResult = await sendMail(
             subscriberMail,
@@ -229,9 +190,9 @@ exports.cancelOrder = (req, res, next) => {
         .status(400)
         .json({ message: `Order with id ${req.params.id} is not found` });
     } else {
-      const subscriberMail = req.body.email;
-      const letterSubject = req.body.letterSubject;
-      const letterHtml = req.body.letterHtml;
+      const subscriberMail = currentOrder.email;
+      const letterSubject = "Your order was closed";
+      const letterHtml = `<h1>Your order №${currentOrder.orderNo} was closed.</h1><p>{Other details about order in your HTML}</p>`;
 
       const { errors, isValid } = validateOrderForm(req.body);
 
@@ -286,7 +247,12 @@ exports.deleteOrder = (req, res, next) => {
         .json({ message: `Order with id ${req.params.id} is not found.` });
     } else {
       const orderToDelete = await Order.findOne({ _id: req.params.id });
-
+      for (item of order.products){
+        const id = item.product._id;
+        const product = await Product.findOne({ _id: id });
+        const productQuantity = product.quantity;
+        await Product.findOneAndUpdate({ _id: id }, { quantity: productQuantity + item.cartQuantity }, { new: true })
+      }
       Order.deleteOne({ _id: req.params.id })
         .then(deletedCount =>
           res.status(200).json({
@@ -304,6 +270,17 @@ exports.deleteOrder = (req, res, next) => {
 
 exports.getOrders = (req, res, next) => {
   Order.find({ customerId: req.user.id })
+    .populate("customerId")
+    .then(orders => res.json(orders))
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
+};
+
+exports.getAllOrders = (req, res, next) => {
+  Order.find()
     .populate("customerId")
     .then(orders => res.json(orders))
     .catch(err =>

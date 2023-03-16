@@ -14,9 +14,6 @@ exports.addSlide = (req, res, next) => {
 
       newSlide
         .populate("product")
-        .populate("category")
-        .populate("customer")
-        .execPopulate();
 
       newSlide
         .save()
@@ -94,8 +91,6 @@ exports.deleteSlide = (req, res, next) => {
 exports.getSlides = (req, res, next) => {
   Slider.find()
     .populate("product")
-    .populate("category")
-    .populate("customer")
     .then(slides => res.status(200).json(slides))
     .catch(err =>
       res.status(400).json({

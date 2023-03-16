@@ -1,6 +1,8 @@
 @import '../../../../style/mixins';
 .emptyMain {
-
+display: flex;
+flex-direction: column;
+align-items: center
 }
 .emptyTitle {
   @include abel-font-normal;

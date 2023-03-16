@@ -16,6 +16,10 @@
     &.hide {
         display: none;
     }
+    @media only screen and (max-width: $bp-medium) {
+        justify-content: center;
+        align-items: center;
+    }
 }
 
 .container {
@@ -30,6 +34,10 @@
     background: #ffffff;
     padding: 5rem 5.5rem;
     width: 56rem;
+    @media only screen and (max-width: $bp-medium) {
+        position: static;
+        transform: translateY(0);
+    }
     & .logInError {
         text-align: center;
         position: absolute;

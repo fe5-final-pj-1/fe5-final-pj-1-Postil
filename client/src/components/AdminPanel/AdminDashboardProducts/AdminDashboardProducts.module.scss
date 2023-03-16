@@ -1,0 +1,52 @@
+@import "../../../style/mixins";
+@import "../../../style/variables";
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    padding: 0 1rem;
+}
+
+.navigation {
+    display: flex;
+
+    &Link {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        font-size: 1.6rem;
+        color: $dark-color;
+        border: $border-dark;
+        padding: 0.5rem 1.5rem;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1.4rem;
+            padding: .5rem .8rem;
+        }
+
+        &:first-child {
+            margin-right: 0.5rem;
+        }
+
+        & > span {
+            margin-left: 0.5rem;
+        }
+
+        & svg {
+            fill: $dark-color;
+        }
+    }
+
+    &LinkActive {
+        color: $light-color;
+        background-color: $lightGrey;
+
+        & svg {
+            fill: $light-color;
+        }
+    }
+
+    &LinkActiveGreen {
+        background-color: #1ad41a;
+    }
+}

@@ -1,7 +1,7 @@
-$dark-color: #373F41;
-$description-color: #8C8C8C;
-$light-color: #FFFFFF;
-$lightGrey: #8A9394;
+$dark-color: #373f41;
+$description-color: #8c8c8c;
+$light-color: #ffffff;
+$lightGrey: #8a9394;
 
 $description-fs: 1.4rem;
 $text-fs: 1.6rem;
@@ -12,6 +12,6 @@ $titles-fs: 3.2rem;
 $border-dark: 1px solid $dark-color;
 
 //break points
-// $bp-small: undefined ;
+$bp-small: 31.25em; // 500px
 $bp-medium: 50em; // 800px
 $bp-large: 68.75em; // 1100px

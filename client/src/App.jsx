@@ -18,9 +18,18 @@ import UserProfilePage from './components/UserProfilePage';
 import BagPage from './components/Checkout/pages/BagPage/BagPage';
 import ShippingDetailsPage from './components/Checkout/pages/ShippingDetailsPage';
 import PaymentOptionsPage from './components/Checkout/pages/PaymentOptionsPage';
-import AdminPanelRoute from 'routes/AdminPanelRoute';
-import AdminDashboardHomeRoute from 'routes/AdminDashboardHomeRoute';
-import AdminDashboardCustomersRoute from 'routes/AdminDashboardCustomersRoute';
+import EmptyList from 'components/Checkout/sections/EmptyListSection/EmptyList';
+import AdminPanelRoute from 'routes/admin/AdminPanelRoute';
+import AdminDashboardHomeRoute from 'routes/admin/AdminDashboardHomeRoute';
+import AdminDashboardCustomersRoute from 'routes/admin/AdminDashboardCustomersRoute';
+import AdminDashboardProductsRoute from 'routes/admin/AdminDashboardProductsRoute';
+import AdminDashboardPromotionsRoute from 'routes/admin/AdminDashboardPromotionsRoute';
+import AdminDashboardOrdersRoute from 'routes/admin/AdminDashboardOrdersRoute';
+import AdminDashboardSubscribersRoute from 'routes/admin/AdminDashboardSubscribersRoute';
+import AdminProductsRoute from 'routes/admin/AdminProductsRoute';
+import AdminProductsAddRoute from 'routes/admin/AdminProductsAddRoute';
+import AdminProductsEditRoute from 'routes/admin/AdminProductsEditRoute';
+import AdminEditOrderUserDataRoute from 'routes/admin/AdminEditOrderUserDataRoute';
 
 const router = createBrowserRouter([
     {
@@ -107,8 +116,42 @@ const router = createBrowserRouter([
                                 element: <AdminDashboardHomeRoute />,
                             },
                             {
+                                path: 'orders',
+                                element: <AdminDashboardOrdersRoute />,
+                            },
+                            {
+                                path: 'orders/:orderNo',
+                                element: <AdminEditOrderUserDataRoute />,
+                            },
+                            {
                                 path: 'customers',
                                 element: <AdminDashboardCustomersRoute />,
+                            },
+                            {
+                                path: 'products',
+                                element: <AdminDashboardProductsRoute />,
+                                children: [
+                                    {
+                                        index: true,
+                                        element: <AdminProductsRoute />,
+                                    },
+                                    {
+                                        path: 'add',
+                                        element: <AdminProductsAddRoute />,
+                                    },
+                                    {
+                                        path: 'edit/:productId',
+                                        element: <AdminProductsEditRoute />,
+                                    },
+                                ],
+                            },
+                            {
+                                path: 'promotions',
+                                element: <AdminDashboardPromotionsRoute />,
+                            },
+                            {
+                                path: 'subscribers',
+                                element: <AdminDashboardSubscribersRoute />,
                             },
                         ],
                     },
@@ -133,6 +176,10 @@ const router = createBrowserRouter([
                     {
                         path: 'options',
                         element: <PaymentOptionsPage />,
+                    },
+                    {
+                        path: 'success',
+                        element: <EmptyList />,
                     },
                 ],
             },

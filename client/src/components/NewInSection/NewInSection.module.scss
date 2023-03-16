@@ -21,6 +21,9 @@
     &Item {
         width: calc(50% - 1rem);
         position: relative;
+        @media only screen and (max-width: $bp-small) {
+            width: 90%;
+        }
     }
     &Img {
         width: 100%;
@@ -32,6 +35,17 @@
         & > p {
             color: $light-color;
             background-color: $dark-color;
+        }
+        @media only screen and (max-width: $bp-medium) {
+            bottom: 5%;
+            left: 5%;
+            & p:first-child {
+                font-size: 2rem;
+                padding: 1rem;
+            }
+            & p:last-child {
+                font-size: 2.4rem;
+            }
         }
     }
     &Text {

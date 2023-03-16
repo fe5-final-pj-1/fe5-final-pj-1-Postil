@@ -7,6 +7,12 @@
     background-color: #ffffff;
     display: flex;
     flex-direction: column;
+    @media only screen and (max-width: $bp-medium) {
+        width: 45%;
+    }
+    @media only screen and (max-width: $bp-small) {
+        width: 100%;
+    }
 }
 .summaryTitle {
     @include muli-font-normal;
@@ -24,6 +30,9 @@
         width: 100%;
         height: 0.1rem;
         top: 6rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+        margin-top: 3rem;
     }
 }
 .summaryInfo {
@@ -111,6 +120,10 @@
         right: 0.1rem;
         cursor: pointer;
     }
+    @media only screen and (max-width: $bp-medium) {
+        padding-right: 2.5rem;
+        font-size: 1.4rem;
+    }
 }
 .payInfo {
     border-top: 0.15rem solid #373f41;
@@ -148,6 +161,10 @@
     @include muli-font-normal;
     @include sum-size;
     color: #373f41;
+}
+.linkSumBtn {
+    display: inline-block;
+    align-self: flex-end;
 }
 .sumBtn {
     display: inline-block;

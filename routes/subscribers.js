@@ -5,6 +5,8 @@ const passport = require("passport"); // multer for parsing multipart form data 
 //Import controllers
 const {
   addSubscriber,
+  sendLetter,
+  deleteSubscriber,
   updateSubscriberById,
   updateSubscriberByEmail,
   getSubscribers,
@@ -15,6 +17,24 @@ const {
 // @desc    Create new subscriber
 // @access  Private
 router.post("/", addSubscriber);
+
+// @route   POST /subscribers/send
+// @desc    Send letters to all subscribers
+// @access  Private
+router.post(
+  "/send",
+  passport.authenticate("jwt", { session: false }),
+  sendLetter
+);
+
+// @route   DELETE /subscribers/:id
+// @desc    Delete subscriber
+// @access  Private
+router.delete(
+  "/:id",
+  passport.authenticate("jwt", { session: false }),
+  deleteSubscriber
+);
 
 // @route   PUT /subscribers/:id
 // @desc    Update existing subscriber by object id

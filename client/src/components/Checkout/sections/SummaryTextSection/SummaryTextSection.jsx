@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './SummaryTextSection.module.scss';
 import { Link } from 'react-router-dom';
+
 const SummaryTextSection = ({ subtotal, route }) => {
     return (
         <>
@@ -22,7 +23,7 @@ const SummaryTextSection = ({ subtotal, route }) => {
                 <p className={styles.totalName}>
                     TOTAL<span className={styles.sum}>${subtotal + 5}</span>
                 </p>
-                <Link to={route} className={styles.sumBtn}>
+                <Link to={route} className={styles.sumBtn} onClick={() => window.scroll(0, 0)}>
                     BUY
                 </Link>
             </section>
