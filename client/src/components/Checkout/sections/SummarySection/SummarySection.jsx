@@ -10,6 +10,8 @@ import { addProductsToOrder } from 'store/orderSlice';
 import createOrder from 'api/createOrder';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
+import deleteCart from 'api/deleteCart';
+import { removeAllItems } from 'store/cartSlice';
 
 const SummarySection = ({ type }) => {
     const navigate = useNavigate();
@@ -72,9 +74,12 @@ const SummarySection = ({ type }) => {
         }
         createOrder(newOrder).then((res) => {
             if (res) {
+                dispatch(removeAllItems());
+                if (isLogIn) {
+                    deleteCart();
+                }
                 navigate('/checkout/success');
                 window.scrollTo(0, 0);
-                console.log(res);
             }
         });
     };
@@ -133,7 +138,16 @@ const SummarySection = ({ type }) => {
                     </span>
                 </p>
                 <p className={styles.subName}>
-                    TAXES<span className={styles.taxes}>$5</span>
+                    TAXES
+                    <span className={styles.taxes}>
+                        $
+                        {(
+                            productsCart.reduce(
+                                (acc, item) => acc + item.product.currentPrice * item.cartQuantity,
+                                0,
+                            ) * 0.1
+                        ).toFixed(2)}
+                    </span>
                 </p>
             </div>
             <p className={styles.totalName}>
@@ -141,19 +155,30 @@ const SummarySection = ({ type }) => {
                 <span className={styles.sum}>
                     $
                     {!shippingCost
-                        ? productsCart.reduce(
-                              (acc, item) => acc + item.product.currentPrice * item.cartQuantity,
-                              5,
-                          )
+                        ? (
+                              productsCart.reduce(
+                                  (acc, item) =>
+                                      acc + item.product.currentPrice * item.cartQuantity,
+                                  0,
+                              ) * 1.1
+                          ).toFixed(2)
                         : shippingCost === 'FreeShipping'
-                        ? productsCart.reduce(
-                              (acc, item) => acc + item.product.currentPrice * item.cartQuantity,
-                              5,
-                          )
-                        : productsCart.reduce(
-                              (acc, item) => acc + item.product.currentPrice * item.cartQuantity,
-                              15,
-                          )}
+                        ? (
+                              productsCart.reduce(
+                                  (acc, item) =>
+                                      acc + item.product.currentPrice * item.cartQuantity,
+                                  0,
+                              ) * 1.1
+                          ).toFixed(2)
+                        : (
+                              productsCart.reduce(
+                                  (acc, item) =>
+                                      acc + item.product.currentPrice * item.cartQuantity,
+                                  0,
+                              ) *
+                                  1.1 +
+                              10
+                          ).toFixed(2)}
                 </span>
             </p>
             {type ? (
