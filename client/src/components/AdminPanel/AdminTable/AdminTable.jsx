@@ -4,21 +4,29 @@ import classNames from 'classnames';
 import PropTypes from 'prop-types';
 import AdminTableRow from './AdminTableRow';
 
-function AdminTable({ data, forceUpdate }) {
+function AdminTable({ data, setData, type, setmodalChange }) {
     return (
         <table className={adminPanelStyles.table}>
-            <tbody>
+            <thead>
                 <tr className={adminPanelStyles.row}>
-                    <th className={adminPanelStyles.rowNoneLarge}>№</th>
-                    <th>Name</th>
-                    <th className={adminPanelStyles.rowNoneSmall}>Email</th>
+                    <th className={type !== 'orders' ? adminPanelStyles.rowNoneLarge : ''}>№</th>
+                    <th className={type !== 'orders' ? '' : adminPanelStyles.rowNoneLarge}>
+                        {type !== 'orders' ? 'Name' : 'Products'}
+                    </th>
+                    <th className={adminPanelStyles.rowNoneSmall}>
+                        {type !== 'orders' ? 'Email' : 'Total Sum'}
+                    </th>
                     <th
-                        className={classNames(
-                            adminPanelStyles.rowNoneLarge,
-                            adminPanelStyles.rowTextCenter,
-                        )}
+                        className={
+                            type !== 'orders'
+                                ? classNames(
+                                      adminPanelStyles.rowNoneLarge,
+                                      adminPanelStyles.rowTextCenter,
+                                  )
+                                : adminPanelStyles.rowNoneMedium
+                        }
                     >
-                        Address
+                        {type !== 'orders' ? 'Address' : 'Delivery Address'}
                     </th>
                     <th
                         className={classNames(
@@ -26,38 +34,27 @@ function AdminTable({ data, forceUpdate }) {
                             adminPanelStyles.rowNoneMedium,
                         )}
                     >
-                        Phone
+                        {type !== 'orders' ? 'Phone' : 'Status'}
                     </th>
+                    {type === 'orders' && (
+                        <th className={classNames(adminPanelStyles.rowTextCenter)}>Closed</th>
+                    )}
                     <th className={adminPanelStyles.rowTextCenter}>Delete</th>
                 </tr>
-                {data.map((element) => {
-                    const {
-                        _id,
-                        isAdmin,
-                        customerNo,
-                        avatarUrl,
-                        email,
-                        firstName,
-                        lastName,
-                        address,
-                        phone,
-                    } = element;
-                    if (isAdmin) {
+            </thead>
+            <tbody>
+                {[...data].reverse().map((element) => {
+                    if (element.isAdmin) {
                         return null;
                     }
                     {
                         return (
                             <AdminTableRow
-                                key={_id}
-                                id={_id}
-                                customerNo={customerNo}
-                                avatarUrl={avatarUrl}
-                                firstName={firstName}
-                                lastName={lastName}
-                                email={email}
-                                address={address}
-                                phone={phone}
-                                forceUpdate={forceUpdate}
+                                key={element._id}
+                                data={element}
+                                setData={setData}
+                                type={type}
+                                setmodalChange={setmodalChange}
                             />
                         );
                     }
@@ -71,5 +68,7 @@ export default AdminTable;
 
 AdminTable.propTypes = {
     data: PropTypes.array.isRequired,
-    forceUpdate: PropTypes.func,
+    setData: PropTypes.func.isRequired,
+    type: PropTypes.string,
+    setmodalChange: PropTypes.func,
 };

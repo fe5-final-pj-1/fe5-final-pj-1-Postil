@@ -1,0 +1,50 @@
+@import "../../../style/mixins";
+@import "../../../style/variables";
+@import "../../../style/animation";
+
+.wrapper {
+    padding: 0.5rem;
+}
+
+.PopUp {
+    position: fixed;
+    top: 7rem;
+    left: 50%;
+    padding: 1.2rem;
+    font-size: 1.6rem;
+    background-color: $dark-color;
+    color: $light-color;
+    display: none;
+    transform: translate(-50%, 0);
+    box-shadow: 0px 0px 5px $dark-color;
+    animation: transformTopCenter 1s;
+}
+
+.PopUpShow {
+    position: fixed;
+    top: 7.5rem;
+    left: 50%;
+    padding: 1.2rem;
+    font-size: 1.6rem;
+    background-color: $dark-color;
+    color: $light-color;
+    display: block;
+    transform: translate(-50%, 0);
+    box-shadow: 0px 0px 5px $dark-color;
+    animation: transformTopCenter 1s;
+    @media only screen and (max-width: $bp-large) {
+        top: 8.8rem;
+    }
+    @media only screen and (max-width: $bp-medium) {
+        top: 13rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+        top: 15.1rem;
+    }
+}
+.loader {
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    opacity: 0.7;
+}

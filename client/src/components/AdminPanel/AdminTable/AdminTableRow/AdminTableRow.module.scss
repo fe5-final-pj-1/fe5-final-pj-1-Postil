@@ -1,13 +1,7 @@
-@import '../../../../style/mixins';
-@import '../../../../style/variables';
+@import "../../../../style/mixins";
+@import "../../../../style/variables";
+@import "../../../../style/animation";
 .row {
-
-    &UserName {
-        display: flex;
-        align-items: center;
-        gap: 1rem;
-    }
-
     &NoneLarge {
         @media only screen and (max-width: $bp-large) {
             display: none;
@@ -19,17 +13,82 @@
             display: none;
         }
     }
-    
+
     &NoneSmall {
         @media only screen and (max-width: $bp-small) {
             display: none;
         }
     }
-    
-    &UserName {
+
+    &CustomerData {
         display: flex;
         align-items: center;
         gap: 1rem;
+    }
+
+    &OrderData {
+        position: relative;
+        cursor: pointer;
+    }
+
+    &OrderData:hover > &DetailsBlock {
+        display: block;
+    }
+
+    &DetailsBlock {
+        position: absolute;
+        padding: 5px;
+        color: $light-color;
+        border-radius: 3px;
+        top: 0;
+        z-index: 10000;
+        background-color: $dark-color;
+        border: $border-dark;
+        animation: transformLeftOpacity 1s;
+        display: none;
+        transition: all 0.2s ease-in;
+    }
+
+    &DetailsBlockProducts {
+        right: -11rem;
+        width: 15rem;
+
+        & a {
+            margin-top: 0.5rem;
+            display: block;
+            color: $lightGrey;
+            font-size: 1rem;
+            &:hover {
+                color: $light-color;
+            }
+        }
+    }
+
+    &DetailsBlockAdress {
+        right: -13rem;
+        width: 20rem;
+
+        @media only screen and (max-width: $bp-large) {
+            right: -13.5rem;
+        }
+
+        & a {
+            color: $light-color;
+        }
+
+        & span {
+            display: block;
+            font-size: 1rem;
+            &:not(:first-child) {
+                margin-top: 0.5rem;
+            }
+        }
+    }
+
+    &Closed {
+        display: inline-block;
+        width: 100%;
+        text-align: center;
     }
 
     &DeleteBtn {
@@ -38,7 +97,7 @@
 
         & button {
             background-color: transparent;
-            transition: transform .2s ease-in;
+            transition: transform 0.2s ease-in;
 
             &:hover {
                 transform: scale(1.2);
@@ -64,5 +123,51 @@
 
     &TextCenter {
         text-align: center;
+    }
+}
+
+.form {
+    display: flex;
+    justify-content: center;
+    &Select {
+        width: 75%;
+        font-size: 1.2rem;
+        padding: 3px;
+        appearance: none;
+        color: $lightGrey;
+        border: $border-dark;
+        margin-right: 1px;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        background: url("./img/arrow-expand.svg");
+        background-repeat: no-repeat;
+        background-position: 98% 50%;
+
+        & > option:checked {
+            color: $dark-color;
+        }
+        & > option:not(:checked) {
+            color: $lightGrey;
+        }
+    }
+
+    &SubmitBtn {
+        font-size: 1rem;
+        border: $border-dark;
+        background-color: transparent;
+        padding: 1px 3px;
+        transition: all 0.2s ease-in;
+        cursor: pointer;
+
+        &:hover {
+            background-color: $dark-color;
+            color: $light-color;
+        }
+    }
+
+    &SubmitBtnClose {
+        font-size: 1.4rem;
+        padding: 1px 5px;
+        text-transform: uppercase;
     }
 }

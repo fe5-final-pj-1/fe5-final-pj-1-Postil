@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import getAllSubscribers from 'api/getAllSubscribers';
+import deleteSubscriberFromDB from 'api/deleteSubscriberFromDB';
+import sendLetterToAllSubscribers from 'api/sendLetterToAllSubscribers';
+import classNames from 'classnames';
 import { useFormik } from 'formik';
 import Button from 'components/Button';
 import Icon from 'components/Icon';
@@ -8,12 +11,11 @@ import adminPanelStyles from './AdminDashboardSubscribers.module.scss';
 import { Oval } from 'react-loader-spinner';
 
 function AdminDashboardSubscribers() {
-    // eslint-disable-next-line no-unused-vars
     const [subscribers, setSubscribers] = useState([]);
+    const [modalSendVisible, setModalSendVisible] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
         getAllSubscribers().then((res) => {
-            console.log(res.data);
             setSubscribers(res.data);
             setIsLoaded(true);
         });
@@ -31,14 +33,10 @@ function AdminDashboardSubscribers() {
             letterHtml: Yup.string().min(10, 'Must be 10 characters or more').required('Required'),
         }),
         onSubmit: (values) => {
-            console.log(values);
-            // setIsLoaded(false);
-            // addNewSlide(values).then(() => {
-            //     getAllSlides().then((slides) => {
-            //         setPromotions(slides.data);
-            //         setIsLoaded(true);
-            //     });
-            // });
+            sendLetterToAllSubscribers(values).then(() => {
+                setModalSendVisible(true);
+                setTimeout(() => setModalSendVisible(false), 3000);
+            });
         },
     });
     if (!isLoaded) {
@@ -119,33 +117,46 @@ function AdminDashboardSubscribers() {
                 </form>
             </div>
             <table className={adminPanelStyles.subscribersRight}>
-                <tr>
-                    <th>email</th>
-                    <th>delete</th>
-                </tr>
-                {subscribers.map((subscriber) => {
-                    return (
-                        <tr className={adminPanelStyles.subscribersData} key={subscriber._id}>
-                            <td>{subscriber.email}</td>
-                            <td>
-                                <Button
-                                    handleClick={() => {
-                                        // setIsLoaded(false);
-                                        // deleteSpecificSlide(promotion.customId).then(() => {
-                                        //     getAllSlides().then((slides) => {
-                                        //         setPromotions(slides.data);
-                                        //         setIsLoaded(true);
-                                        //     });
-                                        // });
-                                    }}
-                                    text={<Icon type="delete" />}
-                                    className={adminPanelStyles.subscribersRemoveBtn}
-                                />
-                            </td>
-                        </tr>
-                    );
-                })}
+                <thead>
+                    <tr>
+                        <th>Email</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {subscribers.map((subscriber) => {
+                        return (
+                            <tr className={adminPanelStyles.subscribersData} key={subscriber._id}>
+                                <td>{subscriber.email}</td>
+                                <td className={adminPanelStyles.subscribersTextCenter}>
+                                    <Button
+                                        handleClick={() => {
+                                            setIsLoaded(false);
+                                            deleteSubscriberFromDB(subscriber._id).then(() => {
+                                                getAllSubscribers().then((res) => {
+                                                    setSubscribers(res.data);
+                                                    setIsLoaded(true);
+                                                });
+                                            });
+                                        }}
+                                        text={<Icon type="delete" />}
+                                        className={adminPanelStyles.subscribersRemoveBtn}
+                                    />
+                                </td>
+                            </tr>
+                        );
+                    })}
+                </tbody>
             </table>
+            <div
+                className={classNames(
+                    modalSendVisible
+                        ? adminPanelStyles.subscribersPopUpShow
+                        : adminPanelStyles.subscribersPopUp,
+                )}
+            >
+                Letters send to all subscribers
+            </div>
         </div>
     );
 }
