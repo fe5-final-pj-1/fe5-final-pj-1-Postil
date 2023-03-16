@@ -21,16 +21,16 @@
 
     &Heading {
         padding: 1.2rem;
+        max-width: max-content;
     }
 
     &Text {
         border-radius: 3px;
-        width: fit-content;
     }
 
-    &TextTop {
-        border-bottom-left-radius: 0;
-        margin-top: 0.8rem;
+    &TextDescription {
+        max-width: 70%;
+        margin: 0.8rem 0;
         padding: 0.7rem 1.2rem;
         @media only screen and (max-width: $bp-small) {
             font-size: 1.3rem !important;
@@ -38,29 +38,14 @@
         }
     }
 
-    &TextBottom {
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-        margin-bottom: 3rem;
-        padding: 0 1.2rem 0.7rem 1.2rem;
-        @media only screen and (max-width: $bp-medium) {
-            margin-bottom: 1rem;
-            position: relative;
-            top: -0.1rem;
-        }
-        @media only screen and (max-width: $bp-small) {
-            margin-bottom: 0.5rem;
-            font-size: 1.3rem !important;
-            padding: 0.2rem 0.7rem 0.5rem 0.7rem;
-        }
-    }
-
-    &Btn {
+    &Link {
         @include abel-font-normal;
         background-color: $light-color;
+        color: $dark-color;
+        display: inline-block;
         font-size: 1.6rem;
         text-transform: uppercase;
-        padding: 1.8rem 2.4rem;
+        padding: 1.8rem 3.4rem;
         border-radius: 3px;
         letter-spacing: 1px;
         transition: all 0.25s ease-in;
