@@ -25,7 +25,10 @@
         left: -15%;
         width: 100%;
     }
-
+    & .productsNotFound {
+        font-size: 1.6rem;
+        padding: 1rem;
+    }
     & > li {
         &.showAll a {
             text-align: center;

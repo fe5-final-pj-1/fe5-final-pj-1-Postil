@@ -81,7 +81,7 @@ const QuantityInput = ({ id, quantity }) => {
         if (isLogIn) {
             updateCartFunc();
         }
-        dispatch(changeQuantity({ id, quantity: cartQuantity }));
+        dispatch(changeQuantity({ id, quantity: cartQuantity ? cartQuantity : 1 }));
     };
 
     return (
