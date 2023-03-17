@@ -1,9 +1,8 @@
-import axios from 'axios';
+import { axiosInstanceURL } from './_axiosInstanceURL';
 
 async function createWishList(newWishlist) {
-    const REACT_APP_URL_API = process.env.REACT_APP_URL_API;
     try {
-        const response = await axios.post(`${REACT_APP_URL_API}/wishlist`, newWishlist);
+        const response = await axiosInstanceURL.post(`/wishlist`, newWishlist);
         return response;
     } catch (error) {
         console.error(error.message);

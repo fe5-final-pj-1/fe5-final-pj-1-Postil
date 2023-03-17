@@ -1,9 +1,8 @@
-import axios from 'axios';
+import { axiosInstanceURL } from './_axiosInstanceURL';
 
 async function getAllSubscribers() {
-    const REACT_APP_URL_API = process.env.REACT_APP_URL_API;
     try {
-        const response = await axios.get(`${REACT_APP_URL_API}/subscribers`);
+        const response = await axiosInstanceURL.get(`/subscribers`);
         return response;
     } catch (error) {
         console.error(error.message);
