@@ -136,8 +136,9 @@ function Modal() {
                             text="LOG IN"
                         />
                     </div>
-                    {!sign && logInError && <p className={styles.logInError}>{logInError}</p>}
                     <form onSubmit={formik.handleSubmit}>
+                        {!sign && logInError && <p className={styles.logInError}>{logInError}</p>}
+
                         <div className={styles.valuesInputs}>
                             {sign && (
                                 <label>

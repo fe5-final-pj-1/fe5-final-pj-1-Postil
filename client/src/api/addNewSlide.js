@@ -1,9 +1,8 @@
-import axios from 'axios';
+import { axiosInstanceURL } from './_axiosInstanceURL';
 
 async function addNewSlide(newPromotion) {
-    const REACT_APP_URL_API = process.env.REACT_APP_URL_API;
     try {
-        const response = await axios.post(`${REACT_APP_URL_API}/slides`, newPromotion);
+        const response = await axiosInstanceURL.post(`/slides`, newPromotion);
         return response;
     } catch (error) {
         console.error(error.message);

@@ -41,12 +41,13 @@
     & .logInError {
         text-align: center;
         position: absolute;
-        top: 10.5rem;
+        top: -2rem;
         left: 50%;
         transform: translateX(-50%);
         color: #ff0000;
     }
     & form {
+        position: relative;
         display: flex;
         flex-direction: column;
         & label {

@@ -1,4 +1,4 @@
-import axios from 'axios';
+import { axiosInstanceURL } from './_axiosInstanceURL';
 
 const newConfigs = {
     customId: '0001',
@@ -37,9 +37,8 @@ const newConfigs = {
 };
 
 const addConfigurations = async () => {
-    const REACT_APP_URL_API = process.env.REACT_APP_URL_API;
     try {
-        const response = await axios.post(`${REACT_APP_URL_API}/configs`, newConfigs);
+        const response = await axiosInstanceURL.post(`/configs`, newConfigs);
         return response;
     } catch (error) {
         console.error(error.message);

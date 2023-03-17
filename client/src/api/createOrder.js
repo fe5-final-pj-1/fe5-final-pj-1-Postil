@@ -1,9 +1,8 @@
-import axios from 'axios';
+import { axiosInstanceURL } from './_axiosInstanceURL';
 
 async function createOrder(newOrder) {
-    const REACT_APP_URL_API = process.env.REACT_APP_URL_API;
     try {
-        const response = await axios.post(`${REACT_APP_URL_API}/orders`, newOrder);
+        const response = await axiosInstanceURL.post(`/orders`, newOrder);
         return response;
     } catch (error) {
         console.error(error);
