@@ -239,7 +239,7 @@ function Modal() {
                             <Link to="/terms&policy">Terms of Service</Link> and{' '}
                             <Link to="/terms&policy">Privacy Policy</Link>
                         </p>
-                        <input type="submit" value={sign ? 'SIGN UP' : 'LOG IN'} />
+                        <Button type="submit" text={sign ? 'SIGN UP' : 'LOG IN'} />
                     </form>
                     {sign && (
                         <div className={styles.social}>

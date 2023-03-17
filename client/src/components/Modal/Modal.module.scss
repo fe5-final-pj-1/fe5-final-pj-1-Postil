@@ -52,7 +52,7 @@
         & label {
             position: relative;
         }
-        input[type='submit'] {
+        button[type='submit'] {
             @include abel-font-normal;
             font-size: 1.8rem;
             line-height: 3.2rem;
@@ -65,7 +65,7 @@
             align-self: center;
             margin-bottom: 30px;
         }
-        input[type='submit']:hover,
+        button[type='submit']:hover,
         button:hover {
             cursor: pointer;
         }

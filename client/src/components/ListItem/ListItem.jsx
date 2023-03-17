@@ -21,11 +21,9 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
     const isLogin = useSelector((state) => state.store.login.isLogIn, shallowEqual);
     const dispatch = useDispatch();
 
-    //for checking balance of products in DB
     const localCart = useSelector((state) => state.store.cart, shallowEqual);
     const [itemQuantityInDB, setItemQuantityInDB] = useState();
 
-    //favourites
     const [double, setDouble] = useState(false);
     const [favouritesClicked, setFavouritesClicked] = useState(false);
 
@@ -72,7 +70,6 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
         dispatch(removeItem(_id));
     };
     const addToCart = () => {
-        //for checking balance of products in DB
         if (localCart.map((item) => item.product).includes(_id)) {
             if (localCart.find((item) => item.product === _id).cartQuantity >= itemQuantityInDB) {
                 return;
@@ -80,7 +77,6 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
         }
         dispatch(itemAdded(_id));
     };
-    //for checking balance of products in DB
     useEffect(() => {
         if (_id) getOneProduct(_id).then((res) => setItemQuantityInDB(res.data.quantity));
     }, [_id]);

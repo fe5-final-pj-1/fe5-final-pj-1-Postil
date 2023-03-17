@@ -3,6 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import FooterStyle from './Footer.module.scss';
 import addSubscriber from '../../api/addSubscriber';
+import Button from 'components/Button';
 
 function Footer() {
     let inputValue;
@@ -118,9 +119,9 @@ function Footer() {
                                     placeholder="e-mail"
                                     autoComplete="off"
                                 />
-                                <input
+                                <Button
                                     className={FooterStyle.button_submit}
-                                    value="Send"
+                                    text="Send"
                                     type="submit"
                                 />
                             </form>

@@ -78,7 +78,7 @@ const SummarySection = ({ type }) => {
                 if (isLogIn) {
                     deleteCart();
                 }
-                navigate('/checkout/success');
+                navigate('/success');
                 window.scrollTo(0, 0);
             }
         });
