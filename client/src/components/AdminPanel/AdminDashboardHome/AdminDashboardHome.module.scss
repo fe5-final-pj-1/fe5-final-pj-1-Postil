@@ -1,0 +1,78 @@
+@import "../../../style/mixins";
+@import "../../../style/variables";
+@import "../../../style/animation";
+
+.wrapper {
+    padding: 0 0 .5rem 2rem;
+}
+
+.adminHome {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(6, minmax(100px, min-content));
+    gap: 2rem;
+
+    &ProductsSold {
+        grid-column: 1 / 1;
+        grid-row: 1 / 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-transform: uppercase;
+        @include abel-font-normal;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px $dark-color;
+        background-color: $dark-color;
+        color: $light-color;
+        font-size: 1.8rem;
+        gap: 1rem;
+
+        & span:last-child {
+            font-size: 2.5rem;
+
+        }
+    }
+
+    &TotalBalance {
+        grid-column: 2 / 2;
+        grid-row: 1 / 1;
+    }
+
+    &Users {
+        grid-column: 3 / 3;
+        grid-row: 1 / 1;
+    }
+
+    &Subscribers {
+        grid-column: 4 / 4;
+        grid-row: 1 / 1;
+    }
+
+    &LatestProducts {
+        grid-column: 5 / -1;
+        grid-row: 1 / 4;
+    }
+
+    &DataChart {
+        grid-column: 1 / 5;
+        grid-row: 2 / 4;
+    }
+
+    &LastOrders {
+        grid-column: 1 / 5;
+        grid-row: 4 / 7;
+    }
+
+    &NewUsers {
+        grid-column: 5 / -1;
+        grid-row: 4 / 7;
+    }
+}
+
+.loader {
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    opacity: 0.7;
+}

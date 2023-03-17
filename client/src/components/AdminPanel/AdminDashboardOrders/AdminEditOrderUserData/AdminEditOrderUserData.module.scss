@@ -1,10 +1,8 @@
 @import "../../../../style/mixins";
 @import "../../../../style/variables";
-
 .wrapper {
-    padding: 2rem  0;
+    padding: .5rem;
 }
-
 .form {
     display: flex;
     flex-direction: column;
@@ -21,44 +19,11 @@
         padding: 5px;
 
         @media only screen and (max-width: $bp-medium) {
-            width: 60%;
+            width: 80%;
         }
 
         @media only screen and (max-width: $bp-small) {
             width: 100%;
-        }
-    }
-
-    &InputUrl {
-        width: 100%;
-    }
-
-    &Select {
-        width: 30%;
-        font-size: 1.8rem;
-        padding: 5px;
-        appearance: none;
-        color: $lightGrey;
-        border: $border-dark;
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        background: url('./img/arrow-expand.svg');
-        background-repeat:no-repeat;
-        background-position: 98% 50%;
-
-        @media only screen and (max-width: $bp-medium) {
-            width: 50%;
-        }
-
-        @media only screen and (max-width: $bp-small) {
-            width: 80%;
-        }
-
-        & > option:checked {
-            color: $dark-color;
-        }
-        & > option:not(:checked) {
-            color: $lightGrey;
         }
     }
 
@@ -74,10 +39,6 @@
     &Buttons {
         display: flex;
         gap: 1rem;
-        @media only screen and (max-width: $bp-small) {
-            width: 80%;
-           justify-content: center;
-        }
     }
 
     &SubmitBtn,
@@ -87,7 +48,10 @@
         background-color: transparent;
         padding: 1rem 2rem;
         transition: all .2s ease-in;
-
+        @media only screen and (max-width: $bp-medium) {
+            padding: 1rem .5rem;
+            font-size: 1rem;
+        }
         @media only screen and (max-width: $bp-small) {
             font-size: 1rem;
             padding: 1rem .5rem;
@@ -98,8 +62,8 @@
             color: $light-color;
         }
     }
-}
 
+}
 .loader {
     justify-content: center;
     align-items: center;

@@ -22,7 +22,7 @@ function AdminProductsActions({ type }) {
                 if (res && res.data) {
                     const numberStr = res.data[res.data.length - 1].itemNo;
                     const numberArr = numberStr.split('-');
-                    numberArr[1] = (Number(numberArr[1]) + 1).toString();
+                    numberArr[1] = `0${Number(numberArr[1]) + 1}`;
                     formik.values.itemNo = numberArr.join('-');
                 }
             });
