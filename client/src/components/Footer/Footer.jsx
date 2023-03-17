@@ -4,6 +4,8 @@ import Icon from '../Icon/Icon';
 import FooterStyle from './Footer.module.scss';
 import addSubscriber from '../../api/addSubscriber';
 import InfoModal from '../InfoModal';
+import { Provider } from 'react-redux';
+import store from '../../store/store';
 
 function Footer() {
     const [isOpen, setIsOpen] = useState(false);
@@ -33,15 +35,15 @@ function Footer() {
                 if (res.data) {
                     openModal();
                 }
-            } catch (e) {
-                alert("You didn't enter your email!");
-                console.log(e);
+            } catch (error) {
+                console.log(error);
             }
         });
     };
     return (
-        <footer className={FooterStyle.wrapper}>
+        <footer className={FooterStyle.wrapper} data-testid="footer">
             <div className={FooterStyle.top}>
+                w
                 <div className="container">
                     <nav className={FooterStyle.nav}>
                         <ul className={FooterStyle.menu_list}>
@@ -143,6 +145,7 @@ function Footer() {
                                     type="submit"
                                 />
                             </form>
+                            <InfoModal text={''} isOpen={isOpen} closeModal={closeModal} />
                             <div className={FooterStyle.promotion_btn}>
                                 <p className={FooterStyle.followUs}>Follow Us</p>
                                 <ul className={FooterStyle.social_list}>
@@ -163,7 +166,6 @@ function Footer() {
                                     </li>
                                 </ul>
                             </div>
-                            <InfoModal text={''} isOpen={isOpen} closeModal={closeModal} />
                         </div>
                     </nav>
                 </div>

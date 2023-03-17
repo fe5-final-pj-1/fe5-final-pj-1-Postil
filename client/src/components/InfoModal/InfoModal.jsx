@@ -18,9 +18,9 @@ const InfoModal = ({ text, isOpen, closeModal }) => {
     }, [closeModal, isOpen]);
 
     if (isLogIn) {
-        text = 'You are already registered!';
+        text = 'You are already subscribed!';
     } else {
-        text = 'Thank you for registering!';
+        text = 'Thank you for subscribing!';
     }
 
     return (

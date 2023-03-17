@@ -21,7 +21,7 @@ function ContactsPage() {
                     <p className={styles.text}>+38(050) 777-77-77 </p>
                     <p className={styles.text}>+38(097) 066-66-66 </p>
                     <p className={styles.text}>+38(063) 222-22-22 - Viber</p>
-                    <p className={styles.text}>Skype: Postyl.com.ua</p>
+                    <p className={styles.text}>Skype: Postil.com.ua</p>
                     <h2 className={styles.warntext}>
                         ONLINE orders are accepted around the clock!
                     </h2>
