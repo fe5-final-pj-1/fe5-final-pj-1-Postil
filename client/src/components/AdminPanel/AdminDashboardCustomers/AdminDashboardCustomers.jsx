@@ -6,15 +6,13 @@ import { Oval } from 'react-loader-spinner';
 
 function AdminDashboardCustomers() {
     const [customers, setCustomers] = useState([]);
-    const [, updateState] = useState();
-    const forceUpdate = React.useCallback(() => updateState({}), []);
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
         getAllCustomers().then((res) => {
             setCustomers(res.data);
             setIsLoaded(true);
         });
-    });
+    }, []);
     if (!isLoaded) {
         return (
             <Oval
@@ -34,7 +32,7 @@ function AdminDashboardCustomers() {
 
     return (
         <div className={adminPanelStyles.wrapper}>
-            <AdminTable data={customers} forceUpdate={forceUpdate} />
+            <AdminTable data={customers} setData={setCustomers} />
         </div>
     );
 }

@@ -17,11 +17,11 @@ const SummaryTextSection = ({ subtotal, route }) => {
                         SHIPPING<span className={styles.deliv}>FREE</span>
                     </p>
                     <p className={styles.subName}>
-                        TAXES<span className={styles.taxes}>$5</span>
+                        TAXES<span className={styles.taxes}>${(subtotal * 0.1).toFixed(2)}</span>
                     </p>
                 </div>
                 <p className={styles.totalName}>
-                    TOTAL<span className={styles.sum}>${subtotal + 5}</span>
+                    TOTAL<span className={styles.sum}>${(subtotal * 1.1).toFixed(2)}</span>
                 </p>
                 <Link to={route} className={styles.sumBtn} onClick={() => window.scroll(0, 0)}>
                     BUY

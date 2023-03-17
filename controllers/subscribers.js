@@ -238,3 +238,76 @@ exports.getSubscriber = (req, res, next) => {
       })
     );
 };
+
+exports.deleteSubscriber = (req, res, next) => {
+  Subscriber.findOne({ _id: req.params.id }).then(async subscriber => {
+    if (!subscriber) {
+      return res
+        .status(400)
+        .json({ message: `Subscriber with id ${req.params.id} is not found.` });
+    } else {
+      const subscriberToDelete = await Subscriber.findOne({ _id: req.params.id });
+
+      Subscriber.deleteOne({ _id: req.params.id })
+        .then(deletedCount =>
+          res.status(200).json({
+            message: `Subscriber witn id "${subscriberToDelete._id}" is successfully deleted from DB.`
+          })
+        )
+        .catch(err =>
+          res.status(400).json({
+            message: `Error happened on server: "${err}" `
+          })
+        );
+    }
+  });
+};
+
+exports.sendLetter = async (req, res, next) => {
+  try {
+      const letterSubject = req.body.letterSubject;
+      const letterHtml = req.body.letterHtml;
+
+      if (!letterSubject) {
+        return res.status(400).json({
+          message:
+            "This operation involves sending a letter to the client. Please provide field 'letterSubject' for the letter."
+        });
+      }
+
+      if (!letterHtml) {
+        return res.status(400).json({
+          message:
+            "This operation involves sending a letter to the client. Please provide field 'letterHtml' for the letter."
+        });
+      }
+
+      Subscriber.find()
+      .then(subscribers => 
+        {
+          const mailPromises = subscribers.map(subscriber => {
+            const subscriberMail = subscriber.email;
+            return sendMail(subscriberMail, letterSubject, letterHtml, res);
+          });
+          Promise.all(mailPromises)
+          .then(() => {
+            res.status(200).json({
+              info: "All letters were sent",
+            });
+          })
+          .catch(error => {
+            console.error(error);
+            res.status(500).json({ error: "Internal server error" });
+          });
+        })
+      .catch(err =>
+        res.status(400).json({
+          message: `Error happened on server: "${err}" `
+        })
+      );
+  } catch (err) {
+    res.status(400).json({
+      message: `Error happened on server: "${err}" `
+    });
+  }
+};
