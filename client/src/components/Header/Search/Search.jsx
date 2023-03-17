@@ -19,12 +19,15 @@ function Search({ className }) {
     const classes = classNames(className);
     const [productsShow, setProductsShow] = useState(false);
     const [isSearching, setIsSearching] = useState(false);
+    const [productsNotFound, setProductsNotFound] = useState(false);
     const debouncedSearchTerm = useDebounce(searchPhrases, 800);
 
     useEffect(() => {
         if (debouncedSearchTerm) {
             setIsSearching(true);
+            setProductsNotFound(false);
             searchForProducts({ query: debouncedSearchTerm }).then((response) => {
+                if (!response.data.length) setProductsNotFound(true);
                 setIsSearching(false);
                 dispatch(loadProducts(response.data));
                 setProductsShow(true);
@@ -58,6 +61,11 @@ function Search({ className }) {
                 }
             >
                 {isSearching && <div>Search...</div>}
+                {productsNotFound && (
+                    <div className={styles.productsNotFound}>
+                        No related goods, try to change search terms.
+                    </div>
+                )}
                 {products.slice(0, 5).map((item) => {
                     return (
                         <li key={item._id}>
@@ -90,7 +98,7 @@ function Search({ className }) {
                         </li>
                     );
                 })}
-                {products.length > 5 && (
+                {(products.length > 5 || productsNotFound) && (
                     <li className={styles.showAll}>
                         <Link onClick={() => setProductsShow(false)} to="/catalog">
                             Show all goods

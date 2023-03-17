@@ -3,9 +3,8 @@ import { NavLink, Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import FooterStyle from './Footer.module.scss';
 import addSubscriber from '../../api/addSubscriber';
+import Button from 'components/Button';
 import InfoModal from '../InfoModal';
-import { Provider } from 'react-redux';
-import store from '../../store/store';
 
 function Footer() {
     const [isOpen, setIsOpen] = useState(false);
@@ -43,7 +42,6 @@ function Footer() {
     return (
         <footer className={FooterStyle.wrapper} data-testid="footer">
             <div className={FooterStyle.top}>
-                w
                 <div className="container">
                     <nav className={FooterStyle.nav}>
                         <ul className={FooterStyle.menu_list}>
@@ -124,7 +122,6 @@ function Footer() {
                                     "Let's get personal! We'll send you only the good stuff: Exclusive early access to Sale, new arrivals and promotions. No nasties."
                                 }
                             </p>
-
                             <form
                                 className={FooterStyle.subscription_input}
                                 onSubmit={postForm}
@@ -139,9 +136,9 @@ function Footer() {
                                     placeholder="e-mail"
                                     autoComplete="off"
                                 />
-                                <input
+                                <Button
                                     className={FooterStyle.button_submit}
-                                    value="Send"
+                                    text="Send"
                                     type="submit"
                                 />
                             </form>

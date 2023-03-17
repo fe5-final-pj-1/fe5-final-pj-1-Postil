@@ -78,6 +78,10 @@ const router = createBrowserRouter([
                 element: <AboutRoute />,
             },
             {
+                path: 'success',
+                element: <EmptyList />,
+            },
+            {
                 path: 'user',
                 element: <ProtectedUserRoutes />,
                 children: [
@@ -176,10 +180,6 @@ const router = createBrowserRouter([
                     {
                         path: 'options',
                         element: <PaymentOptionsPage />,
-                    },
-                    {
-                        path: 'success',
-                        element: <EmptyList />,
                     },
                 ],
             },

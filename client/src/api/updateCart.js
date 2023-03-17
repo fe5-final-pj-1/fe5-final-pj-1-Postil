@@ -1,9 +1,8 @@
-import axios from 'axios';
+import { axiosInstanceURL } from './_axiosInstanceURL';
 
 async function updateCart(updatedCart) {
-    const REACT_APP_URL_API = process.env.REACT_APP_URL_API;
     try {
-        const response = await axios.put(`${REACT_APP_URL_API}/cart`, updatedCart);
+        const response = await axiosInstanceURL.put(`/cart`, updatedCart);
         return response;
     } catch (error) {
         console.error(error.message);
