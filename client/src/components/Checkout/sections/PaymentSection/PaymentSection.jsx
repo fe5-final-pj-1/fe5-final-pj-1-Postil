@@ -20,6 +20,7 @@ const PaymentSection = () => {
                         active === 'credit cart' ? `${styles.payCardBlockActive}` : ''
                     }`}
                     onClick={() => setActive('credit cart')}
+                    data-testid="card"
                 >
                     <p className={styles.payIcon}>
                         <Icon type={'pressedCircle'} />
@@ -35,6 +36,7 @@ const PaymentSection = () => {
                         active === 'cash' ? `${styles.payCashBlocActive}` : ''
                     }`}
                     onClick={() => setActive('cash')}
+                    data-testid="cash"
                 >
                     <p className={styles.payIcon}>
                         <Icon type={'pressedCircle'} />

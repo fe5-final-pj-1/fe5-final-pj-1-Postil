@@ -21,7 +21,7 @@ function NewInSection() {
         return null;
     }
     return (
-        <section className={newIn}>
+        <section className={newIn} data-testid="newInSection">
             <div className="container">
                 <p className={newInTitle}>NEW IN</p>
                 <ul className={newInWrp}>
@@ -47,9 +47,14 @@ function NewInSection() {
 export default NewInSection;
 
 NewInSection.propTypes = {
-    items: PropTypes.array,
-};
-
-NewInSection.defaultProps = {
-    items: [],
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            name: PropTypes.string.isRequired,
+            itemNo: PropTypes.string.isRequired,
+            imageUrls: PropTypes.arrayOf(PropTypes.string).isRequired,
+            currentPrice: PropTypes.number.isRequired,
+            _id: PropTypes.string.isRequired,
+        }),
+    ),
+    isEmpty: PropTypes.bool,
 };
