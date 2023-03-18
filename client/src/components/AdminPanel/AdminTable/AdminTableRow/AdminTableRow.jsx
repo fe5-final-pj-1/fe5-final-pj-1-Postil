@@ -182,11 +182,13 @@ function AdminTableRow(props) {
                                 <option value="delivered">Delivered</option>
                                 <option value="received">Received</option>
                             </select>
-                            <input
+                            <button
                                 type="submit"
                                 value="OK"
                                 className={adminPanelStyles.formSubmitBtn}
-                            />
+                            >
+                                OK
+                            </button>
                         </form>
                     ) : (
                         <span className={adminPanelStyles.rowClosed}>CLOSED</span>
@@ -197,14 +199,16 @@ function AdminTableRow(props) {
                 <td className={adminPanelStyles.rowStatus}>
                     {!canceled ? (
                         <form onSubmit={handleCanceledSubmit} className={adminPanelStyles.form}>
-                            <input
+                            <button
                                 type="submit"
                                 value="Close"
                                 className={classNames(
                                     adminPanelStyles.formSubmitBtn,
                                     adminPanelStyles.formSubmitBtnClose,
                                 )}
-                            />
+                            >
+                                Close
+                            </button>
                         </form>
                     ) : (
                         <span className={adminPanelStyles.rowClosed}>CLOSED</span>
