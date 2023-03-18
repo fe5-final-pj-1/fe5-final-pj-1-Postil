@@ -101,6 +101,7 @@
     color: $lightGrey;
     font-size: 1.4rem;
     display: inline-block;
+    margin-bottom: 1.5rem !important;
     @media only screen and (max-width: $bp-medium) {
         width: 50%;
         text-align: center;
@@ -112,7 +113,7 @@
 .subscription_input {
     display: flex;
     align-items: stretch;
-    margin-bottom: 2rem;
+    margin-bottom: 0.2rem;
 }
 
 .input {
@@ -138,6 +139,10 @@
 .button_submit:hover {
     background-color: #202627;
 }
+.error_message {
+    color: red;
+    font-size: smaller;
+}
 
 .input:focus,
 .input:focus-visible {
@@ -147,6 +152,7 @@
 
 .promotion_btn {
     display: flex;
+    margin-top: 0.1rem;
 }
 .followUs {
     margin-right: 3.5rem;

@@ -4,7 +4,7 @@ import styles from './PopularSection.module.scss';
 
 const PopularSection = () => {
     return (
-        <section className={styles.popular}>
+        <section className={styles.popular} data-testid="popular-section">
             <div className={styles.container}>
                 <h2 className={styles.title}>POPULAR</h2>
                 <div className={styles.box}>
@@ -53,7 +53,7 @@ const PopularSection = () => {
                         </div>
                     </div>
                 </div>
-                <Link to="/catalog" className={styles.btn} target="_top">
+                <Link to="/catalog" className={styles.btn} target="_top" data-testid="see-all-btn">
                     SEE ALL
                 </Link>
             </div>
