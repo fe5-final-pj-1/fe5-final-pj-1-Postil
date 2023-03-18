@@ -13,6 +13,10 @@ function UserProfilePage() {
         <main>
             <div className="container">
                 <p className={styles.title}>My profile</p>
+                <div className={styles.userPhoto}>
+                    <span className={styles.userPhotoText}>PHOTO</span>
+                </div>
+                <p className={styles.userPrevEmail}>petrotest45451@gmail.com</p>
                 <div className={styles.boxInfo}>
                     <Button
                         handleClick={() =>

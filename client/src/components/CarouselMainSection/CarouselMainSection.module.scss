@@ -22,6 +22,9 @@
     &Heading {
         padding: 1.2rem;
         max-width: max-content;
+        @media only screen and (max-width: $bp-medium) {
+            font-size: 1.6rem !important;
+        }
     }
 
     &Text {
@@ -32,8 +35,10 @@
         max-width: 70%;
         margin: 0.8rem 0;
         padding: 0.7rem 1.2rem;
-        @media only screen and (max-width: $bp-small) {
+        @media only screen and (max-width: $bp-medium) {
             font-size: 1.3rem !important;
+        }
+        @media only screen and (max-width: $bp-small) {
             padding: 0.5rem 0.7rem;
         }
     }
