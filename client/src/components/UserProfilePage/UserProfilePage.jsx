@@ -1,22 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import styles from './UserProfilePage.module.scss';
 import Button from '../Button';
 import Icon from '../Icon/Icon';
+import FormPersonalData from './FormPersonalData';
+import getCustomer from 'api/getCustomer';
 
 function UserProfilePage() {
     const [active, setActive] = useState({
         personalData: false,
         deliveryAddress: false,
-        contacts: false,
+        // contacts: false,
     });
+    const [editUserData, setEditUserData] = useState({
+        personalData: false,
+        deliveryAddress: false,
+    });
+    const [user, setUser] = useState(null);
+
+    useEffect(() => {
+        getCustomer().then((res) => setUser(res.data));
+    }, []);
+
     return (
         <main>
             <div className="container">
                 <p className={styles.title}>My profile</p>
-                <div className={styles.userPhoto}>
-                    <span className={styles.userPhotoText}>PHOTO</span>
+                <div
+                    className={styles.userPhoto}
+                    style={{ background: user && user.avatarUrl ? user.avatarUrl : null }}
+                >
+                    <span className={styles.userPhotoText}>
+                        {user && !user.avatarUrl ? user.firstName.charAt(0) : null}
+                    </span>
                 </div>
-                <p className={styles.userPrevEmail}>petrotest45451@gmail.com</p>
+                <p className={styles.userPrevEmail}>{user && user.email ? user.email : '-'}</p>
                 <div className={styles.boxInfo}>
                     <Button
                         handleClick={() =>
@@ -36,39 +53,53 @@ function UserProfilePage() {
                             </>
                         }
                     />
-                    {active.personalData && (
+                    {active.personalData && editUserData.personalData && (
+                        <FormPersonalData
+                            editUser={{ editUserData, setEditUserData }}
+                            user={user}
+                            setUser={setUser}
+                        />
+                    )}
+                    {active.personalData && !editUserData.personalData && (
                         <>
                             <ul className={styles.personalDataList}>
                                 <li className={styles.personalDataItem}>
                                     <span className={styles.personalDataPlaseholder}>
-                                        last name
+                                        First Name
                                     </span>
-                                    Ivanov
-                                </li>
-                                <li className={styles.personalDataItem}>
-                                    <span className={styles.personalDataPlaseholder}>name</span>
-                                    Petro
-                                </li>
-                                <li className={styles.personalDataItem}>
-                                    <span className={styles.personalDataPlaseholder}>surname</span>
-                                    Ivanovich
+                                    {user && user.firstName ? user.firstName : '-'}
                                 </li>
                                 <li className={styles.personalDataItem}>
                                     <span className={styles.personalDataPlaseholder}>
-                                        date of birth
+                                        Last Name
                                     </span>
-                                    1 junuary 2000
+                                    {user && user.lastName ? user.lastName : '-'}
                                 </li>
                                 <li className={styles.personalDataItem}>
-                                    <span className={styles.personalDataPlaseholder}>sex</span>
-                                    Male
+                                    <span className={styles.personalDataPlaseholder}>Email</span>
+                                    {user && user.email ? user.email : '-'}
                                 </li>
                                 <li className={styles.personalDataItem}>
-                                    <span className={styles.personalDataPlaseholder}>language</span>
-                                    English
+                                    <span className={styles.personalDataPlaseholder}>Phone</span>
+                                    {user && user.mobile ? user.mobile : '-'}
+                                </li>
+                                <li className={styles.personalDataItem}>
+                                    <span className={styles.personalDataPlaseholder}>Gender</span>
+                                    {user && user.gender ? user.gender : '-'}
+                                </li>
+
+                                <li className={styles.personalDataItem}>
+                                    <span className={styles.personalDataPlaseholder}>Birthday</span>
+                                    {user && user.birthday ? user.birthday : '-'}
                                 </li>
                             </ul>
-                            <Button className={styles.editBtn} text={'EDIT'} />
+                            <Button
+                                className={styles.editBtn}
+                                text="EDIT"
+                                handleClick={() =>
+                                    setEditUserData({ ...editUserData, personalData: true })
+                                }
+                            />
                         </>
                     )}
                 </div>
@@ -105,7 +136,7 @@ function UserProfilePage() {
                         </>
                     )}
                 </div>
-                <div className={styles.boxInfo}>
+                {/* <div className={styles.boxInfo}>
                     <Button
                         handleClick={() =>
                             setActive({
@@ -141,7 +172,7 @@ function UserProfilePage() {
                             <Button className={styles.editBtn} text={'EDIT'} />
                         </>
                     )}
-                </div>
+                </div> */}
             </div>
         </main>
     );
