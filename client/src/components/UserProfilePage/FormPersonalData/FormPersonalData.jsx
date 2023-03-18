@@ -53,7 +53,7 @@ function FormPersonalData({ setUser, editUser, user }) {
 
     return (
         <>
-            <form id="editForm" className={styles.personalDataList}>
+            <form onSubmit={formik.handleSubmit} id="editForm" className={styles.personalDataList}>
                 <label className={styles.personalDataItem}>
                     {formik.errors.firstName && formik.touched.firstName ? (
                         <p>{formik.errors.firstName}</p>

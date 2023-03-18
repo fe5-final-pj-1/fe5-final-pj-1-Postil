@@ -66,6 +66,13 @@
     justify-items: center;
     gap: 3rem;
     margin: 1rem 0;
+    @media only screen and (max-width: $bp-medium) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media only screen and (max-width: $bp-small) {
+        grid-template-columns: 1fr;
+    }
+
     & input,
     & select {
         text-align: center;
@@ -77,14 +84,14 @@
         border-radius: 1rem;
     }
     & select {
-        width: 73%;
         padding: 0.4rem 0;
     }
 }
 .personalDataItem {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    text-align: center;
     color: $dark-color;
     font-size: 1.8rem;
     line-height: 2rem;
@@ -125,4 +132,41 @@
 .editBtn:hover {
     background: rgb(255, 255, 255);
     color: rgba(55, 63, 65, 1);
+}
+
+.adressForm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 3rem;
+    margin: 1rem 0;
+    @media only screen and (max-width: $bp-small) {
+        grid-template-columns: 1fr;
+    }
+    & input,
+    & select {
+        text-align: center;
+        color: #373f41;
+        font-size: 1.8rem;
+        line-height: 3rem;
+        background-color: transparent;
+        border: 0.1rem solid $dark-color;
+        border-radius: 1rem;
+    }
+    & select {
+        padding: 0.4rem 0;
+    }
+}
+.adressForm,
+.personalDataList {
+    & label {
+        position: relative;
+        & p {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: #ff0000;
+            font-size: 1.2rem;
+        }
+    }
 }

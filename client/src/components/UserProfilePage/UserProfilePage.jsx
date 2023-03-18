@@ -3,13 +3,13 @@ import styles from './UserProfilePage.module.scss';
 import Button from '../Button';
 import Icon from '../Icon/Icon';
 import FormPersonalData from './FormPersonalData';
+import FormDeliveryAdress from './FormDeliveryAdress';
 import getCustomer from 'api/getCustomer';
 
 function UserProfilePage() {
     const [active, setActive] = useState({
         personalData: false,
         deliveryAddress: false,
-        // contacts: false,
     });
     const [editUserData, setEditUserData] = useState({
         personalData: false,
@@ -20,7 +20,6 @@ function UserProfilePage() {
     useEffect(() => {
         getCustomer().then((res) => setUser(res.data));
     }, []);
-
     return (
         <main>
             <div className="container">
@@ -124,55 +123,34 @@ function UserProfilePage() {
                             </>
                         }
                     />
-                    {active.deliveryAddress && (
+                    {active.deliveryAddress && editUserData.deliveryAddress && (
+                        <FormDeliveryAdress
+                            editUser={{ editUserData, setEditUserData }}
+                            user={user}
+                            setUser={setUser}
+                        />
+                    )}
+                    {active.deliveryAddress && !editUserData.deliveryAddress && (
                         <>
                             <p className={styles.personalDataItem}>
                                 <span className={styles.personalDataPlaseholder}>
                                     Shipping address:
                                 </span>
-                                1 Khreshchatyk, Kyiv, Ukraine
+                                {user && user.deliveryAddress
+                                    ? `${user.deliveryAddress.address}, ${user.deliveryAddress.city}, ${user.deliveryAddress.country}`
+                                    : '-'}
+                                {/* {1 Khreshchatyk, Kyiv, Ukraine} */}
                             </p>
-                            <Button className={styles.editBtn} text={'EDIT'} />
+                            <Button
+                                handleClick={() =>
+                                    setEditUserData({ ...editUserData, deliveryAddress: true })
+                                }
+                                className={styles.editBtn}
+                                text={'EDIT'}
+                            />
                         </>
                     )}
                 </div>
-                {/* <div className={styles.boxInfo}>
-                    <Button
-                        handleClick={() =>
-                            setActive({
-                                ...active,
-                                contacts: !active.contacts,
-                            })
-                        }
-                        className={styles.boxInfoName}
-                        text={
-                            <>
-                                <p className={styles.boxInfoTitle}>
-                                    <Icon type={'profileContacts'} />
-                                    Contact
-                                </p>
-                                <Icon type={active.contacts ? 'minus' : 'bagDropDownArrow'} />
-                            </>
-                        }
-                    />
-                    {active.contacts && (
-                        <>
-                            <ul className={styles.contactList}>
-                                <li className={styles.contactItem}>
-                                    <span className={styles.personalDataPlaseholder}>
-                                        phone number
-                                    </span>
-                                    +38(099)999-99-99
-                                </li>
-                                <li className={styles.contactItem}>
-                                    <span className={styles.personalDataPlaseholder}>email</span>
-                                    petrotest45451@gmail.com
-                                </li>
-                            </ul>
-                            <Button className={styles.editBtn} text={'EDIT'} />
-                        </>
-                    )}
-                </div> */}
             </div>
         </main>
     );
