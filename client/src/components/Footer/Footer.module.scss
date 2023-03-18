@@ -101,6 +101,7 @@
     color: $lightGrey;
     font-size: 1.4rem;
     display: inline-block;
+    margin-bottom: 1.5rem !important;
     @media only screen and (max-width: $bp-medium) {
         width: 50%;
         text-align: center;
@@ -137,6 +138,10 @@
 
 .button_submit:hover {
     background-color: #202627;
+}
+.error_message {
+    color: red;
+    font-size: smaller;
 }
 
 .input:focus,
