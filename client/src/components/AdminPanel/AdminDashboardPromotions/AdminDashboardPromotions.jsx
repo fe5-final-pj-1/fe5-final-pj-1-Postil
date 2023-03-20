@@ -9,6 +9,7 @@ import * as Yup from 'yup';
 import addNewSlide from 'api/addNewSlide';
 import deleteSpecificSlide from 'api/deleteSpecificSlide';
 import getAllProducts from 'api/getAllProducts';
+import updateSlide from 'api/updateSlide';
 import Select from 'react-select';
 import { Oval } from 'react-loader-spinner';
 
@@ -16,6 +17,7 @@ function AdminDashboardPromotions() {
     const [promotions, setPromotions] = useState([]);
     const [options, setOptions] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [currentPromotion, setCurrentPromotion] = useState(null);
     useEffect(() => {
         getAllSlides().then((response) => {
             setPromotions(response.data);
@@ -64,6 +66,42 @@ function AdminDashboardPromotions() {
             });
         },
     });
+    const dragStartHandler = (e, promotion) => {
+        setCurrentPromotion(promotion);
+    };
+    const dragLeaveHandler = (e) => {
+        e.target.style.opacity = 1;
+    };
+    const dragEndHandler = (e) => {
+        e.target.style.opacity = 1;
+    };
+    const dragOverHandler = (e) => {
+        e.preventDefault();
+        e.target.style.opacity = 0.4;
+    };
+    const dragDropHandler = (e, promotion) => {
+        e.preventDefault();
+        const data = promotions.map((elem) => {
+            if (elem._id === promotion._id) {
+                updateSlide({ order: currentPromotion.order }, elem.customId);
+                return { ...elem, order: currentPromotion.order };
+            }
+            if (elem._id === currentPromotion._id) {
+                updateSlide({ order: promotion.order }, elem.customId);
+                return { ...elem, order: promotion.order };
+            }
+            return elem;
+        });
+        setPromotions(data);
+        e.target.style.opacity = 1;
+    };
+    const sortPromotions = (a, b) => {
+        if (a.order > b.order) {
+            return 1;
+        } else {
+            return -1;
+        }
+    };
     if (!isLoaded) {
         return (
             <Oval
@@ -210,9 +248,18 @@ function AdminDashboardPromotions() {
             </div>
             <div className={adminPanelStyles.promotionsRight}>
                 <h3 className="h3">Active promotions</h3>
-                {promotions.map((promotion) => {
+                {promotions.sort(sortPromotions).map((promotion) => {
                     return (
-                        <div key={promotion.customId} className={adminPanelStyles.promotionsData}>
+                        <div
+                            key={promotion.customId}
+                            className={adminPanelStyles.promotionsData}
+                            draggable={true}
+                            onDragStart={(e) => dragStartHandler(e, promotion)}
+                            onDragLeave={(e) => dragLeaveHandler(e)}
+                            onDragEnd={(e) => dragEndHandler(e)}
+                            onDragOver={(e) => dragOverHandler(e)}
+                            onDrop={(e) => dragDropHandler(e, promotion)}
+                        >
                             <img
                                 src={promotion.imageUrl}
                                 className={adminPanelStyles.promotionsImg}
@@ -242,7 +289,8 @@ function AdminDashboardPromotions() {
                                 {`№ ${promotion.customId}`}
                             </p>
                             <Button
-                                handleClick={() => {
+                                handleClick={(e) => {
+                                    e.stopPropagation();
                                     setIsLoaded(false);
                                     deleteSpecificSlide(promotion.customId).then(() => {
                                         getAllSlides().then((slides) => {

@@ -36,11 +36,18 @@ function CarouselMainSection() {
             return `/catalog`;
         }
     };
+    const sortPromotions = (a, b) => {
+        if (a.order > b.order) {
+            return 1;
+        } else {
+            return -1;
+        }
+    };
     return (
         <section className={carousel}>
             <div className="container">
-                <Carousel showThumbs={false} showStatus={false} autoPlay={true} infiniteLoop={true}>
-                    {promotions.map((promotion) => {
+                <Carousel showThumbs={false} showStatus={false}>
+                    {promotions.sort(sortPromotions).map((promotion) => {
                         let linkStr = getLink(promotion);
                         return (
                             <div key={promotion.customId}>

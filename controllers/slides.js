@@ -10,7 +10,15 @@ exports.addSlide = (req, res, next) => {
       });
     } else {
       const slideData = _.cloneDeep(req.body);
-      const newSlide = new Slider(queryCreator(slideData));
+      Slider.find().then((slides) => {
+        if (!slides || !slides[slides.length - 1].order) {
+          slideData.order = 1;
+        } else {
+          let orderMax = 1;
+          slides.forEach((elem) => { orderMax = elem.order > orderMax ? elem.order : orderMax});
+          slideData.order = orderMax + 1;
+        }
+        const newSlide = new Slider(queryCreator(slideData));
 
       newSlide
         .populate("product")
@@ -23,6 +31,7 @@ exports.addSlide = (req, res, next) => {
             message: `Error happened on server: "${err}" `
           })
         );
+      })
     }
   });
 };
