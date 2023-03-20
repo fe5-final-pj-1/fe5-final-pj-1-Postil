@@ -3,7 +3,7 @@
 @import "../../../style/animation";
 
 .wrapper {
-    padding: 0 0 .5rem 2rem;
+    padding: 0 0 0.5rem 2rem;
 }
 
 .adminHome {
@@ -11,62 +11,230 @@
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(6, minmax(100px, min-content));
     gap: 2rem;
+    @media only screen and (max-width: $bp-medium) {
+        grid-template-rows: repeat(3, minmax(100px, min-content));
+    }
 
     &ProductsSold {
         grid-column: 1 / 1;
         grid-row: 1 / 1;
         display: flex;
-        align-items: center;
-        justify-content: center;
-        flex-direction: column;
-        text-transform: uppercase;
-        @include abel-font-normal;
-        border-radius: 5px;
-        box-shadow: 0px 0px 5px $dark-color;
-        background-color: $dark-color;
-        color: $light-color;
-        font-size: 1.8rem;
-        gap: 1rem;
-
-        & span:last-child {
-            font-size: 2.5rem;
-
+        @media only screen and (max-width: $bp-large) {
+            grid-column: 2 / 2;
+        }
+        @media only screen and (max-width: $bp-medium) {
+            grid-column: 2 / 4;
+        }
+        @media only screen and (max-width: $bp-small) {
+            grid-column: 1 / 4;
         }
     }
 
     &TotalBalance {
         grid-column: 2 / 2;
         grid-row: 1 / 1;
+        display: flex;
+        @media only screen and (max-width: $bp-large) {
+            grid-column: 3 / 3;
+        }
+        @media only screen and (max-width: $bp-medium) {
+            grid-column: 4 / 6;
+        }
+        @media only screen and (max-width: $bp-small) {
+            grid-column: 4 / -1;
+        }
     }
 
     &Users {
         grid-column: 3 / 3;
         grid-row: 1 / 1;
+        display: flex;
+        @media only screen and (max-width: $bp-large) {
+            grid-column: 4 / 4;
+        }
+        @media only screen and (max-width: $bp-medium) {
+            display: none;
+        }
     }
 
     &Subscribers {
         grid-column: 4 / 4;
         grid-row: 1 / 1;
+        display: flex;
+        @media only screen and (max-width: $bp-large) {
+            grid-column: 5 / 5;
+        }
+        @media only screen and (max-width: $bp-medium) {
+            display: none;
+        }
     }
 
     &LatestProducts {
         grid-column: 5 / -1;
         grid-row: 1 / 4;
+        display: flex;
+        flex-direction: column;
+        padding: 1rem 1rem 0;
+        gap: 1.35rem;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px $dark-color;
+
+        @media only screen and (max-width: $bp-large) {
+            display: none;
+        }
+        & h3 {
+            align-self: center;
+        }
+
+        & a {
+            display: flex;
+            align-items: center;
+            color: $dark-color;
+            gap: 1rem;
+            padding: 0.5rem;
+            box-shadow: 0px 0px 5px $dark-color;
+            transition: all 0.25s ease-in;
+
+            &:hover {
+                background-color: $dark-color;
+                color: $light-color;
+            }
+        }
+
+        & img {
+            max-width: 5rem;
+            height: auto;
+        }
+
+        & span {
+            text-transform: capitalize;
+        }
     }
 
     &DataChart {
         grid-column: 1 / 5;
         grid-row: 2 / 4;
+        @media only screen and (max-width: $bp-large) {
+            grid-column: 1 / -1;
+        }
+        @media only screen and (max-width: $bp-medium) {
+            display: none;
+        }
     }
 
     &LastOrders {
         grid-column: 1 / 5;
         grid-row: 4 / 7;
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px $dark-color;
+        padding: 3rem 1rem;
+        text-align: center;
+        @media only screen and (max-width: $bp-large) {
+            grid-column: 1 / -1;
+        }
+        @media only screen and (max-width: $bp-medium) {
+            grid-row: 2 / 4;
+        }
+
+        & h3 {
+            align-self: center;
+        }
+
+        & thead {
+            text-transform: uppercase;
+        }
+
+        & td {
+            padding: 0.8rem;
+        }
+
+        & td:nth-child(2),
+        & td:last-child {
+            @media only screen and (max-width: $bp-medium) {
+                display: none;
+            }
+        }
+        & td:nth-child(3) {
+            @media only screen and (max-width: $bp-small) {
+                display: none;
+            }
+        }
     }
 
     &NewUsers {
         grid-column: 5 / -1;
         grid-row: 4 / 7;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px $dark-color;
+        display: flex;
+        flex-direction: column;
+        padding: 3rem 2rem;
+        gap: 1.5rem;
+
+        @media only screen and (max-width: $bp-large) {
+            display: none;
+        }
+
+        & h3 {
+            align-self: center;
+        }
+
+        & div {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+    }
+
+    &Link {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        text-transform: uppercase;
+        color: $dark-color;
+        @include abel-font-normal;
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px $dark-color;
+        font-size: 1.8rem;
+        gap: 1rem;
+        transition: all 0.25s ease-in;
+        @media only screen and (max-width: $bp-large) {
+            font-size: 1.5rem;
+        }
+
+        &:hover {
+            background-color: $dark-color;
+            color: $light-color;
+        }
+
+        & span:last-child {
+            font-size: 2.5rem;
+            @include roboto-font-bold;
+            @media only screen and (max-width: $bp-large) {
+                font-size: 2rem;
+            }
+        }
+    }
+
+    &Img {
+        width: 5rem;
+        height: auto;
+
+        // @media only screen and (max-width: $bp-medium) {
+        //     width: 3rem;
+        // }
+        // @media only screen and (max-width: $bp-small) {
+        //     width: 5rem;
+        // }
+    }
+
+    &TextUp {
+        text-transform: uppercase;
     }
 }
 

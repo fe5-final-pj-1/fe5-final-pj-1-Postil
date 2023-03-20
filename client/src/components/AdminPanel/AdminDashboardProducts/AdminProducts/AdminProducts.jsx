@@ -27,6 +27,7 @@ function AdminProducts() {
     useEffect(() => {
         if (didRun) {
             const filtersParams = new URLSearchParams(filters);
+            filtersParams.append('sort', '-date');
             getFilteredProducts(filtersParams.toString()).then((result) => {
                 setProducts(result.data.products);
                 setIsLoaded(true);

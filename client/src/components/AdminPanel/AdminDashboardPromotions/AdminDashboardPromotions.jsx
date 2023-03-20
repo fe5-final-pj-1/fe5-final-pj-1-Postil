@@ -8,15 +8,27 @@ import Icon from 'components/Icon';
 import * as Yup from 'yup';
 import addNewSlide from 'api/addNewSlide';
 import deleteSpecificSlide from 'api/deleteSpecificSlide';
+import getAllProducts from 'api/getAllProducts';
+import Select from 'react-select';
 import { Oval } from 'react-loader-spinner';
 
 function AdminDashboardPromotions() {
     const [promotions, setPromotions] = useState([]);
+    const [options, setOptions] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
     useEffect(() => {
-        getAllSlides().then((slides) => {
-            setPromotions(slides.data);
-            setIsLoaded(true);
+        getAllSlides().then((response) => {
+            setPromotions(response.data);
+            getAllProducts().then((res) => {
+                const data = res.data.map((element) => ({
+                    label: `${element.name.charAt(0).toUpperCase()}${element.name.slice(1)} ${
+                        element.itemNo
+                    }`,
+                    value: element._id,
+                }));
+                setOptions(data);
+                setIsLoaded(true);
+            });
         });
     }, []);
     const formik = useFormik({
@@ -115,21 +127,20 @@ function AdminDashboardPromotions() {
                     <label className={adminPanelStyles.promotionsLabel} htmlFor="product">
                         add promotion product ID (optional)
                     </label>
-                    {formik.touched.product && formik.errors.product ? (
-                        <div className={adminPanelStyles.promotionsError}>
-                            {formik.errors.product}
-                        </div>
-                    ) : null}
-                    <input
-                        id="product"
+                    <Select
+                        defaultValue={formik.initialValues.product}
+                        options={options}
                         name="product"
-                        type="text"
-                        className={adminPanelStyles.promotionsInput}
-                        onChange={formik.handleChange}
+                        onChange={(option) => formik.setFieldValue('product', option.value)}
                         onBlur={formik.handleBlur}
-                        value={formik.values.product}
-                        autoComplete="off"
-                        placeholder="63f341d1b9e5b52a8797f518"
+                        styles={{
+                            control: (baseStyles) => ({
+                                ...baseStyles,
+                                outline: 'none',
+                                border: '1px solid #373f41',
+                                borderRadius: 0,
+                            }),
+                        }}
                     />
                     <label className={adminPanelStyles.promotionsLabel} htmlFor="categoryName">
                         select promotion category (optional)
