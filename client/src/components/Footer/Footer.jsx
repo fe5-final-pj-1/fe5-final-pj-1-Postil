@@ -10,6 +10,7 @@ function Footer() {
     const [isOpen, setIsOpen] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
     const [emailValue, setEmailValue] = useState('');
+    const [isText, setIsText] = useState('');
 
     const isValidEmail = (email) => {
         const re = /\S+@\S+\.\S+/;
@@ -48,9 +49,13 @@ function Footer() {
                 if (res.data) {
                     openModal();
                     setEmailValue('');
+                    setIsText('Thank you for subscribing!');
                 }
             } catch (error) {
                 console.log(error);
+                openModal();
+                setEmailValue('');
+                setIsText('You are already subscribed!');
             }
         });
     };
@@ -161,7 +166,7 @@ function Footer() {
                                     type="submit"
                                 />
                             </form>
-                            <InfoModal text={''} isOpen={isOpen} closeModal={closeModal} />
+                            <InfoModal text={isText} isOpen={isOpen} closeModal={closeModal} />
                             <div className={FooterStyle.promotion_btn}>
                                 <p className={FooterStyle.followUs}>Follow Us</p>
                                 <ul className={FooterStyle.social_list}>

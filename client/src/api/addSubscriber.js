@@ -1,5 +1,3 @@
-//EMAIL: finalproject2090@gmail.com
-// PASSWORD: Final_Project_2090
 import { axiosInstanceURL } from './_axiosInstanceURL';
 
 const addSubscriber = async (newSubscriber) => {

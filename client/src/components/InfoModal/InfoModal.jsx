@@ -3,11 +3,8 @@ import PropTypes from 'prop-types';
 import styles from './InfoModal.module.scss';
 import Button from '../Button';
 import Icon from '../Icon';
-import { shallowEqual, useSelector } from 'react-redux';
 
 const InfoModal = ({ text, isOpen, closeModal }) => {
-    const isLogIn = useSelector((state) => state.store.login.isLogIn, shallowEqual);
-
     useEffect(() => {
         if (isOpen) {
             const timer = setTimeout(() => {
@@ -16,12 +13,6 @@ const InfoModal = ({ text, isOpen, closeModal }) => {
             return () => clearTimeout(timer);
         }
     }, [closeModal, isOpen]);
-
-    if (isLogIn) {
-        text = 'You are already subscribed!';
-    } else {
-        text = 'Thank you for subscribing!';
-    }
 
     return (
         <div
