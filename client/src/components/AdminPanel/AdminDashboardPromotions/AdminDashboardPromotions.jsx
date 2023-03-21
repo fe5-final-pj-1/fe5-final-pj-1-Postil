@@ -177,6 +177,10 @@ function AdminDashboardPromotions() {
                                 outline: 'none',
                                 border: '1px solid #373f41',
                                 borderRadius: 0,
+                                ':hover': {
+                                    border: '1px solid #373f41',
+                                    outline: 'none',
+                                },
                             }),
                         }}
                     />

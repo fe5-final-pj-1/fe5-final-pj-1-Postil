@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useReducer } from 'react';
 import adminPanelStyles from './AdminProducts.module.scss';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import getFilteredProducts from 'api/getFilteredProducts';
 import ProductList from 'components/ProductsList/ProductList';
 import Pagination from 'components/Pagination';
 import { filtersRemovedAll } from 'store/filtersSlice';
+import { AdminProductsShowContext } from 'context/AdminProductsShowContext';
+import AdminProductsShowSwitcher from '../AdminProductsShowSwitcher';
+import AdminProductsShowTable from '../AdminProductsShowTable';
 import { Oval } from 'react-loader-spinner';
 
 function AdminProducts() {
@@ -14,6 +17,17 @@ function AdminProducts() {
     const [isLoaded, setIsLoaded] = useState(false);
     const [maxPageNumber, setMaxPageNumber] = useState(1);
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
+    const reducer = (state, action) => {
+        switch (action.type) {
+            case 'List':
+                return false;
+            case 'Table':
+                return true;
+            default:
+                return state;
+        }
+    };
+    const [tableView, setTableView] = useReducer(reducer, false);
     useEffect(() => {
         dispatch(filtersRemovedAll());
         getFilteredProducts('').then((result) => {
@@ -51,10 +65,17 @@ function AdminProducts() {
                     strokeWidthSecondary={2}
                 />
             ) : (
-                <>
-                    <ProductList products={products} isAdmin />
-                    {products.length > 0 && <Pagination maxPageNumber={maxPageNumber} />}
-                </>
+                <AdminProductsShowContext.Provider value={{ tableView, setTableView }}>
+                    <AdminProductsShowSwitcher />
+                    {tableView ? (
+                        <AdminProductsShowTable products={products} />
+                    ) : (
+                        <>
+                            <ProductList products={products} isAdmin />
+                            {products.length > 0 && <Pagination maxPageNumber={maxPageNumber} />}
+                        </>
+                    )}
+                </AdminProductsShowContext.Provider>
             )}
         </div>
     );

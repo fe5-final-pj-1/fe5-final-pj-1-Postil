@@ -43,6 +43,12 @@ function AdminDashboardHome() {
                 },
             },
         },
+        xaxis: {
+            type: 'datetime',
+            labels: {
+                format: 'd-MMM-yy',
+            },
+        },
         series: [
             {
                 name: '',
@@ -53,6 +59,20 @@ function AdminDashboardHome() {
     const calculateData = (productData, ordersData, customersData) => {
         let totalSoldNum = 0;
         let chartArray = [];
+        const months = [
+            'Jan',
+            'Feb',
+            'Mar',
+            'Apr',
+            'May',
+            'Jun',
+            'Jul',
+            'Aug',
+            'Sep',
+            'Oct',
+            'Nov',
+            'Dec',
+        ];
         const onlyNewProducts = productData.filter((product) => product.isNew === 'true');
         const onlyCustomers = customersData.filter((customer) => customer.isAdmin !== true);
         const canceledOrders = ordersData.filter((order) => order.canceled === true);
@@ -61,11 +81,12 @@ function AdminDashboardHome() {
             0,
         );
         canceledOrders.forEach((element) => {
-            let dateArr = element.date.split('-');
-            dateArr[2] = dateArr[2].slice(0, 2);
-            const date = dateArr.reverse().join('/');
+            const dateString = element.date;
+            const date = new Date(dateString);
+            const day = date.getDate();
+            const month = date.getMonth();
             chartArray.push({
-                x: date,
+                x: `${day} ${months[month]}`,
                 y: Math.round(element.totalSum * 1.1 + element.shipping),
             });
             totalSoldNum =
