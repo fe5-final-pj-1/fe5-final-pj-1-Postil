@@ -21,11 +21,24 @@
     border: 0.1rem solid #373f41;
     background-size: cover;
     background-repeat: no-repeat;
+    position: relative;
     &Text {
         color: #ffffff;
         font-weight: 700;
         font-size: $titles-fs;
         text-transform: uppercase;
+    }
+    & .editPhotoBtn {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 3rem;
+        height: 3rem;
+        background-color: transparent;
+        & svg {
+            width: 3rem;
+            height: 3rem;
+        }
     }
 }
 .userPrevEmail {
@@ -157,8 +170,29 @@
         padding: 0.4rem 0;
     }
 }
+.formPhoto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & label {
+        width: 300px;
+        & input {
+            text-align: center;
+            color: #373f41;
+            font-size: 1.8rem;
+            line-height: 3rem;
+            background-color: transparent;
+            border: 0.1rem solid $dark-color;
+            border-radius: 1rem;
+        }
+    }
+    & button {
+        z-index: 2;
+    }
+}
 .adressForm,
-.personalDataList {
+.personalDataList,
+.formPhoto {
     & label {
         position: relative;
         & p {
