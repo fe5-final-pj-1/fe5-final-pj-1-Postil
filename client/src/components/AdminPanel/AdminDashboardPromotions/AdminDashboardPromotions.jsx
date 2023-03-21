@@ -8,15 +8,29 @@ import Icon from 'components/Icon';
 import * as Yup from 'yup';
 import addNewSlide from 'api/addNewSlide';
 import deleteSpecificSlide from 'api/deleteSpecificSlide';
+import getAllProducts from 'api/getAllProducts';
+import updateSlide from 'api/updateSlide';
+import Select from 'react-select';
 import { Oval } from 'react-loader-spinner';
 
 function AdminDashboardPromotions() {
     const [promotions, setPromotions] = useState([]);
+    const [options, setOptions] = useState([]);
     const [isLoaded, setIsLoaded] = useState(false);
+    const [currentPromotion, setCurrentPromotion] = useState(null);
     useEffect(() => {
-        getAllSlides().then((slides) => {
-            setPromotions(slides.data);
-            setIsLoaded(true);
+        getAllSlides().then((response) => {
+            setPromotions(response.data);
+            getAllProducts().then((res) => {
+                const data = res.data.map((element) => ({
+                    label: `${element.name.charAt(0).toUpperCase()}${element.name.slice(1)} ${
+                        element.itemNo
+                    }`,
+                    value: element._id,
+                }));
+                setOptions(data);
+                setIsLoaded(true);
+            });
         });
     }, []);
     const formik = useFormik({
@@ -52,6 +66,42 @@ function AdminDashboardPromotions() {
             });
         },
     });
+    const dragStartHandler = (e, promotion) => {
+        setCurrentPromotion(promotion);
+    };
+    const dragLeaveHandler = (e) => {
+        e.target.style.opacity = 1;
+    };
+    const dragEndHandler = (e) => {
+        e.target.style.opacity = 1;
+    };
+    const dragOverHandler = (e) => {
+        e.preventDefault();
+        e.target.style.opacity = 0.4;
+    };
+    const dragDropHandler = (e, promotion) => {
+        e.preventDefault();
+        const data = promotions.map((elem) => {
+            if (elem._id === promotion._id) {
+                updateSlide({ order: currentPromotion.order }, elem.customId);
+                return { ...elem, order: currentPromotion.order };
+            }
+            if (elem._id === currentPromotion._id) {
+                updateSlide({ order: promotion.order }, elem.customId);
+                return { ...elem, order: promotion.order };
+            }
+            return elem;
+        });
+        setPromotions(data);
+        e.target.style.opacity = 1;
+    };
+    const sortPromotions = (a, b) => {
+        if (a.order > b.order) {
+            return 1;
+        } else {
+            return -1;
+        }
+    };
     if (!isLoaded) {
         return (
             <Oval
@@ -115,21 +165,24 @@ function AdminDashboardPromotions() {
                     <label className={adminPanelStyles.promotionsLabel} htmlFor="product">
                         add promotion product ID (optional)
                     </label>
-                    {formik.touched.product && formik.errors.product ? (
-                        <div className={adminPanelStyles.promotionsError}>
-                            {formik.errors.product}
-                        </div>
-                    ) : null}
-                    <input
-                        id="product"
+                    <Select
+                        defaultValue={formik.initialValues.product}
+                        options={options}
                         name="product"
-                        type="text"
-                        className={adminPanelStyles.promotionsInput}
-                        onChange={formik.handleChange}
+                        onChange={(option) => formik.setFieldValue('product', option.value)}
                         onBlur={formik.handleBlur}
-                        value={formik.values.product}
-                        autoComplete="off"
-                        placeholder="63f341d1b9e5b52a8797f518"
+                        styles={{
+                            control: (baseStyles) => ({
+                                ...baseStyles,
+                                outline: 'none',
+                                border: '1px solid #373f41',
+                                borderRadius: 0,
+                                ':hover': {
+                                    border: '1px solid #373f41',
+                                    outline: 'none',
+                                },
+                            }),
+                        }}
                     />
                     <label className={adminPanelStyles.promotionsLabel} htmlFor="categoryName">
                         select promotion category (optional)
@@ -199,9 +252,18 @@ function AdminDashboardPromotions() {
             </div>
             <div className={adminPanelStyles.promotionsRight}>
                 <h3 className="h3">Active promotions</h3>
-                {promotions.map((promotion) => {
+                {promotions.sort(sortPromotions).map((promotion) => {
                     return (
-                        <div key={promotion.customId} className={adminPanelStyles.promotionsData}>
+                        <div
+                            key={promotion.customId}
+                            className={adminPanelStyles.promotionsData}
+                            draggable={true}
+                            onDragStart={(e) => dragStartHandler(e, promotion)}
+                            onDragLeave={(e) => dragLeaveHandler(e)}
+                            onDragEnd={(e) => dragEndHandler(e)}
+                            onDragOver={(e) => dragOverHandler(e)}
+                            onDrop={(e) => dragDropHandler(e, promotion)}
+                        >
                             <img
                                 src={promotion.imageUrl}
                                 className={adminPanelStyles.promotionsImg}
@@ -231,7 +293,8 @@ function AdminDashboardPromotions() {
                                 {`№ ${promotion.customId}`}
                             </p>
                             <Button
-                                handleClick={() => {
+                                handleClick={(e) => {
+                                    e.stopPropagation();
                                     setIsLoaded(false);
                                     deleteSpecificSlide(promotion.customId).then(() => {
                                         getAllSlides().then((slides) => {
