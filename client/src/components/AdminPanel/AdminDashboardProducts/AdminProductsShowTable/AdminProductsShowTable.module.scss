@@ -17,6 +17,12 @@
             align-items: center;
             text-transform: capitalize;
             gap: 1rem;
+            @media only screen and (max-width: $bp-medium) {
+                display: block;
+            }
+            @media only screen and (max-width: $bp-small) {
+                display: none;
+            }
         }
 
         & td:nth-child(7) {
@@ -28,7 +34,7 @@
             }
         }
 
-        & td:last-child {
+        & td:nth-child(10) {
             & a {
                 &:link,
                 &:active,
@@ -52,6 +58,34 @@
     &Img {
         max-width: 4.5rem;
         height: auto;
+    }
+
+    &RemoveBtn {
+        background-color: transparent;
+        & svg {
+            transition: all 0.2s ease-in;
+            &:hover {
+                transform: scale(1.3);
+            }
+        }
+    }
+
+    &LargeNone {
+        @media only screen and (max-width: $bp-large) {
+            display: none;
+        }
+    }
+
+    &MediumNone {
+        @media only screen and (max-width: $bp-medium) {
+            display: none;
+        }
+    }
+
+    &SmallNone {
+        @media only screen and (max-width: $bp-small) {
+            display: none;
+        }
     }
 
 }

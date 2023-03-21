@@ -7,6 +7,9 @@
         position: absolute;
         top: -3.7rem;
         right: 0;
+        @media only screen and (max-width: $bp-small) {
+            top: -4.2rem;
+        }
     }
 
     &ShowBtn {
@@ -26,15 +29,24 @@
             color: $lightGrey;
             background-color: transparent;
             border: $border-grey;
+            @media only screen and (max-width: $bp-medium) {
+                display: none;
+            }
         }
 
         &List {
             padding: .6rem 1.5rem;
             margin-right: .5rem;
+            @media only screen and (max-width: $bp-small) {
+                padding: .9rem .8rem;
+            }
         }
 
         &Table {
             padding: .6rem 1rem;
+            @media only screen and (max-width: $bp-small) {
+                padding: .9rem .8rem;
+            }
         }
 
     }

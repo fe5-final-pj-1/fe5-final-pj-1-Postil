@@ -1,0 +1,39 @@
+@import '../../style/variables';
+@import '../../style/mixins';
+
+.partners {
+    padding-top: 8rem;
+
+    &List {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem 4rem;
+        padding: 1rem 8rem;
+        @media only screen and (max-width: $bp-medium) {
+            gap: 2rem;
+        }
+    }
+
+    &Item {
+        flex: 1 1 calc(33.3333% - 8rem);
+        border-radius: 5px;
+        box-shadow: 0px 0px 5px $dark-color;
+        @media only screen and (max-width: $bp-medium) {
+            flex: 1 1 calc(50% - 4rem);
+        }
+        @media only screen and (max-width: $bp-small) {
+            flex: 1 1 calc(100%);
+        }
+    }
+
+    &Image {
+        width: 100%;
+        height: auto;
+    }
+
+    & h2 {
+        text-align: center;
+    }
+}
