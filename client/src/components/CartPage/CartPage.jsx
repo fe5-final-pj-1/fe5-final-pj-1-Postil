@@ -25,7 +25,6 @@ function CartPage() {
             ),
         );
     }, []);
-
     return (
         <main>
             <BreadCrumbs />
