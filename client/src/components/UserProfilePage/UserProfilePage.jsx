@@ -4,6 +4,7 @@ import Button from '../Button';
 import Icon from '../Icon/Icon';
 import FormPersonalData from './FormPersonalData';
 import FormDeliveryAdress from './FormDeliveryAdress';
+import FormPhoto from './FormPhoto';
 import getCustomer from 'api/getCustomer';
 
 function UserProfilePage() {
@@ -12,6 +13,7 @@ function UserProfilePage() {
         deliveryAddress: false,
     });
     const [editUserData, setEditUserData] = useState({
+        photo: false,
         personalData: false,
         deliveryAddress: false,
     });
@@ -26,12 +28,24 @@ function UserProfilePage() {
                 <p className={styles.title}>My profile</p>
                 <div
                     className={styles.userPhoto}
-                    style={{ background: user && user.avatarUrl ? user.avatarUrl : null }}
+                    style={{
+                        backgroundImage: user && user.avatarUrl ? `url(${user.avatarUrl})` : null,
+                    }}
                 >
                     <span className={styles.userPhotoText}>
                         {user && !user.avatarUrl ? user.firstName.charAt(0) : null}
                     </span>
+                    <Button
+                        className={styles.editPhotoBtn}
+                        text={<Icon type="photo" />}
+                        handleClick={() =>
+                            setEditUserData({ ...editUserData, photo: !editUserData.photo })
+                        }
+                    />
                 </div>
+                {editUserData.photo && (
+                    <FormPhoto editUser={{ editUserData, setEditUserData }} setUser={setUser} />
+                )}
                 <p className={styles.userPrevEmail}>{user && user.email ? user.email : '-'}</p>
                 <div className={styles.boxInfo}>
                     <Button
