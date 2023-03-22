@@ -15,9 +15,22 @@ import createCart from 'api/createCart';
 import deleteProductFromWishList from 'api/deleteProductFromWishList';
 import { Oval } from 'react-loader-spinner';
 import getOneProduct from 'api/getOneProduct';
+import classNames from 'classnames';
 
 const SingleItemSection = ({ product }) => {
-    const { _id, color, currentPrice, imageUrls, fabric, itemNo, name, size } = product;
+    console.log(product);
+    const {
+        _id,
+        color,
+        currentPrice,
+        previousPrice,
+        categories,
+        imageUrls,
+        fabric,
+        itemNo,
+        name,
+        size,
+    } = product;
     const dispatch = useDispatch();
     const isLogIn = useSelector((state) => state.store.login.isLogIn, shallowEqual);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -192,8 +205,18 @@ const SingleItemSection = ({ product }) => {
                         <div className={styles.boxOption}></div>
                         <div className={styles.boxForBuy}>
                             <div className={styles.boxForBuyL}>
-                                <p className={styles.buyTextOne}>USD ${currentPrice}</p>
-                                <p className={styles.buyTextTwo}>PRE-ORDER</p>
+                                <p
+                                    className={
+                                        categories === 'sale'
+                                            ? classNames(styles.buyPrice, styles.buyPriceSales)
+                                            : styles.buyPrice
+                                    }
+                                >
+                                    USD ${currentPrice}
+                                </p>
+                                {categories === 'sale' && (
+                                    <p className={styles.buyPriceOld}>USD ${previousPrice}</p>
+                                )}
                             </div>
                             <div className={styles.boxForBuyR}>
                                 <Button

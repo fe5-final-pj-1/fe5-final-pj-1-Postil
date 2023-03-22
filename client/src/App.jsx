@@ -30,6 +30,7 @@ import AdminProductsRoute from 'routes/admin/AdminProductsRoute';
 import AdminProductsAddRoute from 'routes/admin/AdminProductsAddRoute';
 import AdminProductsEditRoute from 'routes/admin/AdminProductsEditRoute';
 import AdminEditOrderUserDataRoute from 'routes/admin/AdminEditOrderUserDataRoute';
+import AdminDashboardPartnersRoute from 'routes/admin/AdminDashboardPartnersRoute';
 
 const router = createBrowserRouter([
     {
@@ -156,6 +157,10 @@ const router = createBrowserRouter([
                             {
                                 path: 'subscribers',
                                 element: <AdminDashboardSubscribersRoute />,
+                            },
+                            {
+                                path: 'partners',
+                                element: <AdminDashboardPartnersRoute />,
                             },
                         ],
                     },

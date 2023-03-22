@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import Icon from 'components/Icon';
 import Button from 'components/Button';
 import deleteProductFromDB from 'api/deleteProductFromDB';
+import classNames from 'classnames';
 import { filtersResetAll } from 'store/filtersSlice';
 import PropTypes from 'prop-types';
 
@@ -37,7 +38,18 @@ function ProductList({ products, isAdmin }) {
                             />
                         )}
                         <p className={styles.title}>{product.name}</p>
-                        <p className={styles.price}>{product.currentPrice}$</p>
+                        <p
+                            className={
+                                product.categories === 'sale' && !isAdmin
+                                    ? classNames(styles.price, styles.priceSale)
+                                    : styles.price
+                            }
+                        >
+                            {product.currentPrice}$
+                        </p>
+                        {product.categories === 'sale' && !isAdmin && (
+                            <p className={styles.prevPrice}>{product.previousPrice}$</p>
+                        )}
                         {isAdmin ? (
                             <Link
                                 to={`/admin/dashboard/products/edit/${product._id}`}

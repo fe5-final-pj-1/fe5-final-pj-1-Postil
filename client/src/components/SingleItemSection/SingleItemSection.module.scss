@@ -110,9 +110,19 @@
     }
 }
 
-.buyTextOne {
+.buyPrice {
     font-size: 2.4rem;
-    margin-bottom: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+.buyPriceSales {
+    color: #ff0000;
+}
+
+.buyPriceOld {
+    font-size: 1.6rem;
+    color: $lightGrey;
+    text-decoration: line-through;
 }
 
 .buyTextTwo {
