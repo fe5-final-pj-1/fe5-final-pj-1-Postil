@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import formStyle from './Form.module.scss';
+// import PropTypes from 'prop-types';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { PatternFormat } from 'react-number-format';
@@ -7,7 +8,18 @@ import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { addCustomerDataToOrder } from 'store/orderSlice';
+import getCustomer from 'api/getCustomer';
+
 function Form() {
+    const [customer, setCustomer] = useState({});
+    const isLogIn = useSelector((state) => state.store.login.isLogIn);
+    useEffect(() => {
+        if (isLogIn)
+            getCustomer().then((res) => {
+                setCustomer(res.data);
+            });
+    }, [isLogIn]);
+
     const customerData = useSelector((state) => state.order.customerData);
     const navigate = useNavigate();
     const dispatch = useDispatch();
@@ -16,8 +28,33 @@ function Form() {
     const EMAIL_REGEX =
         /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     const formik = useFormik({
-        // eslint-disable-next-line no-extra-boolean-cast
-        initialValues: !!Object.keys(customerData).length
+        enableReinitialize: isLogIn ? true : false,
+        initialValues: isLogIn
+            ? {
+                  firstName: customer.firstName ? customer.firstName : '',
+                  lastName: customer.lastName ? customer.lastName : '',
+                  mobile: customer.mobile ? customer.mobile : '',
+                  address:
+                      customer.deliveryAddress && customer.deliveryAddress.address
+                          ? customer.deliveryAddress.address
+                          : '',
+                  email: customer.email ? customer.email : '',
+                  city:
+                      customer.deliveryAddress && customer.deliveryAddress.city
+                          ? customer.deliveryAddress.city
+                          : '',
+                  zip:
+                      customer.deliveryAddress && customer.deliveryAddress.postal
+                          ? customer.deliveryAddress.postal
+                          : '',
+                  shipping: '0',
+                  country:
+                      customer.deliveryAddress && customer.deliveryAddress.country
+                          ? customer.deliveryAddress.country
+                          : '',
+              }
+            : // eslint-disable-next-line no-extra-boolean-cast
+            !!Object.keys(customerData).length
             ? {
                   firstName: customerData.firstName,
                   lastName: customerData.lastName,
@@ -315,3 +352,11 @@ function Form() {
 }
 
 export default Form;
+
+// Form.propTypes = {
+//     customer: PropTypes.array,
+// };
+
+// Form.defaultProps = {
+//     customer: {},
+// };
