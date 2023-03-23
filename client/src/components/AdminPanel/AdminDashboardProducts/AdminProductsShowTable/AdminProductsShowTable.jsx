@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import adminPanelStyles from './AdminProductsShowTable.module.scss';
 import { Link } from 'react-router-dom';
 import getAllProducts from 'api/getAllProducts';
+import deleteProductFromDB from 'api/deleteProductFromDB';
+import classNames from 'classnames';
+import Button from 'components/Button';
+import Icon from 'components/Icon';
 import { Oval } from 'react-loader-spinner';
 
 function AdminProductsShowTable() {
@@ -34,15 +38,16 @@ function AdminProductsShowTable() {
             <thead>
                 <tr>
                     <th>Product ID</th>
-                    <th>Product Name</th>
-                    <th>Category</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Fabric</th>
-                    <th>Color</th>
-                    <th>Size</th>
-                    <th>New In</th>
+                    <th className={adminPanelStyles.AdminProductsSmallNone}>Product Name</th>
+                    <th className={adminPanelStyles.AdminProductsMediumNone}>Category</th>
+                    <th className={adminPanelStyles.AdminProductsMediumNone}>Quantity</th>
+                    <th className={adminPanelStyles.AdminProductsMediumNone}>Price</th>
+                    <th className={adminPanelStyles.AdminProductsMediumNone}>Fabric</th>
+                    <th className={adminPanelStyles.AdminProductsLargeNone}>Color</th>
+                    <th className={adminPanelStyles.AdminProductsLargeNone}>Size</th>
+                    <th className={adminPanelStyles.AdminProductsLargeNone}>New In</th>
                     <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
@@ -52,25 +57,40 @@ function AdminProductsShowTable() {
                             <td>{product.itemNo}</td>
                             <td>
                                 <img
-                                    className={adminPanelStyles.AdminProductsImg}
+                                    className={classNames(
+                                        adminPanelStyles.AdminProductsImg,
+                                        adminPanelStyles.AdminProductsMediumNone,
+                                    )}
                                     src={product.imageUrls[0]}
                                     alt={`Product ${product._id}`}
                                 />
                                 <span>{product.name}</span>
                             </td>
-                            <td>{product.categories}</td>
-                            <td>{product.quantity}</td>
-                            <td>{product.currentPrice}$</td>
-                            <td>{product.fabric}</td>
-                            <td>
+                            <td className={adminPanelStyles.AdminProductsMediumNone}>
+                                {product.categories}
+                            </td>
+                            <td className={adminPanelStyles.AdminProductsMediumNone}>
+                                {product.quantity}
+                            </td>
+                            <td className={adminPanelStyles.AdminProductsMediumNone}>
+                                {product.currentPrice}$
+                            </td>
+                            <td className={adminPanelStyles.AdminProductsMediumNone}>
+                                {product.fabric}
+                            </td>
+                            <td className={adminPanelStyles.AdminProductsLargeNone}>
                                 {product.color ? (
                                     <span style={{ backgroundColor: product.color }}></span>
                                 ) : (
                                     '-'
                                 )}
                             </td>
-                            <td>{product.size ? product.size : '-'}</td>
-                            <td>{product.isNew === 'true' ? 'New' : '-'}</td>
+                            <td className={adminPanelStyles.AdminProductsLargeNone}>
+                                {product.size ? product.size : '-'}
+                            </td>
+                            <td className={adminPanelStyles.AdminProductsLargeNone}>
+                                {product.isNew === 'true' ? 'New' : '-'}
+                            </td>
                             <td>
                                 <Link
                                     to={`/admin/dashboard/products/edit/${product._id}`}
@@ -78,6 +98,21 @@ function AdminProductsShowTable() {
                                 >
                                     edit
                                 </Link>
+                            </td>
+                            <td>
+                                <Button
+                                    handleClick={() => {
+                                        setIsLoaded(false);
+                                        deleteProductFromDB(product._id).then(() => {
+                                            getAllProducts().then((res) => {
+                                                setProducts(res.data);
+                                                setIsLoaded(true);
+                                            });
+                                        });
+                                    }}
+                                    text={<Icon type="delete" />}
+                                    className={adminPanelStyles.AdminProductsRemoveBtn}
+                                />
                             </td>
                         </tr>
                     );

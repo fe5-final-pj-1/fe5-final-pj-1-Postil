@@ -20,6 +20,10 @@ const CommentSchema = new Schema(
     content: {
       type: String,
       required: true
+    },
+    date: {
+      type: Date,
+      default: Date.now
     }
   },
   { strict: false }

@@ -49,12 +49,22 @@
             text-transform: capitalize;
             text-align: center;
         }
-        & .price {
+        & .price,
+        & .prevPrice {
             display: none;
             @include muli-font-bold;
             font-size: $titles-fs;
             color: #ffffff;
             margin-bottom: 2rem;
+        }
+        & .prevPrice {
+            font-size: 2.3rem;
+            @include muli-font-normal;
+            text-decoration: line-through;
+            color: $lightGrey;
+        }
+        & .priceSale{
+            color: #ff0000;
         }
         & a {
             display: none;
@@ -93,6 +103,9 @@
                 background: transparent;
             }
             & .price {
+                display: block;
+            }
+            & .prevPrice {
                 display: block;
             }
             & .removeBtn {

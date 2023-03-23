@@ -15,9 +15,22 @@ import createCart from 'api/createCart';
 import deleteProductFromWishList from 'api/deleteProductFromWishList';
 import { Oval } from 'react-loader-spinner';
 import getOneProduct from 'api/getOneProduct';
+import Reviews from './Reviews';
+import classNames from 'classnames';
 
 const SingleItemSection = ({ product }) => {
-    const { _id, color, currentPrice, imageUrls, fabric, itemNo, name, size } = product;
+    const {
+        _id,
+        color,
+        currentPrice,
+        previousPrice,
+        categories,
+        imageUrls,
+        fabric,
+        itemNo,
+        name,
+        size,
+    } = product;
     const dispatch = useDispatch();
     const isLogIn = useSelector((state) => state.store.login.isLogIn, shallowEqual);
     const [isLoaded, setIsLoaded] = useState(false);
@@ -28,7 +41,6 @@ const SingleItemSection = ({ product }) => {
     });
 
     const [favouritesClicked, setFavouritesClicked] = useState(false);
-    // eslint-disable-next-line no-unused-vars
     const [double, setDouble] = useState(false);
     const [wishlist, setWishlist] = useState([]);
 
@@ -192,8 +204,18 @@ const SingleItemSection = ({ product }) => {
                         <div className={styles.boxOption}></div>
                         <div className={styles.boxForBuy}>
                             <div className={styles.boxForBuyL}>
-                                <p className={styles.buyTextOne}>USD ${currentPrice}</p>
-                                <p className={styles.buyTextTwo}>PRE-ORDER</p>
+                                <p
+                                    className={
+                                        categories === 'sale'
+                                            ? classNames(styles.buyPrice, styles.buyPriceSales)
+                                            : styles.buyPrice
+                                    }
+                                >
+                                    USD ${currentPrice}
+                                </p>
+                                {categories === 'sale' && (
+                                    <p className={styles.buyPriceOld}>USD ${previousPrice}</p>
+                                )}
                             </div>
                             <div className={styles.boxForBuyR}>
                                 <Button
@@ -245,7 +267,7 @@ const SingleItemSection = ({ product }) => {
                                 }
                             />
                             {active.description && (
-                                <p className={styles.reviewsText}>
+                                <p className={styles.descriptionText}>
                                     Far far away, behind the word mountains, far from the countries
                                     Vokalia and Consonantia, there live the blind texts.Far far
                                     away, behind the word mountains, far from the countries Vokalia
@@ -275,14 +297,7 @@ const SingleItemSection = ({ product }) => {
                                     </>
                                 }
                             />
-                            {active.reviews && (
-                                <p className={styles.reviewsText}>
-                                    Far far away, behind the word mountains, far from the countries
-                                    Vokalia and Consonantia, there live the blind texts.Far far
-                                    away, behind the word mountains, far from the countries Vokalia
-                                    and Consonantia, there live the blind texts
-                                </p>
-                            )}
+                            {active.reviews && <Reviews product={product} />}
                         </div>
                     </div>
                 </div>

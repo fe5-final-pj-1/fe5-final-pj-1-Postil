@@ -52,7 +52,6 @@ function Footer() {
                     setIsText('Thank you for subscribing!');
                 }
             } catch (error) {
-                console.log(error);
                 openModal();
                 setEmailValue('');
                 setIsText('You are already subscribed!');
