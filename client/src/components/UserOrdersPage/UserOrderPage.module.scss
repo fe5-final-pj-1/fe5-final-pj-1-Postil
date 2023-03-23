@@ -81,3 +81,61 @@
     background: rgb(255, 255, 255);
     color: rgba(55, 63, 65, 1);
 }
+
+.products {
+    &Table {
+        width: 100%;
+        text-align: center;
+        @media only screen and (max-width: $bp-small) {
+            &Hide {
+                display: none;
+            }
+        }
+
+        & td {
+            padding: 0.5rem;
+            text-transform: capitalize;
+        }
+
+        & td:nth-child(2) {
+            display: flex;
+            align-items: center;
+            text-transform: capitalize;
+            gap: 1rem;
+        }
+
+        & td:nth-child(7) {
+            & span {
+                display: inline-block;
+                width: 2rem;
+                height: 2rem;
+                border-radius: 50%;
+            }
+        }
+
+        & td:last-child {
+            & a {
+                &:link,
+                &:active,
+                &:visited {
+                    @include abel-font-normal;
+                    text-transform: uppercase;
+                    color: $dark-color;
+                    border: $border-dark;
+                    padding: 2px 4px;
+                    transition: all 0.25s ease-in;
+                }
+
+                &:hover {
+                    background-color: $dark-color;
+                    color: $light-color;
+                }
+            }
+        }
+    }
+
+    &Img {
+        max-width: 4.5rem;
+        height: auto;
+    }
+}
