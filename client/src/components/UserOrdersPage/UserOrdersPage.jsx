@@ -27,7 +27,6 @@ function UserOrdersPage() {
             <div className="container">
                 <p className={styles.title}>My orders</p>
                 {[...orders].reverse().map((item, index) => {
-                    console.log(item);
                     return (
                         <div className={styles.boxInfo} key={index}>
                             <Button
