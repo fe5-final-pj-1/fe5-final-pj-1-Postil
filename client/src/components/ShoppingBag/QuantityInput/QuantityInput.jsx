@@ -4,11 +4,8 @@ import PropTypes from 'prop-types';
 import addProductToCart from 'api/addProductToCart';
 import decreaseProductQuantity from 'api/decreaseProductQuantity';
 import getCart from 'api/getCart';
-import deleteProductFromCart from 'api/deleteProductFromCart';
-import updateCart from 'api/updateCart';
 import getOneProduct from 'api/getOneProduct';
 import { useDispatch, useSelector } from 'react-redux';
-// eslint-disable-next-line no-unused-vars
 import { changeQuantity, decreaseProduct, itemAdded } from 'store/cartSlice';
 
 import Icon from 'components/Icon';
@@ -65,12 +62,6 @@ const QuantityInput = ({ id, quantity }) => {
         });
     };
 
-    const updateCartFunc = async () => {
-        const response = await deleteProductFromCart(id);
-        const cartItems = response.data.products;
-        updateCart({ products: [{ product: id, cartQuantity: cartQuantity }, ...cartItems] });
-    };
-
     const onBlurInputHandler = (e) => {
         e.stopPropagation();
         const currentValue = +e.currentTarget.value;
@@ -78,9 +69,6 @@ const QuantityInput = ({ id, quantity }) => {
             if (!currentValue) return 1;
             return prevState;
         });
-        if (isLogIn) {
-            updateCartFunc();
-        }
         dispatch(changeQuantity({ id, quantity: cartQuantity ? cartQuantity : 1 }));
     };
 
