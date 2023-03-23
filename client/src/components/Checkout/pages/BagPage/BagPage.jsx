@@ -45,7 +45,7 @@ const BagPage = () => {
     return (
         <>
             <TabsSection />
-            <div className={styles.mainContainer}>
+            <div className={styles.mainContainer} data-testid="bag-page">
                 <ul className={styles.itemsList}>
                     <h2 className="h2">SHOPPING BAG</h2>
 
