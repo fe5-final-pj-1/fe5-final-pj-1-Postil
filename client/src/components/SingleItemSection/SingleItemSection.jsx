@@ -15,10 +15,10 @@ import createCart from 'api/createCart';
 import deleteProductFromWishList from 'api/deleteProductFromWishList';
 import { Oval } from 'react-loader-spinner';
 import getOneProduct from 'api/getOneProduct';
+import Reviews from './Reviews';
 import classNames from 'classnames';
 
 const SingleItemSection = ({ product }) => {
-    console.log(product);
     const {
         _id,
         color,
@@ -41,7 +41,6 @@ const SingleItemSection = ({ product }) => {
     });
 
     const [favouritesClicked, setFavouritesClicked] = useState(false);
-    // eslint-disable-next-line no-unused-vars
     const [double, setDouble] = useState(false);
     const [wishlist, setWishlist] = useState([]);
 
@@ -268,7 +267,7 @@ const SingleItemSection = ({ product }) => {
                                 }
                             />
                             {active.description && (
-                                <p className={styles.reviewsText}>
+                                <p className={styles.descriptionText}>
                                     Far far away, behind the word mountains, far from the countries
                                     Vokalia and Consonantia, there live the blind texts.Far far
                                     away, behind the word mountains, far from the countries Vokalia
@@ -298,14 +297,7 @@ const SingleItemSection = ({ product }) => {
                                     </>
                                 }
                             />
-                            {active.reviews && (
-                                <p className={styles.reviewsText}>
-                                    Far far away, behind the word mountains, far from the countries
-                                    Vokalia and Consonantia, there live the blind texts.Far far
-                                    away, behind the word mountains, far from the countries Vokalia
-                                    and Consonantia, there live the blind texts
-                                </p>
-                            )}
+                            {active.reviews && <Reviews product={product} />}
                         </div>
                     </div>
                 </div>

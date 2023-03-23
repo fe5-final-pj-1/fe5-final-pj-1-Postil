@@ -1,0 +1,166 @@
+@import '../../../style/variables';
+@import '../../../style/mixins';
+
+.reviews {
+    padding: 2rem 0 0 3.3rem;
+
+    &Form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &FormEdit {
+        padding: 5px;
+    }
+
+    &TextArea {
+        border: $border-dark;
+        display: block;
+        width: 100%;
+        font-size: 1.8rem;
+        padding: 5px;
+        resize: none;
+        min-height: 12rem;
+    }
+
+    &Label {
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+    }
+
+    &Error {
+        font-size: 1.8rem;
+        color: #df2e2e;
+    }
+
+    &SubmitBtn,
+    &AddInfoBtn {
+        text-transform: uppercase;
+        border: $border-dark;
+        background-color: transparent;
+        padding: 1rem 1.8rem;
+        transition: all 0.2s ease-in;
+        margin-top: 1rem;
+        align-self: center;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1rem;
+            padding: 1rem 0.5rem;
+        }
+
+        &:hover {
+            background-color: $dark-color;
+            color: $light-color;
+        }
+    }
+
+    &Unauthorised {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: .5rem;
+        box-shadow: 0px 0px 5px $dark-color;
+    }
+
+    &AddInfo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .5rem;
+        box-shadow: 0px 0px 5px $dark-color;
+
+        &Message {
+            font-size: 1.5rem;
+        }
+
+        &Btn {
+            margin: 0;
+            padding: .5rem 1.2rem;
+        }
+
+    }
+
+    &Message {
+        margin-top: 1rem;
+        box-shadow: 0px 0px 5px $dark-color;
+        border-radius: 3px;
+
+        &Content{
+            display: flex;
+            flex-direction: column;
+        }
+
+        &Top {
+            display: flex;
+            padding: .5rem;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(138, 147, 148, .3);
+        }
+
+        &TopLeft {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.6rem;
+            gap: 1rem;
+        }
+
+        &TopRight {
+            color: $lightGrey;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        &Bottom{
+            padding: 1.5rem .5rem;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        &Avatar {
+            width: 3.8rem;
+            height: 3.8rem;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            display: inline-block;
+        }
+
+        &BtnEdit,
+        &BtnDelete {
+            background-color: transparent;
+            & svg {
+                fill: $lightGrey;
+                transition: fill .25s ease-in;
+
+                &:hover {
+                    fill: $dark-color;
+                }
+            }
+        }
+
+        &BtnDelete {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        &Admin {
+            color: #ff0000;
+        }
+    }
+
+    &NoReviews {
+        margin-top: 3rem;
+        text-align: center;
+        font-size: 1.8rem;
+    }
+}
+
+.commentLoader {
+    display: flex;
+    justify-content: center;
+    opacity: .5;
+}
