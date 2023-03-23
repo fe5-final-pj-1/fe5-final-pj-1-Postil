@@ -8,7 +8,7 @@ const PaymentOptionsPage = () => {
     return (
         <>
             <TabsSection />
-            <div className={styles.mainContainer}>
+            <div className={styles.mainContainer} data-testid="pay-page">
                 <PaymentSection />
                 <SummarySection />
             </div>
