@@ -112,11 +112,6 @@ function Footer() {
                                     Reviews
                                 </NavLink>
                             </li>
-                            <li className={FooterStyle.about_list_item}>
-                                <NavLink className={FooterStyle.links} to="shop" target="_top">
-                                    Blog
-                                </NavLink>
-                            </li>
                         </ul>
                         <div className={FooterStyle.contact}>
                             <h2 className={FooterStyle.contact_title}>Contact Us</h2>
