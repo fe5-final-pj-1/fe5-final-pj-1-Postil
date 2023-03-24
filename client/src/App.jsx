@@ -32,6 +32,7 @@ import AdminProductsEditRoute from 'routes/admin/AdminProductsEditRoute';
 import AdminEditOrderUserDataRoute from 'routes/admin/AdminEditOrderUserDataRoute';
 import AdminDashboardPartnersRoute from 'routes/admin/AdminDashboardPartnersRoute';
 import AdminDashboardReviewsRoute from 'routes/admin/AdminDashboardReviewsRoute';
+import UserReviewsPage from 'components/UserReviewsPage';
 
 const router = createBrowserRouter([
     {
@@ -98,6 +99,10 @@ const router = createBrowserRouter([
                     {
                         path: 'orders',
                         element: <UserOrdersPage />,
+                    },
+                    {
+                        path: 'reviews',
+                        element: <UserReviewsPage />,
                     },
                 ],
             },
