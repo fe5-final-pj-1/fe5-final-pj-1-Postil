@@ -29,7 +29,7 @@ function AdminDashboardReviews() {
     useEffect(() => {
         getAllComments().then((res) => {
             if (res.data) {
-                setReviews(res.data.reverse());
+                setReviews(res.data);
             }
             setIsLoaded(true);
         });
@@ -51,78 +51,80 @@ function AdminDashboardReviews() {
         );
     }
     return (
-        <div className={adminPanelStyles.reviewsWrapper}>
-            {reviews.reverse().map((review) => {
-                const date = new Date(review.date);
-                const dateNow = Date.now();
-                const time = date.getTime();
-                const isNew = dateNow - time > 7200000 ? false : true;
-                const day = date.getDate();
-                const month = date.getMonth();
-                const year = date.getFullYear();
-                return (
-                    <div className={adminPanelStyles.reviewsContainer} key={review._id}>
-                        <div className={adminPanelStyles.reviewsProductImage}>
-                            <Link to={`/catalog/${review.product._id}`}>
-                                <img
-                                    src={review.product.imageUrls[0]}
-                                    alt={`Product ${review.product._id}`}
-                                />
-                            </Link>
-                        </div>
-                        <div>
-                            <p className={adminPanelStyles.reviewsProductName}>
+        <div className={adminPanelStyles.reviews}>
+            <div className={adminPanelStyles.reviewsWrapper}>
+                {[...reviews].reverse().map((review) => {
+                    const date = new Date(review.date);
+                    const dateNow = Date.now();
+                    const time = date.getTime();
+                    const isNew = dateNow - time > 7200000 ? false : true;
+                    const day = date.getDate();
+                    const month = date.getMonth();
+                    const year = date.getFullYear();
+                    return (
+                        <div className={adminPanelStyles.reviewsContainer} key={review._id}>
+                            <div className={adminPanelStyles.reviewsProductImage}>
                                 <Link to={`/catalog/${review.product._id}`}>
-                                    {review.product.name}
+                                    <img
+                                        src={review.product.imageUrls[0]}
+                                        alt={`Product ${review.product._id}`}
+                                    />
                                 </Link>
-                            </p>
-                            <div className={adminPanelStyles.reviewsComment}>
-                                <p
-                                    className={
-                                        review.customer.isAdmin
-                                            ? classNames(
-                                                  adminPanelStyles.reviewsCommentName,
-                                                  adminPanelStyles.reviewsCommentNameAdmin,
-                                              )
-                                            : adminPanelStyles.reviewsCommentName
-                                    }
-                                >
-                                    {review.customer.firstName} {review.customer.lastName}
+                            </div>
+                            <div>
+                                <p className={adminPanelStyles.reviewsProductName}>
+                                    <Link to={`/catalog/${review.product._id}`}>
+                                        {review.product.name}
+                                    </Link>
                                 </p>
-                                <p className={adminPanelStyles.reviewsCommentText}>
-                                    {review.content}
-                                </p>
+                                <div className={adminPanelStyles.reviewsComment}>
+                                    <p
+                                        className={
+                                            review.customer.isAdmin
+                                                ? classNames(
+                                                      adminPanelStyles.reviewsCommentName,
+                                                      adminPanelStyles.reviewsCommentNameAdmin,
+                                                  )
+                                                : adminPanelStyles.reviewsCommentName
+                                        }
+                                    >
+                                        {review.customer.firstName} {review.customer.lastName}
+                                    </p>
+                                    <p className={adminPanelStyles.reviewsCommentText}>
+                                        {review.content}
+                                    </p>
+                                </div>
+                            </div>
+                            <div className={adminPanelStyles.reviewsInfo}>
+                                {isNew ? (
+                                    <div className={adminPanelStyles.reviewsNew}>New</div>
+                                ) : (
+                                    <div className={adminPanelStyles.reviewsDate}>
+                                        {day} {months[month]} {year}
+                                    </div>
+                                )}
+                                <Button
+                                    className={adminPanelStyles.reviewsBtnDelete}
+                                    handleClick={() => {
+                                        setIsLoaded(false);
+                                        deleteComment(review._id).then(() => {
+                                            getAllComments().then((res) => {
+                                                if (res.data) {
+                                                    setReviews(res.data);
+                                                    setIsLoaded(true);
+                                                } else {
+                                                    setReviews([]);
+                                                }
+                                            });
+                                        });
+                                    }}
+                                    text={<Icon type="delete" />}
+                                />
                             </div>
                         </div>
-                        <div className={adminPanelStyles.reviewsInfo}>
-                            {isNew ? (
-                                <div className={adminPanelStyles.reviewsNew}>New</div>
-                            ) : (
-                                <div className={adminPanelStyles.reviewsDate}>
-                                    {day} {months[month]} {year}
-                                </div>
-                            )}
-                            <Button
-                                className={adminPanelStyles.reviewsBtnDelete}
-                                handleClick={() => {
-                                    setIsLoaded(false);
-                                    deleteComment(review._id).then(() => {
-                                        getAllComments().then((res) => {
-                                            if (res.data) {
-                                                setReviews(res.data.reverse());
-                                                setIsLoaded(true);
-                                            } else {
-                                                setReviews([]);
-                                            }
-                                        });
-                                    });
-                                }}
-                                text={<Icon type="delete" />}
-                            />
-                        </div>
-                    </div>
-                );
-            })}
+                    );
+                })}
+            </div>
         </div>
     );
 }

@@ -32,7 +32,7 @@ function UserReviewsPage() {
     ];
     useEffect(() => {
         getCustomerComments(decodedToken.id).then((res) => {
-            if (res) setReviews(res.data.reverse());
+            if (res) setReviews(res.data);
             setIsLoaded(true);
         });
     }, [decodedToken.id]);
@@ -58,7 +58,7 @@ function UserReviewsPage() {
                 <h1 className={classNames(styles.title, 'h2')}>My Reviwes</h1>
                 {!reviews.length && <h2 className={styles.noReviews}>No reviews</h2>}
                 <div className={styles.reviewsWrapper}>
-                    {reviews.reverse().map((review) => {
+                    {[...reviews].reverse().map((review) => {
                         const date = new Date(review.date);
                         const dateNow = Date.now();
                         const time = date.getTime();
@@ -115,7 +115,7 @@ function UserReviewsPage() {
                                             deleteComment(review._id).then(() => {
                                                 getCustomerComments(decodedToken.id).then((res) => {
                                                     if (res.data) {
-                                                        setReviews(res.data.reverse());
+                                                        setReviews(res.data);
                                                         setIsLoaded(true);
                                                     } else {
                                                         setReviews([]);
