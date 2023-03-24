@@ -30,6 +30,9 @@ import AdminProductsRoute from 'routes/admin/AdminProductsRoute';
 import AdminProductsAddRoute from 'routes/admin/AdminProductsAddRoute';
 import AdminProductsEditRoute from 'routes/admin/AdminProductsEditRoute';
 import AdminEditOrderUserDataRoute from 'routes/admin/AdminEditOrderUserDataRoute';
+import AdminDashboardPartnersRoute from 'routes/admin/AdminDashboardPartnersRoute';
+import AdminDashboardReviewsRoute from 'routes/admin/AdminDashboardReviewsRoute';
+import UserReviewsPage from 'components/UserReviewsPage';
 
 const router = createBrowserRouter([
     {
@@ -78,6 +81,10 @@ const router = createBrowserRouter([
                 element: <AboutRoute />,
             },
             {
+                path: 'success',
+                element: <EmptyList />,
+            },
+            {
                 path: 'user',
                 element: <ProtectedUserRoutes />,
                 children: [
@@ -92,6 +99,10 @@ const router = createBrowserRouter([
                     {
                         path: 'orders',
                         element: <UserOrdersPage />,
+                    },
+                    {
+                        path: 'reviews',
+                        element: <UserReviewsPage />,
                     },
                 ],
             },
@@ -150,8 +161,16 @@ const router = createBrowserRouter([
                                 element: <AdminDashboardPromotionsRoute />,
                             },
                             {
+                                path: 'reviews',
+                                element: <AdminDashboardReviewsRoute />,
+                            },
+                            {
                                 path: 'subscribers',
                                 element: <AdminDashboardSubscribersRoute />,
+                            },
+                            {
+                                path: 'partners',
+                                element: <AdminDashboardPartnersRoute />,
                             },
                         ],
                     },
@@ -176,10 +195,6 @@ const router = createBrowserRouter([
                     {
                         path: 'options',
                         element: <PaymentOptionsPage />,
-                    },
-                    {
-                        path: 'success',
-                        element: <EmptyList />,
                     },
                 ],
             },

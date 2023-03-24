@@ -1,0 +1,54 @@
+@import '../../../../style/mixins';
+@import '../../../../style/variables';
+
+.AdminProducts {
+
+    &ShowSwitcher {
+        position: absolute;
+        top: -3.7rem;
+        right: 0;
+        @media only screen and (max-width: $bp-small) {
+            top: -4.2rem;
+        }
+    }
+
+    &ShowBtn {
+        @include abel-font-normal;
+        font-size: 1.6rem;
+        cursor: pointer;
+        background-color: transparent;
+        border: $border-dark;
+        transition: all .2s;
+
+        &:hover {
+            background-color: $dark-color;
+            color: $light-color;
+        }
+
+        &:disabled {
+            color: $lightGrey;
+            background-color: transparent;
+            border: $border-grey;
+            @media only screen and (max-width: $bp-medium) {
+                display: none;
+            }
+        }
+
+        &List {
+            padding: .6rem 1.5rem;
+            margin-right: .5rem;
+            @media only screen and (max-width: $bp-small) {
+                padding: .9rem .8rem;
+            }
+        }
+
+        &Table {
+            padding: .6rem 1rem;
+            @media only screen and (max-width: $bp-small) {
+                padding: .9rem .8rem;
+            }
+        }
+
+    }
+
+}

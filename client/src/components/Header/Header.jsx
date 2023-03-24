@@ -177,15 +177,6 @@ function Header() {
                                     Contact
                                 </NavLink>
                             </li>
-                            <li className={HeaderMain.header_list_item}>
-                                <NavLink
-                                    onClick={() => setBurgerShow(false)}
-                                    to="blog"
-                                    className={HeaderMain.header_list_item_link}
-                                >
-                                    Blog
-                                </NavLink>
-                            </li>
                         </ul>
                     </nav>
                     <Search className={HeaderMain.group} />

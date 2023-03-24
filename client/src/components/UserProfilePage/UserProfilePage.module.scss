@@ -9,7 +9,43 @@
     text-transform: uppercase;
     margin-top: 2rem;
 }
-
+.userPhoto {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 3rem auto 1rem auto;
+    width: 12rem;
+    height: 12rem;
+    background-color: #99b0b6;
+    border-radius: 50%;
+    border: 0.1rem solid #373f41;
+    background-size: cover;
+    background-repeat: no-repeat;
+    position: relative;
+    &Text {
+        color: #ffffff;
+        font-weight: 700;
+        font-size: $titles-fs;
+        text-transform: uppercase;
+    }
+    & .editPhotoBtn {
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        width: 3rem;
+        height: 3rem;
+        background-color: transparent;
+        & svg {
+            width: 3rem;
+            height: 3rem;
+        }
+    }
+}
+.userPrevEmail {
+    text-align: center;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
 .boxInfo {
     margin: 2rem 0 4rem 0;
     padding: 1rem;
@@ -43,28 +79,49 @@
     justify-items: center;
     gap: 3rem;
     margin: 1rem 0;
+    @media only screen and (max-width: $bp-medium) {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    @media only screen and (max-width: $bp-small) {
+        grid-template-columns: 1fr;
+    }
+
+    & input,
+    & select {
+        text-align: center;
+        color: #373f41;
+        font-size: 1.8rem;
+        line-height: 3rem;
+        background-color: transparent;
+        border: 0.1rem solid $dark-color;
+        border-radius: 1rem;
+    }
+    & select {
+        padding: 0.4rem 0;
+    }
 }
 .personalDataItem {
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    text-align: center;
     color: $dark-color;
     font-size: 1.8rem;
-    line-height: 3rem;
+    line-height: 2rem;
+    width: 100%;
 }
 .personalDataPlaseholder {
     color: rgba(92, 94, 96, 0.5);
     font-size: 1.4rem;
-    margin-bottom: -1rem;
 }
-.contactList{
+.contactList {
     display: flex;
     flex-wrap: wrap;
     gap: 30%;
     justify-content: center;
     margin: 1rem 0;
-}    
-.contactItem{
+}
+.contactItem {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -72,7 +129,7 @@
     font-size: 1.8rem;
     line-height: 3rem;
 }
-.editBtn{
+.editBtn {
     margin: 1rem auto;
     @include abel-font-normal;
     display: block;
@@ -83,9 +140,67 @@
     box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
     color: rgb(255, 255, 255);
     border-radius: 3rem;
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
 }
 .editBtn:hover {
     background: rgb(255, 255, 255);
     color: rgba(55, 63, 65, 1);
+}
+
+.adressForm {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 3rem;
+    margin: 1rem 0;
+    @media only screen and (max-width: $bp-small) {
+        grid-template-columns: 1fr;
+    }
+    & input,
+    & select {
+        text-align: center;
+        color: #373f41;
+        font-size: 1.8rem;
+        line-height: 3rem;
+        background-color: transparent;
+        border: 0.1rem solid $dark-color;
+        border-radius: 1rem;
+    }
+    & select {
+        padding: 0.4rem 0;
+    }
+}
+.formPhoto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    & label {
+        width: 300px;
+        & input {
+            text-align: center;
+            color: #373f41;
+            font-size: 1.8rem;
+            line-height: 3rem;
+            background-color: transparent;
+            border: 0.1rem solid $dark-color;
+            border-radius: 1rem;
+        }
+    }
+    & button {
+        z-index: 2;
+    }
+}
+.adressForm,
+.personalDataList,
+.formPhoto {
+    & label {
+        position: relative;
+        & p {
+            position: absolute;
+            top: 0;
+            right: 0;
+            color: #ff0000;
+            font-size: 1.2rem;
+        }
+    }
 }

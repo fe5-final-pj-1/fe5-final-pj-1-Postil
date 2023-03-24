@@ -1,28 +1,65 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import Icon from '../Icon/Icon';
 import FooterStyle from './Footer.module.scss';
 import addSubscriber from '../../api/addSubscriber';
+import Button from 'components/Button';
+import InfoModal from '../InfoModal';
 
 function Footer() {
-    let inputValue;
+    const [isOpen, setIsOpen] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
+    const [emailValue, setEmailValue] = useState('');
+    const [isText, setIsText] = useState('');
+
+    const isValidEmail = (email) => {
+        const re = /\S+@\S+\.\S+/;
+        return re.test(email);
+    };
+
+    const openModal = () => {
+        setIsOpen(true);
+    };
+    const closeModal = () => {
+        setIsOpen(false);
+    };
     const getValue = (evt) => {
         evt.preventDefault();
-        inputValue = evt.target.value;
+        setEmailValue(evt.target.value);
         evt.target.value = '';
+    };
+    const getFocus = (evt) => {
+        evt.preventDefault();
+        setErrorMessage('');
     };
     const postForm = (evt) => {
         evt.preventDefault();
+        if (!isValidEmail(emailValue)) {
+            setErrorMessage('Please enter a valid email address.');
+            return;
+        }
         const newSubscriber = {
-            email: inputValue,
+            email: emailValue,
             letterSubject: 'Greetings from Postil team',
             letterHtml:
                 "<!DOCTYPE html><html lang='en'> <head> <meta charset='UTF-8' /> <meta name='viewport' content='width=device-width, initial-scale=1.0' /> <meta http-equiv='X-UA-Compatible' content='ie=edge' /> <title>Document</title> <style> p { margin-top:10px; } </style> </head> <body> <h2>Thank you for subscribe!</h2> <p>We will send you only actual info.</p> </body></html>",
         };
-        addSubscriber(newSubscriber).then((res) => console.log(res.data));
+        addSubscriber(newSubscriber).then((res) => {
+            try {
+                if (res.data) {
+                    openModal();
+                    setEmailValue('');
+                    setIsText('Thank you for subscribing!');
+                }
+            } catch (error) {
+                openModal();
+                setEmailValue('');
+                setIsText('You are already subscribed!');
+            }
+        });
     };
     return (
-        <footer className={FooterStyle.wrapper}>
+        <footer className={FooterStyle.wrapper} data-testid="footer">
             <div className={FooterStyle.top}>
                 <div className="container">
                     <nav className={FooterStyle.nav}>
@@ -74,11 +111,6 @@ function Footer() {
                                     Reviews
                                 </NavLink>
                             </li>
-                            <li className={FooterStyle.about_list_item}>
-                                <NavLink className={FooterStyle.links} to="shop" target="_top">
-                                    Blog
-                                </NavLink>
-                            </li>
                         </ul>
                         <div className={FooterStyle.contact}>
                             <h2 className={FooterStyle.contact_title}>Contact Us</h2>
@@ -104,12 +136,16 @@ function Footer() {
                                     "Let's get personal! We'll send you only the good stuff: Exclusive early access to Sale, new arrivals and promotions. No nasties."
                                 }
                             </p>
+                            {errorMessage && (
+                                <span className={FooterStyle.error_message}>{errorMessage}</span>
+                            )}
                             <form
                                 className={FooterStyle.subscription_input}
                                 onSubmit={postForm}
                                 role="presentation"
                             >
                                 <input
+                                    onFocus={getFocus}
                                     onBlur={getValue}
                                     type="email"
                                     className={FooterStyle.input}
@@ -118,12 +154,13 @@ function Footer() {
                                     placeholder="e-mail"
                                     autoComplete="off"
                                 />
-                                <input
+                                <Button
                                     className={FooterStyle.button_submit}
-                                    value="Send"
+                                    text="Send"
                                     type="submit"
                                 />
                             </form>
+                            <InfoModal text={isText} isOpen={isOpen} closeModal={closeModal} />
                             <div className={FooterStyle.promotion_btn}>
                                 <p className={FooterStyle.followUs}>Follow Us</p>
                                 <ul className={FooterStyle.social_list}>

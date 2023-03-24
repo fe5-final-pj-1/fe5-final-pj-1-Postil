@@ -7,19 +7,16 @@ import Icon from '../../Icon/Icon';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import { userLogOut } from '../../../store/loginSlice';
-import setAuthToken from '../../../api/setAuthToken';
 
 function Profile() {
     const [user, setUser] = useState({});
     const isLogIn = useSelector((state) => state.store.login.isLogIn, shallowEqual);
-    const token = useSelector((state) => state.store.login.token, shallowEqual);
     const dispatch = useDispatch();
     useEffect(() => {
         if (isLogIn) {
-            setAuthToken(token);
             getCustomer().then((res) => setUser(res.data));
         }
-    }, [isLogIn, token]);
+    }, [isLogIn]);
     return (
         <div className={profileStyles.userMenu}>
             {user.avatarUrl ? (
@@ -50,6 +47,12 @@ function Profile() {
                                 Orders
                             </Link>
                         </li>
+                        <li className={profileStyles.userMenu_list_item}>
+                            <Icon type="chat-small" />
+                            <Link className={profileStyles.userMenulinkText} to="user/reviews">
+                                Reviews
+                            </Link>
+                        </li>
                         {user.isAdmin && (
                             <li className={profileStyles.userMenu_list_item}>
                                 <Icon type="key" />
@@ -65,7 +68,6 @@ function Profile() {
                                 text="Log out"
                                 handleClick={() => {
                                     dispatch(userLogOut());
-                                    setAuthToken(token);
                                     setUser({});
                                 }}
                             ></Button>

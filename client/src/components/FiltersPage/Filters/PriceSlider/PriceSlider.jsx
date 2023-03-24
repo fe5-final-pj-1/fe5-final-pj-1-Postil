@@ -1,3 +1,4 @@
+import Button from 'components/Button';
 import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import React, { useState } from 'react';
@@ -136,7 +137,7 @@ function PriceSlider() {
                         />
                     </div>
                 </div>
-                <input className={styles.submitBtn} type="submit" value="OK" />
+                <Button className={styles.submitBtn} type="submit" text="OK" />
             </form>
         </div>
     );

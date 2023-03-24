@@ -1,9 +1,8 @@
-import axios from 'axios';
+import { axiosInstanceURL } from './_axiosInstanceURL';
 
 async function cancelOrder(orderID) {
-    const REACT_APP_URL_API = process.env.REACT_APP_URL_API;
     try {
-        const response = await axios.put(`${REACT_APP_URL_API}/orders/cancel/${orderID}`);
+        const response = await axiosInstanceURL.put(`/orders/cancel/${orderID}`);
         return response;
     } catch (error) {
         console.error(error.message);

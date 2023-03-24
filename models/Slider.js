@@ -29,6 +29,10 @@ const SliderSchema = new Schema(
     date: {
       type: Date,
       default: Date.now
+    },
+    order: {
+      type: Number,
+      required: true
     }
   },
   { strict: false }

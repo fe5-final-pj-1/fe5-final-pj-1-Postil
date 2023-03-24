@@ -10,6 +10,7 @@ import { useDispatch } from 'react-redux';
 import loginCustomer from '../../api/loginCustomer';
 import createCustomer from '../../api/createCustomer';
 import { userLogIn } from '../../store/loginSlice';
+import jwt_decode from 'jwt-decode';
 import addSubscriber from 'api/addSubscriber';
 
 function Modal() {
@@ -86,7 +87,15 @@ function Modal() {
                       if (res) {
                           loginCustomer({ loginOrEmail: email, password: password }).then((res) => {
                               const token = res.data.token;
-                              dispatch(userLogIn(token));
+                              const [, tokenStr] = token.split(' ');
+                              const decodedTokenStr = jwt_decode(tokenStr);
+                              const expirationTime = decodedTokenStr.exp;
+                              dispatch(
+                                  userLogIn({
+                                      token,
+                                      expirationTime,
+                                  }),
+                              );
                               dispatch(hideModal());
                               if (subscribe) {
                                   const newSubscriber = {
@@ -106,7 +115,15 @@ function Modal() {
                 : loginCustomer({ loginOrEmail: email, password: password }).then((res) => {
                       if (res) {
                           const token = res.data.token;
-                          dispatch(userLogIn(token));
+                          const [, tokenStr] = token.split(' ');
+                          const decodedTokenStr = jwt_decode(tokenStr);
+                          const expirationTime = decodedTokenStr.exp;
+                          dispatch(
+                              userLogIn({
+                                  token,
+                                  expirationTime,
+                              }),
+                          );
                           dispatch(hideModal());
                       } else {
                           setLogInError('Incorect password or email');
@@ -136,8 +153,9 @@ function Modal() {
                             text="LOG IN"
                         />
                     </div>
-                    {!sign && logInError && <p className={styles.logInError}>{logInError}</p>}
                     <form onSubmit={formik.handleSubmit}>
+                        {!sign && logInError && <p className={styles.logInError}>{logInError}</p>}
+
                         <div className={styles.valuesInputs}>
                             {sign && (
                                 <label>
@@ -239,7 +257,7 @@ function Modal() {
                             <Link to="/terms&policy">Terms of Service</Link> and{' '}
                             <Link to="/terms&policy">Privacy Policy</Link>
                         </p>
-                        <input type="submit" value={sign ? 'SIGN UP' : 'LOG IN'} />
+                        <Button type="submit" text={sign ? 'SIGN UP' : 'LOG IN'} />
                     </form>
                     {sign && (
                         <div className={styles.social}>

@@ -8,7 +8,7 @@ const ShippingDetailsPage = () => {
     return (
         <>
             <TabsSection />
-            <div className={styles.mainContainer}>
+            <div className={styles.mainContainer} data-testid="shipping-page">
                 <Form />
                 <SummarySection type="shipping" />
             </div>

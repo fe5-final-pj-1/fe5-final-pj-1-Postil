@@ -80,6 +80,20 @@ function AdminPanel() {
                         <span>Promotions</span>
                     </NavLink>
                     <NavLink
+                        to="/admin/dashboard/reviews"
+                        className={({ isActive }) =>
+                            isActive
+                                ? classNames(
+                                      adminPanelStyles.navigationLink,
+                                      adminPanelStyles.navigationLinkActive,
+                                  )
+                                : adminPanelStyles.navigationLink
+                        }
+                    >
+                        <Icon type="chat-small" />
+                        <span>Reviews</span>
+                    </NavLink>
+                    <NavLink
                         to="/admin/dashboard/subscribers"
                         className={({ isActive }) =>
                             isActive
@@ -92,6 +106,20 @@ function AdminPanel() {
                     >
                         <Icon type="send" />
                         <span>Subscribers</span>
+                    </NavLink>
+                    <NavLink
+                        to="/admin/dashboard/partners"
+                        className={({ isActive }) =>
+                            isActive
+                                ? classNames(
+                                      adminPanelStyles.navigationLink,
+                                      adminPanelStyles.navigationLinkActive,
+                                  )
+                                : adminPanelStyles.navigationLink
+                        }
+                    >
+                        <Icon type="partners" />
+                        <span>Partners</span>
                     </NavLink>
                 </div>
                 <div className={adminPanelStyles.content}>

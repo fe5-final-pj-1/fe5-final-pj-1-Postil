@@ -5,13 +5,7 @@ const _ = require("lodash");
 exports.addComment = (req, res, next) => {
   const commentData = _.cloneDeep(req.body);
   commentData.customer = req.user.id;
-  const newComment = new Comment(queryCreator(commentData));
-
-  newComment
-    .populate("product")
-    .populate("category")
-    .populate("customer")
-    .execPopulate();
+  const newComment = new Comment(commentData);
 
   newComment
     .save()
@@ -33,15 +27,14 @@ exports.updateComment = (req, res, next) => {
       } else {
         const commentData = _.cloneDeep(req.body);
         const updatedComment = queryCreator(commentData);
-
         Comment.findOneAndUpdate(
           { _id: req.params.id },
           { $set: updatedComment },
           { new: true }
         )
-          .populate("product")
-          .populate("category")
-          .populate("customer")
+          // .populate("product")
+          // .populate("category")
+          // .populate("customer")
           .then(comment => res.json(comment))
           .catch(err =>
             res.status(400).json({
