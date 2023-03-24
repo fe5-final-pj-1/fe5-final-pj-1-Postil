@@ -47,6 +47,12 @@ function Profile() {
                                 Orders
                             </Link>
                         </li>
+                        <li className={profileStyles.userMenu_list_item}>
+                            <Icon type="chat-small" />
+                            <Link className={profileStyles.userMenulinkText} to="user/reviews">
+                                Reviews
+                            </Link>
+                        </li>
                         {user.isAdmin && (
                             <li className={profileStyles.userMenu_list_item}>
                                 <Icon type="key" />

@@ -46,8 +46,16 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     justify-items: center;
-    gap: 3rem;
-    margin: 1rem 0;
+    gap: 2rem;
+    margin: 1rem 0 3rem 0;
+    & .orderDataItem:first-child {
+        grid-column: 1 / 3;
+        grid-row: 1;
+    }
+    & .orderDataItem:nth-child(2) {
+        grid-column: 2 / 4;
+        grid-row: 1;
+    }
 }
 .orderDataItem {
     display: flex;
@@ -81,7 +89,12 @@
     background: rgb(255, 255, 255);
     color: rgba(55, 63, 65, 1);
 }
-
+.noOrders {
+    margin: 3rem 0;
+    @include muli-font-normal;
+    text-align: center;
+    font-size: $subtitles-fs;
+}
 .products {
     &Table {
         width: 100%;
@@ -100,9 +113,11 @@
         & td:nth-child(2) {
             display: flex;
             align-items: center;
-            justify-content: center;
             text-transform: capitalize;
             gap: 1rem;
+            & span {
+                text-align: start;
+            }
         }
 
         & td:nth-child(7) {
@@ -139,4 +154,11 @@
         max-width: 4.5rem;
         height: auto;
     }
+}
+
+.loader {
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    opacity: 0.7;
 }

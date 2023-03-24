@@ -1,6 +1,6 @@
-/* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
 import styles from './UserOrderPage.module.scss';
+import { Oval } from 'react-loader-spinner';
 import Button from '../Button';
 import Icon from '../Icon/Icon';
 import getCustomerOrder from 'api/getCustomerOrder';
@@ -8,9 +8,13 @@ import getCustomerOrder from 'api/getCustomerOrder';
 function UserOrdersPage() {
     const [active, setActive] = useState({});
     const [orders, setOrders] = useState([]);
+    const [isLoaded, setIsLoaded] = useState(false);
 
     useEffect(() => {
-        getCustomerOrder().then((res) => setOrders(res.data));
+        getCustomerOrder().then((res) => {
+            if (res) setOrders(res.data);
+            setIsLoaded(true);
+        });
     }, []);
     useEffect(() => {
         const ordersTabs = orders.map((item) => item.customOrderNumder);
@@ -21,11 +25,27 @@ function UserOrdersPage() {
         }
         setActive(activeTabs);
     }, [orders]);
+    if (!isLoaded)
+        return (
+            <Oval
+                height={130}
+                width={130}
+                color="#373F41"
+                wrapperStyle={{}}
+                wrapperClass={styles.loader}
+                visible={true}
+                ariaLabel="oval-loading"
+                secondaryColor="#4fa94d"
+                strokeWidth={2}
+                strokeWidthSecondary={2}
+            />
+        );
 
     return (
         <main>
             <div className="container">
                 <p className={styles.title}>My orders</p>
+                {!orders.length && <h2 className={styles.noOrders}>No Orders</h2>}
                 {[...orders].reverse().map((item, index) => {
                     return (
                         <div className={styles.boxInfo} key={index}>
@@ -63,6 +83,20 @@ function UserOrdersPage() {
                                                     Status
                                                 </span>
                                                 {item.status}
+                                            </li>
+                                            <li className={styles.orderDataItem}>
+                                                <span className={styles.orderDataPlaseholder}>
+                                                    shipping cost
+                                                </span>
+                                                {item.shipping === 0
+                                                    ? 'FREE'
+                                                    : `$ ${item.shipping}`}
+                                            </li>
+                                            <li className={styles.orderDataItem}>
+                                                <span className={styles.orderDataPlaseholder}>
+                                                    taxes(10%)
+                                                </span>
+                                                $ {item.totalSum * 0.1}
                                             </li>
                                             <li className={styles.orderDataItem}>
                                                 <span className={styles.orderDataPlaseholder}>

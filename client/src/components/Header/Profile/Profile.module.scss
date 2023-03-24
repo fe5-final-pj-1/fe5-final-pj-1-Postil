@@ -33,9 +33,9 @@
 }
 
 .dropUserMenuContent {
-    border-top: #373F41 0.5rem solid;
+    border-top: #373f41 0.5rem solid;
     background-color: rgb(255, 255, 255);
-    padding-bottom: .5rem;
+    padding-bottom: 0.5rem;
 }
 
 .userMenu:hover > .dropUserMenu {
@@ -56,9 +56,10 @@
     gap: 1.5rem;
     width: max-content;
     font-size: $text-fs;
-    
+
     & svg {
         height: 2rem;
+        width: 3rem;
     }
 }
 .userMenulinkText {
@@ -71,8 +72,8 @@
     }
 
     &:hover {
-           font-weight: 700;
-        }
+        font-weight: 700;
+    }
 }
 
 .userMenuLogOut {
@@ -81,8 +82,8 @@
     font-size: 1.6rem;
 
     &:hover {
-           font-weight: 700;
-        }
+        font-weight: 700;
+    }
 }
 
 .avatar {

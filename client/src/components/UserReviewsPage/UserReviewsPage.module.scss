@@ -1,0 +1,134 @@
+@import 'style/_variables';
+@import 'style/_mixins';
+
+.container {
+    @include content-container;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+}
+.title {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+.noReviews {
+    @include muli-font-normal;
+    text-align: center;
+    font-size: $subtitles-fs;
+}
+.reviews {
+    &Wrapper {
+        padding: 1rem;
+        display: flex;
+        justify-content: flex-start;
+        align-items: stretch;
+        flex-wrap: wrap;
+        min-height: 80vh;
+        gap: 1rem;
+        @media only screen and (max-width: $bp-medium) {
+            justify-content: center;
+        }
+    }
+
+    &Container {
+        display: flex;
+        flex: 1 1 calc(50% - 1rem);
+        max-width: calc(50% - 1rem);
+        align-items: center;
+        padding: 1rem 0.5rem;
+        gap: 2rem;
+        position: relative;
+        box-shadow: 0px 0px 5px $dark-color;
+        @media only screen and (max-width: $bp-medium) {
+            flex: 80%;
+            max-width: 80%;
+        }
+        @media only screen and (max-width: $bp-small) {
+            flex: 100%;
+            max-width: 100%;
+        }
+    }
+
+    &ProductImage {
+        border: 3px solid $dark-color;
+        transition: transform 0.25s ease-in;
+
+        &:hover {
+            transform: scale(1.05);
+        }
+
+        & img {
+            width: 8rem;
+            height: 8rem;
+        }
+    }
+
+    &ProductName {
+        text-transform: capitalize;
+        margin-bottom: 1rem;
+        & a {
+            color: $dark-color;
+            @include muli-font-semibold;
+            letter-spacing: 2px;
+
+            &:hover {
+                text-decoration: underline;
+            }
+        }
+    }
+
+    &Comment {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+
+        &Name {
+            font-weight: 600;
+        }
+
+        &NameAdmin {
+            color: #ff0000;
+        }
+
+        &Text {
+            padding: 0.5rem;
+            padding-left: 0;
+            color: $lightGrey;
+        }
+    }
+
+    &Info {
+        position: absolute;
+        top: 1rem;
+        right: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    &BtnDelete {
+        background-color: transparent;
+        transition: transform 0.25s ease-in;
+
+        &:hover {
+            transform: scale(1.2);
+        }
+    }
+
+    &Date {
+        color: $lightGrey;
+        font-size: 1rem;
+    }
+
+    &New {
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #ff0000;
+        margin-bottom: 0.5rem;
+    }
+}
+.loader {
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+  opacity: .7;
+}
