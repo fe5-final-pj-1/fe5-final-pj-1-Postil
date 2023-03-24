@@ -22,7 +22,6 @@
         justify-content: flex-start;
         align-items: stretch;
         flex-wrap: wrap;
-        min-height: 80vh;
         gap: 1rem;
         @media only screen and (max-width: $bp-medium) {
             justify-content: center;
