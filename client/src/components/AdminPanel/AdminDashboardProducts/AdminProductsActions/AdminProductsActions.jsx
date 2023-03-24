@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import adminPanelStyles from './AdminProductsActions.module.scss';
 import { useFormik } from 'formik';
-import { useParams } from 'react-router-dom';
+import { useParams, Navigate } from 'react-router-dom';
 import getAllProducts from 'api/getAllProducts';
 import getOneProduct from 'api/getOneProduct';
 import updateOneProduct from 'api/updateOneProduct';
@@ -13,6 +13,7 @@ import { Oval } from 'react-loader-spinner';
 
 function AdminProductsActions({ type }) {
     const [isLoaded, setIsLoaded] = useState(false);
+    const [needNavigate, setNeedNavigate] = useState(false);
     const [product, setProduct] = useState('');
     let { productId } = useParams();
     useEffect(() => {
@@ -32,7 +33,8 @@ function AdminProductsActions({ type }) {
                 setIsLoaded(true);
             });
         }
-    });
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, []);
     const formik = useFormik({
         enableReinitialize: type !== 'edit' ? false : true,
         initialValues: {
@@ -99,12 +101,22 @@ function AdminProductsActions({ type }) {
             };
             setIsLoaded(false);
             if (type !== 'edit') {
-                addNewProduct(data).then(() => setIsLoaded(true));
+                addNewProduct(data).then(() => {
+                    setNeedNavigate(true);
+                });
             } else {
-                updateOneProduct(product._id, data);
+                updateOneProduct(product._id, data).then(() => {
+                    getOneProduct(productId).then((res) => {
+                        setProduct(res.data);
+                        setIsLoaded(true);
+                    });
+                });
             }
         },
     });
+    if (needNavigate) {
+        return <Navigate to="/admin/dashboard/products" />;
+    }
     if (!isLoaded) {
         return (
             <Oval
@@ -199,7 +211,7 @@ function AdminProductsActions({ type }) {
                     <option value="kitchen">Kitchen</option>
                     <option value="bathroom">Bathroom</option>
                     <option value="loungewear">Loungewear</option>
-                    <option value="Sale">Sale</option>
+                    <option value="sale">Sale</option>
                 </select>
 
                 <label className={adminPanelStyles.formLabel} htmlFor="imageUrls">

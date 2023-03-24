@@ -31,6 +31,7 @@ import AdminProductsAddRoute from 'routes/admin/AdminProductsAddRoute';
 import AdminProductsEditRoute from 'routes/admin/AdminProductsEditRoute';
 import AdminEditOrderUserDataRoute from 'routes/admin/AdminEditOrderUserDataRoute';
 import AdminDashboardPartnersRoute from 'routes/admin/AdminDashboardPartnersRoute';
+import AdminDashboardReviewsRoute from 'routes/admin/AdminDashboardReviewsRoute';
 
 const router = createBrowserRouter([
     {
@@ -153,6 +154,10 @@ const router = createBrowserRouter([
                             {
                                 path: 'promotions',
                                 element: <AdminDashboardPromotionsRoute />,
+                            },
+                            {
+                                path: 'reviews',
+                                element: <AdminDashboardReviewsRoute />,
                             },
                             {
                                 path: 'subscribers',

@@ -16,7 +16,7 @@ function AdminProductsShowTable() {
             setProducts(res.data);
             setIsLoaded(true);
         });
-    });
+    }, []);
     if (!isLoaded) {
         return (
             <Oval
@@ -69,7 +69,16 @@ function AdminProductsShowTable() {
                             <td className={adminPanelStyles.AdminProductsMediumNone}>
                                 {product.categories}
                             </td>
-                            <td className={adminPanelStyles.AdminProductsMediumNone}>
+                            <td
+                                className={
+                                    product.quantity < 10
+                                        ? classNames(
+                                              adminPanelStyles.AdminProductsMediumNone,
+                                              adminPanelStyles.AdminProductsTableFew,
+                                          )
+                                        : adminPanelStyles.AdminProductsMediumNone
+                                }
+                            >
                                 {product.quantity}
                             </td>
                             <td className={adminPanelStyles.AdminProductsMediumNone}>
