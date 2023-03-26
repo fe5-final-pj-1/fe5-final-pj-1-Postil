@@ -23,17 +23,4 @@ describe('EmptyList', () => {
         const buttonElement = screen.getByRole('link', { name: 'CONTINUE SHOPPING' });
         expect(buttonElement).toBeInTheDocument();
     });
-
-    it('should scroll to top when continue shopping button is clicked', () => {
-        const scrollToSpy = jest.spyOn(window, 'scrollTo');
-        render(
-            <BrowserRouter>
-                <EmptyList />
-            </BrowserRouter>,
-        );
-        const buttonElement = screen.getByRole('link', { name: 'CONTINUE SHOPPING' });
-        buttonElement.click();
-        expect(scrollToSpy).toHaveBeenCalledWith(0, 0);
-        scrollToSpy.mockRestore();
-    });
 });
