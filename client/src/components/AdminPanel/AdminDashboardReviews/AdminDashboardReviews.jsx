@@ -1,18 +1,12 @@
 import React, { useState, useEffect } from 'react';
-// eslint-disable-next-line no-unused-vars
 import classNames from 'classnames';
-// eslint-disable-next-line no-unused-vars
 import Button from 'components/Button';
-// eslint-disable-next-line no-unused-vars
 import Icon from 'components/Icon';
 import adminPanelStyles from './AdminDashboardReviews.module.scss';
-// eslint-disable-next-line no-unused-vars
 import { Link } from 'react-router-dom';
 import getLimitedComments from 'api/getLimitedComments';
 import { useInView } from 'react-intersection-observer';
-// eslint-disable-next-line no-unused-vars
 import deleteComment from 'api/deleteComment';
-// eslint-disable-next-line no-unused-vars
 import { Oval, ThreeDots } from 'react-loader-spinner';
 
 function AdminDashboardReviews() {
@@ -21,11 +15,8 @@ function AdminDashboardReviews() {
     const { ref, inView } = useInView({
         threshold: 1,
     });
-    // eslint-disable-next-line no-unused-vars
     const [isLoaded, setIsLoaded] = useState(false);
-    // eslint-disable-next-line no-unused-vars
     const [isReviewsUpload, setIsReviewsUpload] = useState(true);
-    // eslint-disable-next-line no-unused-vars
     const months = [
         'Jan',
         'Feb',
