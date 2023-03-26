@@ -32,9 +32,6 @@ exports.updateComment = (req, res, next) => {
           { $set: updatedComment },
           { new: true }
         )
-          // .populate("product")
-          // .populate("category")
-          // .populate("customer")
           .then(comment => res.json(comment))
           .catch(err =>
             res.status(400).json({
@@ -83,6 +80,25 @@ exports.getComments = (req, res, next) => {
     .populate("category")
     .populate("customer")
     .then(comments => res.status(200).json(comments))
+    .catch(err =>
+      res.status(400).json({
+        message: `Error happened on server: "${err}" `
+      })
+    );
+};
+
+exports.getLimitComments = (req, res, next) => {
+  const perPage = Number(req.query.perPage);
+  const startPage = Number(req.query.startPage);
+  Comment.find()
+    .sort('-date')
+    .skip(startPage * perPage - perPage)
+    .limit(perPage)
+    .populate("product")
+    .populate("category")
+    .populate("customer")
+    .then(comments => 
+      res.status(200).json(comments))
     .catch(err =>
       res.status(400).json({
         message: `Error happened on server: "${err}" `
