@@ -42,7 +42,7 @@ function AdminDashboardReviews() {
     const loadMoreComments = () => {
         setIsReviewsUpload(false);
         setTimeout(() => {
-            getLimitedComments(startPage, 10).then((res) => {
+            getLimitedComments(startPage, 16).then((res) => {
                 setReviews((prevReviews) => {
                     setIsLoaded(true);
                     setIsReviewsUpload(true);
@@ -129,7 +129,7 @@ function AdminDashboardReviews() {
                                     handleClick={() => {
                                         setIsLoaded(false);
                                         deleteComment(review._id).then(() => {
-                                            getLimitedComments(1, 10).then((res) => {
+                                            getLimitedComments(1, 16).then((res) => {
                                                 if (res.data) {
                                                     setReviews(res.data);
                                                     setIsLoaded(true);
