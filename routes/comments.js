@@ -8,6 +8,7 @@ const {
   updateComment,
   deleteComment,
   getComments,
+  getLimitComments,
   getCustomerComments,
   getProductComments
 } = require("../controllers/comments");
@@ -39,6 +40,11 @@ router.delete(
 // @desc    GET existing comments
 // @access  Public
 router.get("/", getComments);
+
+// @route   GET /products/limit
+// @desc    GET limited comments
+// @access  Public
+router.get("/limit", getLimitComments);
 
 // @route   GET /comments/:customerId
 // @desc    GET existing comments of particular customer
