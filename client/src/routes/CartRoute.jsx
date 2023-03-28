@@ -1,5 +1,5 @@
 import React from 'react';
-import CartPage from '../components/CartPage';
+import CartPage from '../pages/CartPage';
 
 function CartRoute() {
     return <CartPage />;

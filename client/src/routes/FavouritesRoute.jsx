@@ -1,5 +1,5 @@
 import React from 'react';
-import FavouritesPage from 'components/FavouritesPage';
+import FavouritesPage from 'pages/FavouritesPage';
 
 function FavouritesRoute() {
     return <FavouritesPage />;

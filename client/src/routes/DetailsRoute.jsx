@@ -1,5 +1,5 @@
 import React from 'react';
-import DetailsPage from '../components/DetailsPage';
+import DetailsPage from '../pages/DetailsPage';
 
 function DetailsRoute() {
     return <DetailsPage />;

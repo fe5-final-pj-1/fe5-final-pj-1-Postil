@@ -1,5 +1,5 @@
 import React from 'react';
-import CustomerServicePage from 'components/CustomerServicePage';
+import CustomerServicePage from 'pages/CustomerServicePage';
 
 function CustomerServiceRoute() {
     return <CustomerServicePage />;
