@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import getAllSlides from 'api/getAllSlides';
 import { useDispatch } from 'react-redux';
-import { filtersResetAll } from 'store/filtersSlice';
+import { filtersResetAll } from 'store/filtersSlice/filtersSlice';
 import { Carousel } from 'react-responsive-carousel';
 import classNames from 'classnames';
 

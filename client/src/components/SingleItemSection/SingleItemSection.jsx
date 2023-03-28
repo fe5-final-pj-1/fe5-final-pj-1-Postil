@@ -4,7 +4,7 @@ import Button from '../Button';
 import Icon from '../Icon/Icon';
 import ProductCarousel from '../ProductCarousel';
 import PropTypes from 'prop-types';
-import { itemAdded } from '../../store/cartSlice';
+import { itemAdded } from '../../store/cartSlice/cartSlice';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import createWishList from 'api/createWishList';
 import getWishList from 'api/getWishList';

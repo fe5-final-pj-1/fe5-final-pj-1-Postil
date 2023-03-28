@@ -8,7 +8,7 @@ import ProductList from '../ProductsList/ProductList';
 import Pagination from '../Pagination/Pagination';
 import getFilteredProducts from '../../api/getFilteredProducts';
 import { useSearchParams } from 'react-router-dom';
-import { filtersAdded } from '../../store/filtersSlice';
+import { filtersAdded } from '../../store/filtersSlice/filtersSlice';
 import FiltersReset from './FiltersReset';
 import { Oval } from 'react-loader-spinner';
 import BreadCrumbs from '../BreadCrumbs/BreadCrumbs';

@@ -8,7 +8,7 @@ import getCart from 'api/getCart';
 import getOneProduct from 'api/getOneProduct';
 import { Link } from 'react-router-dom';
 import Icon from 'components/Icon';
-import { addProductsToOrder } from 'store/orderSlice';
+import { addProductsToOrder } from 'store/orderSlice/orderSlice';
 
 const BagPage = () => {
     const dispatch = useDispatch();

@@ -3,7 +3,7 @@ import styles from './PaymentSection.module.scss';
 import Icon from '../../../Icon';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { addPaymentMethod } from 'store/orderSlice';
+import { addPaymentMethod } from 'store/orderSlice/orderSlice';
 
 const PaymentSection = () => {
     const [active, setActive] = useState('credit cart');

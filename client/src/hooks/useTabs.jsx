@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { filtersAdded } from '../store/filtersSlice';
-import { filtersRemoved } from '../store/filtersSlice';
-import { resetSearch } from '../store/searchProductsSlice';
+import { filtersAdded } from '../store/filtersSlice/filtersSlice';
+import { filtersRemoved } from '../store/filtersSlice/filtersSlice';
+import { resetSearch } from '../store/searchProductsSlice/searchProductsSlice';
 
 function useTabs() {
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);

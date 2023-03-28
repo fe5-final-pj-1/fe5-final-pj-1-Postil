@@ -1,12 +1,12 @@
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
-import cartReducer from './cartSlice';
-import searchProductsReducer from './searchProductsSlice';
+import cartReducer from './cartSlice/cartSlice';
+import searchProductsReducer from './searchProductsSlice/searchProductsSlice';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import filtersReducer from './filtersSlice';
-import modalReducer from './modalSlice';
-import loginReducer from './loginSlice';
-import orderReducer from './orderSlice';
+import filtersReducer from './filtersSlice/filtersSlice';
+import modalReducer from './modalSlice/modalSlice';
+import loginReducer from './loginSlice/loginSlice';
+import orderReducer from './orderSlice/orderSlice';
 
 const storeReducer = combineReducers({
     cart: cartReducer,

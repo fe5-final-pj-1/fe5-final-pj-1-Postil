@@ -4,7 +4,7 @@ import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import getFilteredProducts from 'api/getFilteredProducts';
 import AdminProductsShowList from '../AdminProductsShowList';
 import Pagination from 'components/Pagination';
-import { filtersRemovedAll } from 'store/filtersSlice';
+import { filtersRemovedAll } from 'store/filtersSlice/filtersSlice';
 import { AdminProductsShowContext } from 'context/AdminProductsShowContext';
 import AdminProductsShowSwitcher from '../AdminProductsShowSwitcher';
 import AdminProductsShowTable from '../AdminProductsShowTable';
