@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminDashboardPartners from 'components/AdminPanel/AdminDashboardPartners';
+import AdminDashboardPartners from 'pages/AdminPanel/AdminDashboardPartners';
 
 function AdminDashboardPartnersRoute() {
     return <AdminDashboardPartners />;

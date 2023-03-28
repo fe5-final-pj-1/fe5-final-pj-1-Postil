@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminProducts from 'components/AdminPanel/AdminDashboardProducts/AdminProducts';
+import AdminProducts from 'pages/AdminPanel/AdminDashboardProducts/AdminProducts';
 
 function AdminProductsRoute() {
     return <AdminProducts />;

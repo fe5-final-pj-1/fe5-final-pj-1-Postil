@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminDashboardOrders from 'components/AdminPanel/AdminDashboardOrders';
+import AdminDashboardOrders from 'pages/AdminPanel/AdminDashboardOrders';
 
 function AdminDashboardOrdersRoute() {
     return <AdminDashboardOrders />;

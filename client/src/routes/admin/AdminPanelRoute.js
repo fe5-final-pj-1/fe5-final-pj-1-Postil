@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminPanel from 'components/AdminPanel';
+import AdminPanel from 'pages/AdminPanel';
 
 function AdminPanelRoute() {
     return <AdminPanel />;

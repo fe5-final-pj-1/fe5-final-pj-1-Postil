@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminDashboardReviews from 'components/AdminPanel/AdminDashboardReviews';
+import AdminDashboardReviews from 'pages/AdminPanel/AdminDashboardReviews';
 
 function AdminDashboardReviewsRoute() {
     return <AdminDashboardReviews />;

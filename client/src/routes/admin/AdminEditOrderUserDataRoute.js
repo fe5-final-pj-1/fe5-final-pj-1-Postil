@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminEditOrderUserData from 'components/AdminPanel/AdminDashboardOrders/AdminEditOrderUserData';
+import AdminEditOrderUserData from 'pages/AdminPanel/AdminDashboardOrders/AdminEditOrderUserData';
 
 function AdminEditOrderUserDataRoute() {
     return <AdminEditOrderUserData />;

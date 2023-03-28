@@ -1,5 +1,5 @@
 import React from 'react';
-import AdminDashboardPromotions from 'components/AdminPanel/AdminDashboardPromotions';
+import AdminDashboardPromotions from 'pages/AdminPanel/AdminDashboardPromotions';
 
 function AdminDashboardPromotionsRoute() {
     return <AdminDashboardPromotions />;
