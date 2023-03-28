@@ -22,18 +22,15 @@ const QuantityInput = ({ id, quantity }) => {
         if (cartQuantity >= itemQuantityInDB) {
             return;
         }
-        if (isLogIn) {
-            addProductToCart(id).then((res) => {
-                const quantity = res.data.products.filter(
-                    (product) => product.product._id === id,
-                )[0].cartQuantity;
-                setCartQuantity(quantity);
-            });
-        }
         dispatch(itemAdded(id));
+        if (isLogIn) {
+            setCartQuantity((prev) => prev + 1);
+            addProductToCart(id);
+        }
     };
 
     const decreaseProductQuantityInput = async () => {
+        dispatch(decreaseProduct(id));
         if (isLogIn) {
             const resCart = await getCart();
             const tempQuantity = resCart.data.products.filter(
@@ -47,7 +44,6 @@ const QuantityInput = ({ id, quantity }) => {
                 setCartQuantity(quantity);
             }
         }
-        dispatch(decreaseProduct(id));
     };
 
     const onChangeInputHandler = (e) => {
