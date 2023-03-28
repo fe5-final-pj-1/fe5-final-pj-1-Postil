@@ -1,16 +1,10 @@
 import styles from './ProductList.module.scss';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import Icon from 'components/Icon';
-import Button from 'components/Button';
-import deleteProductFromDB from 'api/deleteProductFromDB';
 import classNames from 'classnames';
-import { filtersResetAll } from 'store/filtersSlice';
 import PropTypes from 'prop-types';
 
-function ProductList({ products, isAdmin }) {
-    const dispatch = useDispatch();
+function ProductList({ products }) {
     if (products.length === 0) {
         return (
             <div className={styles.noProductMatch}>
@@ -27,41 +21,22 @@ function ProductList({ products, isAdmin }) {
                     className={styles.product}
                 >
                     <div className={styles.productName}>
-                        {isAdmin && (
-                            <Button
-                                handleClick={() => {
-                                    deleteProductFromDB(product._id);
-                                    dispatch(filtersResetAll());
-                                }}
-                                text={<Icon type="delete" />}
-                                className={styles.removeBtn}
-                            />
-                        )}
                         <p className={styles.title}>{product.name}</p>
                         <p
                             className={
-                                product.categories === 'sale' && !isAdmin
+                                product.categories === 'sale'
                                     ? classNames(styles.price, styles.priceSale)
                                     : styles.price
                             }
                         >
                             {product.currentPrice}$
                         </p>
-                        {product.categories === 'sale' && !isAdmin && (
+                        {product.categories === 'sale' && (
                             <p className={styles.prevPrice}>{product.previousPrice}$</p>
                         )}
-                        {isAdmin ? (
-                            <Link
-                                to={`/admin/dashboard/products/edit/${product._id}`}
-                                target="_top"
-                            >
-                                edit
-                            </Link>
-                        ) : (
-                            <Link to={`/catalog/${product._id}`} target="_top">
-                                buy now
-                            </Link>
-                        )}
+                        <Link to={`/catalog/${product._id}`} target="_top">
+                            buy now
+                        </Link>
                     </div>
                 </li>
             ))}
@@ -72,9 +47,4 @@ export default ProductList;
 
 ProductList.propTypes = {
     products: PropTypes.array.isRequired,
-    isAdmin: PropTypes.bool,
-};
-
-ProductList.defaultProps = {
-    isAdmin: false,
 };

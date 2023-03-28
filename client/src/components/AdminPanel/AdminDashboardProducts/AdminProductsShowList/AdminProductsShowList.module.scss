@@ -1,5 +1,5 @@
-@import '../../style/mixins';
-@import '../../style/variables';
+@import '../../../../style/mixins';
+@import '../../../../style/variables';
 
 .productsContainer {
     @include flex-center-wrap;
@@ -63,9 +63,6 @@
             text-decoration: line-through;
             color: $lightGrey;
         }
-        & .priceSale{
-            color: #ff0000;
-        }
         & a {
             display: none;
             @include abel-font-normal;
@@ -76,6 +73,20 @@
             border: 1px solid $dark-color;
             border-radius: 4px;
             text-transform: uppercase;
+        }
+        & .removeBtn {
+            display: none;
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            background: none;
+            fill: $light-color;
+            & svg {
+                transition: all 0.2s ease-in;
+                &:hover {
+                    transform: scale(1.3);
+                }
+            }
         }
     }
     &:hover {

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useReducer } from 'react';
 import adminPanelStyles from './AdminProducts.module.scss';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import getFilteredProducts from 'api/getFilteredProducts';
-import ProductList from 'components/ProductsList/ProductList';
+import AdminProductsShowList from '../AdminProductsShowList';
 import Pagination from 'components/Pagination';
 import { filtersRemovedAll } from 'store/filtersSlice';
 import { AdminProductsShowContext } from 'context/AdminProductsShowContext';
@@ -14,6 +14,7 @@ function AdminProducts() {
     const [products, setProducts] = useState([]);
     const dispatch = useDispatch();
     const [isLoaded, setIsLoaded] = useState(false);
+    const [reload, setReload] = useState(false);
     const [maxPageNumber, setMaxPageNumber] = useState(1);
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
     const reducer = (state, action) => {
@@ -39,8 +40,7 @@ function AdminProducts() {
             setMaxPageNumber(number > 0 ? number : 1);
             setIsLoaded(true);
         });
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filters, maxPageNumber]);
+    }, [dispatch, filters, maxPageNumber, reload]);
     return (
         <div className={adminPanelStyles.wrapper}>
             {!isLoaded ? (
@@ -60,10 +60,10 @@ function AdminProducts() {
                 <AdminProductsShowContext.Provider value={{ tableView, setTableView }}>
                     <AdminProductsShowSwitcher />
                     {tableView ? (
-                        <AdminProductsShowTable products={products} />
+                        <AdminProductsShowTable products={products} setReload={setReload} />
                     ) : (
                         <>
-                            <ProductList products={products} isAdmin />
+                            <AdminProductsShowList products={products} setReload={setReload} />
                             {products.length > 0 && <Pagination maxPageNumber={maxPageNumber} />}
                         </>
                     )}
