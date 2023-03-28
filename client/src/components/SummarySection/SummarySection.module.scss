@@ -1,0 +1,186 @@
+@import '../../style/mixins';
+@import '../../style/variables';
+
+.summary {
+    max-width: 37rem;
+    width: 40%;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    @media only screen and (max-width: $bp-medium) {
+        width: 45%;
+    }
+    @media only screen and (max-width: $bp-small) {
+        width: 100%;
+    }
+}
+.summaryTitle {
+    @include muli-font-normal;
+    position: relative;
+    font-size: 2.4rem;
+    line-height: 4.8rem;
+    letter-spacing: 0.04em;
+    color: #373f41;
+    margin-bottom: 2rem;
+    &::before {
+        content: '';
+        position: absolute;
+        background: #373f41;
+        transform: matrix(1, 0, 0, -1, 0, 0);
+        width: 100%;
+        height: 0.1rem;
+        top: 6rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+        margin-top: 3rem;
+    }
+}
+.summaryInfo {
+    &:first-child {
+        margin-top: 1.4rem;
+    }
+    display: flex;
+    gap: 2.9rem;
+    margin-bottom: 2rem;
+    & .imgWrapper {
+        max-width: 30%;
+        min-width: 10rem;
+        & .itemImg {
+            max-width: 100%;
+            height: auto;
+        }
+    }
+    & .descriptionWrapper {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        & > *:not(:last-child) {
+            margin-bottom: 0.7rem;
+        }
+        & .itemName {
+            font-size: $subtitles-fs;
+        }
+        & .currentPrice {
+            color: $dark-color;
+            font-size: 1.8rem;
+            font-weight: 600;
+        }
+        & .quantity {
+            color: $dark-color;
+        }
+    }
+}
+.summaryInfos {
+    margin-top: 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+.imageInfoTitle {
+    @include abel-font-normal;
+    font-size: 2.4rem;
+    letter-spacing: 0.04em;
+    color: #373f41;
+}
+.imageInfoTitles {
+    @include abel-font-normal;
+    font-size: 2.4rem;
+    line-height: 3.2rem;
+    letter-spacing: 0.04em;
+    color: #373f41;
+}
+.imageInfoText {
+    @include muli-font-normal;
+    font-size: 1.8rem;
+    line-height: 4.8rem;
+    letter-spacing: 0.04em;
+    color: #373f41;
+}
+.summaryInfoBlock {
+    margin-left: 2.9rem;
+}
+.summaryText {
+    position: relative;
+    @include muli-font-bold;
+    font-size: 1.8rem;
+    line-height: 4.8rem;
+    letter-spacing: 0.04em;
+    color: #373f41;
+    &::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 0.1rem;
+        background: #373f41;
+        transform: matrix(1, 0, 0, -1, 0, 0);
+    }
+    &::after {
+        content: url('https://res.cloudinary.com/dm2s5stjy/image/upload/v1677499637/Linens/SVG/Polygon_gwukjm.svg');
+        position: absolute;
+        top: 0.2rem;
+        right: 0.1rem;
+        cursor: pointer;
+    }
+    @media only screen and (max-width: $bp-medium) {
+        padding-right: 2.5rem;
+        font-size: 1.4rem;
+    }
+}
+.payInfo {
+    border-top: 0.15rem solid #373f41;
+    border-bottom: 0.15rem solid #373f41;
+}
+.subName {
+    @include muli-font-normal;
+    display: flex;
+    justify-content: space-between;
+    font-weight: 400;
+    font-size: 1.4rem;
+    line-height: 3.2rem;
+    color: #373f41;
+}
+.total {
+    @include muli-font-normal;
+    @include total-size;
+}
+.deliv {
+    @include muli-font-normal;
+    @include total-size;
+}
+.taxes {
+    @include muli-font-normal;
+    @include total-size;
+}
+.totalName {
+    @include muli-font-normal;
+    @include sum-size;
+    color: #373f41;
+    display: flex;
+    justify-content: space-between;
+}
+.sum {
+    @include muli-font-normal;
+    @include sum-size;
+    color: #373f41;
+}
+.linkSumBtn {
+    display: inline-block;
+    align-self: flex-end;
+}
+.sumBtn {
+    display: inline-block;
+    align-self: flex-end;
+    padding: 1.5rem 8.6rem;
+    background: #373f41;
+    box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
+    border-radius: 0.4rem;
+    color: white;
+    cursor: pointer;
+    margin-top: 5rem;
+    margin-bottom: 8rem;
+}
+
+.productsWrapper {
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 26rem;
+}

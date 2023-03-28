@@ -13,12 +13,12 @@ import ProtectedAdminRoutes from './routes/ProtectedAdminRoutes';
 import CustomerServiceRoute from 'routes/CustomerServiceRoute';
 import ContactsRoute from 'routes/ContactsRoute';
 import AboutRoute from 'routes/AboutRoute';
-import UserOrdersPage from './components/UserOrdersPage';
-import UserProfilePage from './components/UserProfilePage';
-import BagPage from './components/Checkout/pages/BagPage/BagPage';
-import ShippingDetailsPage from './components/Checkout/pages/ShippingDetailsPage';
-import PaymentOptionsPage from './components/Checkout/pages/PaymentOptionsPage';
-import EmptyList from 'components/Checkout/sections/EmptyListSection/EmptyList';
+import UserOrdersPage from './pages/UserOrdersPage';
+import UserProfilePage from './pages/UserProfilePage';
+import BagPage from './pages/CheckoutPages/BagPage/BagPage';
+import ShippingDetailsPage from './pages/CheckoutPages/ShippingDetailsPage';
+import PaymentOptionsPage from './pages/CheckoutPages/PaymentOptionsPage';
+import EmptyList from 'components/EmptyListSection/EmptyList';
 import AdminPanelRoute from 'routes/admin/AdminPanelRoute';
 import AdminDashboardHomeRoute from 'routes/admin/AdminDashboardHomeRoute';
 import AdminDashboardCustomersRoute from 'routes/admin/AdminDashboardCustomersRoute';
@@ -32,7 +32,7 @@ import AdminProductsEditRoute from 'routes/admin/AdminProductsEditRoute';
 import AdminEditOrderUserDataRoute from 'routes/admin/AdminEditOrderUserDataRoute';
 import AdminDashboardPartnersRoute from 'routes/admin/AdminDashboardPartnersRoute';
 import AdminDashboardReviewsRoute from 'routes/admin/AdminDashboardReviewsRoute';
-import UserReviewsPage from 'components/UserReviewsPage';
+import UserReviewsPage from 'pages/UserReviewsPage';
 
 const router = createBrowserRouter([
     {

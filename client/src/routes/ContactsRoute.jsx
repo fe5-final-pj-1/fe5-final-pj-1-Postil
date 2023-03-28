@@ -1,5 +1,5 @@
 import React from 'react';
-import ContactsPage from 'components/ContactsPage';
+import ContactsPage from 'pages/ContactsPage';
 
 function ContactsRoute() {
     return <ContactsPage />;
