@@ -6,7 +6,7 @@ import decreaseProductQuantity from 'api/decreaseProductQuantity';
 import getCart from 'api/getCart';
 import getOneProduct from 'api/getOneProduct';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeQuantity, decreaseProduct, itemAdded } from 'store/cartSlice';
+import { changeQuantity, decreaseProduct, itemAdded } from 'store/cartSlice/cartSlice';
 
 import Icon from 'components/Icon';
 

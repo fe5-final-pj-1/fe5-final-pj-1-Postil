@@ -6,9 +6,9 @@ import Button from '../Button';
 import Search from './Search/Search';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import classNames from 'classnames';
-import { filtersAdded } from '../../store/filtersSlice';
-import { filtersRemoved } from '../../store/filtersSlice';
-import { showModal } from '../../store/modalSlice';
+import { filtersAdded } from '../../store/filtersSlice/filtersSlice';
+import { filtersRemoved } from '../../store/filtersSlice/filtersSlice';
+import { showModal } from '../../store/modalSlice/modalSlice';
 import Profile from './Profile/Profile';
 
 function Header() {

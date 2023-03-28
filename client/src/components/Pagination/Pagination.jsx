@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import Button from '../Button/Button';
 import Icon from '../Icon/Icon';
-import { filtersAdded } from '../../store/filtersSlice.js';
+import { filtersAdded } from '../../store/filtersSlice/filtersSlice.js';
 import usePagination from '../../hooks/usePagination';
 import PropTypes from 'prop-types';
 

@@ -5,11 +5,11 @@ import * as Yup from 'yup';
 import styles from './Modal.module.scss';
 import Button from '../Button';
 import Icon from '../Icon';
-import { hideModal } from '../../store/modalSlice';
+import { hideModal } from '../../store/modalSlice/modalSlice';
 import { useDispatch } from 'react-redux';
 import loginCustomer from '../../api/loginCustomer';
 import createCustomer from '../../api/createCustomer';
-import { userLogIn } from '../../store/loginSlice';
+import { userLogIn } from '../../store/loginSlice/loginSlice';
 import jwt_decode from 'jwt-decode';
 import addSubscriber from 'api/addSubscriber';
 

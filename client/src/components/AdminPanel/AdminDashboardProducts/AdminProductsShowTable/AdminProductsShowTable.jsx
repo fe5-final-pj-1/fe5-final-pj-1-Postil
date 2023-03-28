@@ -7,8 +7,9 @@ import classNames from 'classnames';
 import Button from 'components/Button';
 import Icon from 'components/Icon';
 import { Oval } from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 
-function AdminProductsShowTable() {
+function AdminProductsShowTable({ setReload }) {
     const [isLoaded, setIsLoaded] = useState(false);
     const [products, setProducts] = useState([]);
     useEffect(() => {
@@ -115,6 +116,7 @@ function AdminProductsShowTable() {
                                         deleteProductFromDB(product._id).then(() => {
                                             getAllProducts().then((res) => {
                                                 setProducts(res.data);
+                                                setReload((prev) => !prev);
                                                 setIsLoaded(true);
                                             });
                                         });
@@ -132,3 +134,8 @@ function AdminProductsShowTable() {
 }
 
 export default AdminProductsShowTable;
+
+// eslint-disable-next-line no-undef
+AdminProductsShowTable.propTypes = {
+    setReload: PropTypes.func.isRequired,
+};

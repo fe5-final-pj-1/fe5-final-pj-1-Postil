@@ -8,7 +8,7 @@ import ProductList from '../../components/ProductsList/ProductList';
 import Pagination from '../../components/Pagination/Pagination';
 import getFilteredProducts from '../../api/getFilteredProducts';
 import { useSearchParams } from 'react-router-dom';
-import { filtersAdded } from '../../store/filtersSlice';
+import { filtersAdded } from '../../store/filtersSlice/filtersSlice';
 import FiltersReset from './FiltersReset';
 import { Oval } from 'react-loader-spinner';
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
@@ -17,8 +17,7 @@ function FiltersPage() {
     let [searchParams, setSearchParams] = useSearchParams();
     const dispatch = useDispatch();
     const [products, setProducts] = useState([]);
-    const [didRunOne, setDidRunOne] = useState(false);
-    const [didRunTwo, setDidRunTwo] = useState(false);
+    const [didRun, setDidRun] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const [maxPageNumber, setMaxPageNumber] = useState(1);
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
@@ -34,25 +33,11 @@ function FiltersPage() {
             }
             dispatch(filtersAdded({ [key]: [value] }));
         }
-        setDidRunOne(true);
+        setDidRun(true);
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
     useEffect(() => {
-        if (didRunOne) {
-            const filtersParams = new URLSearchParams(filters);
-            filtersParams.delete('startPage');
-            filtersParams.delete('perPage');
-            getFilteredProducts(filtersParams.toString()).then((result) => {
-                const number = Math.ceil(
-                    Number(result.data.productsQuantity) / Number(filters.perPage[0]),
-                );
-                setMaxPageNumber(number > 0 ? number : 1);
-                setDidRunTwo(true);
-            });
-        }
-    }, [didRunOne, filters]);
-    useEffect(() => {
-        if (didRunOne && didRunTwo) {
+        if (didRun) {
             const filtersParams = new URLSearchParams(filters);
             const startPage = filtersParams.get('startPage');
             if (startPage > maxPageNumber) {
@@ -60,6 +45,10 @@ function FiltersPage() {
             } else {
                 getFilteredProducts(filtersParams.toString()).then((result) => {
                     setProducts(result.data.products);
+                    const number = Math.ceil(
+                        Number(result.data.productsQuantity) / Number(filters.perPage[0]),
+                    );
+                    setMaxPageNumber(number > 0 ? number : 1);
                     setIsLoaded(true);
                 });
             }
@@ -67,7 +56,7 @@ function FiltersPage() {
             setSearchParams(filtersParams.toString());
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [filters, didRunOne, didRunTwo, maxPageNumber]);
+    }, [filters, didRun]);
     return (
         <main>
             <BreadCrumbs />

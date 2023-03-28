@@ -6,12 +6,12 @@ import styles from './SummarySection.module.scss';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import Button from 'components/Button';
-import { addProductsToOrder } from 'store/orderSlice';
+import { addProductsToOrder } from 'store/orderSlice/orderSlice';
 import createOrder from 'api/createOrder';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import deleteCart from 'api/deleteCart';
-import { removeAllItems } from 'store/cartSlice';
+import { removeAllItems } from 'store/cartSlice/cartSlice';
 
 const SummarySection = ({ type }) => {
     const navigate = useNavigate();

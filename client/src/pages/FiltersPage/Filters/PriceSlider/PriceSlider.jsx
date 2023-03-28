@@ -3,8 +3,8 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { filtersAdded } from '../../../../store/filtersSlice';
-import { resetSearch } from '../../../../store/searchProductsSlice';
+import { filtersAdded } from '../../../../store/filtersSlice/filtersSlice';
+import { resetSearch } from '../../../../store/searchProductsSlice/searchProductsSlice';
 import styles from './PriceSlider.module.scss';
 
 function PriceSlider() {
