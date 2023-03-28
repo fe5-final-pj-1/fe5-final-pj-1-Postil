@@ -7,9 +7,12 @@ import useDebounce from '../../../hooks/UseDebounce';
 import searchForProducts from '../../../api/searchForProducts';
 import styles from './Search.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { loadProducts, setSearchPhrases } from '../../../store/searchProductsSlice';
+import {
+    loadProducts,
+    setSearchPhrases,
+} from '../../../store/searchProductsSlice/searchProductsSlice';
 import { Link } from 'react-router-dom';
-import { filtersRemovedAll } from '../../../store/filtersSlice';
+import { filtersRemovedAll } from '../../../store/filtersSlice/filtersSlice';
 
 function Search({ className }) {
     const { searchPhrases, searchProducts: products } = useSelector(

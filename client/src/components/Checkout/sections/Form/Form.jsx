@@ -7,7 +7,7 @@ import { PatternFormat } from 'react-number-format';
 import { useNavigate } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
-import { addCustomerDataToOrder } from 'store/orderSlice';
+import { addCustomerDataToOrder } from 'store/orderSlice/orderSlice';
 import getCustomer from 'api/getCustomer';
 
 function Form() {

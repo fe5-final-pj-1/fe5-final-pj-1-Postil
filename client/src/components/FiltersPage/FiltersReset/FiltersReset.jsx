@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import stylesFiltersReset from './FiltersReset.module.scss';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { filtersRemovedAll } from '../../../store/filtersSlice';
-import { filtersRemoved } from '../../../store/filtersSlice';
+import { filtersRemovedAll } from '../../../store/filtersSlice/filtersSlice';
+import { filtersRemoved } from '../../../store/filtersSlice/filtersSlice';
 
 function FiltersReset() {
     const [filtersResetArray, setFiltersResetArray] = useState([]);
