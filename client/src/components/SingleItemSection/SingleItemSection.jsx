@@ -44,7 +44,6 @@ const SingleItemSection = ({ product }) => {
     const [double, setDouble] = useState(false);
     const [wishlist, setWishlist] = useState([]);
 
-    //for checking balance of products in DB
     const localCart = useSelector((state) => state.store.cart, shallowEqual);
     const [itemQuantityInDB, setItemQuantityInDB] = useState();
     useEffect(() => {
@@ -70,19 +69,17 @@ const SingleItemSection = ({ product }) => {
     }, [wishlist, isLogIn, _id]);
 
     const addToCart = async () => {
-        //for checking balance of products in DB
         if (localCart.map((item) => item.product).includes(_id)) {
             if (localCart.find((item) => item.product === _id).cartQuantity >= itemQuantityInDB) {
                 return;
             }
         }
-        //user is not login
         dispatch(itemAdded(_id));
         if (isLogIn) {
             addToCartForLoginUser();
         }
     };
-    // user is login
+
     const addToCartForLoginUser = async () => {
         const userCart = await getCart();
         const userCartData = await userCart.data;
@@ -94,6 +91,7 @@ const SingleItemSection = ({ product }) => {
             addProductToCart(_id);
         }
     };
+
     const addToFavourites = async () => {
         if (!favouritesClicked && !double) {
             setDouble(true);
@@ -117,6 +115,7 @@ const SingleItemSection = ({ product }) => {
             }
         }
     };
+
     const removeFromFavourites = () => {
         if (favouritesClicked && !double) {
             setDouble(true);
@@ -126,6 +125,7 @@ const SingleItemSection = ({ product }) => {
             });
         }
     };
+
     if (!isLoaded) {
         return (
             <div className="container">
@@ -144,6 +144,7 @@ const SingleItemSection = ({ product }) => {
             </div>
         );
     }
+
     return (
         <section className={styles.singleItem}>
             <div className="container">

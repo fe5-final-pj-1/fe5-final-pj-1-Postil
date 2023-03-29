@@ -64,18 +64,18 @@ const ListItem = ({ quantity, item, type, favouritesReload }) => {
         favouritesReload((prev) => !prev);
     };
     const deleteFromCart = async () => {
+        dispatch(removeItem(_id));
         if (isLogin) {
             await deleteProductFromCart(_id);
         }
-        dispatch(removeItem(_id));
     };
     const addToCart = () => {
+        dispatch(itemAdded(_id));
         if (localCart.map((item) => item.product).includes(_id)) {
             if (localCart.find((item) => item.product === _id).cartQuantity >= itemQuantityInDB) {
                 return;
             }
         }
-        dispatch(itemAdded(_id));
     };
     useEffect(() => {
         if (_id) getOneProduct(_id).then((res) => setItemQuantityInDB(res.data.quantity));
