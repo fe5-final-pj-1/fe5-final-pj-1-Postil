@@ -17,6 +17,7 @@ function AdminProducts() {
     const [reload, setReload] = useState(false);
     const [maxPageNumber, setMaxPageNumber] = useState(1);
     const filters = useSelector((state) => state.filters.filtersQuery, shallowEqual);
+    const filtersChecked = useSelector((state) => state.filters.filtersChecked, shallowEqual);
     const reducer = (state, action) => {
         switch (action.type) {
             case 'List':
@@ -29,18 +30,22 @@ function AdminProducts() {
     };
     const [tableView, setTableView] = useReducer(reducer, false);
     useEffect(() => {
-        dispatch(filtersRemovedAll());
-        const filtersParams = new URLSearchParams(filters);
-        filtersParams.append('sort', '-date');
-        getFilteredProducts(filtersParams.toString()).then((result) => {
-            setProducts(result.data.products);
-            const number = Math.ceil(
-                Number(result.data.productsQuantity) / Number(filters.perPage[0]),
-            );
-            setMaxPageNumber(number > 0 ? number : 1);
-            setIsLoaded(true);
-        });
-    }, [dispatch, filters, maxPageNumber, reload]);
+        if (filtersChecked) {
+            dispatch(filtersRemovedAll());
+        } else {
+            const filtersParams = new URLSearchParams(filters);
+            filtersParams.append('sort', '-date');
+            getFilteredProducts(filtersParams.toString()).then((result) => {
+                setProducts(result.data.products);
+                const number = Math.ceil(
+                    Number(result.data.productsQuantity) / Number(filters.perPage[0]),
+                );
+                setMaxPageNumber(number > 0 ? number : 1);
+                setIsLoaded(true);
+            });
+        }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [dispatch, filters, reload]);
     return (
         <div className={adminPanelStyles.wrapper}>
             {!isLoaded ? (

@@ -6,10 +6,12 @@ import getOneProduct from 'api/getOneProduct';
 import getCart from 'api/getCart';
 import createCart from 'api/createCart';
 import updateCart from 'api/updateCart';
+// eslint-disable-next-line no-unused-vars
 import { Oval } from 'react-loader-spinner';
 
 const ShoppingBag = () => {
     const [cart, setCart] = useState([]);
+    // eslint-disable-next-line no-unused-vars
     const [isLoaded, setIsLoaded] = useState(true);
     const cartStorage = useSelector((state) => state.store.cart);
     const isLogIn = useSelector((state) => state.store.login.isLogIn);
@@ -64,22 +66,22 @@ const ShoppingBag = () => {
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cartStorage, isLogIn]);
-    if (!isLoaded) {
-        return (
-            <Oval
-                height={130}
-                width={130}
-                color="#373F41"
-                wrapperStyle={{}}
-                wrapperClass={styles.loader}
-                visible={true}
-                ariaLabel="oval-loading"
-                secondaryColor="#4fa94d"
-                strokeWidth={2}
-                strokeWidthSecondary={2}
-            />
-        );
-    }
+    //  if (!isLoaded) {
+    //      return (
+    //          <Oval
+    //              height={130}
+    //              width={130}
+    //              color="#373F41"
+    //              wrapperStyle={{}}
+    //              wrapperClass={styles.loader}
+    //              visible={true}
+    //              ariaLabel="oval-loading"
+    //              secondaryColor="#4fa94d"
+    //              strokeWidth={2}
+    //              strokeWidthSecondary={2}
+    //          />
+    //      );
+    //  }
     if (cart.length === 0) {
         return (
             <h2 className="h2" style={{ textAlign: 'center' }}>

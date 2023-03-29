@@ -44,12 +44,16 @@ function FiltersPage() {
                 dispatch(filtersAdded({ startPage: ['1'] }));
             } else {
                 getFilteredProducts(filtersParams.toString()).then((result) => {
-                    setProducts(result.data.products);
-                    const number = Math.ceil(
-                        Number(result.data.productsQuantity) / Number(filters.perPage[0]),
-                    );
-                    setMaxPageNumber(number > 0 ? number : 1);
-                    setIsLoaded(true);
+                    if (result.data.products.length === 0 && result.data.productsQuantity > 0) {
+                        dispatch(filtersAdded({ startPage: ['1'] }));
+                    } else {
+                        setProducts(result.data.products);
+                        const number = Math.ceil(
+                            Number(result.data.productsQuantity) / Number(filters.perPage[0]),
+                        );
+                        setMaxPageNumber(number > 0 ? number : 1);
+                        setIsLoaded(true);
+                    }
                 });
             }
             filtersParams.delete('perPage');
