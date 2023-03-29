@@ -4,18 +4,15 @@
 .inputs {
     margin-top: 1.6rem;
     display: flex;
-    align-items: center;
     justify-content: space-between;
-    @media only screen and (max-width: $bp-medium) {
-        flex-direction: column;
-        align-items: flex-start;
-        &Wrapper {
-            & > span {
-                margin-right: 1rem;
-            }
-            &:last-child > span:first-child {
-                padding-right: 17.31px;
-            }
+    flex-direction: column;
+    align-items: flex-start;
+    &Wrapper {
+        & > span {
+            margin-right: 1rem;
+        }
+        &:last-child > span:first-child {
+            padding-right: 17.31px;
         }
     }
 
