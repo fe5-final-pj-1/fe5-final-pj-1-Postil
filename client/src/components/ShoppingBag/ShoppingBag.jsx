@@ -10,11 +10,13 @@ import updateCart from 'api/updateCart';
 import { Oval } from 'react-loader-spinner';
 
 const ShoppingBag = () => {
+    // const [totalPrice, setTotalPrice] = useState(0);
     const [cart, setCart] = useState([]);
     // eslint-disable-next-line no-unused-vars
-    const [isLoaded, setIsLoaded] = useState(true);
+    const [isLoaded, setIsLoaded] = useState(false);
     const cartStorage = useSelector((state) => state.store.cart);
     const isLogIn = useSelector((state) => state.store.login.isLogIn);
+
     const addProducts = async () => {
         const tempCart = [];
         for (let i = 0; i < cartStorage.length; i++) {
@@ -28,13 +30,7 @@ const ShoppingBag = () => {
         setCart(tempCart);
     };
     useEffect(() => {
-        if (!isLogIn) {
-            setCart([...cartStorage]);
-        }
-    }, [cartStorage, isLogIn]);
-    useEffect(() => {
         if (isLogIn) {
-            setIsLoaded(false);
             getCart().then((res) => {
                 if (res.data === null) {
                     if (cartStorage.length > 0) {
@@ -61,27 +57,30 @@ const ShoppingBag = () => {
                 }
             });
         } else if (cartStorage.length > 0) {
-            setIsLoaded(false);
             addProducts();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cartStorage, isLogIn]);
-    //  if (!isLoaded) {
-    //      return (
-    //          <Oval
-    //              height={130}
-    //              width={130}
-    //              color="#373F41"
-    //              wrapperStyle={{}}
-    //              wrapperClass={styles.loader}
-    //              visible={true}
-    //              ariaLabel="oval-loading"
-    //              secondaryColor="#4fa94d"
-    //              strokeWidth={2}
-    //              strokeWidthSecondary={2}
-    //          />
-    //      );
-    //  }
+
+    const calculateTotalPrice = () =>
+        cart.reduce((acc, item) => acc + item.product.currentPrice * item.cartQuantity, 0);
+
+    if (!isLoaded) {
+        return (
+            <Oval
+                height={130}
+                width={130}
+                color="#373F41"
+                wrapperStyle={{}}
+                wrapperClass={styles.loader}
+                visible={true}
+                ariaLabel="oval-loading"
+                secondaryColor="#4fa94d"
+                strokeWidth={2}
+                strokeWidthSecondary={2}
+            />
+        );
+    }
     if (cart.length === 0) {
         return (
             <h2 className="h2" style={{ textAlign: 'center' }}>
@@ -93,13 +92,7 @@ const ShoppingBag = () => {
         <div className={styles.bagWrapper}>
             <div className={styles.headerWrapper}>
                 <h2 className={styles.bagHeader}>SHOPPING BAG</h2>
-                <p className={styles.totalPrice}>
-                    TOTAL USD $
-                    {cart.reduce(
-                        (acc, item) => acc + item.product.currentPrice * item.cartQuantity,
-                        0,
-                    )}
-                </p>
+                <p className={styles.totalPrice}>TOTAL USD ${calculateTotalPrice()}</p>
             </div>
 
             <ul className={styles.itemsList}>

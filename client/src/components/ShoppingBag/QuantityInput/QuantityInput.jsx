@@ -3,21 +3,20 @@ import styles from './QuantityInput.module.scss';
 import PropTypes from 'prop-types';
 import addProductToCart from 'api/addProductToCart';
 import decreaseProductQuantity from 'api/decreaseProductQuantity';
-import getCart from 'api/getCart';
 import getOneProduct from 'api/getOneProduct';
 import { useDispatch, useSelector } from 'react-redux';
 import { changeQuantity, decreaseProduct, itemAdded } from 'store/cartSlice/cartSlice';
-
 import Icon from 'components/Icon';
 
 const QuantityInput = ({ id, quantity }) => {
     const isLogIn = useSelector((state) => state.store.login.isLogIn);
     const [cartQuantity, setCartQuantity] = useState(quantity);
     const [itemQuantityInDB, setItemQuantityInDB] = useState();
+    const dispatch = useDispatch();
     useEffect(() => {
         getOneProduct(id).then((res) => setItemQuantityInDB(res.data.quantity));
     }, [id]);
-    const dispatch = useDispatch();
+
     const increaseProductQuantity = () => {
         if (cartQuantity >= itemQuantityInDB) {
             return;
@@ -31,18 +30,9 @@ const QuantityInput = ({ id, quantity }) => {
 
     const decreaseProductQuantityInput = async () => {
         dispatch(decreaseProduct(id));
-        if (isLogIn) {
-            const resCart = await getCart();
-            const tempQuantity = resCart.data.products.filter(
-                (product) => product.product._id === id,
-            )[0].cartQuantity;
-            if (tempQuantity > 1) {
-                const response = await decreaseProductQuantity(id);
-                const quantity = response.data.products.filter(
-                    (product) => product.product._id === id,
-                )[0].cartQuantity;
-                setCartQuantity(quantity);
-            }
+        if (isLogIn && cartQuantity > 1) {
+            setCartQuantity((prev) => prev - 1);
+            decreaseProductQuantity(id);
         }
     };
 
@@ -73,7 +63,7 @@ const QuantityInput = ({ id, quantity }) => {
             <input
                 type="text"
                 name="amount"
-                value={cartQuantity}
+                value={isLogIn ? cartQuantity : quantity}
                 onChange={onChangeInputHandler}
                 onBlur={onBlurInputHandler}
                 className={styles.numInput}
