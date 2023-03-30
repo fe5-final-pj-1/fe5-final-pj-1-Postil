@@ -1,8 +1,8 @@
 import React from 'react';
-import CarouselMainSection from '../../components/CarouselMainSection/CarouselMainSection';
-import PopularSection from '../../components/PopularSection';
-import NewInSection from '../../components/NewInSection';
-import PartnersSection from 'components/PartnersSection';
+import CarouselMainSection from '../AllSections/CarouselMainSection';
+import PopularSection from '../AllSections/PopularSection';
+import NewInSection from '../AllSections/NewInSection';
+import PartnersSection from 'pages/AllSections/PartnersSection';
 
 function MainPage() {
     return (

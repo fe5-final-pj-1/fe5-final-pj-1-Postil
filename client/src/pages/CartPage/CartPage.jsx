@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import BreadCrumbs from '../../components/BreadCrumbs/BreadCrumbs';
 import styles from './CartPage.module.scss';
-import ShoppingBag from 'components/ShoppingBag';
-import CarouselSection from 'components/CarouselSection';
+import ShoppingBag from '../../components/ShoppingBag';
+import CarouselSection from '../AllSections/CarouselSection';
 import { useSelector } from 'react-redux';
 import getAllProducts from 'api/getAllProducts';
 

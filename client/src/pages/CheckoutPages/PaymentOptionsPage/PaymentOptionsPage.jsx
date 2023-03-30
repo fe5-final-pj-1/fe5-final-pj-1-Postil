@@ -1,8 +1,8 @@
 import React from 'react';
-import TabsSection from '../../../components/TabsSection';
-import PaymentSection from '../../../components/PaymentSection';
+import TabsSection from '../../AllSections/TabsSection';
+import PaymentSection from '../../AllSections/PaymentSection';
 import styles from './PaymentOptionsPage.module.scss';
-import SummarySection from '../../../components/SummarySection';
+import SummarySection from '../../AllSections/SummarySection';
 
 const PaymentOptionsPage = () => {
     return (

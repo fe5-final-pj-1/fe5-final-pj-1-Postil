@@ -1,5 +1,5 @@
-@import 'style/_variables.scss';
-@import 'style/_mixins.scss';
+@import '../../style/_variables.scss';
+@import '../../style/_mixins.scss';
 
 .bagWrapper {
     @include content-container;

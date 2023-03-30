@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import SingleItemSection from '../../components/SingleItemSection';
-import CarouselSection from '../../components/CarouselSection';
+import SingleItemSection from '../AllSections/SingleItemSection';
+import CarouselSection from '../AllSections/CarouselSection';
 import { useParams, useNavigate } from 'react-router-dom';
 import getOneProduct from '../../api/getOneProduct';
 import getAllProducts from '../../api/getAllProducts';
