@@ -18,7 +18,7 @@ import UserProfilePage from 'pages/UserProfilePage';
 import BagPage from 'pages/CheckoutPages/BagPage/BagPage';
 import ShippingDetailsPage from 'pages/CheckoutPages/ShippingDetailsPage';
 import PaymentOptionsPage from 'pages/CheckoutPages/PaymentOptionsPage';
-import EmptyList from 'components/EmptyListSection/EmptyList';
+import EmptyList from 'pages/AllSections/EmptyListSection/EmptyList';
 import AdminPanel from 'pages/AdminPanel';
 import AdminDashboardHome from 'pages/AdminPanel/AdminDashboardHome';
 import AdminDashboardCustomers from 'pages/AdminPanel/AdminDashboardCustomers';

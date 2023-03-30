@@ -1,7 +1,7 @@
 import React from 'react';
-import TabsSection from '../../../components/TabsSection';
+import TabsSection from '../../AllSections/TabsSection';
 import styles from './ShippingDetailsPage.module.scss';
-import SummarySection from '../../../components/SummarySection';
+import SummarySection from '../../AllSections/SummarySection';
 import Form from 'components/Form';
 
 const ShippingDetailsPage = () => {

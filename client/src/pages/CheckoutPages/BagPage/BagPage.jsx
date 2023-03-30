@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import TabsSection from '../../../components/TabsSection';
-import SummaryTextSection from '../../../components/SummaryTextSection';
+import TabsSection from '../../AllSections/TabsSection';
+import SummaryTextSection from '../../AllSections/SummaryTextSection';
 import styles from './BagPage.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';

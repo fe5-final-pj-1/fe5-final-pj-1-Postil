@@ -3,7 +3,7 @@ import { render, fireEvent, screen } from '@testing-library/react';
 import PaymentSection from './PaymentSection';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
-import store from '../../store/store';
+import store from '../../../store/store';
 
 describe('PaymentSection component', () => {
     test('renders payment options', () => {

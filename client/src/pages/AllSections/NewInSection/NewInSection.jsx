@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import newInStyles from './NewInSection.module.scss';
-import getFilteredProducts from '../../api/getFilteredProducts';
+import getFilteredProducts from '../../../api/getFilteredProducts';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 

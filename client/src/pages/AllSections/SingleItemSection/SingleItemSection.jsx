@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styles from './SingleItemSection.module.scss';
-import Button from '../Button';
-import Icon from '../Icon/Icon';
-import ProductCarousel from '../ProductCarousel';
+import Button from '../../../components/Button';
+import Icon from '../../../components/Icon/Icon';
+import ProductCarousel from '../../../components/ProductCarousel';
 import PropTypes from 'prop-types';
-import { itemAdded } from '../../store/cartSlice/cartSlice';
+import { itemAdded } from '../../../store/cartSlice/cartSlice';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
 import createWishList from 'api/createWishList';
 import getWishList from 'api/getWishList';
