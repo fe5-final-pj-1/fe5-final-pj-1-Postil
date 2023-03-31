@@ -46,7 +46,7 @@ function CarouselMainSection() {
     return (
         <section className={carousel}>
             <div className="container">
-                <Carousel showThumbs={false} showStatus={false}>
+                <Carousel showThumbs={false} showStatus={false} emulateTouch={true}>
                     {promotions.sort(sortPromotions).map((promotion) => {
                         let linkStr = getLink(promotion);
                         return (

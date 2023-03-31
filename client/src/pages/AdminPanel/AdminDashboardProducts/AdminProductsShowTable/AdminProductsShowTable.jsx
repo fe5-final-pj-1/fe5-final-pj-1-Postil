@@ -135,7 +135,6 @@ function AdminProductsShowTable({ setReload }) {
 
 export default AdminProductsShowTable;
 
-// eslint-disable-next-line no-undef
 AdminProductsShowTable.propTypes = {
     setReload: PropTypes.func.isRequired,
 };
