@@ -6,13 +6,10 @@ import getOneProduct from 'api/getOneProduct';
 import getCart from 'api/getCart';
 import createCart from 'api/createCart';
 import updateCart from 'api/updateCart';
-// eslint-disable-next-line no-unused-vars
 import { Oval } from 'react-loader-spinner';
 
 const ShoppingBag = () => {
-    // const [totalPrice, setTotalPrice] = useState(0);
     const [cart, setCart] = useState([]);
-    // eslint-disable-next-line no-unused-vars
     const [isLoaded, setIsLoaded] = useState(false);
     const cartStorage = useSelector((state) => state.store.cart);
     const isLogIn = useSelector((state) => state.store.login.isLogIn);
@@ -55,6 +52,18 @@ const ShoppingBag = () => {
                         setIsLoaded(true);
                     }
                 }
+            });
+        } else if (cartStorage.length > 0 && cartStorage.length === cart.length) {
+            const indexElem = cartStorage.findIndex(
+                (elem, index) => elem.cartQuantity !== cart[index].cartQuantity,
+            );
+            if (indexElem === -1) {
+                return;
+            }
+            setCart((prev) => {
+                const result = [...prev];
+                result[indexElem].cartQuantity = cartStorage[indexElem].cartQuantity;
+                return result;
             });
         } else if (cartStorage.length > 0) {
             addProducts();

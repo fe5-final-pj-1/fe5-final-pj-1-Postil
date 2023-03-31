@@ -22,30 +22,36 @@ const QuantityInput = ({ id, quantity }) => {
             return;
         }
         dispatch(itemAdded(id));
+        setCartQuantity((prev) => prev + 1);
         if (isLogIn) {
-            setCartQuantity((prev) => prev + 1);
             addProductToCart(id);
         }
     };
 
     const decreaseProductQuantityInput = async () => {
         dispatch(decreaseProduct(id));
-        if (isLogIn && cartQuantity > 1) {
+        if (cartQuantity > 1) {
             setCartQuantity((prev) => prev - 1);
+        }
+        if (isLogIn && cartQuantity > 1) {
             decreaseProductQuantity(id);
         }
+    };
+
+    const checkInputValue = (newValue) => {
+        if (newValue <= 0) return 0;
+        if (newValue >= itemQuantityInDB) return itemQuantityInDB;
+        if (newValue >= 100) return 99;
+        if (/^[1-9]\d*$/.test(newValue)) return newValue;
+        return cartQuantity;
     };
 
     const onChangeInputHandler = (e) => {
         e.stopPropagation();
         const newValue = +e.currentTarget.value;
-        setCartQuantity((prevState) => {
-            if (newValue >= itemQuantityInDB) return itemQuantityInDB;
-            if (newValue >= 100) return 99;
-            if (newValue <= 0) return 0;
-            if (/^[1-9]\d*$/.test(newValue)) return newValue;
-            return prevState;
-        });
+        const result = checkInputValue(newValue);
+        dispatch(changeQuantity({ id, quantity: result ? result : 1 }));
+        if (result !== cartQuantity) setCartQuantity(result);
     };
 
     const onBlurInputHandler = (e) => {
@@ -63,7 +69,7 @@ const QuantityInput = ({ id, quantity }) => {
             <input
                 type="text"
                 name="amount"
-                value={isLogIn ? cartQuantity : quantity}
+                value={cartQuantity}
                 onChange={onChangeInputHandler}
                 onBlur={onBlurInputHandler}
                 className={styles.numInput}
