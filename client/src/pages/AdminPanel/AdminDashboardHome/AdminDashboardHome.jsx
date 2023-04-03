@@ -92,15 +92,17 @@ function AdminDashboardHome() {
             totalSoldNum =
                 totalSoldNum + element.products.reduce((acc, cur) => acc + cur.cartQuantity, 0);
         });
-        const chartData = chartArray.reduce((acc, curr) => {
-            const index = acc.findIndex((item) => item.x === curr.x);
-            if (index !== -1) {
-                acc[index].y += curr.y;
-            } else {
-                acc.push(curr);
-            }
-            return acc;
-        }, []);
+        const chartData = chartArray
+            .reduce((acc, curr) => {
+                const index = acc.findIndex((item) => item.x === curr.x);
+                if (index !== -1) {
+                    acc[index].y += curr.y;
+                } else {
+                    acc.push(curr);
+                }
+                return acc;
+            }, [])
+            .slice(-12);
         return {
             onlyNewProducts,
             onlyCustomers,
