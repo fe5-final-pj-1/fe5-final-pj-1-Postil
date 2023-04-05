@@ -1,11 +1,8 @@
-@import '../../../../style/variables';
-@import '../../../../style/mixins';
-
-
-$light-border: #dadada;
+@import '../../../style/variables';
+@import '../../../style/mixins';
 
 .topicHeaderWrapper {
-    border-bottom: 1px solid $border-grey;
+    border-bottom: $border-grey;
     padding-bottom: 1.5rem;
 
     .topicHeader {

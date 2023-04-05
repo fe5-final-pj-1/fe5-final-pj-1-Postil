@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import styles from './CustomerServicePage.module.scss';
-import ServiceTopicItem from './components/ServiceTopicItem/ServiceTopicItem';
+import ServiceTopicItem from './ServiceTopicItem/ServiceTopicItem';
 import contentList from './content';
 import classNames from 'classnames';
 
 function CustomerServicePage() {
-    const [isNavVisible, setIsNavVisible] = useState(false);
+    const [isNavVisible, setIsNavVisible] = useState(true);
     const scrollToAnchor = (e) => {
         e.preventDefault();
         e.stopPropagation();
@@ -30,7 +30,6 @@ function CustomerServicePage() {
             return;
         }
         if (e.relatedTarget.classList.contains(styles.navMenuLink)) return;
-        console.log(e.relatedTarget);
 
         setIsNavVisible(false);
     };
