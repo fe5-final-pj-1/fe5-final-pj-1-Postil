@@ -5,7 +5,7 @@ import contentList from './content';
 import classNames from 'classnames';
 
 function CustomerServicePage() {
-    const [isNavVisible, setIsNavVisible] = useState(true);
+    const [isNavVisible, setIsNavVisible] = useState(false);
     const scrollToAnchor = (e) => {
         e.preventDefault();
         e.stopPropagation();
