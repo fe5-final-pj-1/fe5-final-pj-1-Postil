@@ -254,8 +254,13 @@ function Modal() {
                         )}
                         <p className={styles.termsPolicy}>
                             By signing up you agree to{' '}
-                            <Link to="/terms&policy">Terms of Service</Link> and{' '}
-                            <Link to="/terms&policy">Privacy Policy</Link>
+                            <Link to="/service" target="_blank">
+                                Terms of Service
+                            </Link>{' '}
+                            and{' '}
+                            <Link to="/service" target="_blank">
+                                Privacy Policy
+                            </Link>
                         </p>
                         <Button type="submit" text={sign ? 'SIGN UP' : 'LOG IN'} />
                     </form>
