@@ -5,7 +5,15 @@ import classNames from 'classnames';
 
 function PartnersSection() {
     const [partners, setPartners] = useState([]);
-    const [numItems, setNumItems] = useState(0);
+    const [numItems, setNumItems] = useState(() => {
+        const width = window.innerWidth;
+        if (width < 500) {
+            return -3;
+        } else if (width < 800) {
+            return -4;
+        }
+        return -6;
+    });
     useEffect(() => {
         const handleResize = () => {
             const width = window.innerWidth;
