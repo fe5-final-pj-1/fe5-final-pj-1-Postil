@@ -29,7 +29,9 @@ const partners = require('./routes/partners');
 const app = express();
 
 // Cors
-app.use(cors());
+if (process.env.NODE_ENV !== 'production') {
+	app.use(cors());
+}
 
 // Body parser middleware
 app.use(bodyParser.urlencoded({ extended: false }));

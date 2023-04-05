@@ -1,0 +1,384 @@
+@import '../../../style/variables';
+@import '../../../style/mixins';
+
+.singleItem {
+    margin-bottom: 8rem;
+    @media only screen and (max-width: $bp-small) {
+        margin-bottom: 4rem;
+    }
+}
+
+.singleItemWrp {
+    display: flex;
+    padding-left: 1.8rem;
+    gap: 10rem;
+    @media only screen and (max-width: $bp-medium) {
+        gap: 4rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+        gap: 4rem;
+        flex-direction: column;
+    }
+}
+
+.boxRight {
+    flex: 0 0 calc(50.5% - 10rem / 2);
+    @media only screen and (max-width: $bp-medium) {
+        flex: 0 0 calc(50.5%);
+    }
+}
+
+.boxRightHeader {
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+    @media only screen and (max-width: $bp-medium) {
+        flex-direction: column;
+    }
+}
+
+.singleItemTitle {
+    @include abel-font-normal;
+    color: #373f41;
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+.boxRightLinkWrp {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+.boxRightId {
+    @include muli-font-normal;
+    color: rgba(92, 94, 96, 0.5);
+    font-size: 1.4rem;
+    margin: 1rem 0 2.6rem 0;
+}
+
+.boxOption {
+    & p:not(p:last-child) {
+        margin-bottom: 0.5rem;
+    }
+
+    & p {
+        display: flex;
+        text-transform: uppercase;
+        align-items: center;
+        line-height: 2rem;
+        &:nth-child(1) span {
+            margin-left: 1.8rem;
+        }
+        &:nth-child(2) span {
+            margin-left: 3.6rem;
+        }
+        &:nth-child(3) span {
+            margin-left: 1.5rem;
+        }
+        & span {
+            text-transform: capitalize;
+            color: $description-color;
+            text-align: center;
+        }
+        & .color {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+    }
+}
+
+.boxForBuy {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 2.2rem;
+    padding-bottom: 2.7rem;
+    border-bottom: 0.1rem solid #373f41;
+    @media only screen and (max-width: $bp-medium) {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2rem;
+    }
+    @media only screen and (max-width: $bp-small) {
+        flex-direction: row;
+        align-items: center;
+        gap: 0;
+    }
+}
+
+.buyPrice {
+    font-size: 2.4rem;
+    margin-bottom: 1rem;
+}
+
+.buyPriceSales {
+    color: #ff0000;
+}
+
+.buyPriceOld {
+    font-size: 1.6rem;
+    color: $lightGrey;
+    text-decoration: line-through;
+}
+
+.buyTextTwo {
+    font-size: 1.4rem;
+    font-weight: 300;
+    color: rgba(92, 94, 96, 0.5);
+}
+
+.boxForBuyR {
+    display: flex;
+}
+
+.btn {
+    @include abel-font-normal;
+    display: block;
+    padding: 2rem 5.5rem;
+    font-size: 1.6rem;
+    background: rgba(55, 63, 65, 1);
+    border: 0.1rem solid rgba(55, 63, 65, 1);
+    box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
+    color: rgb(255, 255, 255);
+    border-radius: 0.4rem;
+    transition: all 0.2s ease-in;
+}
+
+.btn:hover {
+    background: rgb(167, 167, 167);
+    transform: translateY(-3px);
+}
+.btn:active {
+    transform: translateY(0);
+}
+
+.btnHeart {
+    @include abel-font-normal;
+    display: block;
+    width: 6rem;
+    margin-left: 1.5rem;
+    background: rgba(55, 63, 65, 1);
+    border: 0.1rem solid rgba(55, 63, 65, 1);
+    box-shadow: 0rem 0.1rem 0.1rem rgba(0, 0, 0, 0.25);
+    color: rgb(255, 255, 255);
+    border-radius: 0.4rem;
+    transition: all 0.2s ease-in;
+
+    & svg {
+        fill: $light-color;
+    }
+}
+
+.btnHeart:hover {
+    background-color: rgb(133, 133, 133);
+}
+
+.boxInfo {
+    padding-top: 3rem;
+
+    &Title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+        color: #373f41;
+    }
+
+    &Name {
+        display: flex;
+        align-items: center;
+        gap: 4rem;
+        background: transparent;
+
+        & p {
+            @include muli-font-bold;
+            font-size: $text-fs;
+            line-height: 24px;
+            color: $dark-color;
+            text-transform: uppercase;
+        }
+    }
+
+    &TitleFix {
+        margin-left: -3rem;
+    }
+}
+
+.descriptionText {
+    color: $dark-color;
+    font-size: 1.6rem;
+    line-height: 3rem;
+    margin-left: 3.3rem;
+    padding-top: 2rem;
+}
+
+.reviews {
+    padding: 2rem 0 0 3.3rem;
+
+    &Form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    &FormEdit {
+        padding: 5px;
+    }
+
+    &TextArea {
+        border: $border-dark;
+        display: block;
+        width: 100%;
+        font-size: 1.8rem;
+        padding: 5px;
+        resize: none;
+        min-height: 12rem;
+    }
+
+    &Label {
+        text-transform: capitalize;
+        letter-spacing: 2px;
+        margin-bottom: 1rem;
+    }
+
+    &Error {
+        font-size: 1.8rem;
+        color: #df2e2e;
+    }
+
+    &SubmitBtn,
+    &AddInfoBtn {
+        text-transform: uppercase;
+        border: $border-dark;
+        background-color: transparent;
+        padding: 1rem 1.8rem;
+        transition: all 0.2s ease-in;
+        margin-top: 1rem;
+        align-self: center;
+
+        @media only screen and (max-width: $bp-small) {
+            font-size: 1rem;
+            padding: 1rem 0.5rem;
+        }
+
+        &:hover {
+            background-color: $dark-color;
+            color: $light-color;
+        }
+    }
+
+    &Unauthorised {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: .5rem;
+        box-shadow: 0px 0px 5px $dark-color;
+    }
+
+    &AddInfo {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: .5rem;
+        box-shadow: 0px 0px 5px $dark-color;
+
+        &Message {
+            font-size: 1.5rem;
+        }
+
+        &Btn {
+            margin: 0;
+            padding: .5rem 1.2rem;
+        }
+
+    }
+
+    &Messages {
+
+    }
+
+    &Message {
+        margin-top: 1rem;
+        box-shadow: 0px 0px 5px $dark-color;
+        border-radius: 3px;
+
+        &Content{
+            display: flex;
+            flex-direction: column;
+        }
+
+        &Top {
+            display: flex;
+            padding: .5rem;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(138, 147, 148, .3);
+        }
+
+        &TopLeft {
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            font-size: 1.6rem;
+            gap: 1rem;
+        }
+
+        &TopRight {
+            color: $lightGrey;
+            display: flex;
+            align-items: center;
+            gap: .5rem;
+        }
+
+        &Bottom{
+            padding: 1.5rem .5rem;
+            font-size: 1.5rem;
+            position: relative;
+        }
+
+        &Avatar {
+            width: 3.8rem;
+            height: 3.8rem;
+            border-radius: 50%;
+            background-size: cover;
+            background-position: center;
+            display: inline-block;
+        }
+
+        &BtnEdit,
+        &BtnDelete {
+            background-color: transparent;
+            & svg {
+                fill: $lightGrey;
+                transition: fill .25s ease-in;
+
+                &:hover {
+                    fill: $dark-color;
+                }
+            }
+        }
+
+        &BtnDelete {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+        }
+
+        &Admin {
+            color: #ff0000;
+        }
+    }
+
+    &NoReviews {
+        margin-top: 3rem;
+        text-align: center;
+        font-size: 1.8rem;
+    }
+}
+
+.loader {
+    justify-content: center;
+    align-items: center;
+    height: 70vh;
+    opacity: 0.7;
+}

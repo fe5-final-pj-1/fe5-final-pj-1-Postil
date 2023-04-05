@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import Icon from '../../Icon/Icon';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector, shallowEqual } from 'react-redux';
-import { userLogOut } from '../../../store/loginSlice';
+import { userLogOut } from '../../../store/loginSlice/loginSlice';
 
 function Profile() {
     const [user, setUser] = useState({});

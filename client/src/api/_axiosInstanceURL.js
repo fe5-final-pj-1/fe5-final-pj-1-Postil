@@ -1,6 +1,6 @@
 import axios from 'axios';
 import store from 'store/store';
-import { userLogOut } from '../store/loginSlice';
+import { userLogOut } from '../store/loginSlice/loginSlice';
 
 export const axiosInstanceURL = axios.create({
     baseURL: process.env.REACT_APP_URL_API,

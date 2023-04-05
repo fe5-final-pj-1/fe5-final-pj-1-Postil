@@ -5,11 +5,11 @@ import * as Yup from 'yup';
 import styles from './Modal.module.scss';
 import Button from '../Button';
 import Icon from '../Icon';
-import { hideModal } from '../../store/modalSlice';
+import { hideModal } from '../../store/modalSlice/modalSlice';
 import { useDispatch } from 'react-redux';
 import loginCustomer from '../../api/loginCustomer';
 import createCustomer from '../../api/createCustomer';
-import { userLogIn } from '../../store/loginSlice';
+import { userLogIn } from '../../store/loginSlice/loginSlice';
 import jwt_decode from 'jwt-decode';
 import addSubscriber from 'api/addSubscriber';
 
@@ -254,8 +254,13 @@ function Modal() {
                         )}
                         <p className={styles.termsPolicy}>
                             By signing up you agree to{' '}
-                            <Link to="/terms&policy">Terms of Service</Link> and{' '}
-                            <Link to="/terms&policy">Privacy Policy</Link>
+                            <Link to="/service" target="_blank">
+                                Terms of Service
+                            </Link>{' '}
+                            and{' '}
+                            <Link to="/service" target="_blank">
+                                Privacy Policy
+                            </Link>
                         </p>
                         <Button type="submit" text={sign ? 'SIGN UP' : 'LOG IN'} />
                     </form>

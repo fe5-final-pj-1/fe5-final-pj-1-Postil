@@ -10,9 +10,10 @@ import { Oval } from 'react-loader-spinner';
 
 const ShoppingBag = () => {
     const [cart, setCart] = useState([]);
-    const [isLoaded, setIsLoaded] = useState(true);
+    const [isLoaded, setIsLoaded] = useState(false);
     const cartStorage = useSelector((state) => state.store.cart);
     const isLogIn = useSelector((state) => state.store.login.isLogIn);
+
     const addProducts = async () => {
         const tempCart = [];
         for (let i = 0; i < cartStorage.length; i++) {
@@ -26,13 +27,7 @@ const ShoppingBag = () => {
         setCart(tempCart);
     };
     useEffect(() => {
-        if (!isLogIn) {
-            setCart([...cartStorage]);
-        }
-    }, [cartStorage, isLogIn]);
-    useEffect(() => {
         if (isLogIn) {
-            setIsLoaded(false);
             getCart().then((res) => {
                 if (res.data === null) {
                     if (cartStorage.length > 0) {
@@ -58,12 +53,27 @@ const ShoppingBag = () => {
                     }
                 }
             });
+        } else if (cartStorage.length > 0 && cartStorage.length === cart.length) {
+            const indexElem = cartStorage.findIndex(
+                (elem, index) => elem.cartQuantity !== cart[index].cartQuantity,
+            );
+            if (indexElem === -1) {
+                return;
+            }
+            setCart((prev) => {
+                const result = [...prev];
+                result[indexElem].cartQuantity = cartStorage[indexElem].cartQuantity;
+                return result;
+            });
         } else if (cartStorage.length > 0) {
-            setIsLoaded(false);
             addProducts();
         }
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [cartStorage, isLogIn]);
+
+    const calculateTotalPrice = () =>
+        cart.reduce((acc, item) => acc + item.product.currentPrice * item.cartQuantity, 0);
+
     if (!isLoaded) {
         return (
             <Oval
@@ -91,13 +101,7 @@ const ShoppingBag = () => {
         <div className={styles.bagWrapper}>
             <div className={styles.headerWrapper}>
                 <h2 className={styles.bagHeader}>SHOPPING BAG</h2>
-                <p className={styles.totalPrice}>
-                    TOTAL USD $
-                    {cart.reduce(
-                        (acc, item) => acc + item.product.currentPrice * item.cartQuantity,
-                        0,
-                    )}
-                </p>
+                <p className={styles.totalPrice}>TOTAL USD ${calculateTotalPrice()}</p>
             </div>
 
             <ul className={styles.itemsList}>

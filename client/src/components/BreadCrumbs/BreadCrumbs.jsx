@@ -3,7 +3,7 @@ import styles from './BreadCrumbs.module.scss';
 import { Link, useLocation } from 'react-router-dom';
 import classNames from 'classnames';
 import PropTypes from 'prop-types';
-import { filtersAdded } from '../../store/filtersSlice';
+import { filtersAdded } from '../../store/filtersSlice/filtersSlice';
 import { useDispatch } from 'react-redux';
 
 function BreadCrumbs({ category, name }) {

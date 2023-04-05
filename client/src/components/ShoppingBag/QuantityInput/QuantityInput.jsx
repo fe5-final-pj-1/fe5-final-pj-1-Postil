@@ -3,63 +3,55 @@ import styles from './QuantityInput.module.scss';
 import PropTypes from 'prop-types';
 import addProductToCart from 'api/addProductToCart';
 import decreaseProductQuantity from 'api/decreaseProductQuantity';
-import getCart from 'api/getCart';
 import getOneProduct from 'api/getOneProduct';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeQuantity, decreaseProduct, itemAdded } from 'store/cartSlice';
-
+import { changeQuantity, decreaseProduct, itemAdded } from 'store/cartSlice/cartSlice';
 import Icon from 'components/Icon';
 
 const QuantityInput = ({ id, quantity }) => {
     const isLogIn = useSelector((state) => state.store.login.isLogIn);
     const [cartQuantity, setCartQuantity] = useState(quantity);
     const [itemQuantityInDB, setItemQuantityInDB] = useState();
+    const dispatch = useDispatch();
     useEffect(() => {
         getOneProduct(id).then((res) => setItemQuantityInDB(res.data.quantity));
     }, [id]);
-    const dispatch = useDispatch();
+
     const increaseProductQuantity = () => {
         if (cartQuantity >= itemQuantityInDB) {
             return;
         }
-        if (isLogIn) {
-            addProductToCart(id).then((res) => {
-                const quantity = res.data.products.filter(
-                    (product) => product.product._id === id,
-                )[0].cartQuantity;
-                setCartQuantity(quantity);
-            });
-        }
         dispatch(itemAdded(id));
+        setCartQuantity((prev) => prev + 1);
+        if (isLogIn) {
+            addProductToCart(id);
+        }
     };
 
     const decreaseProductQuantityInput = async () => {
-        if (isLogIn) {
-            const resCart = await getCart();
-            const tempQuantity = resCart.data.products.filter(
-                (product) => product.product._id === id,
-            )[0].cartQuantity;
-            if (tempQuantity > 1) {
-                const response = await decreaseProductQuantity(id);
-                const quantity = response.data.products.filter(
-                    (product) => product.product._id === id,
-                )[0].cartQuantity;
-                setCartQuantity(quantity);
-            }
-        }
         dispatch(decreaseProduct(id));
+        if (cartQuantity > 1) {
+            setCartQuantity((prev) => prev - 1);
+        }
+        if (isLogIn && cartQuantity > 1) {
+            decreaseProductQuantity(id);
+        }
+    };
+
+    const checkInputValue = (newValue) => {
+        if (newValue <= 0) return 0;
+        if (newValue >= itemQuantityInDB) return itemQuantityInDB;
+        if (newValue >= 100) return 99;
+        if (/^[1-9]\d*$/.test(newValue)) return newValue;
+        return cartQuantity;
     };
 
     const onChangeInputHandler = (e) => {
         e.stopPropagation();
         const newValue = +e.currentTarget.value;
-        setCartQuantity((prevState) => {
-            if (newValue >= itemQuantityInDB) return itemQuantityInDB;
-            if (newValue >= 100) return 99;
-            if (newValue <= 0) return 0;
-            if (/^[1-9]\d*$/.test(newValue)) return newValue;
-            return prevState;
-        });
+        const result = checkInputValue(newValue);
+        dispatch(changeQuantity({ id, quantity: result ? result : 1 }));
+        if (result !== cartQuantity) setCartQuantity(result);
     };
 
     const onBlurInputHandler = (e) => {
