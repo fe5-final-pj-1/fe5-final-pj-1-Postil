@@ -39,23 +39,18 @@ function FiltersPage() {
     useEffect(() => {
         if (didRun) {
             const filtersParams = new URLSearchParams(filters);
-            const startPage = filtersParams.get('startPage');
-            if (startPage > maxPageNumber) {
-                dispatch(filtersAdded({ startPage: ['1'] }));
-            } else {
-                getFilteredProducts(filtersParams.toString()).then((result) => {
-                    if (result.data.products.length === 0 && result.data.productsQuantity > 0) {
-                        dispatch(filtersAdded({ startPage: ['1'] }));
-                    } else {
-                        setProducts(result.data.products);
-                        const number = Math.ceil(
-                            Number(result.data.productsQuantity) / Number(filters.perPage[0]),
-                        );
-                        setMaxPageNumber(number > 0 ? number : 1);
-                        setIsLoaded(true);
-                    }
-                });
-            }
+            getFilteredProducts(filtersParams.toString()).then((result) => {
+                if (result.data.products.length === 0 && result.data.productsQuantity > 0) {
+                    dispatch(filtersAdded({ startPage: ['1'] }));
+                } else {
+                    setProducts(result.data.products);
+                    const number = Math.ceil(
+                        Number(result.data.productsQuantity) / Number(filters.perPage[0]),
+                    );
+                    setMaxPageNumber(number > 0 ? number : 1);
+                    setIsLoaded(true);
+                }
+            });
             filtersParams.delete('perPage');
             setSearchParams(filtersParams.toString());
         }
